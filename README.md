@@ -19,3 +19,14 @@ This website is built in the MEAN stack (MongoDB, Express.js, Angular.js, and No
 5. If MongoDB is both installed on your computer, skip this step. (INSERT DB INSTRUCTIONS HERE)
 
 6. Run the server: `node server.js`
+
+
+-----------------------------------------------------
+
+### Credits
+
+This project was created for the RPI Ambulance organization by the [Web Technologies Group](http://stugov.union.rpi.edu/senate/projects/wtg).
+
+#### Developers 
+* [Justin Etzine](http://github.com/Justetz)
+* [David Sparkman](http://github.com/David-Sparky)
