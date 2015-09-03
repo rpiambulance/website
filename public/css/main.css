@@ -376,13 +376,13 @@ input.search-form:hover {
     margin-top: 150px;
 }
 
-/*.gray-background{*/
-    /*background-color: rgba(0,0,0,.6);*/
-    /*padding: 15px;*/
-    /*-webkit-border-radius: 0;*/
-    /*-moz-border-radius: 0;*/
-    /*border-radius: 0;*/
-/*}*/
+.gray-background{
+    background-color: rgba(0,0,0,.6);
+    padding: 15px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
 
 #main-slider .carousel .slide-margin{
     margin-top: 140px;
