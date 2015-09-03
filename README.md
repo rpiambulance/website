@@ -30,3 +30,6 @@ This project was created for the RPI Ambulance organization by the [Web Technolo
 #### Developers 
 * [Justin Etzine](http://github.com/Justetz)
 * [David Sparkman](http://github.com/David-Sparky)
+
+#### Copyrights
+* Photos ending in `-DS.*` are copyrighted by David Sparkman and are used with permission from the author.
