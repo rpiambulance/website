@@ -16,4 +16,4 @@ Thumbs.db
 # Node/Bower modules #
 ######################
 node_modules/
-public/lib/
+public/libs/
