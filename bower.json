@@ -7,6 +7,7 @@
     "animate.css": "latest",
     "bootstrap": "latest",
     "font-awesome": "latest",
+    "html5shiv": "~3.7.3",
     "jquery-prettyPhoto": "~3.1.6",
     "respond": "Respond#~1.4.2"
   }
