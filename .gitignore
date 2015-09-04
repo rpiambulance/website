@@ -17,3 +17,7 @@ Thumbs.db
 ######################
 node_modules/
 public/libs/
+
+# IDE generated      #
+######################
+.idea/
