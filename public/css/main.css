@@ -1731,7 +1731,8 @@ ul.social_icons li  a i{
 .pricing-area .heading-five,
 .pricing-area .heading-six,
 .pricing-area .heading-seven {
-    margin-left: -10px
+    margin-left: 0px;
+    width: 360px;
 }
 
 
@@ -2346,7 +2347,7 @@ ul.sidebar-gallery {
 
 #comments_title{
     color:#4e4e4e;
-    font-weight:700px;
+    font-weight:700;
     font-size:20px;
     margin-top:60px;
     margin-bottom:40px;
