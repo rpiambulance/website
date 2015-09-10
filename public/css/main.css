@@ -1743,12 +1743,12 @@ ul.social_icons li  a i{
 
 .pricing-area .heading-two,
 .pricing-area .price-two .plan-action .btn-primary {
-    background:#27AE60;
+    background:#f39c12;
 }
 
 .pricing-area .heading-three,
 .pricing-area .price-three .plan-action .btn-primary {
-    background: #f39c12;
+    background: #27AE60;
 }
 
 .pricing-area .heading-four,
@@ -1838,7 +1838,8 @@ ul.social_icons li  a i{
     margin-top: 5px;
 }
 
-.pricing-area .plan-action .btn-primary:before {
+/*remove shadows on buttons*/
+/*.pricing-area .plan-action .btn-primary:before {
     border-color: #E24F43 transparent transparent;
     border-radius: 5px 0 0 0;
     border-style: solid;
@@ -1874,7 +1875,7 @@ ul.social_icons li  a i{
 .pricing-area .price-three .plan-action .btn-primary:before,
 .pricing-area .price-three .plan-action .btn-primary:after {
     border-color: #d4880f transparent transparent;
-}
+}*/
 
 .pricing-area .price-four .plan-action .btn-primary:before,
 .pricing-area .price-four .plan-action .btn-primary:after,
