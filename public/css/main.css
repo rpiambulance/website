@@ -348,7 +348,8 @@ input.search-form:hover {
 }
 
 .navbar-inverse .navbar-nav .dropdown-menu > li.divider {
-    background-color: transparent;
+    background-color: rgba(150,150,150,.25);
+    margin: 9px 10px;
 }
 
 .navbar-inverse .navbar-collapse,
