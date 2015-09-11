@@ -2648,3 +2648,17 @@ shortcodes page css
 .forgot-password:focus {
     color: rgb(97, 17, 14);
 }
+
+.comm-list li{
+    margin-top: 10px;
+}
+
+.comm-list li span {
+    display: block;
+    color: #909090;
+}
+
+.comm-list li span.other {
+    display: block;
+    color: #a64959;
+}
