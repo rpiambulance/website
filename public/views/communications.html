@@ -9,28 +9,12 @@
                 <br/>
             </div>
         </div>
-        <!--
-            >
-        <td ng-switch-when="0">
-            {{items[$index].id}} {{items[$index].name}}
-        </td>
-        <span ng-show="items[$index+1]">
-            <td ng-switch-when="0">
-                {{items[$index+1].id}} {{items[$index+1].name}}
-            </td>
-        </span>
-        <span ng-show="items[$index+2]">
-            <td ng-switch-when="0">
-                {{items[$index+2].id}} {{items[$index+2].name}}
-            </td>
-        </span>
-        -->
         <div class="row">
             <div class="col-md-6">
-                <info-chunk data="s" ng-repeat="s in sections track by $index" ng-show="$index % 2 == 0"></info-chunk>
+                <info-chunk ng-repeat="s in sections track by $index" data="s" ng-show="$index % 2 == 0"></info-chunk>
             </div>
             <div class="col-md-6">
-                <info-chunk data="s" ng-repeat="s in sections track by $index" ng-show="$index % 2 != 0"></info-chunk>
+                <info-chunk ng-repeat="s in sections track by $index" data="s" ng-show="$index % 2 != 0"></info-chunk>
             </div>
         </div>
 
