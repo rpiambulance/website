@@ -1,7 +1,7 @@
 angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
     var views = [
-        'Home', 'RPIA-About', 'FAQ', '5939-About', 'Officers'
+        'Home', 'RPIA-About', 'FAQ', '5939-About', 'Officers', 'Communications'
     ];
 
     views.forEach(function (elem, index) {

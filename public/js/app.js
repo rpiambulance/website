@@ -2,8 +2,19 @@ var dependencies = [
 	// REMOTE DEPENDENCIES:
 	'ngRoute',
 
-	// LOCAL DEPENDENCIES: 
-	'appRoutes', 'MainCtrl', 'HomeCtrl', 'RPIAAboutCtrl', 'FAQCtrl', '5939AboutCtrl', 'OfficersCtrl'
+	// LOCAL DEPENDENCIES:
+	'appRoutes',
+
+	// LOCAL DIRECTIVES:
+	'infoChunk',
+
+	// LOCAL CONTROLLERS:
+	'MainCtrl', 'HomeCtrl', 'RPIAAboutCtrl', 'FAQCtrl', '5939AboutCtrl', 'OfficersCtrl',
+	'CommunicationsCtrl'
 ];
 
-angular.module('RPIA', dependencies);
+var app = angular.module('RPIA', dependencies);
+
+app.config(['$sceProvider', function($sceProvider) {
+	$sceProvider.enabled(false);
+}]);
