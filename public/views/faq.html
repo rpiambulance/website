@@ -1,0 +1,22 @@
+<section id="content">
+    <div class="container">
+        <div class="center">
+            <h2>Frequently Asked Questions</h2>
+
+            <p class="lead text-justify" ng-repeat="faq in FAQs track by $index">
+                <strong ng-bind-html="trustHTMLInput(faq.question)"></strong><br/>
+                <span ng-bind-html="trustHTMLInput(faq.answer)"></span>
+            </p>
+            <p class="lead text-justify">
+            </p>
+
+        </div>
+
+        <!--/.our-skill-->
+
+
+        <!-- our-team -->
+    </div>
+    <!--/.container-->
+</section>
+<!--/about-us-->

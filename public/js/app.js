@@ -3,10 +3,7 @@ var dependencies = [
 	'ngRoute',
 
 	// LOCAL DEPENDENCIES: 
-	'appRoutes', // defined in appRoutes.js
-	'MainCtrl', // defined in controllers/MainCtrl.js
-	'HomeCtrl', // defined in controllers/MainCtrl.js
-	'RPIAAboutCtrl' // defined in controllers/RPIAAboutCtrl.js
+	'appRoutes', 'MainCtrl', 'HomeCtrl', 'RPIAAboutCtrl', 'FAQCtrl', '5939AboutCtrl', 'OfficersCtrl'
 ];
 
 angular.module('RPIA', dependencies);
