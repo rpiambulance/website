@@ -1,15 +1,9 @@
 <section id="about-us">
     <div class="container">
         <div class="center">
-            <h2>About RPI Ambulance</h2>
+            <h2 ng-bind-html="pageHeader"></h2>
 
-            <p class="lead">
-                RPI Ambulance is a student run and operated Basic Life Support (BLS) transporting ambulance agency that
-                serves the RPI campus and surrounding communities. We respond to approximately 150 to 200 calls and
-                provide first aid coverage to about 25 special events every academic year. All students of RPI are
-                eligible to join RPI Ambulance, no previous experience is necessary. Members can train to become
-                drivers, crew chiefs or just come to help out!
-            </p>
+            <p class="lead" ng-bind-html="aboutText"></p>
         </div>
 
         <img class="img-responsive center-block" data-wow-duration="1000ms" data-wow-delay="300ms"
@@ -19,14 +13,9 @@
         <div class="skill-wrap clearfix">
 
             <div class="center">
-                <h2>Our History</h2>
+                <h2 ng-bind-html="historyHeader"></h2>
 
-                <p class="lead">
-                    RPI Ambulance was founded in [YEAR] as the first EMS agency in Troy and the surrounding area. Today,
-                    RPIA serves the RPI campus as well as some of the surrounding towns. We mainly respond to on-campus
-                    calls, but also recieve mutual aid calls to Brunswick, North Greenbush (including Wynantskill and
-                    Defreestville), and Poestenkill.
-                </p>
+                <p class="lead" ng-bind-html="historyText"></p>
             </div>
 
         </div>
