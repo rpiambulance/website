@@ -10,7 +10,7 @@ var dependencies = [
 
 	// LOCAL CONTROLLERS:
 	'MainCtrl', 'HomeCtrl', 'RPIAAboutCtrl', 'FAQCtrl', '5939AboutCtrl', 'OfficersCtrl',
-	'CommunicationsCtrl', 'FR59AboutCtrl', 'MediaCtrl'
+	'CommunicationsCtrl', 'FR59AboutCtrl', 'MediaCtrl', 'MinutesCtrl'
 ];
 
 var app = angular.module('RPIA', dependencies);

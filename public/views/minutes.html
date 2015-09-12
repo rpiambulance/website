@@ -1,0 +1,16 @@
+<section id="content">
+    <div class="container">
+        <div class="row center">
+            <h2 ng-bind-html="pageHeader"></h2>
+        </div>
+        <div class="row">
+            <div class="col-md-6" ng-repeat="m in minutes">
+                <h3 class="center" ng-bind-html="m.header"></h3>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <iframe frameborder="0" class="embed-responsive-item" ng-src="{{getDriveEmbed(m.folderId)}}"
+                            style="width: 100% !important; height: 100% !important;" ></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
