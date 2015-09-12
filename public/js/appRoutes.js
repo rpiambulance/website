@@ -8,7 +8,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         $routeProvider.when('/' + elem.toLowerCase(), {
             templateUrl: 'views/' + elem.toLowerCase() + '.html',
             controller: elem.replace('-', '') + 'Ctrl',
-            caseInsensitiveMatch: true
+            caseInsensitiveMatch: true,
+            activeTab: elem.toLowerCase(),
+            title: elem
         });
     });
 

@@ -70,57 +70,15 @@
 
             <div class="collapse navbar-collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#/home">Home</a></li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">
-                            About Us <i class="fa fa-angle-down"></i>
+                    <li ng-repeat="n in navbar" ng-class="{'active': isActive(n), 'dropdown': n.isDropdown}">
+                        <a ng-hide="n.isDropdown" ng-href="#/{{n.page}}" ng-bind="n.title"></a>
+                        <a ng-show="n.isDropdown" class="dropdown-toggle" data-toggle="dropdown" ng-class="{'active': isActive(n)}">
+                            <span ng-bind="n.title"></span> <i class="fa fa-angle-down"></i>
                         </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#/rpia-about">About RPI Ambulance</a></li>
-                            <li><a href="#/faq">FAQs</a></li>
-                            <li><a href="#/officers">Officers</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#/5939-about">Ambulance</a></li>
-                            <li><a href="#/fr59-about">First Response</a></li>
-                            <li role="separator" class="divider"></li>
-                            <li><a href="#/media">Media</a></li>
+                        <ul ng-show="n.isDropdown" class="dropdown-menu">
+                            <li ng-repeat="d in n.dropdownOptions"><a ng-href="#/{{d.page}}" ng-bind="d.title"></a></li>
                         </ul>
                     </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">
-                            Resources <i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="#/communications">Communications</a></li>
-                            <li><a href="#/minutes">Meeting Minutes</a></li>
-                            <li><a href="mutual-aid.html">Mutual Aid</a></li>
-                            <li><a href="radio-callsigns.html">Radio Callsigns</a></li>
-                            <li><a href="EMT-reciprocity.html">EMT Reciprocity</a></li>
-                            <li><a href="constitution.html">Constitution</a></li>
-                            <li><a href="SOP.html">SOPs</a></li>
-                            <li><a href="text-message-dispatch.html">Text Message Dispatch</a></li>
-                            <li><a href="RENSCO-resources.html">RENSCO Resources</a></li>
-                            <li><a href="DOH-resources.html">DOH Resources</a></li>
-                            <li><a href="misc-forms.html">Miscellaneous Forms</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            Training <i class="fa fa-angle-down"></i>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="new-members-training.html">New Members</a></li>
-                            <li><a href="CPR-certification.html">CPR Certification</a></li>
-                            <li><a href="attendant-training.html">Attendant</a></li>
-                            <li><a href="driver-training.html">Driver</a></li>
-                            <li><a href="crew-chief-training.html">Crew Chief</a></li>
-                            <li><a href="supervisor-training.html">Supervisor</a></li>
-                            <li><a href="in-service-training.html">In-service Training</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="coverage.html">Request Coverage</a></li>
-                    <li><a href="login.html">Members</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>
         </div>
