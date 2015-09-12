@@ -14,7 +14,9 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         });
     });
 
-    $routeProvider.otherwise({redirectTo:'/home'});
+    $routeProvider.otherwise({
+        redirectTo:'/home'
+    });
 
     //$locationProvider.html5Mode(true);
 

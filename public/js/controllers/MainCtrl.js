@@ -1,4 +1,8 @@
 angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', function($scope, $route) {
+    /**
+     * Contains the data to dynamically populate the navigation bar
+     * @type {*[]}
+     */
     $scope.navbar = [
         {page: 'home', title: 'Home', isDropdown: false},
         {page: '', title: 'About Us', isDropdown: true, dividersAfter: [2,4], dropdownOptions: [
@@ -36,18 +40,35 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', funct
         {page: 'contact', title: 'Contact Us', isDropdown: false}
     ];
 
+    /**
+     * Determines whether a nav item should highlight as active
+     * @param nav
+     * @returns {boolean}
+     */
     $scope.isActive = function(nav) {
         if(nav.isDropdown) {
             var isActive = false;
             nav.dropdownOptions.forEach(function(elem) {
-                if($route.current.activeTab == elem.page) {
+                if($route.current !== undefined && $route.current.activeTab == elem.page) {
                     isActive = true;
                 }
             });
             return isActive;
         } else {
-            return $route.current.activeTab == nav.page;
+            return $route.current !== undefined && $route.current.activeTab == nav.page;
         }
+    };
 
+    /**
+     * Determines when to add a divider within a dropdown list, based on the defined array
+     * inside the nav object.
+     * @param nav
+     * @param index
+     * @returns {boolean}
+     */
+    $scope.showDivider = function(nav, index) {
+        if(nav.isDropdown && nav.dividersAfter.indexOf(+index) > -1) {
+            return true;
+        }
     }
 }]);

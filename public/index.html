@@ -76,7 +76,8 @@
                             <span ng-bind="n.title"></span> <i class="fa fa-angle-down"></i>
                         </a>
                         <ul ng-show="n.isDropdown" class="dropdown-menu">
-                            <li ng-repeat="d in n.dropdownOptions"><a ng-href="#/{{d.page}}" ng-bind="d.title"></a></li>
+                            <li ng-repeat-start="d in n.dropdownOptions track by $index"><a ng-href="#/{{d.page}}" ng-bind="d.title"></a></li>
+                            <li ng-if="showDivider(n, $index)" role="separator" class="divider" ng-repeat-end></li>
                         </ul>
                     </li>
                 </ul>
