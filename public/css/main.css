@@ -111,7 +111,7 @@ a:focus {
     margin-left: 20px;
 }
 
-body > section {
+body section {
     padding: 70px 0;
 }
 
@@ -539,7 +539,8 @@ input.search-form:hover {
     animation: fadeInUp 300ms linear 1200ms both;
 }
 
-#feature {
+#feature,
+#feature.ng-scope {
     background: #f2f2f2;
     padding-bottom: 40px;
 }
