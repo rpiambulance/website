@@ -2,10 +2,8 @@
     <div class="container">
         <div class="row center">
             <div class="col-xs-12">
-                <h2>Communications</h2>
-
-                <h3>Inter&dash; and Intra&dash;agency communications resources</h3>
-
+                <h2 ng-bind-html="pageHeader"></h2>
+                <h3 ng-bind-html="pageSubHeader"></h3>
                 <br/>
             </div>
         </div>
@@ -17,12 +15,5 @@
                 <info-chunk ng-repeat="s in sections track by $index" data="s" ng-show="$index % 2 != 0"></info-chunk>
             </div>
         </div>
-
-        <!--/.our-skill-->
-
-
-        <!-- our-team -->
     </div>
-    <!--/.container-->
 </section>
-<!--/about-us-->

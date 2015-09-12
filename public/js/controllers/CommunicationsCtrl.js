@@ -1,6 +1,6 @@
 angular.module('CommunicationsCtrl', []).controller('CommunicationsCtrl', ['$scope', function($scope) {
     $scope.pageHeader = 'Communications';
-    $scope.pageSubHeader = '';
+    $scope.pageSubHeader = 'Inter&dash; and Intra&dash;agency communications resources';
     $scope.sections = [
         {
             sectionHeader: 'Introduction to RPIA radio communications',
