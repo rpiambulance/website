@@ -40,8 +40,4 @@ angular.module('FAQCtrl', []).controller('FAQCtrl', ['$scope', '$sce', function(
             'contact us if you have any further questions at <a href="mailto:officers@rpiambulance.com">officers@rpiambulance.com</a>'}
     ];
 
-    $scope.trustHTMLInput = function(input) {
-        return $sce.trustAsHtml(input);
-    }
-
 }]);
