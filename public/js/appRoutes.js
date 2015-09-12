@@ -1,19 +1,19 @@
 angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
 
-    $routeProvider
+    var views = [
+        'Home', 'RPIA-About'
+    ];
 
-        // home page
-        .when('/', {
-            templateUrl: 'views/home.html',
-            controller: 'MainController'
-        })
-
-        // nerds page that will use the NerdController
-        .when('/nerds', {
-            templateUrl: 'views/nerd.html',
-            controller: 'NerdController'
+    views.forEach(function (elem, index) {
+        $routeProvider.when('/' + elem.toLowerCase(), {
+            templateUrl: 'views/' + elem.toLowerCase() + '.html',
+            controller: elem.replace('-', '') + 'Ctrl',
+            caseInsensitiveMatch: true
         });
+    });
 
-    $locationProvider.html5Mode(true);
+    $routeProvider.otherwise({redirectTo:'/home'});
+
+    //$locationProvider.html5Mode(true);
 
 }]);

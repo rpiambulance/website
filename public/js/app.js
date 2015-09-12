@@ -5,8 +5,8 @@ var dependencies = [
 	// LOCAL DEPENDENCIES: 
 	'appRoutes', // defined in appRoutes.js
 	'MainCtrl', // defined in controllers/MainCtrl.js
-	'NerdCtrl', // defined in controllers/NerdCtrl.js
-	'NerdService' // defined in services/NerdService.js
+	'HomeCtrl', // defined in controllers/MainCtrl.js
+	'RPIAAboutCtrl' // defined in controllers/RPIAAboutCtrl.js
 ];
 
 angular.module('RPIA', dependencies);
