@@ -9,7 +9,7 @@ angular.module('FAQCtrl', []).controller('FAQCtrl', ['$scope', '$sce', function(
             'assistance and transport services 24/7 while classes are in session. We also provide emergency medical ' +
             'services at sporting and other special events on campus.'},
         {question:'How much does an ambulance ride to the hospital cost?', answer: 'Services provided by RPI Ambulance ' +
-            'are completely free! While some ambulance agencies may bill, RPI ambulance is completely free of charge.'},
+            'are completely free! While some ambulance agencies may bill, RPI Ambulance is completely free of charge.'},
         {question:'What prior experience do I need?', answer: 'Absolutely nothing. We do not require any training to ' +
             'join, but highly encourage training once a member. If you already have a non-New York EMT certification, ' +
             'talk to one of our officers about getting reciprocity in NY state.'},
