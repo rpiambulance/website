@@ -1,0 +1,96 @@
+<section id="contact-info">
+    <div class="center">
+        <h2>Contact Us</h2>
+        <p class="lead">Shoot us an email using the form below! Or come visit us!</p>
+    </div>
+    <div class="gmap-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5 text-center">
+                    <div class="gmap">
+                        <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2930.887397039778!2d-73.6806086!3d42.727274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89de0f0a530596f9%3A0x5a21f2f789d7b279!2s92+College+Ave%2C+Troy%2C+NY+12180!5e0!3m2!1sen!2sus!4v1441332834496"></iframe>
+                    </div>
+                </div>
+
+                <div class="col-sm-7 map-content">
+                    <ul class="row">
+                        <li class="col-sm-6">
+                            <address>
+                                <h5>Station 59</h5>
+                                <p>92 College Avenue <br>
+                                    Troy, NY 12180</p>
+                                <p>Phone: 518-555-5555 <br>
+                                    Email: officers@rpiambulance.com</p>
+                            </address>
+
+                            <address>
+                                <h5>RPI Public Safety</h5>
+                                <p>1624 15th Street <br>
+                                    Troy, NY 12180</p>
+                                <p>Emergency: 518-276-6611 <br>
+                                    Phone: 518-276-6656</p>
+                            </address>
+
+                        </li>
+
+
+                        <li class="col-sm-6">
+                            <address>
+                                <h5>RPI Ambulance Mailing</h5>
+                                <p>RPI Ambulance <br>
+                                    110 8th Street <br>
+                                    Troy, NY 12180</p>
+                                <p>Phone: 518-555-5555 <br></p>
+                            </address>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>  <!--/gmap_area -->
+
+<section id="contact-page">
+    <div class="container">
+        <div class="center">
+            <h2>Drop us a line!</h2>
+            <p class="lead">Use this from to send us an email. We'll get back to you soon!</p>
+        </div>
+        <div class="row contact-wrap">
+            <div class="status alert alert-success" style="display: none"></div>
+            <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="sendemail.php">
+                <div class="col-sm-5 col-sm-offset-1">
+                    <div class="form-group">
+                        <label>Name *</label>
+                        <input type="text" name="name" class="form-control" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label>Email *</label>
+                        <input type="email" name="email" class="form-control" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="number" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>Company Name</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <label>Subject *</label>
+                        <input type="text" name="subject" class="form-control" required="required">
+                    </div>
+                    <div class="form-group">
+                        <label>Message *</label>
+                        <textarea name="message" id="message" required="required" class="form-control" rows="8"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" name="submit" class="btn btn-primary btn-lg" required="required">Submit Message</button>
+                    </div>
+                </div>
+            </form>
+        </div><!--/.row-->
+    </div><!--/.container-->
+</section><!--/#contact-page-->
