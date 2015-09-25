@@ -90,8 +90,8 @@ angular.module('CommunicationsCtrl', []).controller('CommunicationsCtrl', ['$sco
             paragraphs: [
                 'The patient compartment of the ambulance has a radio used to contact hospitals prior to ' +
                 'arrival. BLS 340 (used for Albany hospitals) and BLS 400 (used for all other Capital District ' +
-                'hospitals) utilize an code to open the frequency at the hospital to allow communication. Crew chiefs ' +
-                'are trained in the usage of this radio and the appropriate hospital radio codes.'
+                'hospitals) utilize a code to open the frequency at the hospital to allow communication. Crew chiefs ' +
+                'and drivers are trained in the usage of this radio and the appropriate hospital radio codes.'
             ]
         },
         {

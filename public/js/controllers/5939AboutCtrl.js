@@ -8,6 +8,6 @@ angular.module('5939AboutCtrl', []).controller('5939AboutCtrl', ['$scope', funct
     $scope.historyHeader = 'Past Ambulances';
     $scope.historyText = 'In Spring 2007, 5939 was delivered to replace the aging A-39. A-39 ' +
     'had proudly served the agency for 10 years before being retired. The agency has also operated several other ' +
-    'ambulances, the first of which was a [INSERT DATA] that was given to RPI Ambulance when members saved a member of ' +
+    'ambulances, the first of which is rumored to have been given to RPI Ambulance when members saved a member of ' +
     'the faculty from choking in one of the dining halls.';
 }]);
