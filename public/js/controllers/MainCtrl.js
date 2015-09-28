@@ -8,6 +8,9 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', 'Edit
     $scope.toggleEdit = function() {
         $scope.editMode = EditablePageService.verifyPermissions($scope.editMode, $scope.loggedIn, $scope.username)
     };
+    $scope.ensureEditDisabled = function() {
+        $scope.editMode = false;
+    }
     $scope.saveEdits = function() {
         $scope.editMode = EditablePageService.saveChanges($scope.pageHeader, $scope.sections);
     };

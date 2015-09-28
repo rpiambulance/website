@@ -13,7 +13,7 @@ angular.module('RPIAAboutCtrl', []).controller('RPIAAboutCtrl', ['$scope', funct
         {
             internal_title: 'Ambulance Image',
             header: '',
-            body: '<img class="img-responsive center-block" src="img/old_fleet.jpg" width="75%">'
+            body: '![RPI Ambulance\'s Old Fleet](img/old_fleet.jpg =75%x*)'
         },
         {
             internal_title: 'History',

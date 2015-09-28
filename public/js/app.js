@@ -1,6 +1,6 @@
 var dependencies = [
 	// REMOTE DEPENDENCIES:
-	'ngRoute',
+	'ngRoute', 'ng-showdown',
 
 	// LOCAL DEPENDENCIES:
 	'appRoutes',
@@ -22,4 +22,10 @@ var app = angular.module('RPIA', dependencies);
 
 app.config(['$sceProvider', function($sceProvider) {
 	$sceProvider.enabled(false);
+}]);
+
+app.config(['$showdownProvider', function($showdownProvider) {
+	$showdownProvider.setOption('headerLevelStart', 3);
+	$showdownProvider.setOption('noHeaderId', true);
+	$showdownProvider.setOption('parseImgDimensions', true);
 }]);
