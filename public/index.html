@@ -71,12 +71,13 @@
             <div class="collapse navbar-collapse navbar-right">
                 <ul class="nav navbar-nav">
                     <li ng-repeat="n in navbar" ng-class="{'active': isActive(n), 'dropdown': n.isDropdown}">
-                        <a ng-hide="n.isDropdown" ng-href="#/{{n.page}}" ng-bind="n.title"></a>
+                        <a ng-hide="n.isDropdown" ng-click="toggleEdit()" ng-href="#/{{n.page}}" ng-bind="n.title"></a>
                         <a ng-show="n.isDropdown" class="dropdown-toggle" data-toggle="dropdown" ng-class="{'active': isActive(n)}">
                             <span ng-bind="n.title"></span> <i class="fa fa-angle-down"></i>
                         </a>
                         <ul ng-show="n.isDropdown" class="dropdown-menu">
-                            <li ng-repeat-start="d in n.dropdownOptions track by $index" ng-class="{'active': isActive(d)}">
+                            <li ng-repeat-start="d in n.dropdownOptions track by $index" ng-click="toggleEdit()"
+                                ng-class="{'active': isActive(d)}">
                                 <a ng-href="#/{{d.page}}" ng-bind="d.title"></a>
                             </li>
                             <li ng-if="showDivider(n, $index)" role="separator" class="divider" ng-repeat-end></li>
@@ -190,6 +191,9 @@
 <script src="js/appRoutes.js"></script>
 
 <script src="js/directives/infoChunk.js"></script>
+<script src="js/directives/pageContent.js"></script>
+<script src="js/directives/editContent.js"></script>
+<script src="js/services/EditablePageService.js"></script>
 
 <script src="js/controllers/MainCtrl.js"></script>
 <script src="js/controllers/HomeCtrl.js"></script>

@@ -1,4 +1,19 @@
-angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', function($scope, $route) {
+angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', 'EditablePageService', function($scope, $route, EditablePageService) {
+    // TODO: IMPLEMENT AUTHENTICATION, REMOVE DEFAULT VALUE OF TRUE
+    $scope.loggedIn = true;
+    $scope.username = '';
+
+    // === NECESSARY CODE FOR EDITING THE PAGE ================================
+    $scope.editMode = false;
+    $scope.toggleEdit = function() {
+        $scope.editMode = EditablePageService.verifyPermissions($scope.editMode, $scope.loggedIn, $scope.username)
+    };
+    $scope.saveEdits = function() {
+        $scope.editMode = EditablePageService.saveChanges($scope.pageHeader, $scope.sections);
+    };
+    // ========================================================================
+
+
     /**
      * Contains the data to dynamically populate the navigation bar
      * @type {*[]}

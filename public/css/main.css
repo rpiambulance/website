@@ -68,6 +68,12 @@ hr {
     margin-top: 10px;
 }
 
+.btn-default {
+    border-radius: 4px;
+    margin-top: 10px;
+    padding: 8px 20px;
+}
+
 .btn-primary:hover,
 .btn-primary:focus {
     background: #c52d2f;
@@ -1946,6 +1952,10 @@ ul.social_icons li a i {
 textarea#message {
     resize: none;
     padding: 10px;
+}
+
+textarea.vertical-resize {
+    resize:vertical;
 }
 
 #contact-page .contact-wrap {

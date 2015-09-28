@@ -5,8 +5,9 @@ var dependencies = [
 	// LOCAL DEPENDENCIES:
 	'appRoutes',
 
-	// LOCAL DIRECTIVES:
-	'infoChunk',
+	// LOCAL DIRECTIVES AND SERVICES:
+	'infoChunk', 'pageContent', 'editContent',
+	'EditablePageService',
 
 	// LOCAL CONTROLLERS:
 	'MainCtrl', 'HomeCtrl', 'RPIAAboutCtrl', 'FAQCtrl', '5939AboutCtrl', 'OfficersCtrl', 'CommunicationsCtrl',
