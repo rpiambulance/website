@@ -1,19 +1,6 @@
-<section id="content">
+<section id="radio-callsigns">
     <div class="container">
-        <div class="row">
-            <div class="col-md-12 center">
-                <h2 ng-bind-html="pageHeader"></h2>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <info-chunk ng-repeat="s in leftSections" data="s"></info-chunk>
-            </div>
-            <div class="col-md-6">
-                <info-chunk ng-repeat="s in rightSections" data="s"></info-chunk>
-            </div>
-        </div>
+        <page-content ng-hide="editMode"></page-content>
+        <edit-content ng-show="editMode"></edit-content>
     </div>
-
 </section>
-<!--/about-us-->
