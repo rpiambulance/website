@@ -1956,6 +1956,7 @@ textarea#message {
 
 textarea.vertical-resize {
     resize:vertical;
+    min-height: 200px;
 }
 
 #contact-page .contact-wrap {
@@ -2660,16 +2661,12 @@ shortcodes page css
     color: rgb(97, 17, 14);
 }
 
-.comm-list li{
-    margin-top: 10px;
-}
-
-.comm-list li span {
+span.comm-list {
     display: block;
     color: #909090;
 }
 
-.comm-list li span.other {
+span.comm-list-other {
     display: block;
     color: #a64959;
 }

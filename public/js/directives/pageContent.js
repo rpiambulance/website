@@ -14,6 +14,7 @@ angular.module('pageContent', []).directive('pageContent', ['$showdown', functio
                 }
                 return string;
             };
+
             $scope.convertMarkdown = function (string) {
                 var md = $showdown.makeHtml(string);
                 md = addImageClasses(md);

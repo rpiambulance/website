@@ -1,19 +1,6 @@
-<section id="content">
+<section id="communications">
     <div class="container">
-        <div class="row center">
-            <div class="col-xs-12">
-                <h2 ng-bind-html="pageHeader"></h2>
-                <h3 ng-bind-html="pageSubHeader"></h3>
-                <br/>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6">
-                <info-chunk ng-repeat="s in sections track by $index" data="s" ng-show="$index % 2 == 0"></info-chunk>
-            </div>
-            <div class="col-md-6">
-                <info-chunk ng-repeat="s in sections track by $index" data="s" ng-show="$index % 2 != 0"></info-chunk>
-            </div>
-        </div>
+        <page-content ng-hide="editMode"></page-content>
+        <edit-content ng-show="editMode"></edit-content>
     </div>
 </section>

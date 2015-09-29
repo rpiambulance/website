@@ -11,11 +11,11 @@
         <div class="well">
         <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
             <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id="pageHeader">
+                <div class="panel-heading" role="tab" data-toggle="collapse" id="pageHeader" onclick="return false;"
+                     aria-expanded="true" aria-controls="collapsePageHeader" ng-href="#collapsePageHeader"
+                     data-parent="#accordion">
                     <h4 class="panel-title">
-                        <a role="button" data-toggle="collapse"
-                           data-parent="#accordion" ng-href="#collapsePageHeader" onclick="return false;"
-                           aria-expanded="true" aria-controls="collapsePageHeader">
+                        <a>
                             Page Header: {{pageHeader}}
                         </a>
                     </h4>
@@ -24,19 +24,21 @@
                     <div class="panel-body">
                         <label for="PageHeaderInput">Page Header: </label>
                         <input id="PageHeaderInput" class="form-control" type="text" ng-model="pageHeader" />
+                        <hr />
+                        <label for="PageSubHeaderInput">Page Sub-header (leave blank to omit): </label>
+                        <input id="PageSubHeaderInput" class="form-control" type="text" ng-model="pageSubHeader"
+                               placeholder="None" style="margin-bottom: 12px" />
                     </div>
                 </div>
             </div>
             <div class="panel panel-default" ng-repeat="s in sections track by $index">
-                <div class="panel-heading" role="tab" id="heading{{$index}}">
+                <div class="panel-heading" role="tab" id="heading{{$index}}" data-toggle="collapse" aria-expanded="false"
+                     ng-href="#collapse{{$index}}" onclick="return false;" aria-controls="collapse{{$index}}"
+                     data-parent="#accordion">
                     <h4 class="panel-title">
-                        <a ng-class="{'collapsed': $index != 0}" role="button" data-toggle="collapse"
-                           data-parent="#accordion" ng-href="#collapse{{$index}}" onclick="return false;"
-                           aria-expanded="false" aria-controls="collapse{{$index}}">
+                        <a class="collapsed" role="button">
                             <span ng-if="s.internal_title.length > 0" ng-bind="s.internal_title"></span>
-                            <span ng-if="s.internal_title.length == 0 || s.internal_title === undefined">
-                                Untitled Section
-                            </span>
+                            <span ng-if="s.internal_title.length == 0 || s.internal_title === undefined" ng-bind="s.header"></span>
                         </a>
                     </h4>
                 </div>
@@ -45,7 +47,7 @@
                     <div class="panel-body">
                         <div class="form-group">
                             <label for="section{{$index}}Header">Header (leave blank to omit): </label>
-                            <input type="text" id="section{{$index}}Header" class="form-control" ng-model="s.header" placeholder="Blank"/>
+                            <input type="text" id="section{{$index}}Header" class="form-control" ng-model="s.header" placeholder="None"/>
                         </div>
                         <div class="form-group">
                             <label for="section{{$index}}Internal">Internal Title: </label>

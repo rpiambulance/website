@@ -10,7 +10,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', 'Edit
     };
     $scope.ensureEditDisabled = function() {
         $scope.editMode = false;
-    }
+    };
     $scope.saveEdits = function() {
         $scope.editMode = EditablePageService.saveChanges($scope.pageHeader, $scope.sections);
     };
@@ -88,5 +88,5 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', 'Edit
         if(nav.isDropdown && nav.dividersAfter.indexOf(+index) > -1) {
             return true;
         }
-    }
+    };
 }]);
