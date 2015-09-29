@@ -70,6 +70,26 @@
                     </div>
                 </div>
             </div>
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" data-toggle="collapse" id="pageSettings" onclick="return false;"
+                     aria-expanded="true" aria-controls="collapsePageSettings" ng-href="#collapsePageSettings"
+                     data-parent="#accordion">
+                    <h4 class="panel-title">
+                        <a>
+                            Page Settings
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapsePageSettings" class="panel-collapse collapse" role="tabpanel" aria-labelledby="pageSettings">
+                    <div class="panel-body">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="columns"> Enable 2 Column Layout
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="btn-toolbar">
             <a class="btn btn-default pull-left" ng-click="addSection()">
