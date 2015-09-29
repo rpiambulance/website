@@ -1,39 +1,6 @@
 <section id="about-us">
     <div class="container">
-        <page-content></page-content>
-       <!-- <div class="center">
-            <h2 ng-bind-html="pageHeader"></h2>
-
-            <p class="lead text-justify" ng-bind-html="aboutText"></p>
-        </div>
-
-
-        <img class="img-responsive center-block" data-wow-duration="1000ms"
-             data-wow-delay="300ms" src="" width="75%">
-        <div class="text-center lead"><b></b></div>
-
-        <br>
-
-        <img class="img-responsive center-block" data-wow-duration="1000ms"
-             data-wow-delay="300ms" src="" width="75%">
-
-        <div class="text-center lead"></div>
-
-        &lt;!&ndash; Our Skill &ndash;&gt;
-        <div class="skill-wrap clearfix">
-
-            <div class="center">
-                <h2 ng-bind-html="historyHeader"></h2>
-
-                <p class="lead" ng-bind-html="historyText"></p>
-            </div>
-
-        </div>
-        &lt;!&ndash;/.our-skill&ndash;&gt;
-
--->
-        <!-- our-team -->
+        <page-content ng-hide="editMode"></page-content>
+        <edit-content ng-show="editMode"></edit-content>
     </div>
-    <!--/.container-->
 </section>
-<!--/about-us-->

@@ -103,7 +103,7 @@ a:focus {
     min-width: 180px;
 }
 
-.center h2 {
+h2.view-header {
     font-size: 36px;
     margin-top: 0;
     margin-bottom: 20px;

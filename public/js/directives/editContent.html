@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-12 center">
-        <h2>
+        <h2 class="view-header">
             <span class="text-muted">Editing: </span>
             <span ng-bind-html="pageHeader"></span>
         </h2>
@@ -39,6 +39,8 @@
                         <a class="collapsed" role="button">
                             <span ng-if="s.internal_title.length > 0" ng-bind="s.internal_title"></span>
                             <span ng-if="s.internal_title.length == 0 || s.internal_title === undefined" ng-bind="s.header"></span>
+                            <span ng-if="(s.internal_title.length == 0 || s.internal_title === undefined) &&
+                                (s.header.length == 0 || s.header === undefined)">Untitled Section</span>
                         </a>
                     </h4>
                 </div>
@@ -56,6 +58,11 @@
                         <div class="form-group">
                             <label for="section{{$index}}Body">Body: </label>
                             <textarea id="section{{$index}}Body" class="form-control vertical-resize" ng-model="s.body"></textarea>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" ng-model="s.centered"> Center Section
+                            </label>
                         </div>
                         <div class="form-group">
                             <a class="danger" ng-click="removeSection($index)">Delete Section</a>
