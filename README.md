@@ -16,7 +16,7 @@ This website is built in the MEAN stack (MongoDB, Express.js, Angular.js, and No
     * `> npm install`
     * `> bower install`
 
-5. If MongoDB is both installed on your computer, skip this step. (INSERT DB INSTRUCTIONS HERE)
+5. If MySQL is both installed on your computer, skip this step. (INSERT DB INSTRUCTIONS HERE)
 
 6. Run the server: `node server.js`
 
