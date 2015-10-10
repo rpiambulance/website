@@ -52,8 +52,9 @@
                             <input type="text" id="section{{$index}}Header" class="form-control" ng-model="s.header" placeholder="None"/>
                         </div>
                         <div class="form-group">
-                            <label for="section{{$index}}Internal">Internal Title: </label>
+                            <label for="section{{$index}}Internal">Section Header: </label>
                             <input type="text" id="section{{$index}}Internal" class="form-control" ng-model="s.internal_title" />
+                            <label for="section{{$index}}Internal" class="text-muted">Note: this is only for editing purposes and does not show up on the page.</label>
                         </div>
                         <div class="form-group">
                             <label for="section{{$index}}Body">Body: </label>
@@ -95,7 +96,7 @@
             <a class="btn btn-default pull-left" ng-click="addSection()">
                 <span class="glyphicon glyphicon-plus"></span> Add Section
             </a>
-            <a class="btn btn-primary pull-right" ng-click="saveEdits()">
+            <a class="btn btn-success pull-right" ng-click="saveEdits()">
                 <span class="glyphicon glyphicon-save"></span> Save
             </a>
         </div>
