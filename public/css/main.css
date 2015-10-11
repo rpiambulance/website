@@ -2681,10 +2681,10 @@ span.comm-list-other {
 }
 
 #accordion .panel-heading:hover {
-    box-shadow: inset 0 0 5px black;
+    box-shadow: inset 0 0 3px #555;
 }
 
-input[type=text], input[type=password], input[type=email], textarea {
+.form-group > input[type=text], input[type=password], input[type=email], textarea {
     transition: all 0.30s ease-in-out !important;
     outline: none !important;
     padding: 3px 0px 3px 3px !important;
@@ -2692,19 +2692,19 @@ input[type=text], input[type=password], input[type=email], textarea {
     border: 1px solid #DDDDDD !important;
 }
 
-input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, textarea:focus {
+.form-group > input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, textarea:focus {
     box-shadow: 0 0 5px #d81e05 !important;
     padding: 3px 0px 3px 3px !important;
     margin: 5px 1px 3px 0px !important;
     border: 1px solid #d81e05 !important;
 }
 
-input[type=submit] {
+.form-group > input[type=submit] {
     transition: all 0.30s ease-in-out !important;
 
 }
 
 
-input[type=submit]:focus {
+.form-group > input[type=submit]:focus {
     box-shadow: 0 0 5px #d81e05 !important;
 }
