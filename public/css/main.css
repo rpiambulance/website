@@ -74,6 +74,10 @@ hr {
     padding: 8px 20px;
 }
 
+.btn-success {
+    margin-top: 10px;
+}
+
 .btn-primary:hover,
 .btn-primary:focus {
     background: #c52d2f;
