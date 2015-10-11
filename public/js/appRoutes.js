@@ -11,10 +11,10 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     views.forEach(function (elem, index) {
         $routeProvider.when('/' + elem.toLowerCase(), {
             templateUrl: 'views/' + elem.toLowerCase() + '.html',
-            controller: elem.replace('-', '') + 'Ctrl',
+            controller: elem.replace(/-/g, '') + 'Ctrl',
             caseInsensitiveMatch: true,
-            activeTab: elem.toLowerCase().replace(' ', '-'),
-            title: elem.replace('-', ' ')
+            activeTab: elem.toLowerCase().replace(/ /g, '-'),
+            title: elem.replace(/-/g, ' ')
         });
     });
 
