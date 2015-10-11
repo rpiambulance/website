@@ -13,14 +13,21 @@
     <div class="col-md-12" ng-hide="s.header === undefined || s.header === null || s.header.length == 0">
         <h2 ng-bind-html="s.header"></h2>
     </div>
-    <div class="col-md-12">
+    <div class="col-md-12" ng-show="s.type == 'text' || s.type === undefined">
         <p class="lead" ng-bind-html="convertMarkdown(s.body)"></p>
+    </div>
+    <div class="col-md-12" ng-show="s.type == 'img'">
+        <img class="img-responsive center-block" ng-src="{{s.img}}" alt="{{s.alt}}" width="{{s.width}}" height="auto" />
     </div>
 </div>
 <div class="row" ng-show="columns">
     <div class="col-md-6">
-        <h2 ng-bind-html="s.header" ng-repeat-start="s in sections track by $index" ng-class="{'center': s.centered}" ng-show="$index % 2 == 0"></h2>
-        <p class="lead" ng-class="{'center': s.centered}" ng-bind-html="convertMarkdown(s.body)" ng-show="$index % 2 == 0" ng-repeat-end></p>
+        <h2 ng-bind-html="s.header" ng-repeat-start="s in sections track by $index" ng-class="{'center': s.centered}"
+            ng-show="$index % 2 == 0"></h2>
+        <p ng-show="type=='text' || type===undefined" class="lead" ng-class="{'center': s.centered}"
+           ng-bind-html="convertMarkdown(s.body)" ng-show="$index % 2 == 0"></p>
+        <img ng-show="s.type == 'img'" class="img-responsive center-block" ng-src="{{s.img}}" alt="{{s.alt}}"
+             width="{{s.width}}" height="auto" ng-repeat-end />
     </div>
     <div class="col-md-6">
         <h2 ng-bind-html="s.header" ng-repeat-start="s in sections track by $index" ng-class="{'center': s.centered}" ng-show="$index % 2 != 0"></h2>

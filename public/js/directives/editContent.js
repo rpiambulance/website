@@ -3,6 +3,11 @@ angular.module('editContent', []).directive('editContent', function() {
         restrict: 'E',
         templateUrl: 'js/directives/editContent.html',
         controller: function ($scope) {
+            $scope.sectionTypes = [
+                {type: 'text', title: 'Text'},
+                {type: 'img', title: 'Image'}
+            ];
+
             $scope.addSection = function () {
                 $scope.sections.push({header: '', body: '', internal_title: ''});
             };
