@@ -17,7 +17,8 @@
         <p class="lead" ng-bind-html="convertMarkdown(s.body)"></p>
     </div>
     <div class="col-md-12" ng-show="s.type == 'img'">
-        <img class="img-responsive center-block" ng-src="{{s.img}}" alt="{{s.alt}}" width="{{s.width}}" height="auto" />
+        <img class="img-responsive" ng-class="{'center-block': s.centered}" ng-src="{{s.img}}" alt="{{s.alt}}"
+             width="{{s.width}}" height="auto" style="margin-bottom:10px" />
     </div>
 </div>
 <div class="row" ng-show="columns">
