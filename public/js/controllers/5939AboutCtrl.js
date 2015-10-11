@@ -12,13 +12,19 @@ angular.module('5939AboutCtrl', []).controller('5939AboutCtrl', ['$scope', funct
         {
             header: 'A-39 and 5939 in Spring 2007',
             internal_title: 'Image: A-39 and 5939 in Spring 2007',
-            body: '![A-39 and 5939 in Spring 2007](img/5939-2011.jpg =75%x*)',
+            type: 'img',
+            img: 'img/5939-2011.jpg',
+            width: '75%',
+            alt: 'A-39 and 5939 in Spring 2007',
             centered: true
         },
         {
             header: '5939 in May 2011',
             internal_title: 'Image: 5939 in May 2011',
-            body: '![5939 in May 2011](img/A39-5939.jpg =75%x*)',
+            type: 'img',
+            img: 'img/A39-5939.jpg',
+            width: '75%',
+            alt: '5939 in May 2011',
             centered: true
         },
         {

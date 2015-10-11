@@ -11,10 +11,13 @@ angular.module('FR59AboutCtrl', []).controller('FR59AboutCtrl', ['$scope', funct
             'ambulance is parked.'
         },
         {
-            header: '',
+            header: 'FR-59 and EMPAC in February of 2015',
             internal_title: 'FR-59 at EMPAC Image',
-            body: '![FR-59 and EMPAC in February of 2015](img/fr-59.jpg =75%x*)' +'\n\n' +
-            'FR-59 and EMPAC in February of 2015'
+            type: 'img',
+            img: 'img/fr-59.jpg',
+            width: '75%',
+            alt: 'FR-59 and EMPAC in February of 2015',
+            centered: true
         },
         {
             header: 'History of FR-59',
@@ -27,10 +30,13 @@ angular.module('FR59AboutCtrl', []).controller('FR59AboutCtrl', ['$scope', funct
             'The Forester was first placed in service in May of 2012.'
         },
         {
-            header: '',
+            header: 'The old FR-59 at the RPI Houston Field House',
             internal_title: 'Old FR-59 Image',
-            body: '![The old FR-59 at the RPI Houston Field House](img/fr-59-old.jpg =75%x*)' +'\n\n' +
-            'The old FR-59 at the RPI Houston Field House'
+            type: 'img',
+            img: 'img/fr-59-old.jpg',
+            width: '75%',
+            alt: 'The old FR-59 at the RPI Houston Field House',
+            centered: true
         },
         {
             header: '',
