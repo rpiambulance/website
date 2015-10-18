@@ -117,9 +117,15 @@
             <a class="btn btn-default pull-left" ng-click="addSection()">
                 <span class="glyphicon glyphicon-plus"></span> Add Section
             </a>
-            <a class="btn btn-success pull-right" ng-click="saveEdits()">
-                <span class="glyphicon glyphicon-save"></span> Save
-            </a>
+            <div class="btn-toolbar pull-right">
+                <a class="btn btn-default"><!-- TODO: implement cancelEdits() (requires working server) -->
+                    <span class="glyphicon-remove"></span> Cancel
+                </a>
+                <a class="btn btn-success" ng-click="saveEdits()">
+                    <span class="glyphicon glyphicon-save"></span> Save
+                </a>
+            </div>
+
         </div>
     </div>
 </div>
