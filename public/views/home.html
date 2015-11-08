@@ -8,7 +8,7 @@
         </ol>
         <div class="carousel-inner">
 
-            <div class="item active" style="background-image: url(img/slider/bg1-DS.jpg)">
+            <div class="item active" style="background-image: url(img/slider/bg1-DS.jpg)" >
                 <div class="container">
                     <div class="row slide-margin">
                         <div class="col-sm-6">
@@ -27,9 +27,7 @@
                         </div>
 
                         <div class="col-sm-6 hidden-xs animation animated-item-4">
-                            <div class="slider-img">
-                                <!--<img src="images/slider/img1.png" class="img-responsive">-->
-                            </div>
+                            <!-- VIDEO CAN GO HERE, BUT NOT FOR THIS IMAGE-->
                         </div>
 
                     </div>
@@ -37,7 +35,7 @@
             </div>
             <!--/.item-->
 
-            <div class="item" style="background-image: url(img/slider/bg2-DS.jpg)">
+            <div class="item" <!--style="background-image: url(img/slider/bg2-DS.jpg)"-->>
                 <div class="container">
                     <div class="row slide-margin">
                         <div class="col-sm-6">
@@ -58,7 +56,11 @@
 
                         <div class="col-sm-6 hidden-xs animation animated-item-4">
                             <div class="slider-img">
-                                <!--<img src="images/slider/img2.png" class="img-responsive">-->
+                                <div class="slider-img">
+                                    <video autoplay loop poster="img/slider/bg1-DS.jpg" id="bgvid">
+                                        <source src="img/slider/ambbg.mp4" type="video/mp4">
+                                    </video>
+                                </div>
                             </div>
                         </div>
 
@@ -67,7 +69,7 @@
             </div>
             <!--/.item-->
 
-            <div class="item" style="background-image: url(img/slider/bg3-DS.jpg)">
+            <div class="item" <!--style="background-image: url(img/slider/bg3-DS.jpg)"--> >
                 <div class="container">
                     <div class="row slide-margin">
                         <div class="col-sm-6">
@@ -87,7 +89,9 @@
                         </div>
                         <div class="col-sm-6 hidden-xs animation animated-item-4">
                             <div class="slider-img">
-                                <!--<img src="images/slider/img3.png" class="img-responsive">-->
+                                <video autoplay loop poster="img/slider/bg1-DS.jpg" id="bgvid2">
+                                    <source src="img/slider/frbg.mp4" type="video/mp4">
+                                </video>
                             </div>
                         </div>
                     </div>

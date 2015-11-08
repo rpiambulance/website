@@ -413,6 +413,8 @@ input.search-form:hover {
 #main-slider .carousel .slider-img {
     text-align: right;
     position: absolute;
+    height: 100%;
+    width: 100%;
 }
 
 #main-slider .carousel .item {
@@ -2706,4 +2708,34 @@ span.comm-list-other {
 
 .form-group > input[type=submit]:focus {
     box-shadow: 0 0 5px #d81e05 !important;
+}
+
+video#bgvid {
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto%;
+    height: auto%;
+     z-index: -100;
+    -webkit-transform: translateX(-50%) translateY(-10%);
+    /*transform: translateX(-50%) translateY(-50%);*/
+    background: url(../img/slider/bg2-DS.jpg) no-repeat;
+    background-size: auto;
+    text-align: right;
+}
+
+video#bgvid2{
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto%;
+    height: auto%;
+    z-index: -100;
+    -webkit-transform: translateX(-50%) translateY(-10%);
+    /*transform: translateX(-50%) translateY(-50%);*/
+    background: url(../img/slider/bg3-DS.jpg) no-repeat;
+    background-size: auto;
+    text-align: right;
 }
