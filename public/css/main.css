@@ -2715,8 +2715,8 @@ video#bgvid {
     left: 50%;
     min-width: 100%;
     min-height: 100%;
-    width: auto%;
-    height: auto%;
+    width: auto;
+    height: auto;
      z-index: -100;
     -webkit-transform: translateX(-50%) translateY(-10%);
     /*transform: translateX(-50%) translateY(-50%);*/
@@ -2730,8 +2730,8 @@ video#bgvid2{
     left: 50%;
     min-width: 100%;
     min-height: 100%;
-    width: auto%;
-    height: auto%;
+    width: auto;
+    height: auto;
     z-index: -100;
     -webkit-transform: translateX(-50%) translateY(-10%);
     /*transform: translateX(-50%) translateY(-50%);*/
