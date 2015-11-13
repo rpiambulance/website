@@ -2739,3 +2739,6 @@ video#bgvid2{
     background-size: auto;
     text-align: right;
 }
+.text-left-al{
+     text-align: left;
+ }
