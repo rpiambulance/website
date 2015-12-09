@@ -10,6 +10,15 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
             'he goal of all observers is to be promoted to Attendant. All New Members must go through a mandatory ' +
             'OSHA (Occupational Safety and Health Administration) safety training, a HIPAA (Health Insurance ' +
             'Portability and Accountability Act) patient confidentiality training and and RPI Ambulance Orientation Class.'
+        },
+        {
+            header: 'NRB with the class of 2019',
+            internal_title: 'NRB 2019',
+            type: 'img',
+            img: 'img/NRB-2019.jpg',
+            width: '75%',
+            alt: 'NRB with the class of 2019',
+            centered: true
         }
     ];
 }]);

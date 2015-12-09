@@ -10,21 +10,21 @@ angular.module('5939AboutCtrl', []).controller('5939AboutCtrl', ['$scope', funct
             'agency. 5939 is the fifth van ambulance operated by RPI Ambulance. The first was placed in service in 1983.'
         },
         {
-            header: 'A-39 and 5939 in Spring 2007',
-            internal_title: 'Image: A-39 and 5939 in Spring 2007',
+            header: '5939 in October 2015',
+            internal_title: '5939 in October 2015',
             type: 'img',
-            img: 'img/5939-2011.jpg',
+            img: 'img/5939-2015.jpg',
             width: '75%',
-            alt: 'A-39 and 5939 in Spring 2007',
+            alt: '5939 In front of EMPAC',
             centered: true
         },
         {
             header: '5939 in May 2011',
-            internal_title: 'Image: 5939 in May 2011',
+            internal_title: 'Image: 5939 and A-39 in Spring of 2007',
             type: 'img',
             img: 'img/A39-5939.jpg',
             width: '75%',
-            alt: '5939 in May 2011',
+            alt: '5939 and A-39 in Spring 2007',
             centered: true
         },
         {

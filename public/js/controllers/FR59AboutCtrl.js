@@ -11,7 +11,7 @@ angular.module('FR59AboutCtrl', []).controller('FR59AboutCtrl', ['$scope', funct
             'ambulance is parked.'
         },
         {
-            header: 'FR-59 and EMPAC in February of 2015',
+            header: 'FR-59 at EMPAC in February of 2015',
             internal_title: 'FR-59 at EMPAC Image',
             type: 'img',
             img: 'img/fr-59.jpg',
@@ -44,6 +44,15 @@ angular.module('FR59AboutCtrl', []).controller('FR59AboutCtrl', ['$scope', funct
             body: 'It unfortunately did not take long for the Forester to be plagued by various mechanical problems. ' +
             'So, in Spring of 2014, the agency began the search for a new first response vehicle. After testing several ' +
             'different options, it was decided that the 2007 Ford Explorer would be the newest addition to the RPIA fleet.'
+        },
+        {
+            header: 'FR-59 on the ice at the Houston Field House in October 2015',
+            internal_title: 'FR-59 at EMPAC Image',
+            type: 'img',
+            img: 'img/fr-59-ice.jpg',
+            width: '75%',
+            alt: 'FR-59 and EMPAC in February of 2015',
+            centered: true
         }
     ];
 }]);
