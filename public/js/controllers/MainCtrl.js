@@ -11,6 +11,10 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', 'Edit
     $scope.ensureEditDisabled = function() {
         $scope.editMode = false;
     };
+    $scope.cancelEdits = function() {
+        // TODO: Implement EditablePageService here, getting the previous set of data and replacing the deleted data
+        $scope.editMode = false;
+    };
     $scope.saveEdits = function() {
         $scope.editMode = EditablePageService.saveChanges($scope.pageHeader, $scope.sections);
     };
