@@ -9,10 +9,11 @@ angular.module('RadioCallsignsCtrl', []).controller('RadioCallsignsCtrl', ['$sco
             '* 200-299: RPI DPS officers\n' +
             '* 300-399: RPI DPS sergeants\n' +
             '* 400-499: Unused\n' +
-            '* 500-699 RPI Parking and Transportation\n' +
+            '* 500-699 RPI DPS [RANK]\n' +
             '* 700-799: RPI DPS lieutenants\n' +
-            '* 801 and 802: RPI DPS chiefs\n' +
-            '* 900-999: RPI Ambulance\n'
+            '* 801 and 802: Parking and Transportation\n' +
+            '* 900-999: RPI Ambulance\n' +
+            '* 1000+: Environmental and Site Services '
         },
         {
             header: 'Inter-agency Use',

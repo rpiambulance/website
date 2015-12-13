@@ -22,9 +22,9 @@ angular.module('RPIAAboutCtrl', []).controller('RPIAAboutCtrl', ['$scope', funct
         {
             internal_title: 'History',
             header: 'Our History',
-            body: 'RPI Ambulance was founded in 1976 as the first EMS agency in Troy and the surrounding ' +
+            body: 'RPI Ambulance was founded in 1977 as the first EMS agency in Troy and the surrounding ' +
             'area. Today, RPIA serves the RPI campus as well as some of the surrounding towns. We mainly respond to ' +
-            'on-campus calls, but also recieve mutual aid calls to Brunswick, North Greenbush (including Wynantskill ' +
+            'on-campus calls, but also receive mutual aid calls to Brunswick, North Greenbush (including Wynantskill ' +
             'and Defreestville), and Poestenkill.'
         }
     ];
