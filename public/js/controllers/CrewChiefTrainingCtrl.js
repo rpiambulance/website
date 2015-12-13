@@ -1,6 +1,6 @@
 var ctrl_name = 'CrewChiefTrainingCtrl';
 angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope) {
-    $scope.pageHeader = 'Attendant Training';
+    $scope.pageHeader = 'Crew Chief Training';
     $scope.columns = false;
     $scope.sections = [
         {
