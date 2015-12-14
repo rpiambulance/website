@@ -43,7 +43,7 @@ angular.module('CommunicationsCtrl', []).controller('CommunicationsCtrl', ['$sco
             'If you hit the red emergency activation button on any 800 unit, the unit will automatically switch over ' +
             'to system 10, and you receive a dedicated communications line to dispatch; all other communications are ' +
             'blocked out. Power off the unit to clear the emergency activation, and contact the dispatcher (over the ' +
-            'air or landline preferable) to inform them of any &ldquo;accidental trips&rdquo;.'
+            'air or land-line preferable) to inform them of any &ldquo;accidental trips&rdquo;.'
         },
         {
             internal_title: 'VHF System',
@@ -76,13 +76,10 @@ angular.module('CommunicationsCtrl', []).controller('CommunicationsCtrl', ['$sco
                 'and drivers are trained in the usage of this radio and the appropriate hospital radio codes.'
         },
         {
-            internal_title: 'Radio Info',
-            header: 'Radio-specific Information',
-            body:
-                // NOTE: All urls should be relative to the public/ directory, NOT public/js/controllers/.
-                '[Houston Field House Radio Instructions (Kenwood TK-780H)]' +
-                '(/uploads/Office%20Radio%20Instructions%20%28Kenwood%20TK-780H%29.pdf)'
-
+            header: 'Radio Documentation',
+            body: '<div class="embed-responsive embed-responsive-16by9"> ' +
+            '<iframe frameborder="0" class="embed-responsive-item" style="width: 100% !important; height: 100% !important;"' +
+            'src="https://drive.google.com/embeddedfolderview?id=0B3mvXB0aR4DiejdzdG1TQlI1QWc#list"></iframe></div>'
         }
     ];
 }]);
