@@ -15,7 +15,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             header: 'EES Forms',
             body: '<div class="embed-responsive embed-responsive-16by9"> ' +
             '<iframe frameborder="0" class="embed-responsive-item" style="width: 100% !important; height: 100% !important;"' +
-            'src="https://drive.google.com/embeddedfolderview?id=0B3mvXB0aR4DiejdzdG1TQlI1QWc#list"></iframe></div>'
+            'src="https://drive.google.com/embeddedfolderview?id=0BzoMrS_ZZPigNXRtN2NRdHc3ckk#list"></iframe></div>'
         },
 
         {
@@ -47,7 +47,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             header: 'Supervisor Forms',
             body: '<div class="embed-responsive embed-responsive-16by9"> ' +
             '<iframe frameborder="0" class="embed-responsive-item" style="width: 100% !important; height: 100% !important;"' +
-            'src="https://drive.google.com/embeddedfolderview?id=0B3mvXB0aR4DiejdzdG1TQlI1QWc#list"></iframe></div>'
+            'src="https://drive.google.com/embeddedfolderview?id=0BzoMrS_ZZPigYXdFdzh0S2Nmd0E#list"></iframe></div>'
         }
 
     ];

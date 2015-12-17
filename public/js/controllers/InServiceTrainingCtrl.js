@@ -4,16 +4,14 @@ angular.module('InServiceTrainingCtrl', []).controller('InServiceTrainingCtrl', 
 
     $scope.sections = [
         {
-            header: 'New York State DOH Forms',
+            header: 'New York State DOH Documents',
             body: '<div class="embed-responsive embed-responsive-16by9"> ' +
-            '<iframe frameborder="0" class="embed-responsive-item" style="width: 100% !important; height: 100% !important;"' +
-            'src="https://drive.google.com/embeddedfolderview?id=0B3mvXB0aR4DiejdzdG1TQlI1QWc#list"></iframe></div>'
+            '<iframe src="https://drive.google.com/embeddedfolderview?id=0BzoMrS_ZZPigTHRGVWdlaW05OWM#list" width="100%" height="400" frameborder="0"></iframe>'
         },
         {
-            header: 'Agency-Specific Forms',
+            header: 'RPI Ambulance Documents',
             body: '<div class="embed-responsive embed-responsive-16by9"> ' +
-            '<iframe frameborder="0" class="embed-responsive-item" style="width: 100% !important; height: 100% !important;"' +
-            'src="https://drive.google.com/embeddedfolderview?id=0B3mvXB0aR4DiejdzdG1TQlI1QWc#list"></iframe></div>'
+            '<iframe src="https://drive.google.com/embeddedfolderview?id=0BzoMrS_ZZPigRl9naUlZWVR0eEE#list" width="100%" height="400" frameborder="0"></iframe>'
         }
 
     ];

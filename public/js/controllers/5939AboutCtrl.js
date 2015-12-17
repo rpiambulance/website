@@ -19,7 +19,7 @@ angular.module('5939AboutCtrl', []).controller('5939AboutCtrl', ['$scope', funct
             centered: true
         },
         {
-            header: '5939 in May 2011',
+            header: '5939 and A-39 in Spring of 2007',
             internal_title: 'Image: 5939 and A-39 in Spring of 2007',
             type: 'img',
             img: 'img/A39-5939.jpg',

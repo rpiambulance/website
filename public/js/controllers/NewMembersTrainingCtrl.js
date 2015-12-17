@@ -24,7 +24,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
         {
             header: 'New Member Documents',
             body: '<div class="embed-responsive embed-responsive-16by9"> ' +
-            '<iframe src="https://drive.google.com/embeddedfolderview?id=0B7_ZvoVxWf0qVUE0TDVuSXlOYnM" width="800" height="600" frameborder="0"></iframe>'
+            '<iframe src="https://drive.google.com/embeddedfolderview?id=0BzoMrS_ZZPigcmJFNzBrMEdHN28" width="100%" height="250" frameborder="0"></iframe>'
 
         }
     ];
