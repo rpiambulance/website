@@ -7,8 +7,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             header: 'Event EMS Supervisor (EES)',
             internal_title: 'EES',
             body: 'Event EMS Supervisors (EES) are full crew chiefs who have been specially trained to supervise RPI ' +
-            'Ambulance operations at special events and functions. The EES-in charge (unit 900) acts as a in-house ' +
-            'dispatcher and medical supervisor.'
+            'Ambulance operations at special events and functions. The EES-in charge (Radio Callsign: Unit 900) acts as' +
+            ' a in-house dispatcher and medical supervisor.'
         },
 
         {
@@ -39,7 +39,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             '* Be a Driver Trainer\n' +
             '* Be an EES\n' +
             '* Have a 70% or higher QI compliance rate\n' +
-            '* Pass a promotional board consisting of the Captain and current Duty Supervisors'
+            '* Be evaluated and approved by the Promotional Board consisting of the Captain and other active Duty Supervisors'
 
         },
 
