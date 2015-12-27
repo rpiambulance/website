@@ -8,7 +8,13 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
             body: 'The Constitution of RPI Ambulance is our governing document. It covers the duties and ' +
             'responsibilities of officers, procedures for meetings and elections, and conduct guidelines for RPI ' +
             'Ambulance Members. The current Constitution was ratified by the general membership on September 23, 2014, ' +
-            'and passed by the E-Board on October 23, 2014. \n <a href="../img/RPI_Ambulance_Constitution_UPDATED_OCTOBER_2014.pdf">Current Constitution</a>'
+            'and passed by the E-Board on October 23, 2014. \n'
+        },
+
+        {
+            header: 'Constitution',
+            body: '<div class="embed-responsive embed-responsive-16by9"> ' +
+            '<iframe src="https://drive.google.com/embeddedfolderview?id=0BzoMrS_ZZPigLVdIU2s3U0MtUzg#list" width="100%" height="400" frameborder="0"></iframe></div>'
         }
     ];
 }]);
