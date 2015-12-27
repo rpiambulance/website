@@ -65,7 +65,8 @@
             <div class="collapse navbar-collapse navbar-right">
                 <ul class="nav navbar-nav">
                     <li ng-repeat="n in navbar" ng-class="{'active': isActive(n), 'dropdown': n.isDropdown}">
-                        <a ng-hide="n.isDropdown" ng-click="ensureEditDisabled()" ng-href="#/{{n.page}}" ng-bind="n.title"></a>
+                        <a ng-hide="n.isDropdown" ng-click="ensureEditDisabled()" ng-bind="n.title"
+                           ng-href="{{n.isCustomLink ? n.link : '#/' + n.page}}"></a>
                         <a ng-show="n.isDropdown" class="dropdown-toggle" data-toggle="dropdown" ng-class="{'active': isActive(n)}">
                             <span ng-bind="n.title"></span> <i class="fa fa-angle-down"></i>
                         </a>
