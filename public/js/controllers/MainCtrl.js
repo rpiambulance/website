@@ -58,7 +58,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', 'Edit
             {page: 'in-service-training', title: 'In-Service Training'}
         ]},
         {page: 'coverage', title: 'Request Coverage', isDropdown: false},
-        {page: 'login', title: 'Members', isDropdown: false},
+        {page: 'login', title: 'Members', isDropdown: false, customLink: true, link:'index.php?page=members'},
         {page: 'contact', title: 'Contact Us', isDropdown: false}
     ];
 
