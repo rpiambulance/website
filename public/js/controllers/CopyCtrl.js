@@ -11,12 +11,6 @@ angular.module('CopyCtrl', []).controller('CopyCtrl', ['$scope', function($scope
         },
 
         {
-            header: 'Media Release',
-            internal_title: 'Media Release',
-            body: '[something about media release policy here]'
-        },
-
-        {
             header: 'Site',
             internal_title: 'Site copy',
             body: 'This website was a project completed the RPI Web Technologies Group working alongside with members of' +
