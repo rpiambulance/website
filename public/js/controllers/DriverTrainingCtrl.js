@@ -4,8 +4,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
     $scope.columns = false;
     $scope.sections = [
         {
-            header: 'Crew Chief Training',
-            internal_title: 'CC Training',
+            header: 'Driver Training',
+            internal_title: 'Driver Training',
             body: 'The Driver is in charge of the safe operation of the Ambulance and the safe transportation of the ' +
             'crew and patient on calls. Attendants may train to become a Driver under the supervision of a qualified ' +
             'Driver Trainer. The following are the minimum promotional requirements for the Driver course:'
@@ -37,7 +37,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
         {
             header: 'Driver',
             internal_title: 'Full Driver',
-            body: 'To be a probationary Crew Chief a member must satisfy the following requirements:' + '\n' +
+            body: 'To be a Driver a member must satisfy the following requirements:' + '\n' +
             '* Be a Probationary Driver\n' +
             '* Drive two (2) calls as a probationary Driver and receive passing evaluations from a Trainer\n' +
             '* Request and receive approval by the promotional board for promotion'
@@ -47,7 +47,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
         {
             header: 'Driver Trainer',
             internal_title: 'D-T',
-            body: 'To be a probationary Driver a member must satisfy the following requirements:' + '\n' +
+            body: 'To be a Driver Trainer a member must satisfy the following requirements:' + '\n' +
             '* Complete at least ten (10) shifts as a Driver or have been a Driver for at least three (3) months while in service\n' +
             '* Drive three (3) EMS calls, at least one (1) of which is Priority-I. Priority requirement may be waived at the discretion of the Training Committee\n' +
             '* Teach a driver related course or drill under the supervision of a Driver Trainer\n' +

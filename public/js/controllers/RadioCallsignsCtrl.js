@@ -9,7 +9,7 @@ angular.module('RadioCallsignsCtrl', []).controller('RadioCallsignsCtrl', ['$sco
             '* 200-299: RPI DPS officers\n' +
             '* 300-399: RPI DPS sergeants\n' +
             '* 400-499: Unused\n' +
-            '* 500-699 RPI DPS [RANK]\n' +
+            '* 500-699 RPI DPS\n' +
             '* 700-799: RPI DPS lieutenants\n' +
             '* 801 and 802: Parking and Transportation\n' +
             '* 900-999: RPI Ambulance\n' +

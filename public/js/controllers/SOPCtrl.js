@@ -10,7 +10,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
         },
 
         {
-            header: 'Constitution',
+            header: 'Standard Operating Procedures',
             body: '<div class="embed-responsive embed-responsive-16by9"> ' +
             '<iframe src="https://drive.google.com/embeddedfolderview?id=0BzoMrS_ZZPigM05UOE5oV3dVZms#list" width="100%" height="400" frameborder="0"></iframe></div>'
         }

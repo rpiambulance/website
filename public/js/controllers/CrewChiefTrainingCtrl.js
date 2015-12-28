@@ -33,7 +33,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
         {
             header: 'Crew Chief',
             internal_title: 'Full CC',
-            body: 'To be a probationary Crew Chief a member must satisfy the following requirements:' + '\n' +
+            body: 'To be a Crew Chief a member must satisfy the following requirements:' + '\n' +
             '* Be a Probationary Crew Chief\n' +
             '* Crew Chief at least two (2) calls, one of which must be a transport, and receive a passing evaluation\n' +
             '* Teach at least three (3) Attendant Checklist items to a trainee under the supervision of a Crew Chief\n' +
@@ -45,7 +45,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
         {
             header: 'Crew Chief Trainer',
             internal_title: 'CC-T',
-            body: 'To be a probationary Crew Chief a member must satisfy the following requirements:' + '\n' +
+            body: 'To be a Crew Chief Trainer a member must satisfy the following requirements:' + '\n' +
             '* Complete at least ten (10) shifts as a Crew Chief or have been a CC for at least three (3) months while in service\n' +
             '* Crew Chief three (3) emergency or non- emergency calls\n' +
             '* Teach at least three (3) Crew Chief Checklist items to a trainee under the supervision of a Crew Chief Trainer\n' +
