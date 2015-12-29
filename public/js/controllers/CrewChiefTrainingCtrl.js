@@ -10,8 +10,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             'for supervising the crew and providing proper patient care. A Probationary Crew Chief is one who may act as' +
             ' the Crew Chief if a Crew Chief Trainer is on the crew. A &ldquo;full&rdquo; Crew Chief can complete a crew' +
             ' and manages patient care during a call. A Crew Chief Trainer may supervise Probationary Crew Chiefs during' +
-            ' calls, and provide training and classes, as directed by the Crew Chief Training Coordinator. The following' +
-            ' training requirements must be completed:'
+            ' calls, and provide training and classes. The following training requirements must be completed:'
         },
         {
             header: 'Probationary Crew Chief',

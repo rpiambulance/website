@@ -19,7 +19,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             ' can be added to and removed from the list immediately as required, without having to wait for county to ' +
             'process such requests. Also, at a glance, the list of recipients for the text message dispatch are ' +
             'available. RPIAMB-TMD-L@lists.rpi.edu is configured so only admins can email the list – currently the ' +
-            'Captain, President. renscobps@gmail.com and renscobps1@gmail.com, the emails the county uses to send text' +
+            'Captain, President, renscobps@gmail.com and renscobps1@gmail.com. The emails the county uses to send text' +
             ' message dispatches, are also listed as owners so they may email the list. It is also configured so only ' +
             'admins can add or remove people from the list Sending dispatches through this list do produce a noticeable' +
             ' delay. However, the utility of being able to modify the list in real time has outweighed this cost. Also,' +

@@ -8,7 +8,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             internal_title: 'Driver Training',
             body: 'The Driver is in charge of the safe operation of the Ambulance and the safe transportation of the ' +
             'crew and patient on calls. Attendants may train to become a Driver under the supervision of a qualified ' +
-            'Driver Trainer. The following are the minimum promotional requirements for the Driver course:'
+            'Driver Trainer. The following are the minimum promotional requirements for a Driver:'
         },
 
         {

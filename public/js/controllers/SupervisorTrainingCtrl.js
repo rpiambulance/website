@@ -41,13 +41,6 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             '* Have a 70% or higher QI compliance rate\n' +
             '* Be evaluated and approved by the Promotional Board consisting of the Captain and other active Duty Supervisors'
 
-        },
-
-        {
-            header: 'Supervisor Forms',
-            body: '<div class="embed-responsive embed-responsive-16by9"> ' +
-            '<iframe frameborder="0" class="embed-responsive-item" style="width: 100% !important; height: 100% !important;"' +
-            'src="https://drive.google.com/embeddedfolderview?id=0BzoMrS_ZZPigYXdFdzh0S2Nmd0E#list"></iframe></div>'
         }
 
     ];
