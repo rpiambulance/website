@@ -6,7 +6,7 @@ angular.module('RPIAAboutCtrl', []).controller('RPIAAboutCtrl', ['$scope', funct
             header: '',
             body: 'RPI Ambulance is a student run and operated Basic Life Support (BLS) transporting ambulance agency ' +
             'that serves the RPI campus and surrounding communities. We respond to approximately 150 to 200 calls ' +
-            'and provide first aid coverage to about 25 special events every academic year. All students of RPI are ' +
+            'and provide first aid coverage to about 30 special events every academic year. All students of RPI are ' +
             'eligible to join RPI Ambulance, no previous experience is necessary. Members can train to become drivers, ' +
             'crew chiefs or just come to help out!'
         },

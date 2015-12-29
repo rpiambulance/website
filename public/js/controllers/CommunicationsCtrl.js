@@ -78,7 +78,7 @@ angular.module('CommunicationsCtrl', []).controller('CommunicationsCtrl', ['$sco
         {
             header: 'Radio Documentation',
             body: '<div class="embed-responsive embed-responsive-16by9"> ' +
-            '<iframe src="https://drive.google.com/embeddedfolderview?id=0BzoMrS_ZZPigOTlJZlRSVlJvblU#list" width="100%" height="100%" frameborder="0"></iframe></div>'
+            '<iframe src="https://drive.google.com/embeddedfolderview?id=0BzoMrS_ZZPigOTlJZlRSVlJvblU#list" width="600" height="100%" frameborder="0"></iframe></div>'
         }
     ];
 }]);

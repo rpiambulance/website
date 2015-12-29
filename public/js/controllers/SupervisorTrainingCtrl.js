@@ -41,6 +41,16 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             '* Have a 70% or higher QI compliance rate\n' +
             '* Be evaluated and approved by the Promotional Board consisting of the Captain and other active Duty Supervisors'
 
+        },
+
+        {
+            header: 'Current Duty Supervisors',
+            internal_title: 'Current DS',
+            body: '* Brent Campbell\n' +
+            '* Nick Hopkins\n' +
+            '* Tom Manzini\n' +
+            '* Jordan Williams\n'
+
         }
 
     ];
