@@ -14,43 +14,47 @@
                 groups.
                 Contact our <a href="mailto:cpr@rpiambulance.com">CPR Coordinator</a>&nbsp;for more information.<br/>
             </div>
+            <div class="col-lg-12">
+            <div class="card card-container">
 
-            <form class="form" ng-submit="" role="form">
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" name="name" id="name" class="form-control" ng-model="name"
-                           placeholder="Name" required/>
-                    <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                    <form class="form" ng-submit="" role="form">
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" id="name" class="form-control" ng-model="name"
+                                   placeholder="Name" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Your Email</label>
+                            <input type="email" name="email" id="email" class="form-control" ng-model="email"
+                                   placeholder="Email" required/>
+                            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Email is required</span>
+                        </div>
+                        <div class="form-group">
+                            <p>I am available on...</p>
+                            <label><input type="checkbox">Monday Nights</label><br/>
+                            <label><input type="checkbox">Tuesday Nights</label><br/>
+                            <label><input type="checkbox">Wednesday Nights</label><br/>
+                            <label><input type="checkbox">Thursday Nights</label><br/>
+                            <label><input type="checkbox">Friday Nights</label><br/>
+                            <label><input type="checkbox">Saturday Day</label><br/>
+                            <label><input type="checkbox">Sunday Day</label><br/>
+                        </div>
+                        <div class="form-group">
+                            <p>I am interested in...</p>
+                            <label><input type="checkbox">BLS CPR for Healthcare Providers</label><br/>
+                            <label><input type="checkbox">Heartsaver AED & CPR</label><br/>
+                            <label><input type="checkbox">Heartsaver First Aid</label><br/>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <label for="email">Your Email</label>
-                    <input type="email" name="email" id="email" class="form-control" ng-model="email"
-                           placeholder="Email" required/>
-                    <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Email is required</span>
-                </div>
-                <div class="form-group">
-                    <p>I am available on...</p>
-                    <label><input type="checkbox">Monday Nights</label><br/>
-                    <label><input type="checkbox">Tuesday Nights</label><br/>
-                    <label><input type="checkbox">Wednesday Nights</label><br/>
-                    <label><input type="checkbox">Thursday Nights</label><br/>
-                    <label><input type="checkbox">Friday Nights</label><br/>
-                    <label><input type="checkbox">Saturday Day</label><br/>
-                    <label><input type="checkbox">Sunday Day</label><br/>
-                </div>
-                <div class="form-group">
-                    <p>I am interested in...</p>
-                    <label><input type="checkbox">BLS CPR for Healthcare Providers</label><br/>
-                    <label><input type="checkbox">Heartsaver AED & CPR</label><br/>
-                    <label><input type="checkbox">Heartsaver First Aid</label><br/>
-                </div>
-                <div class="form-actions">
-                    <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success">Submit
-                    </button>
-                    <button type="reset" class="btn btn-danger">Reset</button>
-                </div>
-            </form>
-
+            </div>
 
             <!--<form action="http://jcsteven.com/mail.pl" method="post">-->
             <!--<input name="recipient" type="hidden" value="form@jcsteven.com"/> <font face="arial" size="3"> Your Name<br/>-->
