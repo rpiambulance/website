@@ -35,14 +35,14 @@ angular.module('RadioCallsignsCtrl', []).controller('RadioCallsignsCtrl', ['$sco
             'numbers 992 and 993 are reserved for on-duty observers/attendants without their unique 900 number. ' +
             '901 through 909 are used to identify crews during special events. Numbers between 910 and 919 are ' +
             'specialty units, such as ALS, who may be present at an event.' + '\n\n' +
-            'Here\'s a breakdown of 900 numbers:' + '\n' +
-            '900: Used by event command\n' +
-            '901&ndash;908: Event identifiers according to SOPs\n' +
-            '909&ndash;919: Specialty units at events at the discretion of the captain\n' +
-            '921&ndash;989: Member identifiers\n' +
-            '992&ndash;993: On-duty attendants\n' +
-            '994&ndash;999; Assigned at the discretion of the captain\n\n' +
-            'Note: 911, 939, and 959 are restricted and not used.'
+            '900 Numbers are assigned as follows:\n' +
+            '* 900: Used by event command\n' +
+            '* 901&ndash;908: Event identifiers according to SOPs\n' +
+            '* 909&ndash;919: Specialty units at events at the discretion of the captain\n' +
+            '* 921&ndash;989: Member identifiers\n' +
+            '* 992&ndash;993: On-duty attendants\n' +
+            '* 994&ndash;999; Assigned at the discretion of the captain\n' +
+            '* Note: 911, 939, 959, and 991 are restricted and not used.'
         },
         {
             header: 'History',
