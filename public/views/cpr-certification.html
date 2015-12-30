@@ -17,7 +17,8 @@
             <div class="col-lg-12">
             <div class="card card-container">
 
-                    <form class="form" ng-submit="" role="form">
+                    <form action="http://jcsteven.com/mail.pl" method="post" class="form" ng-submit="" role="form">
+                        <input name="recipient" type="hidden" value="form@jcsteven.com"/>
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" name="name" id="name" class="form-control" ng-model="name"
@@ -47,7 +48,7 @@
                             <label><input type="checkbox">Heartsaver First Aid</label><br/>
                         </div>
                         <div class="form-actions">
-                            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success">
+                            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success" value="Submit">
                                 Submit
                             </button>
                             <button type="reset" class="btn btn-danger">Reset</button>
@@ -55,34 +56,6 @@
                     </form>
                 </div>
             </div>
-
-            <!--<form action="http://jcsteven.com/mail.pl" method="post">-->
-            <!--<input name="recipient" type="hidden" value="form@jcsteven.com"/> <font face="arial" size="3"> Your Name<br/>-->
-            <!--<input name="name" size="30" type="text"/><br/>-->
-            <!--<br/>-->
-            <!--Your Email<br/>-->
-            <!--<input name="email" size="30" type="email"/><br/>-->
-            <!--<br/>-->
-            <!--I am available on...<br/>-->
-            <!--<input name="date" type="checkbox" value="Monday nights"/>Monday nights<br/>-->
-            <!--<input name="date" type="checkbox" value="Tuesday nights"/>Tuesday nights<br/>-->
-            <!--<input name="date" type="checkbox" value="Wednesday nights"/>Wednesday nights<br/>-->
-            <!--<input name="date" type="checkbox" value="Thursday nights"/>Thursday nights<br/>-->
-            <!--<input name="date" type="checkbox" value="Friday nights"/>Friday nights<br/>-->
-            <!--<input name="date" type="checkbox" value="Saturday days"/>Saturday days<br/>-->
-            <!--<input name="date" type="checkbox" value="Sunday days"/>Sunday days<br/>-->
-            <!--<br/>-->
-            <!--I am interested in...<br/>-->
-            <!--<input name="course" type="checkbox" value="BLS for Healthcare Providers"/>BLS for Healthcare-->
-            <!--Providers<br/>-->
-            <!--<input name="course" type="checkbox" value="Heartsaver CPR / AED"/>Heartsaver CPR / AED<br/>-->
-            <!--<input name="course" type="checkbox" value="Heartsaver First Aid"/>Heartsaver First Aid</font><br/>-->
-            <!--<br/>-->
-            <!--<input name="redirect" type="hidden" value="http://ambulance.union.rpi.edu"/> <input name="subject"-->
-            <!--type="hidden"-->
-            <!--value="CPR Request"/>-->
-            <!--<input type="submit" value="Submit"/> <input type="reset" value="Reset"/>&nbsp;-->
-            <!--</form>-->
 
         </div>
 
