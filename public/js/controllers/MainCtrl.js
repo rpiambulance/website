@@ -1,21 +1,26 @@
-angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', 'EditablePageService', function($scope, $route, EditablePageService) {
+angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '$route', '$location', 'EditablePageService', function ($rootScope, $scope, $route, $location, EditablePageService) {
     // TODO: IMPLEMENT AUTHENTICATION, REMOVE DEFAULT VALUE OF TRUE
     $scope.loggedIn = true;
     $scope.username = '';
 
+    $rootScope.$on("$routeChangeSuccess", function (currentRoute, previousRoute) {
+        //Change page title, based on Route information
+        $rootScope.title = $route.current.title;
+    });
+
     // === NECESSARY CODE FOR EDITING THE PAGE ================================
     $scope.editMode = false;
-    $scope.toggleEdit = function() {
+    $scope.toggleEdit = function () {
         $scope.editMode = EditablePageService.verifyPermissions($scope.editMode, $scope.loggedIn, $scope.username)
     };
-    $scope.ensureEditDisabled = function() {
+    $scope.ensureEditDisabled = function () {
         $scope.editMode = false;
     };
-    $scope.cancelEdits = function() {
+    $scope.cancelEdits = function () {
         // TODO: Implement EditablePageService here, getting the previous set of data and replacing the deleted data
         $scope.editMode = false;
     };
-    $scope.saveEdits = function() {
+    $scope.saveEdits = function () {
         $scope.editMode = EditablePageService.saveChanges($scope.pageHeader, $scope.sections);
     };
     // ========================================================================
@@ -27,15 +32,18 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', 'Edit
      */
     $scope.navbar = [
         {page: 'home', title: 'Home', isDropdown: false},
-        {page: '', title: 'About Us', isDropdown: true, dividersAfter: [2,4], dropdownOptions: [
+        {
+            page: '', title: 'About Us', isDropdown: true, dividersAfter: [2, 4], dropdownOptions: [
             {page: 'rpia-about', title: 'About RPI Ambulance'},
             {page: 'faq', title: 'FAQs'},
             {page: 'officers', title: 'Officers'},
             {page: '5939-about', title: 'Ambulance'},
             {page: 'fr59-about', title: 'First Response'},
             {page: 'media', title: 'Media'}
-        ]},
-        {page: '', title: 'Resources', isDropdown: true, dividersAfter: [], dropdownOptions: [
+        ]
+        },
+        {
+            page: '', title: 'Resources', isDropdown: true, dividersAfter: [], dropdownOptions: [
             {page: 'communications', title: 'Communications'},
             {page: 'minutes', title: 'Meeting Minutes'},
             {page: 'mutual-aid', title: 'Mutual Aid'},
@@ -47,8 +55,10 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', 'Edit
             {page: 'rensco-resources', title: 'RENSCO Resources'},
             {page: 'doh-resources', title: 'DOH Resources'},
             {page: 'misc-forms', title: 'Miscellaneous Forms'}
-        ]},
-        {page: '', title: 'Training', isDropdown: true, dividersAfter: [], dropdownOptions: [
+        ]
+        },
+        {
+            page: '', title: 'Training', isDropdown: true, dividersAfter: [], dropdownOptions: [
             {page: 'new-members-training', title: 'New Members'},
             {page: 'cpr-certification', title: 'CPR Certification'},
             {page: 'attendant-training', title: 'Attendant'},
@@ -56,9 +66,10 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', 'Edit
             {page: 'crew-chief-training', title: 'Crew Chief'},
             {page: 'supervisor-training', title: 'Supervisor'},
             {page: 'in-service-training', title: 'In-Service Training'}
-        ]},
+        ]
+        },
         {page: 'coverage', title: 'Request Coverage', isDropdown: false},
-        {page: 'login', title: 'Members', isDropdown: false, customLink: true, link:'index.php?page=members'},
+        {page: 'login', title: 'Members', isDropdown: false, customLink: true, link: 'index.php?page=members'},
         {page: 'contact', title: 'Contact Us', isDropdown: false}
     ];
 
@@ -67,11 +78,11 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', 'Edit
      * @param nav
      * @returns {boolean}
      */
-    $scope.isActive = function(nav) {
-        if(nav.isDropdown) {
+    $scope.isActive = function (nav) {
+        if (nav.isDropdown) {
             var isActive = false;
-            nav.dropdownOptions.forEach(function(elem) {
-                if($route.current !== undefined && $route.current.activeTab == elem.page) {
+            nav.dropdownOptions.forEach(function (elem) {
+                if ($route.current !== undefined && $route.current.activeTab == elem.page) {
                     isActive = true;
                 }
             });
@@ -88,8 +99,8 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$scope', '$route', 'Edit
      * @param index
      * @returns {boolean}
      */
-    $scope.showDivider = function(nav, index) {
-        if(nav.isDropdown && nav.dividersAfter.indexOf(+index) > -1) {
+    $scope.showDivider = function (nav, index) {
+        if (nav.isDropdown && nav.dividersAfter.indexOf(+index) > -1) {
             return true;
         }
     };

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="RPIA">
+<html lang="en" ng-app="RPIA" ng-controller="MainCtrl">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>RPI Ambulance</title>
+    <title ng-bind="$root.title + ' | RPI Ambulance'">RPI Ambulance</title>
 
     <!-- core CSS -->
     <link href="libs/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +26,7 @@
 </head>
 <!--/head-->
 
-<body class="homepage" ng-controller="MainCtrl">
+<body class="homepage">
 
 <header id="header">
     <div class="top-bar">
