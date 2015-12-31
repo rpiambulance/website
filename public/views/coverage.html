@@ -92,13 +92,39 @@
                     <!-- Modal for Tier III -->
                     <modal title="Tier III" visible="showModal.tier3">
                         <form role="form">
+                            <p>Tell us about yourself...</p>
                             <div class="form-group">
-                                <label for="tier3input1">Input 1</label>
-                                <input type="text" class="form-control" id="tier3input1" placeholder="Text" />
+                                <label for="tier3event">Organization Name</label>
+                                <input type="text" class="form-control" id="tier3event" placeholder="Event Name" />
                             </div>
                             <div class="form-group">
-                                <label for="tier3input2">Input 2</label>
-                                <input type="text" class="form-control" id="tier3input2" placeholder="Text" />
+                                <label for="tier3name">Contact Name</label>
+                                <input type="text" class="form-control" id="tier3name" placeholder="Who do we get in touch with?" />
+                            </div>
+                            <div class="form-group">
+                                <label for="tier3email">Contact Email</label>
+                                <input type="email" class="form-control" id="tier3email" placeholder="How do we reach you?" />
+                            </div>
+                            <p>Tell us about the event...</p>
+                            <div class="form-group">
+                                <label for="tier3eventName">Event Name</label>
+                                <input type="number" class="form-control" id="tier3eventName" placeholder="What are we covering" />
+                            </div>
+                            <div class="form-group">
+                                <label for="tier3loc">Event Location</label>
+                                <input type="number" class="form-control" id="tier3loc" placeholder="What are we covering" />
+                            </div>
+                            <div class="form-group">
+                                <label for="tier3type">Event Type</label>
+                                <select>
+                                    <option value="Sporting Event">Sporting Event</option>
+                                    <option value="Outdoor Festival">Outdoor Festival</option>
+                                    <option value="Indoor Festival">Indoor Festival</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="tier3attendance">Expected Attendance</label>
+                                <input type="number" class="form-control" id="tier3attendance" placeholder="5000+" />
                             </div>
                             <button type="submit" ng-click="toggleModal('3')" class="btn btn-default">Submit</button>
                         </form>
