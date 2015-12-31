@@ -1,4 +1,4 @@
-angular.module('JoinTheTeamCtrl', []).controller('JoinTheTeamCtrl', ['$scope', function ($scope) {
+angular.module('JoinCtrl', []).controller('JoinCtrl', ['$scope', function ($scope) {
     $scope.pageHeader = 'Join the team!';
     $scope.columns = true;
 
