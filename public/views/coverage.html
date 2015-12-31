@@ -21,9 +21,24 @@
                         <li>First Response 59</li>
                         <li>Oxygen and medical supplies</li>
                         <li class="plan-action">
-                            <a href="" class="btn btn-primary">Select</a>
+                            <a href="" ng-click="toggleModal('1')" class="btn btn-primary">Select</a>
                         </li>
                     </ul>
+
+                    <!-- Modal for Tier I -->
+                    <modal title="Tier I" visible="showModal.tier1">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="tier1input1">Input 1</label>
+                                <input type="text" class="form-control" id="tier1input1" placeholder="Text" />
+                            </div>
+                            <div class="form-group">
+                                <label for="tier1input2">Input 2</label>
+                                <input type="text" class="form-control" id="tier1input2" placeholder="Text" />
+                            </div>
+                            <button type="submit" ng-click="toggleModal('1')" class="btn btn-default">Submit</button>
+                        </form>
+                    </modal>
                 </div>
 
                 <div class="col-md-4 plan price-two">
@@ -38,9 +53,24 @@
                         <li>5939 (remains available for 911 calls)</li>
                         <li>Oxygen and medical supplies</li>
                         <li class="plan-action">
-                            <a href="" class="btn btn-primary">Select</a>
+                            <a href="" ng-click="toggleModal('2')" class="btn btn-primary">Select</a>
                         </li>
                     </ul>
+
+                    <!-- Modal for Tier II -->
+                    <modal title="Tier II" visible="showModal.tier2">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="tier2input1">Input 1</label>
+                                <input type="text" class="form-control" id="tier2input1" placeholder="Text" />
+                            </div>
+                            <div class="form-group">
+                                <label for="tier2input2">Input 2</label>
+                                <input type="text" class="form-control" id="tier2input2" placeholder="Text" />
+                            </div>
+                            <button type="submit" ng-click="toggleModal('2')" class="btn btn-default">Submit</button>
+                        </form>
+                    </modal>
                 </div>
 
                 <div class="col-md-4 plan price-three">
@@ -55,44 +85,27 @@
                         <li>5939 (dedicated standby)</li>
                         <li>2+ emergency event supervisors</li>
                         <li class="plan-action">
-                            <a href="" class="btn btn-primary">Select</a>
+                            <a href="" ng-click="toggleModal('3')" class="btn btn-primary">Select</a>
                         </li>
                     </ul>
+
+                    <!-- Modal for Tier III -->
+                    <modal title="Tier III" visible="showModal.tier3">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for="tier3input1">Input 1</label>
+                                <input type="text" class="form-control" id="tier3input1" placeholder="Text" />
+                            </div>
+                            <div class="form-group">
+                                <label for="tier3input2">Input 2</label>
+                                <input type="text" class="form-control" id="tier3input2" placeholder="Text" />
+                            </div>
+                            <button type="submit" ng-click="toggleModal('3')" class="btn btn-default">Submit</button>
+                        </form>
+                    </modal>
                 </div>
             </div>
         </div>
-        <!--/pricing-area-->
         <p>* Events within the RPI Community will be staffed free of charge.</p>
     </div>
-    <!--/container-->
-
-    <div ng-controller="ModalCoverageCtrl">
-        <script type="text/ng-template" id="myModalContent.html">
-            <div class="modal-header">
-                <h3 class="modal-title">I'm a modal!</h3>
-            </div>
-            <div class="modal-body">
-                <ul>
-                    <li ng-repeat="item in items">
-                        <a href="#" ng-click="$event.preventDefault(); selected.item = item">{{ item }}</a>
-                    </li>
-                </ul>
-                Selected: <b>{{ selected.item }}</b>
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
-                <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-            </div>
-        </script>
-
-        <button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
-        <button type="button" class="btn btn-default" ng-click="open('lg')">Large modal</button>
-        <button type="button" class="btn btn-default" ng-click="open('sm')">Small modal</button>
-        <button type="button" class="btn btn-default" ng-click="toggleAnimation()">Toggle Animation ({{ animationsEnabled }})</button>
-        <div ng-show="selected">Selection from a modal: {{ selected }}</div>
-    </div>
 </section>
-<!--/pricing-page-->
-<!--/pricing-page-->
-
-<script src="../js/controllers/ModalCoverageCtrl.js"></script>

@@ -6,7 +6,7 @@ var dependencies = [
 	'appRoutes',
 
 	// LOCAL DIRECTIVES AND SERVICES:
-	'infoChunk', 'pageContent', 'editContent',
+	'infoChunk', 'pageContent', 'editContent', 'modal',
 	'EditablePageService',
 
 	// LOCAL CONTROLLERS:
