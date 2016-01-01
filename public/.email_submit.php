@@ -2,9 +2,9 @@
 $errors = array(); // array to hold validation errors
 $data = array(); // array to pass back data
 // validate the variables ======================================================
-if (empty($_POST['name']))
+if (!isset($_POST['name']))
 $errors['name'] = 'Name is required.';
-if (empty($_POST['email']))
+if (!isset($_POST['email']))
 $errors['email'] = 'Email is required.';
 // return a response ===========================================================
 // response if there are errors
