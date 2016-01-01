@@ -32,28 +32,37 @@
                             <p>Tell us about yourself...</p>
                             <div class="form-group">
                                 <label for="tier1event">Organization Name</label>
-                                <input type="text" class="form-control" id="tier1event" placeholder="Who are we doing this for?" />
+                                <input type="text" class="form-control" id="tier1event" placeholder="Who are we doing this for?" required />
                             </div>
                             <div class="form-group">
                                 <label for="tier1name">Contact Name</label>
-                                <input type="text" class="form-control" id="tier1name" placeholder="Who do we get in touch with?" />
+                                <input type="text" class="form-control" id="tier1name" placeholder="Who do we get in touch with?" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier1email">Contact Email</label>
-                                <input type="email" class="form-control" id="tier1email" placeholder="How do we reach you?" />
+                                <input type="email" class="form-control" id="tier1email" placeholder="How do we reach you?" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier1phone">Contact Phone</label>
-                                <input type="tel" class="form-control" id="tier1phone" placeholder="(555) 555-5555" />
+                                <input type="tel" class="form-control" id="tier1phone" placeholder="(555) 555-5555" required/>
                             </div>
                             <p>Tell us about the event...</p>
                             <div class="form-group">
                                 <label for="tier1eventName">Event Name</label>
-                                <input type="text" class="form-control" id="tier1eventName" placeholder="What are we covering?" />
+                                <input type="text" class="form-control" id="tier1eventName" placeholder="What are we covering?"required />
                             </div>
                             <div class="form-group">
                                 <label for="tier1loc">Event Location</label>
-                                <input type="text" class="form-control" id="tier1loc" placeholder="Where do you want us?" />
+                                <input type="text" class="form-control" id="tier1loc" placeholder="Where do you want us?" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="tier1date">Date</label>
+                                <input type="date" class="form-control" id="tier1date" placeholder="MM/DD/YYYY" required/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tier1time">Start Time</label>
+                                <input type="time" class="form-control" id="tier1time" placeholder="HH:MM AM/PM" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier1type">Event Type</label>
@@ -69,11 +78,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="tier1attendance">Expected Attendance</label>
-                                <input type="number" class="form-control" id="tier1attendance" placeholder="15-99" />
+                                <input type="number" class="form-control" id="tier1attendance" placeholder="15-99" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier1duration">Expected Duration</label>
-                                <input type="number" class="form-control" id="tier1duration" placeholder="Hours" />
+                                <input type="number" class="form-control" id="tier1duration" placeholder="Hours" required/>
                             </div>
                             <button type="submit" ng-click="toggleModal('1')" class="btn btn-success">Submit</button>
                             <button type="reset" class="btn btn-warning">Clear Form</button>
@@ -103,15 +112,15 @@
                             <p>Tell us about yourself...</p>
                             <div class="form-group">
                                 <label for="tier2event">Organization Name</label>
-                                <input type="text" class="form-control" id="tier2event" placeholder="Who are we doing this for?" />
+                                <input type="text" class="form-control" id="tier2event" placeholder="Who are we doing this for?" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier2name">Contact Name</label>
-                                <input type="text" class="form-control" id="tier2name" placeholder="Who do we get in touch with?" />
+                                <input type="text" class="form-control" id="tier2name" placeholder="Who do we get in touch with?" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier2email">Contact Email</label>
-                                <input type="email" class="form-control" id="tier2email" placeholder="How do we reach you?" />
+                                <input type="email" class="form-control" id="tier2email" placeholder="How do we reach you?" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier2phone">Contact Phone</label>
@@ -120,11 +129,20 @@
                             <p>Tell us about the event...</p>
                             <div class="form-group">
                                 <label for="tier2eventName">Event Name</label>
-                                <input type="text" class="form-control" id="tier2eventName" placeholder="What are we covering?" />
+                                <input type="text" class="form-control" id="tier2eventName" placeholder="What are we covering?" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier2loc">Event Location</label>
-                                <input type="text" class="form-control" id="tier2loc" placeholder="Where do you want us?" />
+                                <input type="text" class="form-control" id="tier2loc" placeholder="Where do you want us?" required/>
+                            </div>
+                            <div class="form-group">
+                                <label for="tier2date">Date</label>
+                                <input type="date" class="form-control" id="tier2date" placeholder="MM/DD/YYYY" required/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tier2time">Start Time</label>
+                                <input type="time" class="form-control" id="tier2time" placeholder="HH:MM AM/PM" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier2type">Event Type</label>
@@ -140,11 +158,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="tier2attendance">Expected Attendance</label>
-                                <input type="number" class="form-control" id="tier2attendance" placeholder="100-4999" />
+                                <input type="number" class="form-control" id="tier2attendance" placeholder="100-4999" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier2duration">Expected Duration</label>
-                                <input type="number" class="form-control" id="tier2duration" placeholder="Hours" />
+                                <input type="number" class="form-control" id="tier2duration" placeholder="Hours" required/>
                             </div>
                             <button type="submit" ng-click="toggleModal('2')" class="btn btn-success">Submit</button>
                             <button type="reset" class="btn btn-warning">Clear Form</button>
@@ -174,29 +192,40 @@
                             <p>Tell us about yourself...</p>
                             <div class="form-group">
                                 <label for="tier3event">Organization Name</label>
-                                <input type="text" class="form-control" id="tier3event" placeholder="Who are we doing this for?" />
+                                <input type="text" class="form-control" id="tier3event" placeholder="Who are we doing this for?" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier3name">Contact Name</label>
-                                <input type="text" class="form-control" id="tier3name" placeholder="Who do we get in touch with?" />
+                                <input type="text" class="form-control" id="tier3name" placeholder="Who do we get in touch with?" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier3email">Contact Email</label>
-                                <input type="email" class="form-control" id="tier3email" placeholder="How do we reach you?" />
+                                <input type="email" class="form-control" id="tier3email" placeholder="How do we reach you?" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier3phone">Contact Phone</label>
-                                <input type="tel" class="form-control" id="tier3phone" placeholder="(555) 555-5555" />
+                                <input type="tel" class="form-control" id="tier3phone" placeholder="(555) 555-5555" required/>
                             </div>
                             <p>Tell us about the event...</p>
                             <div class="form-group">
                                 <label for="tier3eventName">Event Name</label>
-                                <input type="text" class="form-control" id="tier3eventName" placeholder="What are we covering?" />
+                                <input type="text" class="form-control" id="tier3eventName" placeholder="What are we covering?" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier3loc">Event Location</label>
-                                <input type="text" class="form-control" id="tier3loc" placeholder="Where do you want us?" />
+                                <input type="text" class="form-control" id="tier3loc" placeholder="Where do you want us?" required/>
                             </div>
+
+                            <div class="form-group">
+                                <label for="tier3date">Date</label>
+                                <input type="date" class="form-control" id="tier3date" placeholder="MM/DD/YYYY" required/>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="tier3time">Start Time</label>
+                                <input type="time" class="form-control" id="tier3time" placeholder="HH:MM AM/PM" required/>
+                            </div>
+
                             <div class="form-group">
                                 <label for="tier3type">Event Type</label>
                                 <select id="tier3type">
@@ -210,11 +239,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="tier3attendance">Expected Attendance</label>
-                                <input type="number" class="form-control" id="tier3attendance" placeholder="5000+" />
+                                <input type="number" class="form-control" id="tier3attendance" placeholder="5000+" required/>
                             </div>
                             <div class="form-group">
                                 <label for="tier3duration">Expected Duration</label>
-                                <input type="number" class="form-control" id="tier3duration" placeholder="Hours" />
+                                <input type="number" class="form-control" id="tier3duration" placeholder="Hours" required/>
                             </div>
                             <button type="submit" ng-click="toggleModal('3')" class="btn btn-success">Submit</button>
                             <button type="reset" class="btn btn-warning">Clear Form</button>
