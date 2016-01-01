@@ -31,7 +31,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
      * @type {*[]}
      */
     $scope.navbar = [
-        {page: 'home', title: 'Home', isDropdown: false},
+        //{page: 'home', title: 'Home', isDropdown: false},
         {
             page: '', title: 'About Us', isDropdown: true, dividersAfter: [2, 4], dropdownOptions: [
             {page: 'rpia-about', title: 'About RPI Ambulance'},
