@@ -28,7 +28,7 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
     };
 
     $scope.clearForm = function() {
-        for (d in data){
+        for (d in $scope.formData){
             if (data.hasOwnProperty(d))
                 data[d] = "";
         }
