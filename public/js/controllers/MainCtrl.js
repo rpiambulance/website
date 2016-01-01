@@ -31,7 +31,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
      * @type {*[]}
      */
     $scope.navbar = [
-        //{page: 'home', title: 'Home', isDropdown: false},
+        {page: 'home', title: 'Home', isDropdown: false},
         {
             page: '', title: 'About Us', isDropdown: true, dividersAfter: [2, 4], dropdownOptions: [
             {page: 'rpia-about', title: 'About RPI Ambulance'},
@@ -70,7 +70,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         },
         {page: 'coverage', title: 'Request Coverage', isDropdown: false},
         {page: 'login', title: 'Members', isDropdown: false, customLink: true, link: 'index.php?page=members'},
-        {page: 'join', title: 'Join The Team', isDropdown: false},
+        {page: 'join', title: 'Join Us', isDropdown: false},
         {page: 'contact', title: 'Contact Us', isDropdown: false}
 
     ];
