@@ -4,7 +4,8 @@
             <h2 class="view-header">Request Coverage</h2>
 
             <h3>Planning an event at or around RPI?<br>Here are a few options of how RPI Ambulance can
-                provide EMS coverage for your event.<br>If you have further questions, please feel free to <a href="#/contact">contact us</a>.
+                provide EMS coverage for your event.<br>If you have further questions, please feel free to <a
+                        href="#/contact">contact us</a>.
             </h3> <!-- link -->
             <br>
         </div>
@@ -22,72 +23,9 @@
                         <li>First Response 59</li>
                         <li>Oxygen and medical supplies</li>
                         <li class="plan-action">
-                            <a href="" ng-click="toggleModal('1')" class="btn btn-primary">Select</a>
+                            <a href="" ng-click="toggleModal('Tier I')" class="btn btn-primary">Select</a>
                         </li>
                     </ul>
-
-                    <!-- Modal for Tier I -->
-                    <modal title="Tier I" visible="showModal.tier1">
-                        <form role="form">
-                            <p>Tell us about yourself...</p>
-                            <div class="form-group">
-                                <label for="tier1event">Organization Name</label>
-                                <input type="text" class="form-control" id="tier1event" placeholder="Who are we doing this for?" required />
-                            </div>
-                            <div class="form-group">
-                                <label for="tier1name">Contact Name</label>
-                                <input type="text" class="form-control" id="tier1name" placeholder="Who do we get in touch with?" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier1email">Contact Email</label>
-                                <input type="email" class="form-control" id="tier1email" placeholder="How do we reach you?" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier1phone">Contact Phone</label>
-                                <input type="tel" class="form-control" id="tier1phone" placeholder="(555) 555-5555" required/>
-                            </div>
-                            <p>Tell us about the event...</p>
-                            <div class="form-group">
-                                <label for="tier1eventName">Event Name</label>
-                                <input type="text" class="form-control" id="tier1eventName" placeholder="What are we covering?"required />
-                            </div>
-                            <div class="form-group">
-                                <label for="tier1loc">Event Location</label>
-                                <input type="text" class="form-control" id="tier1loc" placeholder="Where do you want us?" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier1date">Date</label>
-                                <input type="date" class="form-control" id="tier1date" placeholder="MM/DD/YYYY" required/>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="tier1time">Start Time</label>
-                                <input type="time" class="form-control" id="tier1time" placeholder="HH:MM AM/PM" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier1type">Event Type</label>
-                                <select id="tier1type">
-                                    <option value="Sporting Event">Sporting Event/Game</option>
-                                    <option value="Sports Practice">Sports Practice</option>
-                                    <option value="Hackathon">Hackathon</option>
-                                    <option value="After Dark">"After Dark" Event</option>
-                                    <option value="Run">Run/Marathon</option>
-                                    <option value="Other Outdoor Event">Other Outdoor Event</option>
-                                    <option value="Other Indoor Event">Other Indoor Event</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier1attendance">Expected Attendance</label>
-                                <input type="number" class="form-control" id="tier1attendance" placeholder="15-99" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier1duration">Expected Duration</label>
-                                <input type="number" class="form-control" id="tier1duration" placeholder="Hours" required/>
-                            </div>
-                            <button type="submit" ng-click="toggleModal('1')" class="btn btn-success">Submit</button>
-                            <button type="reset" class="btn btn-warning">Clear Form</button>
-                        </form>
-                    </modal>
                 </div>
 
                 <div class="col-md-4 plan price-two">
@@ -102,72 +40,72 @@
                         <li>5939 (remains available for 911 calls)</li>
                         <li>Oxygen and medical supplies</li>
                         <li class="plan-action">
-                            <a href="" ng-click="toggleModal('2')" class="btn btn-primary">Select</a>
+                            <a href="" ng-click="toggleModal('Tier II')" class="btn btn-primary">Select</a>
                         </li>
                     </ul>
 
                     <!-- Modal for Tier II -->
-                    <modal title="Tier II" visible="showModal.tier2">
-                        <form role="form">
-                            <p>Tell us about yourself...</p>
-                            <div class="form-group">
-                                <label for="tier2event">Organization Name</label>
-                                <input type="text" class="form-control" id="tier2event" placeholder="Who are we doing this for?" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier2name">Contact Name</label>
-                                <input type="text" class="form-control" id="tier2name" placeholder="Who do we get in touch with?" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier2email">Contact Email</label>
-                                <input type="email" class="form-control" id="tier2email" placeholder="How do we reach you?" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier2phone">Contact Phone</label>
-                                <input type="tel" class="form-control" id="tier2phone" placeholder="(555) 555-5555" />
-                            </div>
-                            <p>Tell us about the event...</p>
-                            <div class="form-group">
-                                <label for="tier2eventName">Event Name</label>
-                                <input type="text" class="form-control" id="tier2eventName" placeholder="What are we covering?" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier2loc">Event Location</label>
-                                <input type="text" class="form-control" id="tier2loc" placeholder="Where do you want us?" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier2date">Date</label>
-                                <input type="date" class="form-control" id="tier2date" placeholder="MM/DD/YYYY" required/>
-                            </div>
+                    <!--<modal title="Tier II" visible="showModal.tier2">-->
+                    <!--<form role="form">-->
+                    <!--<p>Tell us about yourself...</p>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier2event">Organization Name</label>-->
+                    <!--<input type="text" class="form-control" id="tier2event" placeholder="Who are we doing this for?" required/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier2name">Contact Name</label>-->
+                    <!--<input type="text" class="form-control" id="tier2name" placeholder="Who do we get in touch with?" required/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier2email">Contact Email</label>-->
+                    <!--<input type="email" class="form-control" id="tier2email" placeholder="How do we reach you?" required/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier2phone">Contact Phone</label>-->
+                    <!--<input type="tel" class="form-control" id="tier2phone" placeholder="(555) 555-5555" />-->
+                    <!--</div>-->
+                    <!--<p>Tell us about the event...</p>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier2eventName">Event Name</label>-->
+                    <!--<input type="text" class="form-control" id="tier2eventName" placeholder="What are we covering?" required/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier2loc">Event Location</label>-->
+                    <!--<input type="text" class="form-control" id="tier2loc" placeholder="Where do you want us?" required/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier2date">Date</label>-->
+                    <!--<input type="date" class="form-control" id="tier2date" placeholder="MM/DD/YYYY" required/>-->
+                    <!--</div>-->
 
-                            <div class="form-group">
-                                <label for="tier2time">Start Time</label>
-                                <input type="time" class="form-control" id="tier2time" placeholder="HH:MM AM/PM" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier2type">Event Type</label>
-                                <select id="tier2type">
-                                    <option value="Sporting Event">Sporting Event/Game</option>
-                                    <option value="Sports Practice">Sports Practice</option>
-                                    <option value="Run">Run/Marathon</option>
-                                    <option value="After Dark">"After dark" Event</option>
-                                    <option value="Carnival">Carnival</option>
-                                    <option value="Other Outdoor Event">Other Outdoor Event</option>
-                                    <option value="Other Indoor Event">Other Indoor Event</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier2attendance">Expected Attendance</label>
-                                <input type="number" class="form-control" id="tier2attendance" placeholder="100-4999" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier2duration">Expected Duration</label>
-                                <input type="number" class="form-control" id="tier2duration" placeholder="Hours" required/>
-                            </div>
-                            <button type="submit" ng-click="toggleModal('2')" class="btn btn-success">Submit</button>
-                            <button type="reset" class="btn btn-warning">Clear Form</button>
-                        </form>
-                    </modal>
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier2time">Start Time</label>-->
+                    <!--<input type="time" class="form-control" id="tier2time" placeholder="HH:MM AM/PM" required/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier2type">Event Type</label>-->
+                    <!--<select id="tier2type">-->
+                    <!--<option value="Sporting Event">Sporting Event/Game</option>-->
+                    <!--<option value="Sports Practice">Sports Practice</option>-->
+                    <!--<option value="Run">Run/Marathon</option>-->
+                    <!--<option value="After Dark">"After dark" Event</option>-->
+                    <!--<option value="Carnival">Carnival</option>-->
+                    <!--<option value="Other Outdoor Event">Other Outdoor Event</option>-->
+                    <!--<option value="Other Indoor Event">Other Indoor Event</option>-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier2attendance">Expected Attendance</label>-->
+                    <!--<input type="number" class="form-control" id="tier2attendance" placeholder="100-4999" required/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier2duration">Expected Duration</label>-->
+                    <!--<input type="number" class="form-control" id="tier2duration" placeholder="Hours" required/>-->
+                    <!--</div>-->
+                    <!--<button type="submit" ng-click="toggleModal('2')" class="btn btn-success">Submit</button>-->
+                    <!--<button type="reset" class="btn btn-warning">Clear Form</button>-->
+                    <!--</form>-->
+                    <!--</modal>-->
                 </div>
 
                 <div class="col-md-4 plan price-three">
@@ -182,76 +120,154 @@
                         <li>5939 (dedicated standby)</li>
                         <li>2+ emergency event supervisors</li>
                         <li class="plan-action">
-                            <a href="" ng-click="toggleModal('3')" class="btn btn-primary">Select</a>
+                            <a href="" ng-click="toggleModal('Tier III')" class="btn btn-primary">Select</a>
                         </li>
                     </ul>
 
                     <!-- Modal for Tier III -->
-                    <modal title="Tier III" visible="showModal.tier3">
-                        <form role="form">
-                            <p>Tell us about yourself...</p>
-                            <div class="form-group">
-                                <label for="tier3event">Organization Name</label>
-                                <input type="text" class="form-control" id="tier3event" placeholder="Who are we doing this for?" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier3name">Contact Name</label>
-                                <input type="text" class="form-control" id="tier3name" placeholder="Who do we get in touch with?" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier3email">Contact Email</label>
-                                <input type="email" class="form-control" id="tier3email" placeholder="How do we reach you?" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier3phone">Contact Phone</label>
-                                <input type="tel" class="form-control" id="tier3phone" placeholder="(555) 555-5555" required/>
-                            </div>
-                            <p>Tell us about the event...</p>
-                            <div class="form-group">
-                                <label for="tier3eventName">Event Name</label>
-                                <input type="text" class="form-control" id="tier3eventName" placeholder="What are we covering?" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier3loc">Event Location</label>
-                                <input type="text" class="form-control" id="tier3loc" placeholder="Where do you want us?" required/>
-                            </div>
+                    <!--<modal title="Tier III" visible="showModal.tier3">-->
+                    <!--<form role="form">-->
+                    <!--<p>Tell us about yourself...</p>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier3event">Organization Name</label>-->
+                    <!--<input type="text" class="form-control" id="tier3event" placeholder="Who are we doing this for?" required/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier3name">Contact Name</label>-->
+                    <!--<input type="text" class="form-control" id="tier3name" placeholder="Who do we get in touch with?" required/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier3email">Contact Email</label>-->
+                    <!--<input type="email" class="form-control" id="tier3email" placeholder="How do we reach you?" required/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier3phone">Contact Phone</label>-->
+                    <!--<input type="tel" class="form-control" id="tier3phone" placeholder="(555) 555-5555" required/>-->
+                    <!--</div>-->
+                    <!--<p>Tell us about the event...</p>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier3eventName">Event Name</label>-->
+                    <!--<input type="text" class="form-control" id="tier3eventName" placeholder="What are we covering?" required/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier3loc">Event Location</label>-->
+                    <!--<input type="text" class="form-control" id="tier3loc" placeholder="Where do you want us?" required/>-->
+                    <!--</div>-->
 
-                            <div class="form-group">
-                                <label for="tier3date">Date</label>
-                                <input type="date" class="form-control" id="tier3date" placeholder="MM/DD/YYYY" required/>
-                            </div>
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier3date">Date</label>-->
+                    <!--<input type="date" class="form-control" id="tier3date" placeholder="MM/DD/YYYY" required/>-->
+                    <!--</div>-->
 
-                            <div class="form-group">
-                                <label for="tier3time">Start Time</label>
-                                <input type="time" class="form-control" id="tier3time" placeholder="HH:MM AM/PM" required/>
-                            </div>
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier3time">Start Time</label>-->
+                    <!--<input type="time" class="form-control" id="tier3time" placeholder="HH:MM AM/PM" required/>-->
+                    <!--</div>-->
 
-                            <div class="form-group">
-                                <label for="tier3type">Event Type</label>
-                                <select id="tier3type">
-                                    <option value="Sporting Event">Sporting Event/Game</option>
-                                    <option value="Performance">Speech/Performance</option>
-                                    <option value="Concert">Concert</option>
-                                    <option value="Commencement">Commencement Ceremony</option>
-                                    <option value="Other Outdoor Event">Other Outdoor Event</option>
-                                    <option value="Other Indoor Event">Other Indoor Event</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier3attendance">Expected Attendance</label>
-                                <input type="number" class="form-control" id="tier3attendance" placeholder="5000+" required/>
-                            </div>
-                            <div class="form-group">
-                                <label for="tier3duration">Expected Duration</label>
-                                <input type="number" class="form-control" id="tier3duration" placeholder="Hours" required/>
-                            </div>
-                            <button type="submit" ng-click="toggleModal('3')" class="btn btn-success">Submit</button>
-                            <button type="reset" class="btn btn-warning">Clear Form</button>
-                        </form>
-                    </modal>
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier3type">Event Type</label>-->
+                    <!--<select id="tier3type">-->
+                    <!--<option value="Sporting Event">Sporting Event/Game</option>-->
+                    <!--<option value="Performance">Speech/Performance</option>-->
+                    <!--<option value="Concert">Concert</option>-->
+                    <!--<option value="Commencement">Commencement Ceremony</option>-->
+                    <!--<option value="Other Outdoor Event">Other Outdoor Event</option>-->
+                    <!--<option value="Other Indoor Event">Other Indoor Event</option>-->
+                    <!--</select>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier3attendance">Expected Attendance</label>-->
+                    <!--<input type="number" class="form-control" id="tier3attendance" placeholder="5000+" required/>-->
+                    <!--</div>-->
+                    <!--<div class="form-group">-->
+                    <!--<label for="tier3duration">Expected Duration</label>-->
+                    <!--<input type="number" class="form-control" id="tier3duration" placeholder="Hours" required/>-->
+                    <!--</div>-->
+                    <!--<button type="submit" ng-click="toggleModal('3')" class="btn btn-success">Submit</button>-->
+                    <!--<button type="reset" class="btn btn-warning">Clear Form</button>-->
+                    <!--</form>-->
+                    <!--</modal>-->
                 </div>
             </div>
         </div>
-        <p class="text-center text-muted"><sup>*</sup> Events within the RPI Community will be staffed free of charge.</p>
+        <p class="text-center text-muted"><sup>*</sup> Events within the RPI Community will be staffed free of charge.
+        </p>
     </div>
 </section>
+
+<!-- Modal -->
+<modal title="currentTier" visible="showModal">
+    <form role="form" ng-submit="submitForm()" novalidate>
+        <h4 class="text-center">Tell us about yourself...</h4>
+        <div class="form-group">
+            <label for="event">Organization Name</label>
+            <input type="text" class="form-control" id="event" placeholder="Who are we doing this for?"
+                   ng-model="formData.event" />
+        </div>
+        <div class="form-group">
+            <label for="name">Contact Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Who do we get in touch with?"
+                   ng-model="formData.name" />
+        </div>
+        <div class="form-group">
+            <label for="email">Contact Email</label>
+            <input type="email" class="form-control" id="email" placeholder="How do we reach you?"
+                   ng-model="formData.email" />
+        </div>
+        <div class="form-group">
+            <label for="phone">Contact Phone</label>
+            <input type="tel" class="form-control" id="phone" placeholder="(555) 555-5555"
+                   ng-model="formData.phone" />
+        </div>
+        <h4 class="text-center">Tell us about the event...</h4>
+        <div class="form-group">
+            <label for="eventName">Event Name</label>
+            <input type="text" class="form-control" id="eventName" placeholder="What are we covering?"
+                   ng-model="formData.eventName" />
+        </div>
+        <div class="form-group">
+            <label for="loc">Event Location</label>
+            <input type="text" class="form-control" id="loc" placeholder="Where do you want us?"
+                   ng-model="formData.loc" />
+        </div>
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input type="date" class="form-control" id="date" placeholder="MM/DD/YYYY"
+                   ng-model="formData.date" />
+        </div>
+
+        <div class="form-group">
+            <label for="time">Start Time</label>
+            <input type="time" class="form-control" id="time" placeholder="HH:MM AM/PM"
+                   ng-model="formData.time" />
+        </div>
+        <div class="form-group">
+            <label for="type">Event Type</label>
+            <select id="type" ng-model="formData.type">
+                <option value="Sporting Event">Sporting Event/Game</option>
+                <option value="Sports Practice">Sports Practice</option>
+                <option value="Hackathon">Hackathon</option>
+                <option value="After Dark">"After Dark" Event</option>
+                <option value="Run">Run/Marathon</option>
+                <option value="Other Outdoor Event">Other Outdoor Event</option>
+                <option value="Other Indoor Event">Other Indoor Event</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="attendance">Expected Attendance</label>
+            <input type="number" class="form-control" id="attendance" placeholder="{{getAttendanceLims()}}"
+                   ng-model="formData.attendance" />
+        </div>
+        <div class="form-group">
+            <label for="duration">Expected Duration</label>
+            <input type="number" class="form-control" id="duration" placeholder="Hours"
+                   ng-model="formData.duration" />
+        </div>
+        <hr/>
+        <div class="btn-toolbar pull-right">
+            <button type="reset" ng-click="clearForm()" class="btn btn-warning">Clear Form</button>
+            <button type="submit" ng-click="toggleModal('')" class="btn btn-success">Submit</button>
+        </div>
+        <div class="clearfix"></div>
+    </form>
+</modal>
