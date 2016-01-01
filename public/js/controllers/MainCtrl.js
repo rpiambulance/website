@@ -70,7 +70,9 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         },
         {page: 'coverage', title: 'Request Coverage', isDropdown: false},
         {page: 'login', title: 'Members', isDropdown: false, customLink: true, link: 'index.php?page=members'},
+        {page: 'join', title: 'Join The Team', isDropdown: false},
         {page: 'contact', title: 'Contact Us', isDropdown: false}
+
     ];
 
     /**
