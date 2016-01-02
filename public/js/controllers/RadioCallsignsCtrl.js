@@ -5,15 +5,20 @@ angular.module('RadioCallsignsCtrl', []).controller('RadioCallsignsCtrl', ['$sco
         {
             header: 'Intra-agency Use',
             body: 'RPI frequencies and identifier series are as follows:' + '\n' +
-            '* 100-199: RPI DPS vehicles\n' +
-            '* 200-299: RPI DPS officers\n' +
-            '* 300-399: RPI DPS sergeants\n' +
-            '* 400-499: Unused\n' +
-            '* 500-699 RPI DPS\n' +
-            '* 700-799: RPI DPS lieutenants\n' +
-            '* 801 and 802: Parking and Transportation\n' +
-            '* 900-999: RPI Ambulance\n' +
-            '* 1000+: Environmental and Site Services '
+            '* 100&ndash;199: RPI DPS vehicles\n' +
+            '* 200&ndash;299: RPI DPS officers\n' +
+            '* 300&ndash;399: RPI DPS sergeants\n' +
+            '* 400&ndash;499: Special assignments, e.g. the president\'s chauffeur\n' +
+            '* 500&ndash;699 RPI DPS "services," according to Dave Jordan, mostly used by shuttle drivers who are grandfathered in to the DPS numbering scheme\n' +
+            '* 600&ndash;699: RPI DPS administrative personnel, e.g. access control and department administration\n' +
+            '* 700&ndash;799: RPI DPS lieutenants\n' +
+            '* 801 and 802: RPI DPS directors and chiefs\n' +
+            '* 900&ndash;999: RPI Ambulance\n' +
+            '* 1000&ndash;1099: Environmental and Site Services\n' + 
+            '* 1200+: Campus house cleaning staff\n\n' + 
+            'Contract security, seldom used aside from at Blitman Hall and at large campus events, used to use ' +
+            '100-series numbers, but they now use their car number. The most common contract security firm on campus' +
+            'is AlliedBarton.'
         },
         {
             header: 'Inter-agency Use',
@@ -29,20 +34,20 @@ angular.module('RadioCallsignsCtrl', []).controller('RadioCallsignsCtrl', ['$sco
             'number, e.g. 5939. (Ambulance 39, or A-39, was the past identifier for the ambulance.)'
         },
         {
-            header: '900 Range: RPI Ambulance',
+            header: '900-series identifiers: RPI Ambulance',
             body: 'Currently, crew chiefs, drivers, or members in active training are given a 900 number between ' +
             '921 and 989. Once these numbers are assigned, they stay with the member until graduation. The ' +
             'numbers 992 and 993 are reserved for on-duty observers/attendants without their unique 900 number. ' +
             '901 through 909 are used to identify crews during special events. Numbers between 910 and 919 are ' +
             'specialty units, such as ALS, who may be present at an event.' + '\n\n' +
-            '900 Numbers are assigned as follows:\n' +
+            'Here\'s a breakdown of 900 numbers:' + '\n' +
             '* 900: Used by event command\n' +
             '* 901&ndash;908: Event identifiers according to SOPs\n' +
             '* 909&ndash;919: Specialty units at events at the discretion of the captain\n' +
             '* 921&ndash;989: Member identifiers\n' +
             '* 992&ndash;993: On-duty attendants\n' +
-            '* 994&ndash;999; Assigned at the discretion of the captain\n' +
-            '* Note: 911, 939, 959, and 991 are restricted and not used.'
+            '* 994&ndash;999; Assigned at the discretion of the captain\n\n' +
+            'Note: 911, 939, and 959 are restricted and not used.'
         },
         {
             header: 'History',
