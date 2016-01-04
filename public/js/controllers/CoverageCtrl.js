@@ -39,13 +39,17 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
     };
 
     var autocompleteValidate = function () {
+        var corrected = {};
         for (var d in $scope.formData) {
             if($scope.formData.hasOwnProperty(d)) {
                 if(document.getElementById(d).value !== $scope.formData[d]) {
-                    $scope.formData[d] = document.getElementById(d).value;
+                    corrected[d] = document.getElementById(d).value;
+                } else {
+                    corrected[d] = $scope.formData[d];
                 }
             }
         }
+        return corrected;
     };
 
     $scope.clearForm = function () {
@@ -56,13 +60,12 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
     };
 
     $scope.submitForm = function () {
-        autocompleteValidate();
         console.log($scope.formData);
         console.log(param($scope.formData) + "&tier=" + $scope.currentTier);
         $http({
             method: 'POST',
             url: '.email_submit.php',
-            data: $scope.formData, // pass in data as strings
+            data: autocompleteValidate(), // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).success(function (data) {
             console.log(data);
