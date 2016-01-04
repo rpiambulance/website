@@ -36,6 +36,7 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
 
     $scope.submitForm = function () {
         console.log($scope.formData);
+        console.log(param($scope.formData) + "&tier=" + $scope.currentTier);
         $http({
             method: 'POST',
             url: '.email_submit.php',
