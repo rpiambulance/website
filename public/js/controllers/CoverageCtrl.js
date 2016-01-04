@@ -62,7 +62,7 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
         $http({
             method: 'POST',
             url: '.email_submit.php',
-            data: param($scope.formData) + "&tier=" + $scope.currentTier, // pass in data as strings
+            data: $scope.formData, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).success(function (data) {
             if (!data.success) {
