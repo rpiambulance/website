@@ -89,7 +89,7 @@ if (!empty($errors)) {
         "\nEvent Name: " . $eventName . "\n" .
         "Location: " . $loc . "\n" .
         "Date: " . $date . "\n" .
-        "Time: " . $time . "\n" .
+        "Arrival Time: " . $time . "\n" .
         "Type: " . $type . "\n" .
         "Attendance: " . $attendance . "\n" .
         "Duration: " . $duration . "hour(s)\n";
@@ -118,7 +118,7 @@ if (!empty($errors)) {
         "\nEvent Name: " . $eventName . "\n" .
         "Location: " . $loc . "\n" .
         "Date: " . $date . "\n" .
-        "Time: " . $time . "\n" .
+        "Arrival Time: " . $time . "\n" .
         "Type: " . $type . "\n" .
         "Attendance: " . $attendance . "\n" .
         "Duration: " . $duration . "hour(s)\n".
