@@ -72,7 +72,7 @@ if (!empty($errors)) {
     // ***********************************
 
     // CONSTANTS *************************
-    $email_to = "test@etz.io";
+    $email_to = "officers@rpiambulance.com";
     $email_subject = "RPI Ambulance Coverage Request: " . $orgName;
     // ***********************************
 
@@ -80,17 +80,19 @@ if (!empty($errors)) {
 
     $email_message = "A coverage request was processed by the RPI Ambulance website. " .
         "Submission details can be found below:\n" .
-        "Organization Name: " . $orgName . "\n" .
+        "\nContact Information:\n".
+        "\nOrganization Name: " . $orgName . "\n" .
         "Contact Name: " . $name . "\n" .
         "Email: " . $email_from . "\n" .
         "Phone: " . $phone . "\n" .
-        "Event Name: " . $eventName . "\n" .
+        "\nEvent Information:\n".
+        "\nEvent Name: " . $eventName . "\n" .
         "Location: " . $loc . "\n" .
         "Date: " . $date . "\n" .
         "Time: " . $time . "\n" .
         "Type: " . $type . "\n" .
         "Attendance: " . $attendance . "\n" .
-        "Duration: " . $duration . "\n";
+        "Duration: " . $duration . "hour(s)\n";
 
     $headers = 'From: ' . $email_from . "\r\n" .
         'Reply-To: ' . $email_from . "\r\n" .
@@ -104,28 +106,30 @@ if (!empty($errors)) {
     // ***********************************
 
     $email_message_requester= "Thanks for asking us to cover your event! Since this is an automated email message, one ".
-    "of our officers should be reaching out to you regarding your request soon with some more information. For your
-    records, we've included a copy of the request below:\n".
+    "of our officers should be reaching out to you regarding your request soon with some more information. For your ".
+    "records, we've included a copy of the request below:\n".
 
+        "\nContact Information:\n".
         "\nOrganization Name: " . $orgName . "\n" .
         "Contact Name: " . $name . "\n" .
         "Email: " . $email_from . "\n" .
         "Phone: " . $phone . "\n" .
-        "Event Name: " . $eventName . "\n" .
+        "\nEvent Information:\n".
+        "\nEvent Name: " . $eventName . "\n" .
         "Location: " . $loc . "\n" .
         "Date: " . $date . "\n" .
         "Time: " . $time . "\n" .
         "Type: " . $type . "\n" .
         "Attendance: " . $attendance . "\n" .
-        "Duration: " . $duration . "\n".
+        "Duration: " . $duration . "hour(s)\n".
 
     "\nPlease verify that the above information is correct. If you do notice an error, just let us know once you receive ".
         "an email from a real-life human. If you have any further questions feel free to reach our to us on our website, ".
         "or at officers@rpiambulance.com.\n".
 
-        ".\nThanks again for the request and we'll be in touch with you soon!\n".
+        "\nThanks again for the request and we'll be in touch with you soon!\n".
 
-        "\n&mdash; The RPI Ambulance Team";
+        "\n--The RPI Ambulance Team";
 
     $headers_requester= "From: no-reply-robots@rpiambulance.com \r\n".
         'X-Mailer: PHP/' . phpversion();
