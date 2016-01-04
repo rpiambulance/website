@@ -2,7 +2,18 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
     $scope.showModal = false;
     $scope.currentTier = "";
     $scope.submission = false;
-    $scope.formData = {};
+    $scope.formData = {
+        orgName: "",
+        name: "",
+        phone: "",
+        eventName: "",
+        loc: "",
+        date: "",
+        time: "",
+        type: "",
+        attendance: "",
+        duration: ""
+    };
 
     $scope.getAttendanceLims = function () {
         return {
