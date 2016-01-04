@@ -76,6 +76,8 @@ if (!empty($errors)) {
     $email_subject = "RPI Ambulance Coverage Request: " . $orgName;
     // ***********************************
 
+    // EMAIL TO THE O-BOARD ************************
+
     $email_message = "A coverage request was processed by the RPI Ambulance website. " .
         "Submission details can be found below:\n" .
         "Organization Name: " . $orgName . "\n" .
@@ -95,8 +97,41 @@ if (!empty($errors)) {
         'X-Mailer: PHP/' . phpversion();
     @mail($email_to, $email_subject, $email_message, $headers);
 
-    // SELF EMAIL ************************
-    // TODO: construct an email to send to the person submitting
+    // EMAIL TO THE REQUESTER ************************
+
+    // CONSTANTS *************************
+    $email_subject_requester = "Your RPI Ambulance Coverage Request for: " . $eventName;
+    // ***********************************
+
+    $email_message_requester= "Thanks for asking us to cover your event! Since this is an automated email message, one ".
+    "of our officers should be reaching out to you regarding your request soon with some more information. For your
+    records, we've included a copy of the request below:\n".
+
+        "\nOrganization Name: " . $orgName . "\n" .
+        "Contact Name: " . $name . "\n" .
+        "Email: " . $email_from . "\n" .
+        "Phone: " . $phone . "\n" .
+        "Event Name: " . $eventName . "\n" .
+        "Location: " . $loc . "\n" .
+        "Date: " . $date . "\n" .
+        "Time: " . $time . "\n" .
+        "Type: " . $type . "\n" .
+        "Attendance: " . $attendance . "\n" .
+        "Duration: " . $duration . "\n".
+
+    "\nPlease verify that the above information is correct. If you do notice an error, just let us know once you receive ".
+        "an email from a real-life human. If you have any further questions feel free to reach our to us on our website, ".
+        "or at officers@rpiambulance.com.\n".
+
+        ".\nThanks again for the request and we'll be in touch with you soon!\n".
+
+        "\n&mdash; The RPI Ambulance Team";
+
+    $headers_requester= "From: no-reply-robots@rpiambulance.com \r\n".
+        'X-Mailer: PHP/' . phpversion();
+
+    @mail($email_from,$email_subject_requester,$email_message_requester,$headers_requester);
+
 }
 
 // return all our data to an AJAX call =========================================
