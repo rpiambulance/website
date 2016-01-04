@@ -65,9 +65,9 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
             data: $scope.formData, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).success(function (data) {
+            console.log(data);
             if (!data.success) {
                 console.log("it failed!");
-                console.log(data);
                 // if not successful, bind errors to error variables
                 $scope.errorName = data.errors.name;
                 $scope.errorEmail = data.errors.email;
@@ -76,7 +76,6 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
                 $scope.submission = true; //shows the error message
             } else {
                 console.log("it succeeded!");
-                console.log(data);
                 // if successful, bind success message to message
                 $scope.submissionMessage = data.messageSuccess;
                 $scope.formData = {}; // form fields are emptied with this line

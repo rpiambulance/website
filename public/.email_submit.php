@@ -4,7 +4,7 @@ $data = array(); // array to pass back data
 
 // Parse the JSON
 $formData = file_get_contents('php://input');
-$input = json_decode($formData);
+$input = json_decode($formData, true);
 
 // validate the variables ======================================================
 if (!isset($input['name'])) {
