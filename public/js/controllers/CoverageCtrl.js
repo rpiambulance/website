@@ -38,14 +38,25 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
         return returnString.slice(0, returnString.length - 1);
     };
 
+    var autocompleteValidate = function () {
+        for (var d in $scope.formData) {
+            if($scope.formData.hasOwnProperty(d)) {
+                if(document.getElementById(d).value !== $scope.formData[d]) {
+                    $scope.formData[d] = document.getElementById(d).value;
+                }
+            }
+        }
+    };
+
     $scope.clearForm = function () {
         for (var d in $scope.formData) {
-            if (data.hasOwnProperty(d))
-                data[d] = "";
+            if ($scope.formData.hasOwnProperty(d))
+                $scope.formData[d] = "";
         }
     };
 
     $scope.submitForm = function () {
+        autocompleteValidate();
         console.log($scope.formData);
         console.log(param($scope.formData) + "&tier=" + $scope.currentTier);
         $http({
