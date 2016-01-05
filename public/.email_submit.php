@@ -72,7 +72,7 @@ if (!empty($errors)) {
     // ***********************************
 
     // CONSTANTS *************************
-    $email_to = "officers@rpiambulance.com";
+    $email_to = "webmaster@rpiambulance.com";
     $email_subject = "RPI Ambulance Coverage Request: " . $orgName;
     // ***********************************
 
@@ -92,7 +92,7 @@ if (!empty($errors)) {
         "Arrival Time: " . $time . "\n" .
         "Type: " . $type . "\n" .
         "Attendance: " . $attendance . "\n" .
-        "Duration: " . $duration . "hour(s)\n";
+        "Duration: " . $duration . " hour(s)\n";
 
     $headers = 'From: ' . $email_from . "\r\n" .
         'Reply-To: ' . $email_from . "\r\n" .
@@ -121,7 +121,7 @@ if (!empty($errors)) {
         "Arrival Time: " . $time . "\n" .
         "Type: " . $type . "\n" .
         "Attendance: " . $attendance . "\n" .
-        "Duration: " . $duration . "hour(s)\n".
+        "Duration: " . $duration . " hour(s)\n".
 
     "\nPlease verify that the above information is correct. If you do notice an error, just let us know once you receive ".
         "an email from a real-life human. If you have any further questions feel free to reach our to us on our website, ".
