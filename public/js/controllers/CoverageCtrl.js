@@ -41,7 +41,7 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
     var autocompleteValidate = function () {
         var corrected = {};
         for (var d in $scope.formData) {
-            if($scope.formData.hasOwnProperty(d)) {
+            if($scope.formData.hasOwnProperty(d) && d != 'tier') {
                 if(document.getElementById(d).value !== $scope.formData[d]) {
                     corrected[d] = document.getElementById(d).value;
                 } else {
