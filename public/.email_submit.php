@@ -72,7 +72,7 @@ if (!empty($errors)) {
     // ***********************************
 
     // CONSTANTS *************************
-    $email_to = "webmaster@rpiambulance.com";
+    $email_to = "officers@rpiambulance.com";
     $email_subject = "RPI Ambulance Coverage Request: " . $orgName;
     // ***********************************
 

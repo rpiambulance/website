@@ -1,6 +1,6 @@
 angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '$route', '$location', 'EditablePageService', function ($rootScope, $scope, $route, $location, EditablePageService) {
     // TODO: IMPLEMENT AUTHENTICATION, REMOVE DEFAULT VALUE OF TRUE
-    $scope.loggedIn = true;
+    $scope.loggedIn = false;
     $scope.username = '';
 
     $rootScope.$on("$routeChangeSuccess", function (currentRoute, previousRoute) {
