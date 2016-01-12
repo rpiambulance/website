@@ -42,6 +42,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'media', title: 'Media'}
         ]
         },
+        {page: 'join', title: 'Join Us', isDropdown: false},
         {
             page: '', title: 'Resources', isDropdown: true, dividersAfter: [], dropdownOptions: [
             {page: 'communications', title: 'Communications'},
@@ -70,7 +71,6 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         },
         {page: 'coverage', title: 'Request Coverage', isDropdown: false},
         {page: 'login', title: 'Members', isDropdown: false, customLink: true, link: 'index.php?page=members'},
-        {page: 'join', title: 'Join Us', isDropdown: false},
         {page: 'contact', title: 'Contact Us', isDropdown: false}
 
     ];
