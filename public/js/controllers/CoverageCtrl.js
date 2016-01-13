@@ -47,6 +47,8 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
                 } else {
                     corrected[d] = $scope.formData[d];
                 }
+            } else if(d == 'tier') {
+                corrected[d] = $scope.formData[d];
             }
         }
         return corrected;
@@ -61,6 +63,7 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
 
     $scope.submitForm = function () {
         $scope.formData.tier = $scope.currentTier;
+        console.log(autocompleteValidate());
         $http({
             method: 'POST',
             url: '.email_submit.php',

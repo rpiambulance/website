@@ -43,6 +43,9 @@ if (!isset($input['attendance'])) {
 if (!isset($input['duration'])) {
     $errors['duration'] = 'Event duration is required.';
 }
+if (!isset($input['tier'])) {
+    $errors['tier'] = 'Tier is required.';
+}
 
 
 // return a response ===========================================================
@@ -69,6 +72,7 @@ if (!empty($errors)) {
     $type       = $input['type'];
     $attendance = $input['attendance'];
     $duration   = $input['duration'];
+    $tier       = $input['tier'];
     // ***********************************
 
     // CONSTANTS *************************
@@ -80,6 +84,7 @@ if (!empty($errors)) {
 
     $email_message = "A coverage request was processed by the RPI Ambulance website. " .
         "Submission details can be found below:\n" .
+        "Tier Requested: " . $tier . "\n" .
         "\nContact Information:\n".
         "\nOrganization Name: " . $orgName . "\n" .
         "Contact Name: " . $name . "\n" .
@@ -107,8 +112,9 @@ if (!empty($errors)) {
 
     $email_message_requester= "Thanks for asking us to cover your event! Since this is an automated email message, one ".
     "of our officers should be reaching out to you regarding your request soon with some more information. For your ".
-    "records, we've included a copy of the request below:\n".
+    "records, we've included a copy of the request below:\n\n".
 
+        "Tier Requested: " . $tier . "\n" .
         "\nContact Information:\n".
         "\nOrganization Name: " . $orgName . "\n" .
         "Contact Name: " . $name . "\n" .
