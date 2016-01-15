@@ -58,17 +58,6 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'misc-forms', title: 'Miscellaneous Forms'}
         ]
         },
-        {
-            page: '', title: 'Training', isDropdown: true, dividersAfter: [], dropdownOptions: [
-            {page: 'new-members-training', title: 'New Members'},
-            {page: 'cpr-certification', title: 'CPR Certification'},
-            {page: 'attendant-training', title: 'Attendant'},
-            {page: 'driver-training', title: 'Driver'},
-            {page: 'crew-chief-training', title: 'Crew Chief'},
-            {page: 'supervisor-training', title: 'Supervisor'},
-            {page: 'in-service-training', title: 'In-Service Training'}
-        ]
-        },
         {page: 'coverage', title: 'Request Coverage', isDropdown: false},
         {page: 'login', title: 'Members', isDropdown: false, customLink: true, link: 'index.php?page=members'},
         {page: 'contact', title: 'Contact Us', isDropdown: false}
