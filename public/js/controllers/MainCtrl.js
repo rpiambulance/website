@@ -44,18 +44,14 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         },
         {page: 'join', title: 'Join Us', isDropdown: false},
         {
-            page: '', title: 'Resources', isDropdown: true, dividersAfter: [], dropdownOptions: [
-            {page: 'communications', title: 'Communications'},
-            {page: 'minutes', title: 'Meeting Minutes'},
-            {page: 'mutual-aid', title: 'Mutual Aid'},
-            {page: 'radio-callsigns', title: 'Radio Callsigns'},
-            {page: 'emt-reciprocity', title: 'EMT Reciprocity'},
-            {page: 'constitution', title: 'Constitution'},
-            {page: 'sop', title: 'SOPs'},
-            {page: 'text-message-dispatch', title: 'Text Message Dispatch'},
-            {page: 'rensco-resources', title: 'RENSCO Resources'},
-            {page: 'doh-resources', title: 'DOH Resources'},
-            {page: 'misc-forms', title: 'Miscellaneous Forms'}
+            page: '', title: 'Training', isDropdown: true, dividersAfter: [], dropdownOptions: [
+            {page: 'new-members-training', title: 'New Members'},
+            {page: 'cpr-certification', title: 'CPR Certification'},
+            {page: 'attendant-training', title: 'Attendant'},
+            {page: 'driver-training', title: 'Driver'},
+            {page: 'crew-chief-training', title: 'Crew Chief'},
+            {page: 'supervisor-training', title: 'Supervisor'},
+            {page: 'in-service-training', title: 'In-Service Training'}
         ]
         },
         {page: 'coverage', title: 'Request Coverage', isDropdown: false},
