@@ -49,13 +49,13 @@ if (!empty($errors)) {
     if (isset($input['company'])){
         $company= $input['company'];
     }else{
-        $company= "Not Indicated";
+        $company= "None";
     }
 
     if (isset($input['phone'])){
         $phone= $input['phone'];
     }else{
-        $phone= "Not Indicated";
+        $phone= "Not Provided";
     }
 
     //**************************
@@ -74,7 +74,7 @@ if (!empty($errors)) {
     $headers = 'From: ' . $email . "\r\n" .
         'Reply-To: ' . $email . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
-    @mail($email_to, $email_subject, $email_message, $headers);
+    @mail($email_to, $subject, $email_message, $headers);
 
 
 }
