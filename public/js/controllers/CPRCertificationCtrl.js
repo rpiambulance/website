@@ -38,9 +38,9 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
     };
 
     $scope.interests = {
-        bls: false,
-        heartsaver: false,
-        firstAid: false
+        "BLS CPR for Healthcare Providers": false,
+        "Heartsaver AED & CPR": false,
+        "Heartsaver First Aid": false
     };
 
     var createAvailabilityString = function (availability) {
@@ -48,7 +48,20 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
 
         for(var day in availability) {
             if(availability[day]) {
-                string += day + ", ";
+                string += day.charAt(0).toUpperCase() + day.slice(1) + ", ";
+            }
+        }
+
+        // substring to remove the last ", "
+        return string.substring(0, string.length - 2);
+    };
+
+    var createInterestsString = function (interests) {
+        var string = "";
+
+        for(var i in interests) {
+            if(interests[i]) {
+                string += interests[i] + ", ";
             }
         }
 
@@ -57,12 +70,14 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
     };
 
     $scope.submitForm = function () {
-        $scope.availabilityString = createAvailabilityString($scope.availability);
+        $scope.formData = autocompleteValidate();
+        $scope.formData.availability = createAvailabilityString($scope.availability);
+        $scope.formData.interests = createInterestsString($scope.interests);
 
         $http({
             method: 'POST',
             url: '.cpr_submit.php',
-            data: autocompleteValidate(), // pass in data as strings
+            data: $scope.formData, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).success(function (data) {
             if (!data.success) {
