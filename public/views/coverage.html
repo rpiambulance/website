@@ -11,8 +11,10 @@
         </div>
         <div class="row" ng-show="showCoverageSuccess">
             <div class="alert alert-success alert-dismissible" ng-show="showCoverageSuccess" role="alert">
-                <button type="button" class="close" ng-click="showCoverageSuccess = false"><span aria-hidden="true">&times;</span></button>
-                <strong>Success!</strong> Your request for coverage was successfully submitted. Thank you for reaching out to us!
+                <button type="button" class="close" ng-click="showCoverageSuccess = false"><span
+                        aria-hidden="true">&times;</span></button>
+                <i class="fa fa-paper-plane"></i><strong> Success!</strong> Your coverage request was successfully sent.
+                You should have received a copy to the email you provided. <i class="fa fa-ambulance"></i>
             </div>
         </div>
         <div class="pricing-area text-center">
@@ -81,44 +83,45 @@
         <div class="form-group">
             <label for="orgName">Organization Name</label>
             <input type="text" class="form-control" id="orgName" placeholder="Who are we doing this for?"
-                   ng-model="formData.orgName" />
+                   ng-model="formData.orgName"/>
         </div>
         <div class="form-group">
             <label for="name">Contact Name</label>
             <input type="text" class="form-control" id="name" placeholder="Who do we get in touch with?"
-                   ng-model="formData.name" />
+                   ng-model="formData.name"/>
         </div>
         <div class="form-group">
             <label for="email">Contact Email</label>
             <input type="type" class="form-control" id="email" placeholder="How do we reach you?"
-                   ng-model="formData.email" />
+                   ng-model="formData.email"/>
         </div>
         <div class="form-group">
             <label for="phone">Contact Phone</label>
             <input type="tel" class="form-control" id="phone" placeholder="(555) 555-5555"
-                   ng-model="formData.phone" />
+                   ng-model="formData.phone"/>
         </div>
         <h4 class="text-center">Tell us about the event...</h4>
         <div class="form-group">
             <label for="eventName">Event Name</label>
             <input type="text" class="form-control" id="eventName" placeholder="What are we covering?"
-                   ng-model="formData.eventName" />
+                   ng-model="formData.eventName"/>
         </div>
         <div class="form-group">
             <label for="loc">Event Location</label>
-            <input type="text" class="form-control" id="loc" placeholder="Where do you want us? Building Name or Address"
-                   ng-model="formData.loc" />
+            <input type="text" class="form-control" id="loc"
+                   placeholder="Where do you want us? Building Name or Address"
+                   ng-model="formData.loc"/>
         </div>
         <div class="form-group">
             <label for="date">Date</label>
             <input type="date" class="form-control" id="date" placeholder="MM/DD/YYYY"
-                   ng-model="formData.date" />
+                   ng-model="formData.date"/>
         </div>
 
         <div class="form-group">
             <label for="time">Arrival Time</label>
             <input type="time" class="form-control" id="time" placeholder="HH:MM AM/PM -- When do you need us there?"
-                   ng-model="formData.time" />
+                   ng-model="formData.time"/>
         </div>
         <div class="form-group">
             <label for="type">Event Type</label>
@@ -135,12 +138,12 @@
         <div class="form-group">
             <label for="attendance">Expected Attendance</label>
             <input type="number" class="form-control" id="attendance" placeholder="{{getAttendanceLims()}}"
-                   ng-model="formData.attendance" />
+                   ng-model="formData.attendance"/>
         </div>
         <div class="form-group">
             <label for="duration">Expected Duration</label>
             <input type="number" class="form-control" id="duration" placeholder="Hours"
-                   ng-model="formData.duration" />
+                   ng-model="formData.duration"/>
         </div>
         <hr/>
         <!--<div class="g-recaptcha" data-sitekey="6LdHKxUTAAAAAGTBpgYEJZDoAz1uGqG_tX_gQb1K"></div>-->

@@ -8,7 +8,8 @@
             <div class="row">
                 <div class="col-sm-5 text-center">
                     <div class="gmap">
-                        <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2930.887397039778!2d-73.6806086!3d42.727274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89de0f0a530596f9%3A0x5a21f2f789d7b279!2s92+College+Ave%2C+Troy%2C+NY+12180!5e0!3m2!1sen!2sus!4v1441332834496"></iframe>
+                        <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2930.887397039778!2d-73.6806086!3d42.727274!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89de0f0a530596f9%3A0x5a21f2f789d7b279!2s92+College+Ave%2C+Troy%2C+NY+12180!5e0!3m2!1sen!2sus!4v1441332834496"></iframe>
                     </div>
                 </div>
 
@@ -56,21 +57,26 @@
             <h2>Drop us a line!</h2>
             <p class="lead">Use this from to send us an email. We'll get back to you soon!</p>
             <div class="alert alert-success alert-dismissible" ng-show="showContactSuccess" role="alert">
-                <button type="button" class="close" ng-click="showContactSuccess = false"><span aria-hidden="true">&times;</span></button>
-                <strong>Success!</strong> Your email was successfully sent. Thank you for reaching out to us!
+                <button type="button" class="close" ng-click="showContactSuccess = false"><span
+                        aria-hidden="true">&times;</span></button>
+                <i class="fa fa-paper-plane"></i><strong> Success!</strong> Your email was successfully sent. Thank you
+                for reaching out to us! <i class="fa fa-ambulance"></i>
             </div>
         </div>
         <div class="row contact-wrap">
             <div class="status alert alert-success" style="display: none"></div>
-            <form id="main-contact-form" class="contact-form" name="contact-form" role="form" ng-submit="submitForm()" novalidate>
+            <form id="main-contact-form" class="contact-form" name="contact-form" role="form" ng-submit="submitForm()"
+                  novalidate>
                 <div class="col-sm-5 col-sm-offset-1">
                     <div class="form-group">
                         <label for="name">Name<sup class="text-danger">*</sup></label>
-                        <input type="text" name="name" id="name" ng-model="name" class="form-control" required="required">
+                        <input type="text" name="name" id="name" ng-model="name" class="form-control"
+                               required="required">
                     </div>
                     <div class="form-group">
                         <label for="email">Email<sup class="text-danger">*</sup></label>
-                        <input type="email" name="email" id="email" ng-model="email" class="form-control" required="required">
+                        <input type="email" name="email" id="email" ng-model="email" class="form-control"
+                               required="required">
                     </div>
                     <div class="form-group">
                         <label for="phone">Phone</label>
@@ -84,15 +90,17 @@
                 <div class="col-sm-5">
                     <div class="form-group">
                         <label for="subject">Subject<sup class="text-danger">*</sup></label>
-                        <input type="text" name="subject" id="subject" ng-model="subject" class="form-control" required="required">
+                        <input type="text" name="subject" id="subject" ng-model="subject" class="form-control"
+                               required="required">
                     </div>
                     <div class="form-group">
                         <label for="message">Message<sup class="text-danger">*</sup></label>
-                        <textarea name="message" id="message" ng-model="message" required="required" class="form-control" rows="8"></textarea>
+                        <textarea name="message" id="message" ng-model="message" required="required"
+                                  class="form-control" rows="8"></textarea>
                     </div>
                     <!--<div class="g-recaptcha" data-sitekey="6LdHKxUTAAAAAGTBpgYEJZDoAz1uGqG_tX_gQb1K"></div>-->
                     <div class="btn-toolbar">
-                        <button class="btn btn-default btn-lg" ng-click="clearForm()">Clear Form</button>
+                        <button class="btn btn-default btn-lg" type="reset" ng-click="clearForm()">Clear Form</button>
                         <button type="submit" name="submit" class="btn btn-primary btn-lg">Submit Message</button>
                     </div>
                 </div>
