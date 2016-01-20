@@ -76,7 +76,14 @@ if (!empty($errors)) {
         'X-Mailer: PHP/' . phpversion();
     @mail($email_to, $subject, $email_message, $headers);
 
-
+    // Email the sender a confirmation:
+    $headers = 'From: ' . $email_to . "\r\n" .
+        'Reply-To: ' . $email_to . "\r\n" .
+        'X-Mailer: PHP/' . phpversion();
+    $subject = "Thank you for contacting RPI Ambulance!";
+    $message = "Dear " . $name . ",\n\nThank you so much for reaching out to RPI Ambulance. We will respond to your " .
+        "email as soon as we can.\n\nSincerely,\nThe RPI Ambulance Officer Board";
+    @mail($email, $subject, $message, $headers);
 }
 
 // return all our data to an AJAX call =========================================
