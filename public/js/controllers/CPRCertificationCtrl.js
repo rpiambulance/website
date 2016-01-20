@@ -1,6 +1,11 @@
 var ctrl_name = 'CPRCertificationCtrl';
 angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) {
 
+    $scope.formData = {
+        name: "",
+        email: ""
+    };
+
     var autocompleteValidate = function () {
         var corrected = {};
         for (var d in $scope.formData) {
@@ -20,6 +25,22 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
             if ($scope.formData.hasOwnProperty(d))
                 $scope.formData[d] = "";
         }
+    };
+
+    $scope.availability = {
+        monday: false,
+        tuesday: false,
+        wednesday: false,
+        thursday: false,
+        friday: false,
+        saturday: false,
+        sunday: false
+    };
+
+    $scope.interests = {
+        bls: false,
+        aed: false,
+        firstAid: false
     };
 
     $scope.submitForm = function () {

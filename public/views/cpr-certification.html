@@ -32,19 +32,19 @@
                         </div>
                         <div class="form-group">
                             <p>I am available on...</p>
-                            <label><input type="checkbox">Monday Nights</label><br/>
-                            <label><input type="checkbox">Tuesday Nights</label><br/>
-                            <label><input type="checkbox">Wednesday Nights</label><br/>
-                            <label><input type="checkbox">Thursday Nights</label><br/>
-                            <label><input type="checkbox">Friday Nights</label><br/>
-                            <label><input type="checkbox">Saturday Day</label><br/>
-                            <label><input type="checkbox">Sunday Day</label><br/>
+                            <label><input type="checkbox" ng-model="availability.monday">Monday Nights</label><br/>
+                            <label><input type="checkbox" ng-model="availability.tuesday">Tuesday Nights</label><br/>
+                            <label><input type="checkbox" ng-model="availability.wednesday">Wednesday Nights</label><br/>
+                            <label><input type="checkbox" ng-model="availability.thursday">Thursday Nights</label><br/>
+                            <label><input type="checkbox" ng-model="availability.friday">Friday Nights</label><br/>
+                            <label><input type="checkbox" ng-model="availability.saturday">Saturday Day</label><br/>
+                            <label><input type="checkbox" ng-model="availability.sunday">Sunday Day</label><br/>
                         </div>
                         <div class="form-group">
                             <p>I am interested in...</p>
-                            <label><input type="checkbox">BLS CPR for Healthcare Providers</label><br/>
-                            <label><input type="checkbox">Heartsaver AED & CPR</label><br/>
-                            <label><input type="checkbox">Heartsaver First Aid</label><br/>
+                            <label><input type="checkbox" ng-model="interest.bls">BLS CPR for Healthcare Providers</label><br/>
+                            <label><input type="checkbox" ng-model="interest.heartsaver">Heartsaver AED & CPR</label><br/>
+                            <label><input type="checkbox" ng-model="interest.first_aid">Heartsaver First Aid</label><br/>
                         </div>
                         <div class="form-actions">
                             <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success" value="Submit">
