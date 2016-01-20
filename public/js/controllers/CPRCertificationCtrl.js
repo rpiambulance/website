@@ -43,7 +43,22 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
         firstAid: false
     };
 
+    var createAvailabilityString = function (availability) {
+        var string = "";
+
+        for(var day in availability) {
+            if(availability[day]) {
+                string += day + ", ";
+            }
+        }
+
+        // substring to remove the last ", "
+        return string.substring(0, string.length - 2);
+    };
+
     $scope.submitForm = function () {
+        $scope.availabilityString = createAvailabilityString($scope.availability);
+
         $http({
             method: 'POST',
             url: '.cpr_submit.php',
