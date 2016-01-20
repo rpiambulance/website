@@ -80,7 +80,7 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
                 $scope.submissionMessage = data.messageError;
                 $scope.submission = true; //shows the error message
             } else {
-                console.log("it succeeded!");
+                $scope.showCoverageSuccess = true;
                 // if successful, bind success message to message
                 $scope.submissionMessage = data.messageSuccess;
                 $scope.formData = {}; // form fields are emptied with this line
