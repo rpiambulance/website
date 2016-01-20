@@ -17,11 +17,11 @@ if (!isset($input['email'])) {
     $errors['email'] = 'Email is required.';
 }
 
-if (!isset($input['days'])) {
+if (!isset($input['availability'])) {
     $errors['days'] = 'Please select which days work for you.';
 }
 
-if (!isset($input['type'])) {
+if (!isset($input['interests'])) {
     $errors['type'] = 'Please select which type of training you would like.';
 }
 
@@ -41,14 +41,14 @@ if (!empty($errors)) {
 
     $name       =   $input['name'];
     $email      =   $input['email'];
-    $days    =   $input['days'];
-    $type    =   $input['type'];
+    $days    =   $input['availability'];
+    $type    =   $input['interests'];
 
     //**************************
     //********CONSTANTS*********
     //**************************
 
-    $email_to="officers@rpiambulance.com";
+    $email_to="webmaster@rpiambulance.com";
 
     // EMAIL TO THE O-BOARD ************************
 

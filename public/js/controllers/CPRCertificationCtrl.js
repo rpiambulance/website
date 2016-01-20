@@ -39,7 +39,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
 
     $scope.interests = {
         bls: false,
-        aed: false,
+        heartsaver: false,
         firstAid: false
     };
 
@@ -55,8 +55,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
                 // if not successful, bind errors to error variables
                 $scope.errorName = data.errors.name;
                 $scope.errorEmail = data.errors.email;
-                $scope.errorDays = data.errors.days;
-                $scope.errorType = data.errors.type;
+                $scope.errorDays = data.errors.availability;
+                $scope.errorType = data.errors.interests;
                 $scope.submission = true; //shows the error message
             } else {
                 $scope.showContactSuccess = true;
