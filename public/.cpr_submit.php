@@ -48,9 +48,11 @@ if (!empty($errors)) {
     //********CONSTANTS*********
     //**************************
 
-    $email_to="webmaster@rpiambulance.com";
+    $email_to="cpr@rpiambulance.com";
 
     // EMAIL TO THE O-BOARD ************************
+
+    $subject= "CPR Training Request"
 
     $email_message = "A CPR training request was processed by the website. Details can be found below:\n" .
         "\nName: " . $name .
@@ -68,7 +70,7 @@ if (!empty($errors)) {
         'X-Mailer: PHP/' . phpversion();
     $subject = "CPR Training Request";
     $message = "Dear " . $name . ",\n\nThank you so much for reaching out to RPI Ambulance. We will respond to your " .
-        "request for CPR training as soon as we can. For your records, details of your request have in included below. " .
+        "request for CPR training as soon as we can. For your records, details of your request have been included below. " .
         "\n\nSincerely,\n\nThe RPI Ambulance Team" .
 
         "\n\nDays Available: " . $days .
