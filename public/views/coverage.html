@@ -13,8 +13,8 @@
             <div class="alert alert-success alert-dismissible" ng-show="showCoverageSuccess" role="alert">
                 <button type="button" class="close" ng-click="showCoverageSuccess = false"><span
                         aria-hidden="true">&times;</span></button>
-                <i class="fa fa-paper-plane"></i><strong> Success!</strong> Your coverage request was successfully sent.
-                You should have received a copy to the email you provided. <i class="fa fa-ambulance"></i>
+                <i class="fa fa-ambulance fa-lg"></i><strong> Success!</strong> Your coverage request was successfully sent.
+                You should have received a copy to the email you provided.
             </div>
         </div>
         <div class="pricing-area text-center">
@@ -137,12 +137,12 @@
         </div>
         <div class="form-group">
             <label for="attendance">Expected Attendance</label>
-            <input type="number" class="form-control" id="attendance" placeholder="{{getAttendanceLims()}}"
+            <input type="number" min="0" class="form-control" id="attendance" placeholder="{{getAttendanceLims()}}"
                    ng-model="formData.attendance"/>
         </div>
         <div class="form-group">
             <label for="duration">Expected Duration</label>
-            <input type="number" class="form-control" id="duration" placeholder="Hours"
+            <input type="number" min="0" class="form-control" id="duration" placeholder="Hours"
                    ng-model="formData.duration"/>
         </div>
         <hr/>
