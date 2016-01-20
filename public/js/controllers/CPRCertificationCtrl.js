@@ -1,5 +1,4 @@
-var ctrl_name = 'CPRCertificationCtrl';
-angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) {
+angular.module('CPRCertificationCtrl', []).controller('CPRCertificationCtrl', ['$scope', function($scope) {
 
     $scope.formData = {
         name: "",
