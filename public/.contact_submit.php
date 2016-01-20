@@ -62,7 +62,7 @@ if (!empty($errors)) {
     //********CONSTANTS*********
     //**************************
 
-    $email_to="webmaster@rpiambulance.com";
+    $email_to="officers@rpiambulance.com";
 
     // EMAIL TO THE O-BOARD ************************
 
