@@ -60,7 +60,7 @@ angular.module('CPRCertificationCtrl', []).controller('CPRCertificationCtrl', ['
 
         for(var i in interests) {
             if(interests[i]) {
-                string += interests[i] + ", ";
+                string += i + ", ";
             }
         }
 
