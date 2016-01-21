@@ -459,7 +459,6 @@ input.search-form:hover {
     height: 40px;
     line-height: 40px;
     width: 40px;
-    line-height: 40px;
     text-align: center;
     border-radius: 4px;
     z-index: 5;
@@ -670,10 +669,6 @@ input.search-form:hover {
     opacity: 1;
 }
 
-#services {
-    background: #000 url(../img/services/bg_services.png);
-    background-size: cover;
-}
 
 #services .lead,
 #services h2 {
@@ -867,7 +862,7 @@ a.accordion-toggle i {
 }
 
 .nav-tabs > li {
-    margin-bottom: 0px;
+    margin-bottom: 0;
     border-bottom: 1px solid #e6e6e6;
 }
 
@@ -1001,7 +996,7 @@ a.accordion-toggle i {
 }
 
 #conatcat-info {
-    background: #fff url(../img/contact.png) no-repeat 90% 0;
+    background: #fff no-repeat 90% 0;
     padding: 30px 0;
 }
 
@@ -1088,9 +1083,9 @@ a.accordion-toggle i {
     right: -25px;
 }
 
-#carousel-slider
+#carousel-slider,
 .carousel-control.left,
-#carousel-slider
+#carousel-slider,
 .carousel-control.right {
     background: none;
 }
@@ -1460,7 +1455,6 @@ ul.social_icons li a i {
 }
 
 .request h4 {
-    position: absolute;
     width: 220px;
     position: relative;
 }
@@ -1922,7 +1916,7 @@ ul.social_icons li a i {
     border-radius: 5px;
     height: 300px;
     width: 315px;
-    box-shadow: 0px 0px 3px 3px #e7e4dc;
+    box-shadow: 0 0 3px 3px #e7e4dc;
     overflow: hidden;
     position: relative;
     margin: 0 auto;
@@ -1941,7 +1935,7 @@ ul.social_icons li a i {
     padding-top: 0;
 }
 
-#contact-page .contact-form
+#contact-page .contact-form,
 .form-group label {
     color: #4E4E4E;
     font-size: 16px;
@@ -2573,9 +2567,9 @@ shortcodes page css
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
     border-radius: 2px;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
 }
 
 /*
@@ -2636,7 +2630,7 @@ shortcodes page css
     /*background-color: #4d90fe; */
     background-color: #B1282A;
     /* background-color: linear-gradient(rgb(104, 145, 162), rgb(12, 97, 33));*/
-    padding: 0px;
+    padding: 0;
     font-weight: 700;
     font-size: 14px;
     height: 36px;
@@ -2688,15 +2682,15 @@ span.comm-list-other {
 .form-group > input[type=text], input[type=password], input[type=email], textarea {
     transition: all 0.30s ease-in-out !important;
     outline: none !important;
-    padding: 3px 0px 3px 3px !important;
-    margin: 5px 1px 3px 0px !important;
+    padding: 3px 0 3px 3px !important;
+    margin: 5px 1px 3px 0 !important;
     border: 1px solid #DDDDDD !important;
 }
 
 .form-group > input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, textarea:focus {
     box-shadow: 0 0 5px #d81e05 !important;
-    padding: 3px 0px 3px 3px !important;
-    margin: 5px 1px 3px 0px !important;
+    padding: 3px 0 3px 3px !important;
+    margin: 5px 1px 3px 0 !important;
     border: 1px solid #d81e05 !important;
 }
 
