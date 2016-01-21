@@ -1,0 +1,70 @@
+<section id="content">
+    <div class="container">
+        <div class="center">
+            <h2>Fuel Log</h2>
+
+            <div class="lead text-justify">
+                This is the fuel log for all RPI Ambulance Vehicles. If you fill the tak on either vehicle, please update
+                the log with the correct information. If you have any questions please contact the
+                <a href="mailto:firstlt@rpiambulance.com"> First Lieutenant </a>. Thank you!
+            </div>
+            <div class="alert alert-success alert-dismissible" ng-show="showContactSuccess" role="alert">
+                <button type="button" class="close" ng-click="showContactSuccess = false"><span
+                        aria-hidden="true">&times;</span></button>
+                <i class="fa fa-ambulance fa-lg"></i><strong> Success!</strong> The server gremlins have processed your
+                request to update the log. Your changes have been saved and the gremlins are happy. As are Riggy and the
+                FR.
+            </div>
+            <div class="col-lg-12">
+                <div class="card card-container">
+                    <form role="form" ng-submit="submitForm()" class="form" novalidate>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <!--This should be switched to the signed in account with no option to change it-->
+                            <input type="text" name="name" id="name" class="form-control" ng-model="name"
+                                   placeholder="Name" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="date">Your Email</label>
+                            <input type="date" name="date" id="date" class="form-control" ng-model="date"
+                                   placeholder="date" required/>
+                            <!--This should be repalced with current date and time with no option to change it-->
+                            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Email is required</span>
+                        </div>
+                        <div class="form-group">
+                            <p>Select Vehicle...</p>
+                            <label><input type="radio" ng-model="availability.5939"> 5939</label><br/>
+                            <label><input type="radio" ng-model="availability.FR-59"> FR-59</label><br/>
+                        </div>
+                        <div class="form-group">
+                            <label for="qty">Fuel Quantity</label>
+                            <input type="number" min="0" name="qty" id="qty" class="form-control" ng-model="qty"
+                                   placeholder="Fuel in Gallons" required/>
+                            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Fuel Quantity is required</span>
+                        </div><div class="form-group">
+                        <label for="miles">Mileage</label>
+                        <input type="number" name="miles" id="miles" class="form-control" ng-model="miles"
+                               placeholder="Mileage rounded to nearest 1" required/>
+                        <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Email is required</span>
+                    </div>
+                        <div class="form-actions">
+                            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success" value="Submit">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!--/.our-skill-->
+
+
+        <!-- our-team -->
+    </div>
+    <!--/.container-->
+</section>
+<!--/about-us-->
