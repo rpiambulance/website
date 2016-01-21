@@ -52,7 +52,7 @@ if (!empty($errors)) {
 
     // EMAIL TO THE O-BOARD ************************
 
-    $subject= "CPR Training Request"
+    $subject= "CPR Training Request";
 
     $email_message = "A CPR training request was processed by the website. Details can be found below:\n" .
         "\nName: " . $name .
