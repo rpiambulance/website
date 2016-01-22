@@ -1,0 +1,68 @@
+<section id="fuel-log">
+    <div class="container">
+        <div class="center">
+            <h2>Report Stocking Issue</h2>
+
+            <div class="lead text-justify">
+                This form is for reporting stocking issues to the officers. Please remember that restocking 5939 and/or
+                FR-59
+                after a call is the responsibility of the driver and crew chief on the call where the supplies were
+                used.
+                <br/>If supplies need to be ordered please inform the<a href="mailto:firstlt@rpiambulance.com"> First
+                Lieutenant</a>. Thank you!
+            </div>
+            <div class="alert alert-success alert-dismissible" ng-show="showContactSuccess" role="alert">
+                <button type="button" class="close" ng-click="showContactSuccess = false"><span
+                        aria-hidden="true">&times;</span></button>
+                <i class="fa fa-twitter"></i><strong> Success!</strong> The digital carrier pigeon has sent and
+                delivered your message. (It's a very fast and reliable carrier pigeon after all)
+            </div>
+            <div class="col-lg-12">
+                <div class="card card-container">
+                    <form role="form" ng-submit="submitForm()" class="form" novalidate>
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <!--This should be switched to the signed in account with no option to change it-->
+                            <input type="text" name="name" id="name" class="form-control" ng-model="name"
+                                   placeholder="Name" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+                        <div class="form-group">
+                            <p>Select the facility or vehicle in question...</p>
+                            <select id="type" ng-model="formData.type">
+                                <option value="5939">5939</option>
+                                <option value="FR-59">FR-59</option>
+                                <option value="Garage">Garage</option>
+                                <option value="Office">"Office</option>
+                                <option value="Houston Field House PCF">Houston Field House PCF</option>
+                                <option value="ECAV Stadium PCF">ECAV Stadium PCF</option>
+                                <option value="Other">Other (Please describe below)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="details">List the items needed...</label>
+                            <textarea id="details" class="form-control" ng-model="msg"
+                                      placeholder="Oral Glucose, Gauze, Sterile Water, etc..." required></textarea>
+                            <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">List is required</span>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success"
+                                    value="Submit">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!--/.our-skill-->
+
+
+        <!-- our-team -->
+    </div>
+    <!--/.container-->
+</section>
+<!--/about-us-->
