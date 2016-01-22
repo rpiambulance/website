@@ -1,12 +1,12 @@
-<section id="content">
+<section id="fuel-log">
     <div class="container">
         <div class="center">
             <h2>Fuel Log</h2>
 
             <div class="lead text-justify">
-                This is the fuel log for all RPI Ambulance Vehicles. If you fill the tak on either vehicle, please update
-                the log with the correct information. If you have any questions please contact the
-                <a href="mailto:firstlt@rpiambulance.com"> First Lieutenant </a>. Thank you!
+                This is the fuel log for all RPI Ambulance Vehicles. If you fill the tank on either vehicle, please update
+                the log with the correct information. <br/> If you have any questions please contact the
+                <a href="mailto:firstlt@rpiambulance.com"> First Lieutenant</a>. Thank you!
             </div>
             <div class="alert alert-success alert-dismissible" ng-show="showContactSuccess" role="alert">
                 <button type="button" class="close" ng-click="showContactSuccess = false"><span
@@ -26,20 +26,21 @@
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
                         <div class="form-group">
-                            <label for="date">Your Email</label>
-                            <input type="date" name="date" id="date" class="form-control" ng-model="date"
-                                   placeholder="date" required/>
-                            <!--This should be repalced with current date and time with no option to change it-->
+                            <!--<label for="fl_date">Current Date and Time</label>-->
+                            <b>{{getDatetime | date:'MM/dd/yy @ HH:mm'}}</b>
                             <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Email is required</span>
                         </div>
                         <div class="form-group">
                             <p>Select Vehicle...</p>
-                            <label><input type="radio" ng-model="availability.5939"> 5939</label><br/>
-                            <label><input type="radio" ng-model="availability.FR-59"> FR-59</label><br/>
+                            <label for="Amb">5939</label>
+                            <input type="radio" name="vehicle" id="Amb" value="Amb" ng-model="vehicle.Amb"><br>
+                            <label for="FR59">FR-59</label>
+                            <input type="radio" name="vehicle" id="FR59" value="FR59" ng-model="vehicle.FR59"><br>
+
                         </div>
                         <div class="form-group">
                             <label for="qty">Fuel Quantity</label>
-                            <input type="number" min="0" name="qty" id="qty" class="form-control" ng-model="qty"
+                            <input type="number" min="0" step=".5" name="qty" id="qty" class="form-control" ng-model="qty"
                                    placeholder="Fuel in Gallons" required/>
                             <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Fuel Quantity is required</span>
                         </div><div class="form-group">
