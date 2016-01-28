@@ -61,7 +61,7 @@ angular.module('FAQCtrl', []).controller('FAQCtrl', ['$scope', '$sce', function 
             body: 'Just one! Each year all of our members have to attend ' +
             'a 1 hour OSHA lecture. They are typically held at the beginning of the semester (check out the calendar) ' +
             'but we can set up special dates for those of you who join throughout the semester. Please feel free to ' +
-            'contact us if you have any further questions at <a href="mailto:officers@rpiambulance.com">officers@rpiambulance.com</a>'
+            '<a href="#/contact">contact us</a> if you have any further questions.'
         }
     ];
 
