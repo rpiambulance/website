@@ -16,7 +16,7 @@ var dependencies = [
 	'CrewChiefTrainingCtrl', 'DevsCtrl', 'DOHResourcesCtrl', 'DriverTrainingCtrl', 'EMTReciprocityCtrl',
 	'InServiceTrainingCtrl', 'LoginCtrl', 'MiscFormsCtrl', 'NewMembersTrainingCtrl', 'RENSCOResourcesCtrl',
 	'ReportIssueCtrl', 'SOPCtrl', 'SupervisorTrainingCtrl', 'SystemRequirementsCtrl', 'TextMessageDispatchCtrl',
-	'CoverageDetailsCtrl', 'JoinCtrl', 'FuelLogCtrl', 'StockingIssueCtrl'
+	'CoverageDetailsCtrl', 'JoinCtrl'
 ];
 
 var app = angular.module('RPIA', dependencies);

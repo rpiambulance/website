@@ -1,4 +1,3 @@
-var ctrl_name = 'NightCrewsCtrl';
-angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) {
+angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$http', function($scope, $http) {
 
 }]);

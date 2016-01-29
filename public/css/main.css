@@ -2736,3 +2736,7 @@ video#bgvid2{
 .text-left-al{
      text-align: left;
  }
+
+.table th {
+    text-align: center;
+}

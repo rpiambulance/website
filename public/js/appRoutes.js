@@ -6,7 +6,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         'Coverage', 'CPR-Certification', 'Crew-Chief-Training', 'Devs', 'DOH-Resources', 'Driver-Training',
         'EMT-Reciprocity', 'In-Service-Training', 'Login', 'Misc-Forms', 'New-Members-Training', 'RENSCO-Resources',
         'Report-Issue', 'SOP', 'Supervisor-Training', 'System-Requirements', 'Text-Message-Dispatch', 'Coverage-Details',
-        'Join', 'Fuel-Log', 'Stocking-Issue'
+        'Join'
     ];
 
     views.forEach(function (elem, index) {
