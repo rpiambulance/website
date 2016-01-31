@@ -25,12 +25,31 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
     };
     // ========================================================================
 
+    /**
+     * Determines whether a nav item should highlight as active
+     * @param nav
+     * @returns {boolean}
+     */
+    $scope.isActive = function (nav) {
+        if (nav.isDropdown) {
+            var isActive = false;
+            nav.dropdownOptions.forEach(function (elem) {
+                if ($route.current !== undefined && $route.current.activeTab == elem.page) {
+                    isActive = true;
+                }
+            });
+            return isActive;
+        } else {
+            return $route.current !== undefined && $route.current.activeTab == nav.page;
+        }
+    };
+
 
     /**
      * Contains the data to dynamically populate the navigation bar
      * @type {*[]}
      */
-    $scope.navbar = [
+    $scope.publicNavbar = [
         {page: 'home', title: 'Home', isDropdown: false},
         {
             page: '', title: 'About Us', isDropdown: true, dividersAfter: [2, 4], dropdownOptions: [
@@ -55,24 +74,44 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
 
     ];
 
-    /**
-     * Determines whether a nav item should highlight as active
-     * @param nav
-     * @returns {boolean}
-     */
-    $scope.isActive = function (nav) {
-        if (nav.isDropdown) {
-            var isActive = false;
-            nav.dropdownOptions.forEach(function (elem) {
-                if ($route.current !== undefined && $route.current.activeTab == elem.page) {
-                    isActive = true;
-                }
-            });
-            return isActive;
-        } else {
-            return $route.current !== undefined && $route.current.activeTab == nav.page;
+    $scope.memberNavbar = [
+        {page: 'home', title: 'Home', isDropdown: false},
+        {
+            page: '', title: 'Scheduling', isDropdown: true, dividersAfter: [2, 4], dropdownOptions: [
+                {page: 'night-crews', title: 'Night Crews'},
+                {page: 'games-events', title: 'Games & Events'}
+            ]
+        },
+        {
+            page: '', title: 'Tools', isDropdown: true, dividersAfter: [], dropdownOptions: [
+                {page: 'member-list', title: 'Member List'},
+                {page: 'fuel-log', title: 'Fuel Log'},
+                {page: 'stocking-issue', title: 'Stalking'},
+                {page: 'expirations', title: 'Expirations'}
+            ]
+        },
+        //{
+        //    page: '', title: 'Manage Content', isDropdown: true, dividersAfter: [], dropdownOptions: [
+        //        {page: 'add', title: 'New Members'},
+        //        {page: 'new-members-training', title: 'New Members'},
+        //        {page: 'new-members-training', title: 'New Members'}
+        //    ]
+        //},
+        {
+            page: '', title: 'Admin', isDropdown: true, dividersAfter: [], dropdownOptions: [
+                {page: 'modify-schedule', title: 'Modify Schedule'},
+                {page: 'edit-default-schedule', title: 'Edit Default Schedule'},
+                {page: 'add-game-event', title: 'Add Game or Event'},
+                {page: 'add-member', title: 'Add Member'},
+                {page: 'edit-member', title: 'Edit Member'}
+            ]
         }
-    };
+    ];
+
+    $scope.navbar = $location.url() === "/night-crews" ? $scope.memberNavbar : $scope.publicNavbar;
+    $scope.$on('$locationChangeStart', function() {
+        $scope.navbar = $location.url() === "/night-crews" ? $scope.memberNavbar : $scope.publicNavbar;
+    });
 
     /**
      * Determines when to add a divider within a dropdown list, based on the defined array
