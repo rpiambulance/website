@@ -86,8 +86,8 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             page: '', title: 'Tools', isDropdown: true, dividersAfter: [], dropdownOptions: [
                 {page: 'member-list', title: 'Member List'},
                 {page: 'fuel-log', title: 'Fuel Log'},
-                {page: 'stocking-issue', title: 'Stalking'},
-                {page: 'expirations', title: 'Expirations'}
+                {page: 'stocking-issue', title: 'Stocking'},
+                {page: 'expirations', title: 'Expiring Items'}
             ]
         },
         //{
