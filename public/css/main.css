@@ -2740,3 +2740,26 @@ video#bgvid2{
 .table th {
     text-align: center;
 }
+
+h2{
+    display: inline-block;
+}
+
+.title_text, .ico {
+    line-height: 50px;
+}
+
+.ico {
+    vertical-align: middle;
+}
+
+.ico_text {
+    display: inline-block;
+    height: 50px;
+    margin-bottom: 40px;
+    padding: 4px;
+}
+
+.title_text, .ico {
+    line-height: 50px;
+}

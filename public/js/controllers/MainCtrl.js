@@ -84,12 +84,38 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         },
         {
             page: '', title: 'Tools', isDropdown: true, dividersAfter: [], dropdownOptions: [
-                {page: 'member-list', title: 'Member List'},
-                {page: 'fuel-log', title: 'Fuel Log'},
-                {page: 'stocking-issue', title: 'Stocking'},
-                {page: 'expirations', title: 'Expiring Items'}
-            ]
+            {page: 'member-list', title: 'Member List'},
+            {page: 'fuel-log', title: 'Fuel Log'},
+            {page: 'stocking-issue', title: 'Stocking'},
+            {page: 'expirations', title: 'Expiring Items'}
+        ]
         },
+
+        {
+            page: '', title: 'Training', isDropdown: true, dividersAfter: [], dropdownOptions: [
+            {page: 'attendant-training', title: 'Attendant'},
+            {page: 'driver-training', title: 'Driver'},
+            {page: 'crew-chief-training', title: 'Crew Chief'},
+            {page: 'supervisor-training', title: 'Supervisor'},
+            {page: 'in-service-training', title: 'In-Services'}
+        ]
+        },
+
+        {
+            page: '', title: 'Resources', isDropdown: true, dividersAfter: [], dropdownOptions: [
+            {page: 'communications', title: 'Communications'},
+            {page: 'emt-reciprocity', title: 'In-Services'},
+            {page: 'minutes', title: 'Meeting Minutes'},
+            {page: 'misc-forms', title: 'Misc Forms'},
+            {page: 'mutual-aid', title: 'Mutual Aid'},
+            {page: 'radio-callsigns', title: 'Radio Callsigns'},
+            {page: 'rensco-resources', title: 'RENSCO Resources'},
+            {page: 'sops', title: 'SOPs'},
+            {page: 'doh-resources', title: 'Supervisor'},
+            {page: 'text-message-dispatch', title: 'Text Message Dispatch'}
+        ]
+        },
+
         //{
         //    page: '', title: 'Manage Content', isDropdown: true, dividersAfter: [], dropdownOptions: [
         //        {page: 'add', title: 'New Members'},
