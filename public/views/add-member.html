@@ -8,9 +8,8 @@
             </div>
             <div class="alert alert-success alert-dismissible" ng-show="showContactSuccess" role="alert">
                 <button type="button" class="close" ng-click="showContactSuccess = false"><span
-                        aria-hidden="true">&times;</span></button>
-                <i class="fa fa-twitter"></i><strong> Success!</strong> The digital carrier pigeon has sent and
-                delivered your message. (It's a very fast and reliable carrier pigeon after all)
+                        aria-hidden="false">&times;</span></button>
+                <i class="fa fa-user-plus"></i><strong> Success!</strong> Woot!! You are now a member!
             </div>
             <div class="col-lg-12">
                 <div class="card card-container">
@@ -19,30 +18,69 @@
                             <label for="fn">First Name</label>
                             <!--This should be switched to the signed in account with no option to change it-->
                             <input type="text" name="fn" id="fn" class="form-control" ng-model="fn"
-                                   placeholder="Name" required/>
+                                   placeholder="Thomas" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
                         <div class="form-group">
                             <label for="ln">Last Name</label>
-                            <!--This should be switched to the signed in account with no option to change it-->
                             <input type="text" name="ln" id="ln" class="form-control" ng-model="ln"
-                                   placeholder="Name" required/>
+                                   placeholder="Tankengine" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
+
+                        <!--DATE PICKER FOR BIRTHDAY-->
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" ng-model="email"
+                                   placeholder="thomas@blue-bell-railway.co.uk" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="RCS">RCS</label>
+                            <input type="text" name="RCS" id="RCS" class="form-control" ng-model="RCS"
+                                   placeholder="Example: tanket" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="RIN">RIN</label>
+                            <input type="number" name="RIN" id="RIN" class="form-control" ng-model="RIN"
+                                   placeholder="Example: 6612345" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Cell Phone</label>
+                            <input type="tel" name="phone" id="phone" class="form-control" ng-model="phone"
+                                   placeholder="(555) 555-5555" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hphone">Home Phone</label>
+                            <input type="tel" name="hphone" id="hphone" class="form-control" ng-model="hphone"
+                                   placeholder="(555) 555-5555" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
                         <div class="form-group">
                             <label for="ln">RPI Address</label>
                             <!--This should be switched to the signed in account with no option to change it-->
-                            <input type="text" name="ln" id="ln" class="form-control" ng-model="ln"
-                                   placeholder="Name" required/>
+                            <input type="text" name="add" id="add" class="form-control" ng-model="add"
+                                   placeholder="Quad Pardee 3002" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
+
                         <div class="form-group">
-                            <label for="DLN">US Driver License Number</label>
+                            <label for="hadd">Home Address</label>
                             <!--This should be switched to the signed in account with no option to change it-->
-                            <input type="text" name="DLN" id="DLN" class="form-control" ng-model="DLN"
-                                   placeholder="Name" required/>
+                            <input type="text" name="hadd" id="hadd" class="form-control" ng-model="hadd"
+                                   placeholder="Shed 1, Sodor, Island of Sodor" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
+
                         <div class="form-actions">
                             <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success"
                                     value="Submit">
