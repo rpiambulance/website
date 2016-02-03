@@ -65,7 +65,8 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         {
             page: '', title: 'Outreach', isDropdown: true, dividersAfter: [], dropdownOptions: [
             {page: 'new-members-training', title: 'New Members'},
-            {page: 'cpr-certification', title: 'CPR Certification'}
+            {page: 'cpr-certification', title: 'CPR Certification'},
+            {page: 'community', title: 'Community Outreach'}
         ]
         },
         {page: 'coverage', title: 'Request Coverage', isDropdown: false},
@@ -100,17 +101,16 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'in-service-training', title: 'In-Services'}
         ]
         },
-
         {
             page: '', title: 'Resources', isDropdown: true, dividersAfter: [], dropdownOptions: [
             {page: 'communications', title: 'Communications'},
-            {page: 'emt-reciprocity', title: 'In-Services'},
+            {page: 'emt-reciprocity', title: 'Reciprocity'},
             {page: 'minutes', title: 'Meeting Minutes'},
             {page: 'misc-forms', title: 'Misc Forms'},
             {page: 'mutual-aid', title: 'Mutual Aid'},
             {page: 'radio-callsigns', title: 'Radio Callsigns'},
             {page: 'rensco-resources', title: 'RENSCO Resources'},
-            {page: 'sops', title: 'SOPs'},
+            {page: 'sop', title: 'SOPs'},
             {page: 'doh-resources', title: 'Supervisor'},
             {page: 'text-message-dispatch', title: 'Text Message Dispatch'}
         ]
@@ -134,9 +134,27 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         }
     ];
 
-    $scope.navbar = $location.url() === "/night-crews" ? $scope.memberNavbar : $scope.publicNavbar;
+    var chooseAppropriateMenu = function() {
+        var currentPage = $location.url();
+        var isMemberPage = false;
+        for(var i = 0; i < $scope.memberNavbar.length; i++) {
+            if($scope.memberNavbar[i].isDropdown) {
+                for(var j = 0; j < $scope.memberNavbar[i].dropdownOptions.length; j++) {
+                    if ("/" + $scope.memberNavbar[i].dropdownOptions[j].page === currentPage && currentPage !== "/home") {
+                        return true;
+                    }
+                }
+            } else if ("/" + $scope.memberNavbar[i].page === currentPage && currentPage !== "/home") {
+                return true;
+            }
+        }
+
+        return false;
+    };
+
+    $scope.navbar = chooseAppropriateMenu() ? $scope.memberNavbar : $scope.publicNavbar;
     $scope.$on('$locationChangeStart', function() {
-        $scope.navbar = $location.url() === "/night-crews" ? $scope.memberNavbar : $scope.publicNavbar;
+        $scope.navbar = chooseAppropriateMenu() ? $scope.memberNavbar : $scope.publicNavbar;
     });
 
     /**
