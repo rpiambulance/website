@@ -35,7 +35,7 @@ angular.module('CommunityCtrl', []).controller('CommunityCtrl', ['$scope', funct
             header: 'National CPR Day',
             internal_title: 'CPR Img',
             type: 'img',
-            img: 'img/CPRDay.jpg',
+            img: 'img/CPR.jpg',
             width: '75%',
             alt: 'National CPR Day Photo',
             centered: true
