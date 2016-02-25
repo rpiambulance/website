@@ -1,4 +1,4 @@
-angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', function($scope, $http) {
+angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', 'noCAPTCHA', function($scope, $http) {
     $scope.formData = {
         name: "",
         email: "",
