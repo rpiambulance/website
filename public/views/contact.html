@@ -70,7 +70,7 @@
             <form id="main-contact-form" class="contact-form" name="contact-form" role="form" ng-submit="submitForm()"
                   novalidate>
                 <div class="col-sm-5 col-sm-offset-1">
-                    <div class="form-group">t
+                    <div class="form-group">
                         <label for="name">Name<sup class="text-danger">*</sup></label>
                         <input type="text" name="name" id="name" ng-model="name" class="form-control"
                                required="required">
@@ -100,7 +100,13 @@
                         <textarea name="message" id="message" ng-model="message" required="required"
                                   class="form-control" rows="8"></textarea>
                     </div>
-                    <!--<div class="g-recaptcha" data-sitekey="6LdHKxUTAAAAAGTBpgYEJZDoAz1uGqG_tX_gQb1K"></div>-->
+                    <no-captcha
+                            g-recaptcha-response="gRecaptchaResponse"
+                            theme='light'
+                            control="noCaptchaControl"
+                            site-key="6LdHKxUTAAAAAGTBpgYEJZDoAz1uGqG_tX_gQb1K"
+                    ng-required="required">
+                    </no-captcha>
                     <div class="btn-toolbar">
                         <button class="btn btn-default btn-lg" type="reset" ng-click="clearForm()">Clear Form</button>
                         <button type="submit" name="submit" class="btn btn-primary btn-lg">Submit Message</button>
