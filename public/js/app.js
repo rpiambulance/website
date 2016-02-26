@@ -1,6 +1,6 @@
 var dependencies = [
 	// REMOTE DEPENDENCIES:
-	'ngRoute', 'ng-showdown', 'noCAPTCHA',
+	'ngRoute', 'ng-showdown',
 
 	// LOCAL DEPENDENCIES:
 	'appRoutes',

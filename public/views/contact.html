@@ -87,10 +87,7 @@
                         <label for="phone">Phone</label>
                         <input type="tel" id="phone" name="phone" ng-model="phone" class="form-control">
                     </div>
-                    <div class="form-group">
-                        <label for="company">Company Name</label>
-                        <input type="text" id="company" name="company" ng-model="company" class="form-control">
-                    </div>
+                    <div vc-recaptcha key="6LdHKxUTAAAAAGTBpgYEJZDoAz1uGqG_tX_gQb1K"></div>
                 </div>
                 <div class="col-sm-5">
                     <div class="form-group">
@@ -103,11 +100,7 @@
                         <textarea name="message" id="message" ng-model="message" required="required"
                                   class="form-control" rows="8"></textarea>
                     </div>
-                    <div>
-                        <no-captcha expired-callback="expiredCallback" g-recaptcha-response="gRecaptchaResponse"
-                                    theme='light' site-key="6LdHKxUTAAAAAGTBpgYEJZDoAz1uGqG_tX_gQb1K">
-                        </no-captcha>
-                    </div>
+
                     <div class="btn-toolbar">
                         <button class="btn btn-default btn-lg" type="reset" ng-click="clearForm()">Clear Form</button>
                         <button type="submit" name="submit" class="btn btn-primary btn-lg">Submit Message</button>

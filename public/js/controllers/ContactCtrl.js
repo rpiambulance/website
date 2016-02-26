@@ -1,4 +1,4 @@
-angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', 'noCAPTCHA', function($scope, $http) {
+angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.formData = {
         name: "",
         email: "",
@@ -7,6 +7,8 @@ angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', 
         subject: "",
         message: ""
     };
+
+
 
     var autocompleteValidate = function () {
         var corrected = {};
