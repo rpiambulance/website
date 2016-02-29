@@ -14,7 +14,7 @@ angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', 
         var corrected = {};
         for (var d in $scope.formData) {
             if($scope.formData.hasOwnProperty(d)) {
-                if(document.getElementById(d).value !== $scope.formData[d]) {
+                if(document.getElementById(d) && document.getElementById(d).value !== $scope.formData[d]) {
                     corrected[d] = document.getElementById(d).value;
                 } else {
                     corrected[d] = $scope.formData[d];
@@ -32,6 +32,12 @@ angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', 
     };
 
     $scope.submitForm = function () {
+        if(!document.getElementById("g-recaptcha-response")) {
+            return;
+        }
+
+        $scope.formData["g-recaptcha-response"] = document.getElementById("g-recaptcha-response").value;
+
         $http({
             method: 'POST',
             url: '.contact_submit.php',

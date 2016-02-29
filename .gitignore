@@ -17,6 +17,7 @@ Thumbs.db
 ######################
 node_modules/
 public/libs/
+public/.form_config.php
 
 # IDE generated      #
 ######################

@@ -14,8 +14,7 @@
     "respond": "Respond#~1.4.2",
     "wow": "WOW#~1.1.2",
     "showdown": "~1.2.3",
-    "ngSanitize": "~0.0.2",
-    "angular-recaptcha": "~2.5.0"
+    "ngSanitize": "~0.0.2"
   },
   "resolutions": {
     "angular": "1.4.6"
