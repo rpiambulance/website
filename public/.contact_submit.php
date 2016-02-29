@@ -72,11 +72,6 @@ if (!empty($errors)) {
 
     //THESE AREN'T REQUIRED, SO GIVE A MESSAGE TO AVOID ERRORS AND CONFUSION
 
-    if (isset($input['company'])){
-        $company= $input['company'];
-    }else{
-        $company= "None";
-    }
 
     if (isset($input['phone'])){
         $phone= $input['phone'];
@@ -92,8 +87,7 @@ if (!empty($errors)) {
 
     $email_message = $message .
         "\n" .
-        "\nPhone: ". $phone .
-        "\nCompany Name: " . $company;
+        "\nPhone: ". $phone;
 
     $headers = 'From: ' . $email . "\r\n" .
         'Reply-To: ' . $email . "\r\n" .

@@ -128,7 +128,6 @@ if (!empty($errors)) {
         'Reply-To: ' . $email_from . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
     @mail($email_to, $email_subject, $email_message, $headers);
-    @mail('webmaster@rpiambulance.com', $email_subject, $email_message, $headers);
 
     // EMAIL TO THE REQUESTER ************************
 
