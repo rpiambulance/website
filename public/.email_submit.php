@@ -87,7 +87,7 @@ if (!empty($errors)) {
         "Tier Requested: " . $tier . "\n" .
         "\nContact Information:\n".
         "\nOrganization Name: " . $orgName . "\n" .
-        "Contact Name: " . $name . "\n" .
+        "\nContact Name: " . $name . "\n" .
         "Email: " . $email_from . "\n" .
         "Phone: " . $phone . "\n" .
         "\nEvent Information:\n".
