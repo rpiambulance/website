@@ -1,5 +1,17 @@
 <?php
-// array to hold validation errors
+
+// grab recaptcha library
+require_once ".recaptchalib.php";
+
+// grab secret key and to-address
+require_once ".form_config.php";
+
+// empty response
+$response = null;
+
+// check secret key
+$reCaptcha = new ReCaptcha($secret);
+
 $errors = array();
 
 // array to pass back data
@@ -8,6 +20,20 @@ $data = array();
 // Get the input ===============================================================
 $formData = file_get_contents('php://input');
 $input = json_decode($formData, true);
+
+// if submitted check response
+if (isset($input['g-recaptcha-response'])) {
+    $response = $reCaptcha->verifyResponse(
+        $_SERVER["REMOTE_ADDR"],
+        $input["g-recaptcha-response"]
+    );
+}
+
+if ($response == null) {
+    $errors['reCaptcha'] = 'You did not validate your submission with our reCaptcha.';
+} else if($response != null && !$response->success) {
+    $errors['reCaptcha'] = 'Your reCaptcha verification did not succeed. Please try again.';
+}
 
 // validate the variables ======================================================
 if (!isset($input['orgName'])) {
@@ -76,7 +102,6 @@ if (!empty($errors)) {
     // ***********************************
 
     // CONSTANTS *************************
-    $email_to = "officers@rpiambulance.com";
     $email_subject = "RPI Ambulance Coverage Request: " . $orgName;
     // ***********************************
 

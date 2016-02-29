@@ -28,21 +28,11 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
         $scope.showModal = !$scope.showModal;
     };
 
-    var param = function (data) {
-        var returnString = '';
-        for (var d in data) {
-            if (data.hasOwnProperty(d))
-                returnString += d + '=' + data[d] + '&';
-        }
-        // Remove last ampersand and return
-        return returnString.slice(0, returnString.length - 1);
-    };
-
     var autocompleteValidate = function () {
         var corrected = {};
         for (var d in $scope.formData) {
             if($scope.formData.hasOwnProperty(d) && d != 'tier') {
-                if(document.getElementById(d).value !== $scope.formData[d]) {
+                if(document.getElementById(d).value !== $scope.formData[d] && d != "g-recaptcha-response") {
                     corrected[d] = document.getElementById(d).value;
                 } else {
                     corrected[d] = $scope.formData[d];
@@ -62,6 +52,11 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
     };
 
     $scope.submitForm = function () {
+        if(!document.getElementById("g-recaptcha-response")) {
+            return;
+        }
+
+        $scope.formData["g-recaptcha-response"] = document.getElementById("g-recaptcha-response").value;
         $scope.formData.tier = $scope.currentTier;
         console.log(autocompleteValidate());
         $http({
@@ -74,10 +69,12 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
             if (!data.success) {
                 console.log("it failed!");
                 // if not successful, bind errors to error variables
-                $scope.errorName = data.errors.name;
-                $scope.errorEmail = data.errors.email;
-                $scope.errorTextarea = data.errors.message;
-                $scope.submissionMessage = data.messageError;
+                if(data.errors.name) {
+                    $scope.errorName = data.errors.name;
+                }
+                if(data.messageError) {
+                    $scope.submissionMessage = data.messageError;
+                }
                 $scope.submission = true; //shows the error message
             } else {
                 $scope.showCoverageSuccess = true;

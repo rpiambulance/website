@@ -9,7 +9,7 @@ angular.module('CPRCertificationCtrl', []).controller('CPRCertificationCtrl', ['
         var corrected = {};
         for (var d in $scope.formData) {
             if($scope.formData.hasOwnProperty(d)) {
-                if(document.getElementById(d).value !== $scope.formData[d]) {
+                if(document.getElementById(d).value !== $scope.formData[d] && d != "g-recaptcha-response") {
                     corrected[d] = document.getElementById(d).value;
                 } else {
                     corrected[d] = $scope.formData[d];
@@ -69,6 +69,11 @@ angular.module('CPRCertificationCtrl', []).controller('CPRCertificationCtrl', ['
     };
 
     $scope.submitForm = function () {
+        if(!document.getElementById("g-recaptcha-response")) {
+            return;
+        }
+
+        $scope.formData["g-recaptcha-response"] = document.getElementById("g-recaptcha-response").value;
         $scope.formData = autocompleteValidate();
         $scope.formData.availability = createAvailabilityString($scope.availability);
         $scope.formData.interests = createInterestsString($scope.interests);
@@ -82,10 +87,12 @@ angular.module('CPRCertificationCtrl', []).controller('CPRCertificationCtrl', ['
             if (!data.success) {
                 console.log("it failed!");
                 // if not successful, bind errors to error variables
-                $scope.errorName = data.errors.name;
-                $scope.errorEmail = data.errors.email;
-                $scope.errorDays = data.errors.availability;
-                $scope.errorType = data.errors.interests;
+                if(data.errors.name) {
+                    $scope.errorName = data.errors.name;
+                }
+                if(data.messageError) {
+                    $scope.submissionMessage = data.messageError;
+                }
                 $scope.submission = true; //shows the error message
             } else {
                 $scope.showContactSuccess = true;

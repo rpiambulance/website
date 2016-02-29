@@ -7,8 +7,6 @@ angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', 
         message: ""
     };
 
-
-
     var autocompleteValidate = function () {
         var corrected = {};
         for (var d in $scope.formData) {
@@ -36,7 +34,6 @@ angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', 
         }
 
         $scope.formData["g-recaptcha-response"] = document.getElementById("g-recaptcha-response").value;
-        console.log($scope.formData["g-recaptcha-response"]);
 
         $http({
             method: 'POST',
@@ -46,7 +43,6 @@ angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', 
         }).success(function (data) {
             if (!data.success) {
                 console.log("it failed!");
-                console.error(data);
                 // if not successful, bind errors to error variables
                 if(data.errors.name) {
                     $scope.errorName = data.errors.name;
