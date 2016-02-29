@@ -3,7 +3,6 @@ angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', 
         name: "",
         email: "",
         phone: "",
-        company: "",
         subject: "",
         message: ""
     };
@@ -14,7 +13,7 @@ angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', 
         var corrected = {};
         for (var d in $scope.formData) {
             if($scope.formData.hasOwnProperty(d)) {
-                if(document.getElementById(d) && document.getElementById(d).value !== $scope.formData[d]) {
+                if(document.getElementById(d).value !== $scope.formData[d] && d != "g-recaptcha-response") {
                     corrected[d] = document.getElementById(d).value;
                 } else {
                     corrected[d] = $scope.formData[d];
@@ -37,6 +36,7 @@ angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', 
         }
 
         $scope.formData["g-recaptcha-response"] = document.getElementById("g-recaptcha-response").value;
+        console.log($scope.formData["g-recaptcha-response"]);
 
         $http({
             method: 'POST',
@@ -46,11 +46,21 @@ angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', 
         }).success(function (data) {
             if (!data.success) {
                 console.log("it failed!");
+                console.error(data);
                 // if not successful, bind errors to error variables
-                $scope.errorName = data.errors.name;
-                $scope.errorEmail = data.errors.email;
-                $scope.errorTextarea = data.errors.message;
-                $scope.submissionMessage = data.messageError;
+                if(data.errors.name) {
+                    $scope.errorName = data.errors.name;
+                }
+                if(data.errors.email) {
+                    $scope.errorEmail = data.errors.email;
+                }
+                if(data.errors.message) {
+                    $scope.errorTextarea = data.errors.message;
+                }
+                if(data.messageError) {
+                    $scope.submissionMessage = data.messageError;
+                }
+
                 $scope.submission = true; //shows the error message
             } else {
                 $scope.showContactSuccess = true;
