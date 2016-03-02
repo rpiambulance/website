@@ -1,0 +1,229 @@
+<section id="edit-member">
+    <div class="container">
+        <div class="center">
+            <h2>Edit Existing Member</h2>
+
+            <div class="lead text-justify">
+                Use this form to edit an existing member.
+            </div>
+            <div class="alert alert-success alert-dismissible" ng-show="showContactSuccess" role="alert">
+                <button type="button" class="close" ng-click="showContactSuccess = false"><span
+                        aria-hidden="false">&times;</span></button>
+                <i class="fa fa-user-plus"></i><strong> Success!</strong> The user record has been updated. The EMS gods
+                have been made aware of this change. Please be prepared to sacrifice a hot meal.
+            </div>
+            <div class="row">
+                <div class="card card-container">
+                    <form role="form" ng-submit="submitForm()" class="form" novalidate>
+                        <div class="form-group">
+                            <label for="fn">Member Name</label>
+                            <!--This should be switched to the signed in account with no option to change it-->
+                            <input type="text" name="fn" id="fn" class="form-control" ng-model="fn"
+                                   placeholder="Thomas Manzini" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success"
+                                    value="Submit">
+                                Search
+                            </button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card card-container-lg">
+                    <form role="form" ng-submit="submitForm()" class="form" novalidate>
+                        <div class="form-group col-xs-6">
+                            <label for="fn">First Name</label>
+                            <!--This should be switched to the signed in account with no option to change it-->
+                            <input type="text" name="fn" id="fn" class="form-control" ng-model="fn"
+                                   placeholder="Thomas" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+                        <div class="form-group col-xs-6">
+                            <label for="ln">Last Name</label>
+                            <input type="text" name="ln" id="ln" class="form-control" ng-model="ln"
+                                   placeholder="Tankengine" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <!--DATE PICKER FOR BIRTHDAY-->
+
+                        <div class="form-group col-xs-6">
+                            <label for="user">Username</label>
+                            <input type="text" name="user" id="user" class="form-control" ng-model="user"
+                                   placeholder="david.sparkman" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="pass">Password</label>
+                            <input type="password" name="pass" id="pass" class="form-control" ng-model="pass" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" ng-model="email"
+                                   placeholder="Example: webmaster@rpiambulance.com" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="rcs">RCS</label>
+                            <input type="text" name="rcs" id="rcs" class="form-control" ng-model="rcs"
+                                   placeholder="sparkd" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="rin">RIN</label>
+                            <input type="number" name="rin" id="rin" class="form-control" ng-model="rin"
+                                   placeholder="6612345" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="hphone">Home Phone</label>
+                            <input type="tel" name="hphone" id="hphone" class="form-control" ng-model="hphone"
+                                   placeholder="555 555-5555" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="cphone">Cell Phone</label>
+                            <input type="tel" name="cphone" id="cphone" class="form-control" ng-model="cphone"
+                                   placeholder="555 555-5555" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="ln">RPI Address</label>
+                            <!--This should be switched to the signed in account with no option to change it-->
+                            <input type="text" name="add" id="add" class="form-control" ng-model="add"
+                                   placeholder="Quad Pardee 3002" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="hadd">Home Address</label>
+                            <!--This should be switched to the signed in account with no option to change it-->
+                            <input type="text" name="hadd" id="hadd" class="form-control" ng-model="hadd"
+                                   placeholder="Shed 1, Sodor, Island of Sodor" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="rid">Radio ID</label>
+                            <!--This should be switched to the signed in account with no option to change it-->
+                            <input type="number" name="rid" id="rid" class="form-control" ng-model="rid"
+                                   placeholder="982" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="cpr">CPR Provider</label>
+                            <select class="form-control" id="cpr">
+                                <option>American Heart Association</option>
+                                <option>American Red Cross</option>
+                                <option>National Safety Council</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="cpr_exp">CPR Expiration Month</label>
+                            <select class="form-control" id="cpr_exp">
+                                <option>January</option>
+                                <option>February</option>
+                                <option>March</option>
+                                <option>April</option>
+                                <option>May</option>
+                                <option>June</option>
+                                <option>July</option>
+                                <option>August</option>
+                                <option>September</option>
+                                <option>October</option>
+                                <option>November</option>
+                                <option>December</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="emt">EMT Level</label>
+                            <select class="form-control" id="emt">
+                                <option>EMT-Basic</option>
+                                <option>AEMT-I</option>
+                                <option>AEMT-CC</option>
+                                <option>AEMT-P</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="emt_exp">EMT Expiration Month</label>
+                            <select class="form-control" id="emt_exp">
+                                <option>January</option>
+                                <option>February</option>
+                                <option>March</option>
+                                <option>April</option>
+                                <option>May</option>
+                                <option>June</option>
+                                <option>July</option>
+                                <option>August</option>
+                                <option>September</option>
+                                <option>October</option>
+                                <option>November</option>
+                                <option>December</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-xs-6">
+                            <label for="emt_num">EMT Number</label>
+                            <!--This should be switched to the signed in account with no option to change it-->
+                            <input type="number" name="emt_num" id="emt_num" class="form-control" ng-model="rid"
+                                   placeholder="123456" required/>
+                        </div>
+
+                        <h3>Training</h3>
+
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">NIMS-100</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">NIMS-200</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">NIMS-700</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">NIMS-800</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">ICS-0005</label>
+                        </div>
+
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">Atropine</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">Albuterol</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">Epinephrine</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">Glucometry</label>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success"
+                                    value="Submit">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!--/.our-skill-->
+
+
+        <!-- our-team -->
+    </div>
+    <!--/.container-->
+</section>
+<!--/about-us-->

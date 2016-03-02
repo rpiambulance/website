@@ -5,9 +5,9 @@ angular.module('CommunityCtrl', []).controller('CommunityCtrl', ['$scope', funct
             header: 'Our Commitment',
             internal_title: 'Text',
             body: 'RPI Ambulance is dedicated to educating and serving the community, and encourages greater knowledge' +
-            ' of emergency medicine and other health and safety resources. RPI ambulance has held training events with ' +
+            ' of emergency medicine and other health and safety resources. RPI Ambulance has held training events with ' +
             'RPI\'s ROTC groups, Greek houses, and Residence Life, as well as off campus organizations, such as the Boy ' +
-            'Scouts of America. If your organization is interested in hosting RPI ambulance or collaborating in community' +
+            'Scouts of America. If your organization is interested in hosting RPI Ambulance or collaborating in community' +
             ' outreach, please [contact us](#/contact).'
         },
 
@@ -17,7 +17,7 @@ angular.module('CommunityCtrl', []).controller('CommunityCtrl', ['$scope', funct
             type: 'img',
             img: 'img/ROTC.jpg',
             width: '75%',
-            alt: 'National CPR Day Photo',
+            alt: 'ROTC First Aid Photo',
             centered: true
         },
 
@@ -28,6 +28,15 @@ angular.module('CommunityCtrl', []).controller('CommunityCtrl', ['$scope', funct
             img: 'img/EmpireService.jpg',
             width: '75%',
             alt: 'Photo of empire service dogs with RPI Ambulance',
+            centered: true
+        },
+        {
+            header: 'Mohawk-Hudson Marathon',
+            internal_title: 'Dogs Img',
+            type: 'img',
+            img: 'img/marathon.jpg',
+            width: '75%',
+            alt: 'Photo of RPI Ambulance EMTs at the marathon',
             centered: true
         },
 

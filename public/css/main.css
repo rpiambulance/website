@@ -2557,6 +2557,11 @@ shortcodes page css
     padding: 40px 40px;
 }
 
+.card-container-lg.card {
+    max-width: 850px;
+    padding: 40px 40px;
+}
+
 .card {
     background-color: #F7F7F7;
     /* just in case there no content*/
@@ -2762,4 +2767,8 @@ h2{
 
 .title_text, .ico {
     line-height: 50px;
+}
+
+{
+
 }
