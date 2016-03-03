@@ -16,9 +16,9 @@
                 <div class="card card-container">
                     <form role="form" ng-submit="submitForm()" class="form" novalidate>
                         <div class="form-group">
-                            <label for="fn">Member Name</label>
+                            <label for="search">Member Name</label>
                             <!--This should be switched to the signed in account with no option to change it-->
-                            <input type="text" name="fn" id="fn" class="form-control" ng-model="fn"
+                            <input type="text" name="fn" id="search" class="form-control" ng-model="search"
                                    placeholder="Thomas Manzini" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
@@ -34,15 +34,16 @@
             </div>
             <div class="row">
                 <div class="card card-container-lg">
+                    <h2>EDITING: {{Name}}</h2>
                     <form role="form" ng-submit="submitForm()" class="form" novalidate>
-                        <div class="form-group col-xs-6">
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="fn">First Name</label>
                             <!--This should be switched to the signed in account with no option to change it-->
                             <input type="text" name="fn" id="fn" class="form-control" ng-model="fn"
                                    placeholder="Thomas" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
-                        <div class="form-group col-xs-6">
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="ln">Last Name</label>
                             <input type="text" name="ln" id="ln" class="form-control" ng-model="ln"
                                    placeholder="Tankengine" required/>
@@ -51,69 +52,62 @@
 
                         <!--DATE PICKER FOR BIRTHDAY-->
 
-                        <div class="form-group col-xs-6">
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="user">Username</label>
                             <input type="text" name="user" id="user" class="form-control" ng-model="user"
                                    placeholder="david.sparkman" required/>
                         </div>
 
-                        <div class="form-group col-xs-6">
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="pass">Password</label>
                             <input type="password" name="pass" id="pass" class="form-control" ng-model="pass" required/>
                         </div>
 
-                        <div class="form-group col-xs-6">
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="email">Email</label>
                             <input type="email" name="email" id="email" class="form-control" ng-model="email"
                                    placeholder="Example: webmaster@rpiambulance.com" required/>
                         </div>
 
-                        <div class="form-group col-xs-6">
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="rcs">RCS</label>
                             <input type="text" name="rcs" id="rcs" class="form-control" ng-model="rcs"
                                    placeholder="sparkd" required/>
                         </div>
 
-                        <div class="form-group col-xs-6">
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="rin">RIN</label>
                             <input type="number" name="rin" id="rin" class="form-control" ng-model="rin"
                                    placeholder="6612345" required/>
                         </div>
 
-                        <div class="form-group col-xs-6">
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="hphone">Home Phone</label>
                             <input type="tel" name="hphone" id="hphone" class="form-control" ng-model="hphone"
                                    placeholder="555 555-5555" required/>
                         </div>
 
-                        <div class="form-group col-xs-6">
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="cphone">Cell Phone</label>
                             <input type="tel" name="cphone" id="cphone" class="form-control" ng-model="cphone"
                                    placeholder="555 555-5555" required/>
                         </div>
 
-                        <div class="form-group col-xs-6">
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="ln">RPI Address</label>
                             <!--This should be switched to the signed in account with no option to change it-->
                             <input type="text" name="add" id="add" class="form-control" ng-model="add"
-                                   placeholder="Quad Pardee 3002" required/>
+                                   placeholder="Shed 1, Sodor, Island of Sodor" required/>
                         </div>
 
-                        <div class="form-group col-xs-6">
-                            <label for="hadd">Home Address</label>
-                            <!--This should be switched to the signed in account with no option to change it-->
-                            <input type="text" name="hadd" id="hadd" class="form-control" ng-model="hadd"
-                                   placeholder="Shed 1 Sodor Island of Sodor" required/>
-                        </div>
-
-                        <div class="form-group col-xs-6">
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="rid">Radio ID</label>
                             <!--This should be switched to the signed in account with no option to change it-->
                             <input type="number" name="rid" id="rid" class="form-control" ng-model="rid"
                                    placeholder="982" required/>
                         </div>
 
-                        <div class="form-group col-xs-6">
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="cpr">CPR Provider</label>
                             <select class="form-control" id="cpr">
                                 <option>No CPR Certificate</option>
@@ -123,7 +117,9 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-xs-6">
+                        <!--MAKE THIS A DATE PICKER-->
+
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="cpr_exp">CPR Expiration Month</label>
                             <select class="form-control" id="cpr_exp">
                                 <option>January</option>
@@ -141,7 +137,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-xs-6">
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="emt">EMT Level</label>
                             <select class="form-control" id="emt">
                                 <option>Not an EMT</option>
@@ -152,7 +148,9 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-xs-6">
+                        <!--MAKE THIS A DATE PICKER-->
+
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="emt_exp">EMT Expiration Month</label>
                             <select class="form-control" id="emt_exp">
                                 <option>January</option>
@@ -170,7 +168,7 @@
                             </select>
                         </div>
 
-                        <div class="form-group col-xs-6">
+                        <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="emt_num">EMT Number</label>
                             <!--This should be switched to the signed in account with no option to change it-->
                             <input type="number" name="emt_num" id="emt_num" class="form-control" ng-model="rid"
@@ -208,12 +206,136 @@
                             <label><input type="checkbox" value="">Glucometry</label>
                         </div>
 
+                        <div class="form-group col-xs-6" id="other_tr_div">
+                            <label for="other_tr">Other Training:</label>
+                            <textarea class="form-control" rows="5" id="other_tr" ng-model="other_tr"></textarea>
+                        </div>
+
+                        <div class="form-group col-xs-6 fixed-height-form-element">
+                            <label for="dl_state">Driver License State</label>
+                            <select class="form-control" id="dl_state">
+                                <option value="">None</option><option >AL</option><option >AK</option><option >AZ</option><option >AR</option><option >CA</option><option >CO</option><option >CT</option><option >DE</option><option >FL</option><option >GA</option><option >HI</option><option >ID</option><option >IL</option><option >IN</option><option >IA</option><option >KS</option><option >KY</option><option >LA</option><option >ME</option><option >MD</option><option >MA</option><option >MI</option><option >MN</option><option >MS</option><option >MO</option><option >MT</option><option >NE</option><option >NV</option><option >NH</option><option >NJ</option><option >NM</option><option >NY</option><option >NC</option><option >ND</option><option >OH</option><option >OK</option><option >OR</option><option >PA</option><option >RI</option><option >SC</option><option >SD</option><option >TN</option><option >TX</option><option >UT</option><option >VT</option><option >VA</option><option >WA</option><option >WV</option><option >WI</option><option >WY</option>
+                            </select>
+                        </div>
+
+                        <!--DATEPICKER FOR DL EXP-->
+
+                        <div class="form-group col-xs-6 fixed-height-form-element">
+                            <label for="dl_exp">Licence Expiration Month</label>
+                            <select class="form-control" id="dl_exp">
+                                <option>January</option>
+                                <option>February</option>
+                                <option>March</option>
+                                <option>April</option>
+                                <option>May</option>
+                                <option>June</option>
+                                <option>July</option>
+                                <option>August</option>
+                                <option>September</option>
+                                <option>October</option>
+                                <option>November</option>
+                                <option>December</option>
+                            </select>
+                        </div>
+
+                        <!--DATEPICKER FOR CEVO OR EVDD-->
+
+                        <div class="form-group col-xs-6 fixed-height-form-element">
+                            <label for="evdd">EVDD, CEVO, EVOC Date</label>
+                            <select class="form-control" id="evdd">
+                                <option>January</option>
+                                <option>February</option>
+                                <option>March</option>
+                                <option>April</option>
+                                <option>May</option>
+                                <option>June</option>
+                                <option>July</option>
+                                <option>August</option>
+                                <option>September</option>
+                                <option>October</option>
+                                <option>November</option>
+                                <option>December</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-xs-6 fixed-height-form-element">
+                            <label for="evdd">Special Position</label>
+                            <select class="form-control" id="evdd">
+                                <option>None</option>
+                                <option>Captain</option>
+                                <option>First Lt</option>
+                                <option>Second Lt</option>
+                                <option>President</option>
+                                <option>Vice President</option>
+                                <option>Scheduling Coordinator</option>
+                                <option>Radio Coordinator</option>
+                                <option>Training Committee Chair</option>
+                                <option>CPR Coordinator</option>
+                                <option>AED Coordinator</option>
+                                <option>Webmaster</option>
+                            </select>
+                        </div>
+
+                        <h3>Crew Positions</h3>
+
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">Attendant</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">Crew-Chief</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">Crew-Chief Trainer</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">Driver</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">Driver Trainer</label>
+                        </div>
+
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">Duty Supervisor</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">Event EMS Supervisor</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">FR-59 Crew Chief</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">Probationary Crew Chief</label>
+                        </div>
+                        <div class="checkbox text-left-al">
+                            <label><input type="checkbox" value="">Probationary Driver</label>
+                        </div>
+
+                        <h3>Can create games/events?</h3>
+
+                        <label class="radio-inline"><input type="radio" name="optradio">Yes</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">No</label>
+
+                        <h3>Can manage content?</h3>
+
+                        <label class="radio-inline"><input type="radio" name="optradio">Yes</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">No</label>
+
+                        <h3>Is a full admin?</h3>
+
+                        <label class="radio-inline"><input type="radio" name="optradio">Yes</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">No</label>
+
+                        <h3>Member Status</h3>
+
+                        <label class="radio-inline fixed-height-form-element"><input type="radio" name="optradio">Active</label>
+                        <label class="radio-inline fixed-height-form-element"><input type="radio" name="optradio">Inactive</label>
+
                         <div class="form-actions">
                             <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success"
                                     value="Submit">
-                                Submit
+                                Update Record
                             </button>
-                            <button type="reset" class="btn btn-danger">Reset</button>
+                            <button type="reset" class="btn btn-danger">Delete Member</button>
                         </div>
                     </form>
                 </div>

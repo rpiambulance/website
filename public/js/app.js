@@ -17,7 +17,8 @@ var dependencies = [
 	'InServiceTrainingCtrl', 'LoginCtrl', 'MiscFormsCtrl', 'NewMembersTrainingCtrl', 'RENSCOResourcesCtrl',
 	'ReportIssueCtrl', 'SOPCtrl', 'SupervisorTrainingCtrl', 'SystemRequirementsCtrl', 'TextMessageDispatchCtrl',
 	'CoverageDetailsCtrl', 'JoinCtrl', 'NightCrewsCtrl', 'MemberListCtrl', 'FuelLogCtrl', 'StockingIssueCtrl',
-	'AddMemberCtrl', 'ExpirationsCtrl', 'CommunityCtrl', 'EditMemberCtrl'
+	'AddMemberCtrl', 'ExpirationsCtrl', 'CommunityCtrl', 'EditMemberCtrl', 'GamesEventsCtrl', 'AddEventCtrl', 'EditDefaultCtrl',
+	'EventCtrl', 'GameCtrl', 'GamesEventsCtrl', 'ModifyScheduleCtrl'
 ];
 
 var app = angular.module('RPIA', dependencies);

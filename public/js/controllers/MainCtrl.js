@@ -126,8 +126,8 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         {
             page: '', title: 'Admin', isDropdown: true, dividersAfter: [], dropdownOptions: [
                 {page: 'modify-schedule', title: 'Modify Schedule'},
-                {page: 'edit-default-schedule', title: 'Edit Default Schedule'},
-                {page: 'add-game-event', title: 'Add Game or Event'},
+                {page: 'edit-default', title: 'Edit Default Schedule'},
+                {page: 'add-event', title: 'Add Game or Event'},
                 {page: 'add-member', title: 'Add Member'},
                 {page: 'edit-member', title: 'Edit Member'}
             ]

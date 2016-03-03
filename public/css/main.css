@@ -2769,6 +2769,6 @@ h2{
     line-height: 50px;
 }
 
-{
-
+.fixed-height-form-element {
+    height: 80px; /*play with this value*/
 }
