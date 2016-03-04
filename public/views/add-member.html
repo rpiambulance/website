@@ -31,6 +31,20 @@
                         <!--DATE PICKER FOR BIRTHDAY-->
 
                         <div class="form-group">
+                            <label for="pass">Password</label>
+                            <input type="password" name="pass" id="pass" class="form-control" ng-model="pass"
+                                   placeholder="" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cpass">Confirm Password</label>
+                            <input type="password" name="cpass" id="cpass" class="form-control" ng-model="cpass"
+                                   placeholder="thomas@blue-bell-railway.co.uk" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" name="email" id="email" class="form-control" ng-model="email"
                                    placeholder="thomas@blue-bell-railway.co.uk" required/>

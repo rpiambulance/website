@@ -1,0 +1,123 @@
+<section id="my-settings">
+    <div class="container">
+        <div class="center">
+            <h2>My Settings</h2>
+
+            <div class="lead text-justify">
+                Use this form to edit your account information.
+            </div>
+            <div class="alert alert-success alert-dismissible" ng-show="showContactSuccess" role="alert">
+                <button type="button" class="close" ng-click="showContactSuccess = false"><span
+                        aria-hidden="false">&times;</span></button>
+                <i class="fa fa-pencil-square-o"></i><strong> Success!</strong> Your member record has been updated!
+            </div>
+            <div class="col-lg-12">
+                <div class="card card-container">
+                    <form role="form" ng-submit="submitForm()" class="form" novalidate>
+                        <div class="form-group">
+
+                            <h3>General Information</h3>
+
+                            <label for="fn">First Name</label>
+                            <!--This should be switched to the signed in account with no option to change it-->
+                            <input type="text" name="fn" id="fn" class="form-control" ng-model="fn"
+                                   placeholder="Thomas" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+                        <div class="form-group">
+                            <label for="ln">Last Name</label>
+                            <input type="text" name="ln" id="ln" class="form-control" ng-model="ln"
+                                   placeholder="Tankengine" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <h3>Change your password</h3>
+
+                        <div class="form-group">
+                            <label for="pass">Password</label>
+                            <input type="password" name="pass" id="pass" class="form-control" ng-model="pass"
+                                   placeholder="" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cpass">Confirm Password</label>
+                            <input type="password" name="cpass" id="cpass" class="form-control" ng-model="cpass"
+                                   placeholder="thomas@blue-bell-railway.co.uk" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <h3>Contact Information</h3>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" class="form-control" ng-model="email"
+                                   placeholder="thomas@blue-bell-railway.co.uk" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="RCS">RCS</label>
+                            <input type="text" name="RCS" id="RCS" class="form-control" ng-model="RCS"
+                                   placeholder="Example: tanket" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="RIN">RIN</label>
+                            <input type="number" name="RIN" id="RIN" class="form-control" ng-model="RIN"
+                                   placeholder="Example: 6612345" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone">Cell Phone</label>
+                            <input type="tel" name="phone" id="phone" class="form-control" ng-model="phone"
+                                   placeholder="(555) 555-5555" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hphone">Home Phone</label>
+                            <input type="tel" name="hphone" id="hphone" class="form-control" ng-model="hphone"
+                                   placeholder="(555) 555-5555" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ln">RPI Address</label>
+                            <!--This should be switched to the signed in account with no option to change it-->
+                            <input type="text" name="add" id="add" class="form-control" ng-model="add"
+                                   placeholder="Quad Pardee 3002" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="hadd">Home Address</label>
+                            <!--This should be switched to the signed in account with no option to change it-->
+                            <input type="text" name="hadd" id="hadd" class="form-control" ng-model="hadd"
+                                   placeholder="Shed 1, Sodor, Island of Sodor" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success"
+                                    value="Submit">
+                                Submit
+                            </button>
+                            <button type="reset" class="btn btn-danger">Reset</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!--/.our-skill-->
+
+
+        <!-- our-team -->
+    </div>
+    <!--/.container-->
+</section>
+<!--/about-us-->
