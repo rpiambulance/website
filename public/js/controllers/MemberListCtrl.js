@@ -1,3 +1,3 @@
-angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$http', function($scope, $http) {
+angular.module('MySettingsCtrl', []).controller('MySettingsCtrl', ['$scope', '$http', function($scope, $http) {
 
 }]);

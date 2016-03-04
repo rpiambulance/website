@@ -70,7 +70,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         ]
         },
         {page: 'coverage', title: 'Request Coverage', isDropdown: false},
-        {page: 'login', title: 'Members', isDropdown: false, customLink: true, link: 'index.php?page=members'},
+        {page: 'night-crews', title: 'Members', isDropdown: false, customLink: true /*,link: 'index.php?page=members'*/},
         {page: 'contact', title: 'Contact Us', isDropdown: false}
 
     ];
@@ -88,7 +88,8 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'member-list', title: 'Member List'},
             {page: 'fuel-log', title: 'Fuel Log'},
             {page: 'stocking-issue', title: 'Stocking'},
-            {page: 'expirations', title: 'Expiring Items'}
+            {page: 'expirations', title: 'Expiring Items'},
+            {page: 'announcements', title: 'Announcements'}
         ]
         },
 
@@ -131,6 +132,14 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
                 {page: 'add-member', title: 'Add Member'},
                 {page: 'edit-member', title: 'Edit Member'}
             ]
+        },
+
+        {
+            page: '', title: 'Account', isDropdown: true, dividersAfter: [], dropdownOptions: [
+            {page: 'my-settings', title: 'My Settings'},
+            {page: 'my-training', title: 'My Training'},
+            {page: '', title: 'Log Out'}
+        ]
         }
     ];
 
