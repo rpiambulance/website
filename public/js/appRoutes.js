@@ -7,8 +7,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         'EMT-Reciprocity', 'In-Service-Training', 'Login', 'Misc-Forms', 'New-Members-Training', 'RENSCO-Resources',
         'Report-Issue', 'SOP', 'Supervisor-Training', 'System-Requirements', 'Text-Message-Dispatch', 'Coverage-Details',
         'Join', 'Night-Crews', 'Member-List', 'Stocking-Issue', 'Fuel-Log', 'Add-Member', 'Expirations', 'Community',
-        'Edit-Member', 'Games-Events', 'Add-Event', 'Edit-Default', 'Event', 'Game', 'Modify-Schedule', 'my-settings',
-        'my-training', 'announcements'
+        'Edit-Member', 'Games-Events', 'Add-Event', 'Edit-Default', 'Event', 'Game', 'Modify-Schedule', sh
     ];
 
     views.forEach(function (elem, index) {
