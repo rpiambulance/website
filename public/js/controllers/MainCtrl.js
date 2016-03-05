@@ -70,7 +70,12 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         ]
         },
         {page: 'coverage', title: 'Request Coverage', isDropdown: false},
-        {page: 'night-crews', title: 'Members', isDropdown: false, customLink: true /*,link: 'index.php?page=members'*/},
+        {
+            page: 'night-crews',
+            title: 'Members',
+            isDropdown: false,
+            customLink: true /*,link: 'index.php?page=members'*/
+        },
         {page: 'contact', title: 'Contact Us', isDropdown: false}
 
     ];
@@ -79,9 +84,9 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         {page: 'home', title: 'Home', isDropdown: false},
         {
             page: '', title: 'Scheduling', isDropdown: true, dividersAfter: [2, 4], dropdownOptions: [
-                {page: 'night-crews', title: 'Night Crews'},
-                {page: 'games-events', title: 'Games & Events'}
-            ]
+            {page: 'night-crews', title: 'Night Crews'},
+            {page: 'games-events', title: 'Games & Events'}
+        ]
         },
         {
             page: '', title: 'Tools', isDropdown: true, dividersAfter: [], dropdownOptions: [
@@ -126,12 +131,12 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         //},
         {
             page: '', title: 'Admin', isDropdown: true, dividersAfter: [], dropdownOptions: [
-                {page: 'modify-schedule', title: 'Modify Schedule'},
-                {page: 'edit-default', title: 'Edit Default Schedule'},
-                {page: 'add-event', title: 'Add Game or Event'},
-                {page: 'add-member', title: 'Add Member'},
-                {page: 'edit-member', title: 'Edit Member'}
-            ]
+            {page: 'modify-schedule', title: 'Modify Schedule'},
+            {page: 'edit-default', title: 'Edit Default Schedule'},
+            {page: 'add-event', title: 'Add Game or Event'},
+            {page: 'add-member', title: 'Add Member'},
+            {page: 'edit-member', title: 'Edit Member'}
+        ]
         },
 
         {
@@ -143,17 +148,20 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         }
     ];
 
-    var chooseAppropriateMenu = function() {
+    var chooseAppropriateMenu = function () {
         var currentPage = $location.url();
         var isMemberPage = false;
-        for(var i = 0; i < $scope.memberNavbar.length; i++) {
-            if($scope.memberNavbar[i].isDropdown) {
-                for(var j = 0; j < $scope.memberNavbar[i].dropdownOptions.length; j++) {
+        for (var i = 0; i < $scope.memberNavbar.length; i++) {
+            if ($scope.memberNavbar[i].isDropdown) {
+                for (var j = 0; j < $scope.memberNavbar[i].dropdownOptions.length; j++) {
                     if ("/" + $scope.memberNavbar[i].dropdownOptions[j].page === currentPage && currentPage !== "/home") {
                         return true;
                     }
                 }
             } else if ("/" + $scope.memberNavbar[i].page === currentPage && currentPage !== "/home") {
+                return true;
+            }
+            else if (currentPage === "/event" || currentPage === "/game") {
                 return true;
             }
         }
@@ -162,7 +170,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
     };
 
     $scope.navbar = chooseAppropriateMenu() ? $scope.memberNavbar : $scope.publicNavbar;
-    $scope.$on('$locationChangeStart', function() {
+    $scope.$on('$locationChangeStart', function () {
         $scope.navbar = chooseAppropriateMenu() ? $scope.memberNavbar : $scope.publicNavbar;
     });
 
