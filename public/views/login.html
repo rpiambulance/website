@@ -13,7 +13,7 @@
             </div>
             <p id="profile-name" class="profile-name-card"></p>
 
-            <form class="form-signin" ng-submit="login()" role="form">
+            <form class="form-signin" ng-controller="LoginCtrl" ng-submit="submitForm()" role="form" novalidate>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <i class="fa fa-user-md"></i>

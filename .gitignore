@@ -1,6 +1,7 @@
 # Logs and databases #
 ######################
 *.log
+public/.db_config.php
 
 # OS generated files #
 ######################

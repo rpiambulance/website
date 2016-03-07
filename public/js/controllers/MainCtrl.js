@@ -71,10 +71,10 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         },
         {page: 'coverage', title: 'Request Coverage', isDropdown: false},
         {
-            page: 'night-crews',
+            page: 'login',
             title: 'Members',
             isDropdown: false,
-            customLink: true /*,link: 'index.php?page=members'*/
+            customLink: false ,link: 'index.php?page=members'
         },
         {page: 'contact', title: 'Contact Us', isDropdown: false}
 
