@@ -37,10 +37,10 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', func
                 console.log("it failed!");
                 // if not successful, bind errors to error variables
                 if(data.errors.username) {
-                    $scope.errorName = data.errors.name;
+                    $scope.errorUser = data.errors.username;
                 }
                 if(data.errors.password) {
-                    $scope.errorEmail = data.errors.email;
+                    $scope.errorPass = data.errors.password;
                 }
 
                 $scope.submission = true; //shows the error message
@@ -53,4 +53,6 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', func
             }
         });
     };
+
+
 }]);

@@ -84,6 +84,7 @@ if (!empty($errors)) {
     }
 
     $connection= null;
+    echo json_encode($data);
 
 
 }
