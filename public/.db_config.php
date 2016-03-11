@@ -1,6 +1,5 @@
 <?php
-
-$servername = "localhost";
-$d_username = "root";
-$d_password = "";
-$db_name = "ambulac_web";
+$dsn = 'mysql:dbname=ambulanc_web;host=127.0.0.1';
+$duser = 'root';
+$dpassword = '';
+$db_name = "ambulanc_web";

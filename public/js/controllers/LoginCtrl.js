@@ -37,12 +37,12 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', func
             if (!data.success) {
                 console.log("it failed!");
                 // if not successful, bind errors to error variables
-                if(data.errors.username) {
-                    $scope.errorUser = data.errors.username;
-                }
-                if(data.errors.password) {
-                    $scope.errorPass = data.errors.password;
-                }
+                //if(data.errors.username) {
+                //    $scope.errorUser = data.errors.username;
+                //}
+                //if(data.errors.password) {
+                //    $scope.errorPass = data.errors.password;
+                //}
 
                 $scope.submission = true; //shows the error message
             } else {

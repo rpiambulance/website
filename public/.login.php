@@ -45,7 +45,7 @@ if (!empty($errors)) {
     $user       =   $input['username'];
     $pass      =   $input['password'];
 
-    $connection = new PDO("mysql:host=$servername", $d_username, $d_password);
+    $connection = new PDO($dsn, $duser, $dpassword);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Selecting Database
@@ -58,17 +58,19 @@ if (!empty($errors)) {
     // SQL query to fetch information of registerd users and finds user match.
     //$query = mysql_query("SELECT * FROM login WHERE password='$password' AND username='$username'", $connection);
     //$rows = mysql_num_rows($query);
-    $sql="SELECT * FROM members WHERE password= $pass AND username= $user";
+    $sql="SELECT * FROM members WHERE username='$user' AND password='$pass';";
     $stmt=$connection->prepare($sql);
     $stmt->bindParam(':password', $pass);
     $stmt->bindParam(':username', $user);
     $stmt->execute();
     $rows=$stmt->fetch();
     $rows=$rows[0];
+    echo('Rows' .$rows);
 
-    if ($rows == 1) {
-        $_SESSION['login_user']=$username; // Initializing Session
-        header("location: #/night-crews"); // Redirecting To Other Page
+    if ($rows == 497) {
+        echo("RIGHT!");
+//        $_SESSION['login_user']=$username; // Initializing Session
+        header("location:#/night-crews"); // Redirecting To Other Page
     }
     else{
         echo("Wrong");
