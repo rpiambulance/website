@@ -8,7 +8,7 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', func
         var corrected = {};
         for (var d in $scope.formData) {
             if($scope.formData.hasOwnProperty(d)) {
-                if(document.getElementById(d).value !== $scope.formData[d] && d != "g-recaptcha-response") {
+                if(document.getElementById(d).value !== $scope.formData[d]) {
                     corrected[d] = document.getElementById(d).value;
                 } else {
                     corrected[d] = $scope.formData[d];
@@ -33,6 +33,7 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', func
             data: autocompleteValidate(), // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).success(function (data) {
+            console.log(data);
             if (!data.success) {
                 console.log("it failed!");
                 // if not successful, bind errors to error variables

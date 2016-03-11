@@ -6,9 +6,6 @@ require_once ".db_config.php";
 // empty response
 $response = null;
 
-// check secret key
-$reCaptcha = new ReCaptcha($secret);
-
 $errors = array();
 
 // array to pass back data
@@ -19,12 +16,6 @@ $formData = file_get_contents('php://input');
 $input = json_decode($formData, true);
 
 // if submitted check response
-if (isset($input['g-recaptcha-response'])) {
-    $response = $reCaptcha->verifyResponse(
-        $_SERVER["REMOTE_ADDR"],
-        $input["g-recaptcha-response"]
-    );
-}
 
 if ($response == null) {
 }
