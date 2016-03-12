@@ -4,6 +4,8 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', func
         password: ""
     };
 
+
+
     var autocompleteValidate = function () {
         var corrected = {};
         for (var d in $scope.formData) {
@@ -26,14 +28,13 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', func
     };
 
     $scope.submitForm = function () {
-
         $http({
             method: 'POST',
             url: '.login.php',
             data: autocompleteValidate(), // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).success(function (data) {
-            console.log(data);
+            console.log("This is weird.");
             if (!data.success) {
                 console.log("it failed!");
                 // if not successful, bind errors to error variables
