@@ -55,8 +55,6 @@ if (!empty($errors)) {
 
     $pass = md5($pass);
 
-    echo("FOO");
-
     // SQL query to fetch information of registerd users and finds user match.
     //$query = mysql_query("SELECT * FROM login WHERE password='$password' AND username='$username'", $connection);
     //$rows = mysql_num_rows($query);
