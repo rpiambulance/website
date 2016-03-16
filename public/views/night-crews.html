@@ -14,61 +14,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Sunday</td>
-                    <td>MM/DD/YY</td>
-                    <td>Carol Crew-Chief</td>
-                    <td>Danny Driver</td>
-                    <td>Frankie Freshman</td>
-                    <td>Wilson Whacker</td>
-                </tr>
-                <tr>
-                    <td>Monday</td>
-                    <td>MM/DD/YY</td>
-                    <td>Carol Crew-Chief</td>
-                    <td>Danny Driver</td>
-                    <td>Frankie Freshman</td>
-                    <td>Wilson Whacker</td>
-                </tr>
-                <tr>
-                    <td>Tuesday</td>
-                    <td>MM/DD/YY</td>
-                    <td>Carol Crew-Chief</td>
-                    <td>Danny Driver</td>
-                    <td>Frankie Freshman</td>
-                    <td>Wilson Whacker</td>
-                </tr>
-                <tr>
-                    <td>Wednesday</td>
-                    <td>MM/DD/YY</td>
-                    <td>Carol Crew-Chief</td>
-                    <td>Danny Driver</td>
-                    <td>Frankie Freshman</td>
-                    <td>Wilson Whacker</td>
-                </tr>
-                <tr>
-                    <td>Thursday</td>
-                    <td>MM/DD/YY</td>
-                    <td>Carol Crew-Chief</td>
-                    <td>Danny Driver</td>
-                    <td>Frankie Freshman</td>
-                    <td>Wilson Whacker</td>
-                </tr>
-                <tr>
-                    <td>Friday</td>
-                    <td>MM/DD/YY</td>
-                    <td>Carol Crew-Chief</td>
-                    <td>Danny Driver</td>
-                    <td>Frankie Freshman</td>
-                    <td>Wilson Whacker</td>
-                </tr>
-                <tr>
-                    <td>Saturday</td>
-                    <td>MM/DD/YY</td>
-                    <td>Carol Crew-Chief</td>
-                    <td>Danny Driver</td>
-                    <td>Frankie Freshman</td>
-                    <td>Wilson Whacker</td>
+                <tr ng-repeat="x in getNum(number)">
+                    <td>DAY</td>
+                    <td>{{x.day}}</td>
+                    <td>{{x.cc}}</td>
+                    <td>{{x.driver}}</td>
+                    <td>{{x.attendant}}</td>
+                    <td>{{x.observer}}</td>
                 </tr>
                 </tbody>
             </table>
