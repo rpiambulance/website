@@ -65,12 +65,12 @@ if (!empty($errors)) {
     $stmt->execute();
     $rows=$stmt->fetch();
     $rows=$rows[0];
-    echo('Rows' .$rows);
+    //echo('Rows' .$rows);
 
     if ($rows == 497) {
-        echo("RIGHT!");
+        //echo("RIGHT!");
 //        $_SESSION['login_user']=$username; // Initializing Session
-        header("location:#/night-crews"); // Redirecting To Other Page
+        //header("location:#/night-crews"); // Redirecting To Other Page
     }
     else{
         echo("Wrong");

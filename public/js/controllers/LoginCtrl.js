@@ -1,4 +1,4 @@
-angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', function($scope, $http) {
+angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
     $scope.formData = {
         username: "",
         password: ""
@@ -47,11 +47,13 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', func
 
                 $scope.submission = true; //shows the error message
             } else {
+                console.log("YES");
                 $scope.showContactSuccess = true;
                 // if successful, bind success message to message
                 $scope.submissionMessage = data.messageSuccess;
                 $scope.formData = {}; // form fields are emptied with this line
                 $scope.submission = true; //shows the success message
+                $window.location.href = '#/night-crews';
             }
         });
     };

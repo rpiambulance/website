@@ -5,8 +5,16 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
         return new Array(num);
     };
 
+    getProject();
 
-    $http.get("http://127.0.0.1:63342")
-        .then(function (response) {$scope.names = response.data.records;});
+    function getProject(){
+        console.log("GET");
+        $http.post('.crews.php').success(function(data){
+            console.log("Here");
+
+            $scope.projects = data; //the data are stored in projects
+
+        })}
+
 
 }]);
