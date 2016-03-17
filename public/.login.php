@@ -64,10 +64,11 @@ if (!empty($errors)) {
     $stmt->bindParam(':username', $user);
     $stmt->execute();
     $rows=$stmt->fetch();
-    $rows=$rows[0];
+    $rows=$rows[57];
+    //GET ACTIVE MEMBER STATUS SINCE ONLY ACTIVE MEMBERS CAN SIGN IN
     //echo('Rows' .$rows);
 
-    if ($rows == 497) {
+    if ($rows == 1) {
         //echo("RIGHT!");
 //        $_SESSION['login_user']=$username; // Initializing Session
         //header("location:#/night-crews"); // Redirecting To Other Page
