@@ -11,17 +11,20 @@ $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 //$db = mysql_select_db("$db_name", $connection);
 $connection->exec("USE `$db_name`");
 
-$result = $connection->exec("SELECT date, cc, driver, attendant, observer FROM crews");
+$result = $connection->prepare("SELECT * FROM crews WHERE id > 490");
 
 $outp = "";
 while($rs = $result->fetch(PDO::FETCH_ASSOC)) {
     if ($outp != "") {$outp .= ",";}
-    $outp .= '{"Name":"'  . $rs["CompanyName"] . '",';
-    $outp .= '"City":"'   . $rs["City"]        . '",';
-    $outp .= '"Country":"'. $rs["Country"]     . '"}';
+    $outp .= '{"id":"'  . $rs["id"] . '",';
+    $outp .= '"date":"'   . $rs["date"]        . '",';
+    $outp .= '"cc":"'   . $rs["cc"]        . '",';
+    $outp .= '"driver":"'   . $rs["driver"]        . '",';
+    $outp .= '"attendant":"'   . $rs["attendant"]        . '",';
+    $outp .= '"observer":"'. $rs["observer"]     . '"}';
 }
 $outp ='{"records":['.$outp.']}';
-$connection->close();
+$connection= null;
 
-echo($outp);
+echo(json_encode($outp));
 ?>
