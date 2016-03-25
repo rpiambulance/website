@@ -30,8 +30,10 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
         method: 'POST',
         url: '.crews.php',
         data: autocompleteValidate(), // pass in data as strings
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        // set the headers so angular passing info as form data (not request payload)
     }).success(function (data) {
+        data.success= true;
         if (!data.success) {
             console.log(data);
             console.log("it failed!");

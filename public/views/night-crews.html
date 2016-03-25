@@ -14,13 +14,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="x in getNum(number)">
+                <tr ng-controller="NightCrewsCtrl">
                     <td>DAY</td>
-                    <td>{{x.day}}</td>
-                    <td>{{x.cc}}</td>
-                    <td>{{x.driver}}</td>
-                    <td>{{x.attendant}}</td>
-                    <td>{{x.observer}}</td>
+                    <td>{{data[0].day}}</td>
+                    <td>{{data[0].cc}}</td>
+                    <td>{{data[0].driver}}</td>
+                    <td>{{data[0].attendant}}</td>
+                    <td>{{data[0].observer}}</td>
                 </tr>
                 </tbody>
             </table>

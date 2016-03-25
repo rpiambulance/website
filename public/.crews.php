@@ -11,20 +11,10 @@ $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 //$db = mysql_select_db("$db_name", $connection);
 $connection->exec("USE `$db_name`");
 
-$result = $connection->prepare("SELECT * FROM crews WHERE id > 490");
+$statement=$connection->prepare("SELECT * FROM crews WHERE id > 1386");
+$statement->execute();
+$results=$statement->fetchAll(PDO::FETCH_ASSOC);
+$json=json_encode($results);
 
-$outp = "";
-while($rs = $result->fetch(PDO::FETCH_ASSOC)) {
-    if ($outp != "") {$outp .= ",";}
-    $outp .= '{"id":"'  . $rs["id"] . '",';
-    $outp .= '"date":"'   . $rs["date"]        . '",';
-    $outp .= '"cc":"'   . $rs["cc"]        . '",';
-    $outp .= '"driver":"'   . $rs["driver"]        . '",';
-    $outp .= '"attendant":"'   . $rs["attendant"]        . '",';
-    $outp .= '"observer":"'. $rs["observer"]     . '"}';
-}
-$outp ='{"records":['.$outp.']}';
-$connection= null;
-
-echo(json_encode($outp));
+echo($json);
 ?>
