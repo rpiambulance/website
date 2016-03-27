@@ -13,7 +13,8 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
         c_phone: "",
         rpi_add: "",
         h_add: "",
-        dob: ""
+        dob: "",
+        user_name: ""
     };
 
     var autocompleteValidate = function () {
@@ -43,24 +44,24 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
         $http({
             method: 'POST',
             url: '.add_member.php',
-            data: autocompleteValidate(), // pass in data as strings
+            //data: autocompleteValidate(), // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).success(function (data) {
             if (!data.success) {
                 console.log("it failed!");
                 // if not successful, bind errors to error variables
-                if(data.errors.name) {
-                    $scope.errorName = data.errors.name;
-                }
-                if(data.errors.email) {
-                    $scope.errorEmail = data.errors.email;
-                }
-                if(data.errors.message) {
-                    $scope.errorTextarea = data.errors.message;
-                }
-                if(data.messageError) {
-                    $scope.submissionMessage = data.messageError;
-                }
+                //if(data.errors.name) {
+                //    $scope.errorName = data.errors.name;
+                //}
+                //if(data.errors.email) {
+                //    $scope.errorEmail = data.errors.email;
+                //}
+                //if(data.errors.message) {
+                //    $scope.errorTextarea = data.errors.message;
+                //}
+                //if(data.messageError) {
+                //    $scope.submissionMessage = data.messageError;
+                //}
 
                 $scope.submission = true; //shows the error message
             } else {

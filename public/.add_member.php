@@ -18,15 +18,16 @@ $input = json_decode($formData, true);
 $first_name = $input['first_name'];
 $last_name = $input['last_name'];
 $password = $input['password'];
-$password= md5($password);
+$password = md5($password);
 $email = $input['email'];
 $rcs = $input['RCS'];
 $rin = $input['RIN'];
-$home_phone= $input['phone'];
-$cell_phone= $input['c_phone'];
-$rpi_address= $input['rpi_add'];
-$home_address= $input['home_add'];
-$dob= $input['dob'];
+$home_phone = $input['phone'];
+$cell_phone = $input['c_phone'];
+$rpi_address = $input['rpi_add'];
+$home_address = $input['home_add'];
+$dob = $input['dob'];
+$username = $input['user_name'];
 
 
 $connection = new PDO($dsn, $duser, $dpassword);
@@ -43,6 +44,11 @@ if ($usernamecheck == 0) {
     $highID = $connection->exec("SELECT MAX(id) FROM members");
     $logid = $highID + 1;
     $connection->exec("INSERT INTO members (id, username, password, first_name, last_name, dob, email, rcs_id, rin, rpi_address, home_address, cell_phone, home_phone) VALUES ($logid, '$username', '$password', '$first_name', '$last_name', '$dob', '$email', '$rcs_id', $rin, '$rpi_address', '$home_address', '$cell_phone', '$home_phone')");
+    $data['success']= true;
 }
+
+$connection= null;
+
+echo(json_encode($data));
 
 ?>

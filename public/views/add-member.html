@@ -17,85 +17,92 @@
                         <div class="form-group">
                             <label for="fn">First Name</label>
 
-                            <input type="text" name="fn" id="fn" class="form-control" ng-model="first_name"
+                            <input type="text" name="fn" id="fn" class="form-control" ng-model="formData.first_name"
                                    placeholder="Thomas" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
                         <div class="form-group">
                             <label for="ln">Last Name</label>
-                            <input type="text" name="ln" id="ln" class="form-control" ng-model="last_name"
+                            <input type="text" name="ln" id="ln" class="form-control" ng-model="formData.last_name"
                                    placeholder="Tankengine" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="un">Username</label>
+                            <input type="text" name="un" id="un" class="form-control" ng-model="formData.user_name"
+                                   placeholder="Blue.Trainz" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
                         </div>
 
                         <!--DATE PICKER FOR BIRTHDAY-->
 
                         <div class="form-group">
-                            <label for="ln">Date of Birth</label>
-                            <input type="date" name="dob" id="dob" class="form-control" ng-model="dob"
+                            <label for="dob">Date of Birth</label>
+                            <input type="date" name="dob" id="dob" class="form-control" ng-model="formData.dob"
                                    placeholder="12/04/1995" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
 
                         <div class="form-group">
                             <label for="pass">Password</label>
-                            <input type="password" name="pass" id="pass" class="form-control" ng-model="password"
+                            <input type="password" name="pass" id="pass" class="form-control" ng-model="formData.password"
                                    placeholder="" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
 
                         <div class="form-group">
                             <label for="cpass">Confirm Password</label>
-                            <input type="password" name="cpass" id="cpass" class="form-control" ng-model="conf_pass"
+                            <input type="password" name="cpass" id="cpass" class="form-control" ng-model="formData.conf_pass"
                                    required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
 
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" ng-model="email"
+                            <input type="email" name="email" id="email" class="form-control" ng-model="formData.email"
                                    placeholder="thomas@blue-bell-railway.co.uk" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
 
                         <div class="form-group">
                             <label for="RCS">RCS</label>
-                            <input type="text" name="RCS" id="RCS" class="form-control" ng-model="RCS"
+                            <input type="text" name="RCS" id="RCS" class="form-control" ng-model="formData.RCS"
                                    placeholder="Example: tanket" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
 
                         <div class="form-group">
                             <label for="RIN">RIN</label>
-                            <input type="number" name="RIN" id="RIN" class="form-control" ng-model="RIN"
+                            <input type="number" name="RIN" id="RIN" class="form-control" ng-model="formData.RIN"
                                    placeholder="Example: 6612345" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
 
                         <div class="form-group">
                             <label for="phone">Cell Phone</label>
-                            <input type="tel" name="phone" id="phone" class="form-control" ng-model="c_phone"
+                            <input type="tel" name="phone" id="phone" class="form-control" ng-model="formData.c_phone"
                                    placeholder="(555) 555-5555" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
 
                         <div class="form-group">
                             <label for="hphone">Home Phone</label>
-                            <input type="tel" name="hphone" id="hphone" class="form-control" ng-model="phone"
+                            <input type="tel" name="hphone" id="hphone" class="form-control" ng-model="formData.phone"
                                    placeholder="(555) 555-5555" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
 
                         <div class="form-group">
                             <label for="ln">RPI Address</label>
-                            <input type="text" name="add" id="add" class="form-control" ng-model="rpi_add"
+                            <input type="text" name="add" id="add" class="form-control" ng-model="formData.rpi_add"
                                    placeholder="Quad Pardee 3002" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
 
                         <div class="form-group">
                             <label for="hadd">Home Address</label>
-                            <input type="text" name="hadd" id="hadd" class="form-control" ng-model="h_add"
+                            <input type="text" name="hadd" id="hadd" class="form-control" ng-model="formData.h_add"
                                    placeholder="Shed 1, Sodor, Island of Sodor" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
