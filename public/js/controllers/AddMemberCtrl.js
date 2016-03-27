@@ -17,6 +17,7 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
     };
 
     var autocompleteValidate = function () {
+        console.log($scope.formData);
         var corrected = {};
         for (var d in $scope.formData) {
             if($scope.formData.hasOwnProperty(d)) {
