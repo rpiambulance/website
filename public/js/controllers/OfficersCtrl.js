@@ -11,6 +11,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             'opportunity for more members to become involved with non-elected coordinator positions.'
         },
 
+
         {
             header: 'Officer Board 2015-2016',
             internal_title: 'O-Board Photo',
@@ -22,7 +23,19 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
         },
 
         {
-            header: 'Current Officer Board 2015-2016',
+            header: 'Current Officer Board 2016-2011',
+            internal_title: 'Past Officer Boards',
+            body: 'Line Side: \n' +
+            '* Captain: Joshua Correira \n' +
+            '* First Lieutenant: Brittany Rupp \n' +
+            '* Second Lieutenant: Jody Ostrander \n' +
+            '\nCivil Side:\n' +
+            '* President: Zackery White\n' +
+            '* Vice President: Mary-Clare Crochiere'
+        },
+
+        {
+            header: 'Officer Board 2015-2016',
             internal_title: 'Past Officer Boards',
             body: 'Line Side: \n' +
             '* Captain: Tom Manzini \n' +

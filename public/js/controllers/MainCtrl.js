@@ -58,7 +58,8 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'officers', title: 'Officers'},
             {page: '5939-about', title: 'Ambulance'},
             {page: 'fr59-about', title: 'First Response'},
-            {page: 'media', title: 'Media'}
+            {page: 'media', title: 'Media'},
+            {page: 'nominations', title: 'Nominations'}
         ]
         },
         {page: 'join', title: 'Join Us', isDropdown: false},

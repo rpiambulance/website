@@ -86,7 +86,8 @@ if (!empty($errors)) {
     // EMAIL TO THE O-BOARD ************************
 
     $email_message = $message .
-        "\n" .
+        "\nYou have received a request from the website contact form. It is included below:\n" .
+        "\n".
         "\nPhone: ". $phone;
 
     $headers = 'From: ' . $email . "\r\n" .

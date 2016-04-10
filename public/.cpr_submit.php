@@ -84,6 +84,7 @@ if (!empty($errors)) {
         'Reply-To: ' . $email . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
     @mail($cpr_sub, $subject, $email_message, $headers);
+    @mail($email_to, $subject, $email_message, $headers);
 
     // Email the sender a confirmation:
     $headers_requester= "From: no-reply-robots@rpiambulance.com \r\n".
