@@ -23,7 +23,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
         },
 
         {
-            header: 'Current Officer Board 2016-2011',
+            header: 'Current Officer Board 2016-2017',
             internal_title: 'Past Officer Boards',
             body: 'Line Side: \n' +
             '* Captain: Joshua Correira \n' +
