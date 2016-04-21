@@ -43,7 +43,7 @@ $usernamecheck = mysql_num_rows($statement);
 if ($usernamecheck == 0) {
     $highID = $connection->exec("SELECT MAX(id) FROM members");
     $logid = $highID + 1;
-    $connection->exec("INSERT INTO members (id, username, password, first_name, last_name, dob, email, rcs_id, rin, rpi_address, home_address, cell_phone, home_phone) VALUES ($logid, '$username', '$password', '$first_name', '$last_name', '$dob', '$email', '$rcs_id', $rin, '$rpi_address', '$home_address', '$cell_phone', '$home_phone')");
+    $connection->exec("INSERT INTO members(id, username, password, first_name, last_name, dob, email, rcs_id, rin, rpi_address, home_address, cell_phone, home_phone) VALUES ($logid, '$username', '$password', '$first_name', '$last_name', '$dob', '$email', '$rcs', $rin, '$rpi_address', '$home_address', '$cell_phone', '$home_phone')");
     $data['success']= true;
 }
 
