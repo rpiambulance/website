@@ -55,21 +55,9 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
                 if (!data.success) {
                     console.log("it failed!");
                     console.log(data);
-                    // if not successful, bind errors to error variables
-                    //if(data.errors.name) {
-                    //    $scope.errorName = data.errors.name;
-                    //}
-                    //if(data.errors.email) {
-                    //    $scope.errorEmail = data.errors.email;
-                    //}
-                    //if(data.errors.message) {
-                    //    $scope.errorTextarea = data.errors.message;
-                    //}
-                    //if(data.messageError) {
-                    //    $scope.submissionMessage = data.messageError;
-                    //}
 
                     $scope.submission = true; //shows the error message
+                    $scope.showError= true;
                 } else {
                     $scope.showContactSuccess = true;
                     // if successful, bind success message to message

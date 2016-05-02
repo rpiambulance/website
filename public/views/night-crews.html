@@ -14,13 +14,13 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-controller="NightCrewsCtrl">
+                <tr ng-controller="NightCrewsCtrl" ng-repeat="i in crew">
                     <td>DAY</td>
-                    <td>{{data[0].day}}</td>
-                    <td>{{data[0].cc}}</td>
-                    <td>{{data[0].driver}}</td>
-                    <td>{{data[0].attendant}}</td>
-                    <td>{{data[0].observer}}</td>
+                    <td>{{i.date}}</td>
+                    <td>{{i.cc}}</td>
+                    <td>{{i.driver}}</td>
+                    <td>{{i.attendant}}</td>
+                    <td>{{i.observer}}</td>
                 </tr>
                 </tbody>
             </table>

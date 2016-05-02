@@ -1,5 +1,6 @@
 angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$http', function($scope, $http) {
 
+    $scope.crew;
     $scope.number= 7;
     $scope.getNumber = function(num) {
         return new Array(num);
@@ -41,7 +42,9 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
 
             $scope.submission = true; //shows the error message
         } else {
-           console.log(data);
+            $scope.crew= data;
+            console.log("This is data!");
+           console.log($scope.crew);
         }
     });
 

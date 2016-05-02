@@ -11,6 +11,12 @@
                         aria-hidden="false">&times;</span></button>
                 <i class="fa fa-user-plus"></i><strong> Success!</strong> Woot!! You are now a member!
             </div>
+            <div class="alert alert-danger alert-dismissible" ng-show="showError" role="alert">
+                <button type="button" class="close" ng-click="showContactSuccess = false"><span
+                        aria-hidden="false">&times;</span></button>
+                <i class="fa fa-times-circle"></i><strong> Oh no!</strong> Something went wrong. Please make sure every
+                field is filled out.
+            </div>
             <div class="col-lg-12">
                 <div class="card card-container">
                     <form role="form" ng-submit="submitForm()" class="form" name="add_form" novalidate>
@@ -46,14 +52,16 @@
 
                         <div class="form-group">
                             <label for="pass">Password</label>
-                            <input type="password" name="pass" id="pass" class="form-control" ng-model="formData.password"
+                            <input type="password" name="pass" id="pass" class="form-control"
+                                   ng-model="formData.password"
                                    placeholder="" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
 
                         <div class="form-group">
                             <label for="cpass">Confirm Password</label>
-                            <input type="password" name="cpass" id="cpass" class="form-control" ng-model="formData.conf_pass"
+                            <input type="password" name="cpass" id="cpass" class="form-control"
+                                   ng-model="formData.conf_pass"
                                    required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
