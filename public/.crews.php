@@ -14,6 +14,7 @@ $connection->exec("USE `$db_name`");
 $statement=$connection->prepare("SELECT * FROM crews WHERE id > 1386");
 $statement->execute();
 $results=$statement->fetchAll(PDO::FETCH_ASSOC);
+
 $json=json_encode($results);
 
 echo($json);

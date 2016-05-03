@@ -1,16 +1,16 @@
-angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$http', function($scope, $http) {
+angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$http', function ($scope, $http) {
 
     $scope.crew;
-    $scope.number= 7;
-    $scope.getNumber = function(num) {
+    $scope.number = 7;
+    $scope.getNumber = function (num) {
         return new Array(num);
     };
 
     var autocompleteValidate = function () {
         var corrected = {};
         for (var d in $scope.formData) {
-            if($scope.formData.hasOwnProperty(d)) {
-                if(document.getElementById(d).value !== $scope.formData[d] && d != "g-recaptcha-response") {
+            if ($scope.formData.hasOwnProperty(d)) {
+                if (document.getElementById(d).value !== $scope.formData[d] && d != "g-recaptcha-response") {
                     corrected[d] = document.getElementById(d).value;
                 } else {
                     corrected[d] = $scope.formData[d];
@@ -34,7 +34,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         // set the headers so angular passing info as form data (not request payload)
     }).success(function (data) {
-        data.success= true;
+        data.success = true;
         if (!data.success) {
             console.log(data);
             console.log("it failed!");
@@ -42,11 +42,25 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
 
             $scope.submission = true; //shows the error message
         } else {
-            $scope.crew= data;
-            console.log("This is data!");
-           console.log($scope.crew);
+            $scope.crew = data;
+            for (var i=0; i<7; i++){
+                $scope.crew[i].date= format($scope.crew[i].date);
+            }
         }
     });
+
+    function format(inputDate) {
+        var date = new Date(inputDate);
+        if (!isNaN(date.getTime())) {
+            var day = date.getDate().toString();
+            var month = (date.getMonth() + 1).toString();
+            // Months use 0 index.
+
+            return (month[1] ? month : '0' + month[0]) + '/' +
+                (day[1] ? day : '0' + day[0]) + '/' +
+                date.getFullYear().toString().substr(2,2);
+        }
+    }
 
 
 }]);
