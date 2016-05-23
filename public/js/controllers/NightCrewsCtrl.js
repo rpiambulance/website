@@ -56,6 +56,6 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
 
     $scope.canDelete = function (id) {
         // TODO: write logic for when someone can remove someone from crews
-        return true;
+        return id > 0 ? true: false;
     }
 }]);
