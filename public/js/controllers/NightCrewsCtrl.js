@@ -1,6 +1,7 @@
 angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$http', function ($scope, $http) {
 
-    $scope.crew;
+    $scope.currentWeekCrews = [];
+    $scope.upcomingWeekCrews = [];
     $scope.number = 7;
     $scope.getNumber = function (num) {
         return new Array(num);
@@ -34,7 +35,6 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         // set the headers so angular passing info as form data (not request payload)
     }).success(function (data) {
-        data.success = true;
         if (!data.success) {
             console.log(data);
             console.log("it failed!");
@@ -42,25 +42,20 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
 
             $scope.submission = true; //shows the error message
         } else {
-            $scope.crew = data;
-            for (var i=0; i<7; i++){
-                $scope.crew[i].date= format($scope.crew[i].date);
-            }
+            // Since the crews come in order of latest first, we need to separate
+            // them in a way that almost seems backwards.
+
+            $scope.currentWeekCrews = data.result.slice(7);
+            $scope.upcomingWeekCrews = data.result.slice(0, 7);
         }
     });
 
-    function format(inputDate) {
-        var date = new Date(inputDate);
-        if (!isNaN(date.getTime())) {
-            var day = date.getDate().toString();
-            var month = (date.getMonth() + 1).toString();
-            // Months use 0 index.
+    $scope.formatName = function (first, last) {
+        return first ? (first.substr(0,1) + '. ' + last) : (last ? last : '');
+    };
 
-            return (month[1] ? month : '0' + month[0]) + '/' +
-                (day[1] ? day : '0' + day[0]) + '/' +
-                date.getFullYear().toString().substr(2,2);
-        }
+    $scope.canDelete = function (id) {
+        // TODO: write logic for when someone can remove someone from crews
+        return true;
     }
-
-
 }]);

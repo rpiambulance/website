@@ -2890,3 +2890,8 @@ li .view-nav-tabs{
 .fa-wa{
     color: #f0ad4e;
 }
+
+.nc-button {
+    margin-top: 0;
+    padding: 2px 20px;
+}
