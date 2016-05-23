@@ -6,7 +6,6 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
     $scope.radioFilter = false;
 
     function positionHelper(positions, member, fieldToCheck, toAdd) {
-        console.log(fieldToCheck, member[fieldToCheck]);
         if(member[fieldToCheck] == 1) {
             return (positions.length > 0 ? ", " : "") + toAdd;
         } else {

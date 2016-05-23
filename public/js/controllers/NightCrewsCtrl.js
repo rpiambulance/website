@@ -7,20 +7,6 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
         return new Array(num);
     };
 
-    var autocompleteValidate = function () {
-        var corrected = {};
-        for (var d in $scope.formData) {
-            if ($scope.formData.hasOwnProperty(d)) {
-                if (document.getElementById(d).value !== $scope.formData[d] && d != "g-recaptcha-response") {
-                    corrected[d] = document.getElementById(d).value;
-                } else {
-                    corrected[d] = $scope.formData[d];
-                }
-            }
-        }
-        return corrected;
-    };
-
     $scope.clearForm = function () {
         for (var d in $scope.formData) {
             if ($scope.formData.hasOwnProperty(d))
@@ -31,7 +17,6 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
     $http({
         method: 'POST',
         url: '.crews.php',
-        data: autocompleteValidate(), // pass in data as strings
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         // set the headers so angular passing info as form data (not request payload)
     }).success(function (data) {
