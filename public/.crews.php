@@ -90,13 +90,18 @@ $query = <<<EOT
   LIMIT 14;
 EOT;
 
-$statement=$connection->prepare($query);
-$statement->execute();
-$results=$statement->fetchAll(PDO::FETCH_ASSOC);
+try {
+  $statement=$connection->prepare($query);
+  $statement->execute();
+  $results=$statement->fetchAll(PDO::FETCH_ASSOC);
+
+  echo json_encode(array("result" => $results, "success" => true));
+} catch (Exception $e) {
+  echo json_encode(array("error" => $e, "success" => false));
+}
 
 // for ($x = 0; $x <= sizeof($results); $x++) {
 //     echo "The number is: $x <br>";
 // }
 
-echo json_encode(array("result" => $results, "success" => true));
 ?>
