@@ -1,5 +1,57 @@
 <section id="my-training">
     <div class="container">
-        crap
+        <ul>
+            <li class="btn btn-default"
+                    ng-repeat="tab in tabs"
+                    ng-class="{active:isActiveTab(tab.url)}"
+                    ng-click="onClickTab(tab)">{{tab.title}}
+            </li>
+        </ul>
+        <div id="mainView">
+            <div ng-include="currentTab"></div>
+        </div>
+        <script type="text/ng-template" id="att.tpl.html">
+            <div id="att">
+                <h2>Attendant</h2>
+                <p>Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim
+                    congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc.</p>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="driver.tpl.html">
+            <div id="driver">
+                <h2>Driver</h2>
+                <p>Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna
+                    sit amet arcu. Class aptent taciti sociosqu.</p>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="cc.tpl.html">
+            <div id="cc">
+                <h2>Crew Chief</h2>
+                <p>In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis
+                    aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus
+                    lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu.</p>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="frcc.tpl.html">
+            <div id="frcc">
+                <h2>First Response Crew Chief</h2>
+                <p>In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis
+                    aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus
+                    lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu.</p>
+            </div>
+        </script>
+
+        <script type="text/ng-template" id="ees.tpl.html">
+            <div id="ees">
+                <h2>Emergency Event Supervisor</h2>
+                <p>In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis
+                    aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus
+                    lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu.</p>
+            </div>
+        </script>
+
     </div>
 </section>

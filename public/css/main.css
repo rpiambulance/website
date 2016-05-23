@@ -2772,3 +2772,19 @@ h2{
 .fixed-height-form-element {
     height: 80px; /*play with this value*/
 }
+
+ul .view-nav{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+li .view-nav-tabs{
+    float: left;
+    border: 1px solid #000;
+    border-bottom-width: 0;
+    margin: 3px 3px 0px 3px;
+    padding: 5px 5px 0px 5px;
+    background-color: #CCC;
+    color: #696969;
+}
