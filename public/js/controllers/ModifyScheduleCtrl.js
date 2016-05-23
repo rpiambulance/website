@@ -4,21 +4,24 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$q', fu
     $scope.upcomingWeekCrews = [];
     $scope.members = [];
 
-    $q.all([
-        $http({
-            method: 'POST',
-            url: '.crews.php',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        }),
-        $http({
-            method: 'POST',
-            url: '.member_table.php',
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        })
-    ]).then(function (responses) {
-        $scope.currentWeekCrews = responses[0].data.result.slice(7);
-        $scope.upcomingWeekCrews = responses[0].data.result.slice(0, 7);
+    $scope.load = function () {
+        $q.all([
+            $http({
+                method: 'POST',
+                url: '.crews.php',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            }),
+            $http({
+                method: 'POST',
+                url: '.member_table.php',
+                headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+            })
+        ]).then(function (responses) {
+            $scope.currentWeekCrews = responses[0].data.result.slice(7);
+            $scope.upcomingWeekCrews = responses[0].data.result.slice(0, 7);
 
-        $scope.members = responses[1].data;
-    });
+            $scope.members = responses[1].data;
+        });
+    };
+    $scope.load();
 }]);

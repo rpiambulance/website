@@ -15,60 +15,60 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="i in currentWeekCrews | orderBy:'id'">
-                        <td>{{i.date | date:'EEEE'}}</td>
-                        <td>{{i.date | date:'shortDate'}}</td>
-                        <td>
-                            <div class="form-group">
-                                <select class="form-control" ng-model="i.cc_member_id">
-                                    <option value="-2">OUT OF SERVICE</option>
-                                    <option value="-1">RESERVED</option>
-                                    <option value="0"></option>
-                                    <option ng-repeat="m in members | orderBy:'last_name'"
-                                            value="{{m.id}}">
-                                        {{m.last_name.trim() + ', ' + m.first_name.trim()}}
-                                    </option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <select class="form-control" ng-model="i.driver_member_id">
-                                    <option value="-2">OUT OF SERVICE</option>
-                                    <option value="-1">RESERVED</option>
-                                    <option value="0"></option>
-                                    <option ng-repeat="m in members | orderBy:'last_name'"
-                                            value="{{m.id}}">
-                                        {{m.last_name.trim() + ', ' + m.first_name.trim()}}
-                                    </option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <select class="form-control" ng-model="i.attendant_member_id">
-                                    <option value="-2">OUT OF SERVICE</option>
-                                    <option value="-1">RESERVED</option>
-                                    <option value="0"></option>
-                                    <option ng-repeat="m in members | orderBy:'last_name'"
-                                            value="{{m.id}}">
-                                        {{m.last_name.trim() + ', ' + m.first_name.trim()}}
-                                    </option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <select class="form-control" ng-model="i.observer_member_id">
-                                    <option value="-2">OUT OF SERVICE</option>
-                                    <option value="-1">RESERVED</option>
-                                    <option value="0"></option>
-                                    <option ng-repeat="m in members | orderBy:'last_name'"
-                                            value="{{m.id}}">
-                                        {{m.last_name.trim() + ', ' + m.first_name.trim()}}
-                                    </option>
-                                </select>
-                            </div>
-                        </td>
+                    <td>{{i.date | date:'EEEE'}}</td>
+                    <td>{{i.date | date:'shortDate'}}</td>
+                    <td>
+                        <div class="form-group">
+                            <select class="form-control" ng-model="i.cc_member_id">
+                                <option value="-2">OUT OF SERVICE</option>
+                                <option value="-1">RESERVED</option>
+                                <option value="0"></option>
+                                <option ng-repeat="m in members | orderBy:'last_name'"
+                                        ng-if="m.crewchief == 1 || m.cctrainer == 1 || m.backupcc == 1" value="{{m.id}}">
+                                    {{m.last_name.trim() + ', ' + m.first_name.trim()}}
+                                </option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <select class="form-control" ng-model="i.driver_member_id">
+                                <option value="-2">OUT OF SERVICE</option>
+                                <option value="-1">RESERVED</option>
+                                <option value="0"></option>
+                                <option ng-repeat="m in members | orderBy:'last_name'"
+                                        ng-if="m.driver == 1 || m.drivertrainer == 1 || m.backupdriver == 1" value="{{m.id}}">
+                                    {{m.last_name.trim() + ', ' + m.first_name.trim()}}
+                                </option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <select class="form-control" ng-model="i.attendant_member_id">
+                                <option value="-2">OUT OF SERVICE</option>
+                                <option value="-1">RESERVED</option>
+                                <option value="0"></option>
+                                <option ng-repeat="m in members | orderBy:'last_name'"
+                                        ng-if="m.attendant == 1 || m.observer == 1" value="{{m.id}}">
+                                    {{m.last_name.trim() + ', ' + m.first_name.trim()}}
+                                </option>
+                            </select>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="form-group">
+                            <select class="form-control" ng-model="i.observer_member_id">
+                                <option value="-2">OUT OF SERVICE</option>
+                                <option value="-1">RESERVED</option>
+                                <option value="0"></option>
+                                <option ng-repeat="m in members | orderBy:'last_name'"
+                                        ng-if="m.attendant == 1 || m.observer == 1" value="{{m.id}}">
+                                    {{m.last_name.trim() + ', ' + m.first_name.trim()}}
+                                </option>
+                            </select>
+                        </div>
+                    </td>
                     </tr>
                 </tbody>
             </table>
@@ -95,7 +95,7 @@
                                     <option value="-1">RESERVED</option>
                                     <option value="0"></option>
                                     <option ng-repeat="m in members | orderBy:'last_name'"
-                                            value="{{m.id}}">
+                                            ng-if="m.crewchief == 1 || m.cctrainer == 1 || m.backupcc == 1" value="{{m.id}}">
                                         {{m.last_name.trim() + ', ' + m.first_name.trim()}}
                                     </option>
                                 </select>
@@ -108,7 +108,7 @@
                                     <option value="-1">RESERVED</option>
                                     <option value="0"></option>
                                     <option ng-repeat="m in members | orderBy:'last_name'"
-                                            value="{{m.id}}">
+                                            ng-if="m.driver == 1 || m.drivertrainer == 1 || m.backupdriver == 1" value="{{m.id}}">
                                         {{m.last_name.trim() + ', ' + m.first_name.trim()}}
                                     </option>
                                 </select>
@@ -121,7 +121,7 @@
                                     <option value="-1">RESERVED</option>
                                     <option value="0"></option>
                                     <option ng-repeat="m in members | orderBy:'last_name'"
-                                            value="{{m.id}}">
+                                            ng-if="m.attendant == 1 || m.observer == 1" value="{{m.id}}">
                                         {{m.last_name.trim() + ', ' + m.first_name.trim()}}
                                     </option>
                                 </select>
@@ -134,7 +134,7 @@
                                     <option value="-1">RESERVED</option>
                                     <option value="0"></option>
                                     <option ng-repeat="m in members | orderBy:'last_name'"
-                                            value="{{m.id}}">
+                                            ng-if="m.attendant == 1 || m.observer == 1" value="{{m.id}}">
                                         {{m.last_name.trim() + ', ' + m.first_name.trim()}}
                                     </option>
                                 </select>
@@ -148,7 +148,7 @@
         <div class="center">
             <button class="btn btn-success">Update Schedule</button>
             <button class="btn btn-warning">Clear Upcoming</button>
-            <button class="btn btn-danger">Cancel Change</button>
+            <button class="btn btn-danger" ng-click="load()">Cancel Change</button>
         </div>
     </div> <!--/.container-->
 </section>
