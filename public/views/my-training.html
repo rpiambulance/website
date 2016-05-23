@@ -2,9 +2,9 @@
     <div class="container">
         <ul>
             <li class="btn btn-default"
-                    ng-repeat="tab in tabs"
-                    ng-class="{active:isActiveTab(tab.url)}"
-                    ng-click="onClickTab(tab)">{{tab.title}}
+                ng-repeat="tab in tabs"
+                ng-class="{active:isActiveTab(tab.url)}"
+                ng-click="onClickTab(tab)">{{tab.title}}
             </li>
         </ul>
         <div id="mainView">
@@ -13,43 +13,650 @@
         <script type="text/ng-template" id="att.tpl.html">
             <div id="att">
                 <h2>Attendant</h2>
-                <p>Praesent id metus massa, ut blandit odio. Proin quis tortor orci. Etiam at risus et justo dignissim
-                    congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc.</p>
+                <h4>Overall Progress</h4>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                         aria-valuenow="50" aria-valuemin="0" aria-valuemax="100" style="width:50%">
+                        50% Complete
+                    </div>
+                </div>
+                <h4>Checklist</h4>
+                <h5>Discuss and demonstrate knowledge of:</h5>
+                <table id="" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th width="15%">Status</th>
+                        <th>Task/Topic</th>
+                        <th width="15%">Preceptor</th>
+                        <th width="15%">Date Completed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>Scene Safety</td>
+                        <td>982</td>
+                        <td>5/5/15</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>Infection Control Practices</td>
+                        <td>983, 984</td>
+                        <td>5/6/16</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Patient Confidentiality</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Professionalism</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-exclamation fa-wa"></i></td>
+                        <td>Call Mechanics</td>
+                        <td>985</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h5>Locate the following in the ambulance and demonstrate knowledge of:</h5>
+                <table id="" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th width="15%">Status</th>
+                        <th>Task/Topic</th>
+                        <th width="15%">Preceptor</th>
+                        <th width="15%">Date Completed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>Airway Adjuncts</td>
+                        <td>982</td>
+                        <td>5/5/15</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>BVM</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Oxygen</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Suction</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Bleeding Control Supplies</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Splints</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Cervical Collar</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Backboard, Head blocks, Straps</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Carrying Devices</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>KED</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Pediatric Equipment</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h5>Demonstrate how to:</h5>
+                <table id="" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th width="15%">Status</th>
+                        <th>Task/Topic</th>
+                        <th width="15%">Preceptor</th>
+                        <th width="15%">Date Completed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>Take a full set of vitals</td>
+                        <td>982</td>
+                        <td>5/5/15</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Perform radio communications within RPIA</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Perform proper lifting techniques</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Remove and replace stretcher</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Use stair chair</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </script>
 
         <script type="text/ng-template" id="driver.tpl.html">
             <div id="driver">
                 <h2>Driver</h2>
-                <p>Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna
-                    sit amet arcu. Class aptent taciti sociosqu.</p>
+                <h4>Overall Progress</h4>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                         aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+                        100% Complete
+                    </div>
+                </div>
+                <h4>Checklist:</h4>
+                <h5>Demonstrate Knowledge of:</h5>
+                <table id="" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th width="15%">Status</th>
+                        <th>Task/Topic</th>
+                        <th width="15%">Preceptor</th>
+                        <th width="15%">Date Completed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>Scene Safety</td>
+                        <td>982</td>
+                        <td>5/5/15</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>Infection Control Practices</td>
+                        <td>983, 984</td>
+                        <td>5/6/16</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Patient Confidentiality</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Duties of the Driver</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-exclamation fa-wa"></i></td>
+                        <td>Call Logistics</td>
+                        <td>985</td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-exclamation fa-wa"></i></td>
+                        <td>NYS Laws Regarding Emergency Vehicle Operation</td>
+                        <td>985</td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-exclamation fa-wa"></i></td>
+                        <td>RPIA Restrictions on NYS Emergency Vehicle Laws</td>
+                        <td>985</td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h5>Locate on a map:</h5>
+                <table id="" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th width="15%">Status</th>
+                        <th>Task/Topic</th>
+                        <th width="15%">Preceptor</th>
+                        <th width="15%">Date Completed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>All RPI Campus Buildings and Landmarks</td>
+                        <td>982</td>
+                        <td>5/5/15</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Routes to Local Hospitals</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Van Every Avenue, Troy</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Central Avenue, City of Rensselaer</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Wanda Court, Town of North Greenbush</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h5>Demonstrate how to:</h5>
+                <table id="" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th width="15%">Status</th>
+                        <th>Task/Topic</th>
+                        <th width="15%">Preceptor</th>
+                        <th width="15%">Date Completed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>Perform Radio Communications</td>
+                        <td>982</td>
+                        <td>5/5/15</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Make a Radio Report to a Hospital</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Request ALS</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Perform and ALS Intercept</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Operate Ambulance Controls</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Read a Map and Plan a Route to a Location</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Perform and Complete Vehicle Inspection</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </script>
 
         <script type="text/ng-template" id="cc.tpl.html">
             <div id="cc">
                 <h2>Crew Chief</h2>
-                <p>In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis
-                    aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus
-                    lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu.</p>
-            </div>
-        </script>
-
-        <script type="text/ng-template" id="frcc.tpl.html">
-            <div id="frcc">
-                <h2>First Response Crew Chief</h2>
-                <p>In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis
-                    aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus
-                    lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu.</p>
+                <h4>Overall Progress</h4>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width:60%">
+                        60% Complete
+                    </div>
+                </div>
+                <h4>Checklist:</h4>
+                <h5>Demonstrate Knowledge of:</h5>
+                <table id="" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th width="15%">Status</th>
+                        <th>Task/Topic</th>
+                        <th width="15%">Preceptor</th>
+                        <th width="15%">Date Completed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>Scene Safety</td>
+                        <td>982</td>
+                        <td>5/5/15</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>Infection Control Practices</td>
+                        <td>983, 984</td>
+                        <td>5/6/16</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Patient Confidentiality</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Duties of the Crew Chief</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h5>Demonstrate Mastery of:</h5>
+                <table id="" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th width="15%">Status</th>
+                        <th>Task/Topic</th>
+                        <th width="15%">Preceptor</th>
+                        <th width="15%">Date Completed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>History Taking Skills</td>
+                        <td>982</td>
+                        <td>5/5/15</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Physical Exam Skills</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Treatments as per NYS-EMT-B Protocols</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>PCR Writing</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h5>Discuss:</h5>
+                <table id="" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th width="15%">Status</th>
+                        <th>Task/Topic</th>
+                        <th width="15%">Preceptor</th>
+                        <th width="15%">Date Completed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>Leadership</td>
+                        <td>982</td>
+                        <td>5/5/15</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Professionalism</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Working With Other Agencies</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Requesting ALS and ALS Intercepts</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Requesting Additional Resources</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Appropriate Hospital Destinations</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Radio Reports</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Hospital Transfers</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>RMA Procedures</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Radio Communications</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Incident Management</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </script>
 
         <script type="text/ng-template" id="ees.tpl.html">
             <div id="ees">
                 <h2>Emergency Event Supervisor</h2>
-                <p>In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis
-                    aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus
-                    lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu.</p>
+                <h4>Overall Progress</h4>
+                <div class="progress">
+                    <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar"
+                         aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%">
+                        0% Complete
+                    </div>
+                </div>
+                <h4>Checklist:</h4>
+                <h5>Demonstrate Knowledge of:</h5>
+                <table id="" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th width="15%">Status</th>
+                        <th>Task/Topic</th>
+                        <th width="15%">Preceptor</th>
+                        <th width="15%">Date Completed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>Scene Safety</td>
+                        <td>982</td>
+                        <td>5/5/15</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>Infection Control Practices</td>
+                        <td>983, 984</td>
+                        <td>5/6/16</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Duties of an Event EMS Supervisor</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>RPIA Special Event Procedures and SOPs</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>First Aid Room Layout and Equipment</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h5>Demonstrate Mastery of:</h5>
+                <table id="" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th width="15%">Status</th>
+                        <th>Task/Topic</th>
+                        <th width="15%">Preceptor</th>
+                        <th width="15%">Date Completed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>Event Procedures and Management</td>
+                        <td>982</td>
+                        <td>5/5/15</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Call Logistics</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Event Documentation</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <h5>Discuss:</h5>
+                <table id="" class="table table-bordered table-striped">
+                    <thead>
+                    <tr>
+                        <th width="15%">Status</th>
+                        <th>Task/Topic</th>
+                        <th width="15%">Preceptor</th>
+                        <th width="15%">Date Completed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-check fa-suc"></i></td>
+                        <td>Incident Management</td>
+                        <td>982</td>
+                        <td>5/5/15</td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Working with Other Agencies</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Radio Communications</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Leadership</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>Requesting Additional Resources</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="text-center">
+                        <td><i class="fa fa-2x fa-times fa-fail"></i></td>
+                        <td>NYS Sanitary Code: Part 18 Regulations</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </script>
 

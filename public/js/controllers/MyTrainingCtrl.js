@@ -14,10 +14,6 @@ angular.module('MyTrainingCtrl', []).controller('MyTrainingCtrl', ['$scope', '$h
             url: 'cc.tpl.html'
         },
         {
-            title: 'FR Crew Chief',
-            url: 'frcc.tpl.html'
-        },
-        {
             title: 'EES',
             url: 'ees.tpl.html'
         }];
