@@ -3,112 +3,103 @@
         <h2>Civil Side Officers</h2>
         <table id="Civil" class="table table-bordered table-striped">
             <thead>
-            <tr>
-                <th>Radio ID</th>
-                <th>Last Name</th>
-                <th>First Name</th>
-                <th>Position</th>
-                <th>Email</th>
-            </tr>
+                <tr>
+                    <th width="10%">Radio ID</th>
+                    <th width="22.5%">Last Name</th>
+                    <th width="22.5%">First Name</th>
+                    <th width="22.5%">Position</th>
+                    <th width="22.5%">Email</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>986</td>
-                <td>Williams</td>
-                <td>Ciera</td>
-                <td>President</td>
-                <td>willic12@rpi.edu</td>
-            </tr>
-            <tr>
-                <td>981</td>
-                <td>Martin</td>
-                <td>Rebbecca</td>
-                <td>Vice President</td>
-                <td>martir12@rpi.edu</td>
-            </tr>
+                <tr ng-repeat="o in civilSide | orderBy:['-pres','-vicepres']">
+                    <td><span ng-if="m.radionum != 0">{{o.radionum}}</span></td>
+                    <td>{{o.last_name}}</td>
+                    <td>{{o.first_name}}</td>
+                    <td ng-if="o.pres == 1">President</td>
+                    <td ng-if="o.vicepres == 1">Vice President</td>
+                    <td><a ng-href="mailto:{{o.email.toLowerCase()}}">{{o.email.toLowerCase()}}</a></td>
+                </tr>
+            </tbody>
         </table>
         <h2>Line Side Officers</h2>
         <table id="Line" class="table table-bordered table-striped">
             <thead>
-            <tr>
-                <th>Radio ID</th>
-                <th>Last Name</th>
-                <th>First Name</th>
-                <th>Position</th>
-                <th>Email</th>
-            </tr>
+                <tr>
+                    <th width="10%">Radio ID</th>
+                    <th width="22.5%">Last Name</th>
+                    <th width="22.5%">First Name</th>
+                    <th width="22.5%">Position</th>
+                    <th width="22.5%">Email</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>974</td>
-                <td>Manzini</td>
-                <td>Thomas</td>
-                <td>Captain</td>
-                <td>manzit@rpi.edu</td>
-            </tr>
-            <tr>
-                <td>980</td>
-                <td>Rupp</td>
-                <td>Brittany</td>
-                <td>First Lieutenant</td>
-                <td>ruppb@rpi.edu</td>
-            </tr>
-            <tr>
-                <td>985</td>
-                <td>Leinweber</td>
-                <td>Harrisson</td>
-                <td>Second Lieutenant</td>
-                <td>lienwh@rpi.edu</td>
-            </tr>
+                <tr ng-repeat="o in lineSide | orderBy:['-captain','-firstlt','-secondlt']">
+                    <td><span ng-if="m.radionum != 0">{{o.radionum}}</span></td>
+                    <td>{{o.last_name}}</td>
+                    <td>{{o.first_name}}</td>
+                    <td ng-if="o.captain == 1">Captain</td>
+                    <td ng-if="o.firstlt == 1">First Lieutenant</td>
+                    <td ng-if="o.secondlt == 1">Second Lieutenant</td>
+                    <td><a ng-href="mailto:{{o.email.toLowerCase()}}">{{o.email.toLowerCase()}}</a></td>
+                </tr>
+            </tbody>
         </table>
 
         <h2>Other Positions</h2>
         <table id="Other" class="table table-bordered table-striped">
             <thead>
-            <tr>
-                <th>Radio ID</th>
-                <th>Last Name</th>
-                <th>First Name</th>
-                <th>Position</th>
-                <th>Email</th>
-            </tr>
+                <tr>
+                    <th width="10%">Radio ID</th>
+                    <th width="22.5%">Last Name</th>
+                    <th width="22.5%">First Name</th>
+                    <th width="22.5%">Position</th>
+                    <th width="22.5%">Email</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>XXX</td>
-                <td>Ostrander</td>
-                <td>Jody</td>
-                <td>Scheduling Coordinator</td>
-                <td>scheduling@rpiambulance.com</td>
-            </tr>
-            <tr>
-                <td>982</td>
-                <td>Sparkman</td>
-                <td>David</td>
-                <td>Webmaster</td>
-                <td>webmaster@rpiambulance.com</td>
-            </tr>
-            <tr>
-                <td>975</td>
-                <td>Williams</td>
-                <td>Jordan</td>
-                <td>Training Committee Chair</td>
-                <td>training@rpiambulance.com</td>
-            </tr>
+                <tr ng-repeat="o in otherOfficers">
+                    <td><span ng-if="m.radionum != 0">{{o.radionum}}</span></td>
+                    <td>{{o.last_name}}</td>
+                    <td>{{o.first_name}}</td>
+                    <td ng-if="o.radioco == 1">Radio Coordinator</td>
+                    <td ng-if="o.traincommchair == 1">Training Committee Chair</td>
+                    <td ng-if="o.schedco == 1">Scheduling Coordinator</td>
+                    <td><a ng-href="mailto:{{o.email.toLowerCase()}}">{{o.email.toLowerCase()}}</a></td>
+                </tr>
+            </tbody>
         </table>
-        <h2>General Membership</h2>
+        <div class="btn-group btn-group-sm pull-right">
+            <button class="btn btn-default btn-danger"
+                    ng-class="{'active': !radioFilter}" ng-click="radioFilter = false">
+                    All Members
+            </button>
+            <button class="btn btn-default btn-danger"
+                    ng-class="{'active': radioFilter}" ng-click="radioFilter = true">
+                Members with Radios
+            </button>
+        </div>
+        <h2>
+            General Membership
+        </h2>
         <table id="General" class="table table-bordered table-striped">
             <thead>
-            <tr>
-                <th>Radio ID</th>
-                <th>Last Name</th>
-                <th>First Name</th>
-                <th>Position(s)</th>
-                <th>Email</th>
-            </tr>
+                <tr>
+                    <th width="10%">Radio ID</th>
+                    <th width="22.5%">Last Name</th>
+                    <th width="22.5%">First Name</th>
+                    <th width="22.5%">Position(s)</th>
+                    <th width="22.5%">Email</th>
+                </tr>
             </thead>
-            <tbody ng-repeat="member in results" data-ng-init="getMembers()">
-                <th></th>
+            <tbody>
+                <tr ng-repeat="m in members | orderBy:'last_name'" ng-if="!radioFilter || m.radionum != 0">
+                    <td><span ng-if="m.radionum != 0">{{m.radionum}}</span></td>
+                    <td>{{m.last_name}}</td>
+                    <td>{{m.first_name}}</td>
+                    <td>{{determinePositions(m)}}</td>
+                    <td><a ng-href="mailto:{{o.email.toLowerCase()}}">{{m.email.toLowerCase()}}</a></td>
+                </tr>
             </tbody>
         </table>
     </div>
