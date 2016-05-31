@@ -30,7 +30,7 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$wi
     $scope.submitForm = function () {
         $http({
             method: 'POST',
-            url: '.login.php',
+            url: 'login.php',
             data: autocompleteValidate(), // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).success(function (data) {

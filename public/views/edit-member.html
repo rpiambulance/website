@@ -50,7 +50,12 @@
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
 
-                        <!--DATE PICKER FOR BIRTHDAY-->
+                        <div class="form-group col-xs-6 fixed-height-form-element">
+                            <label for="bd">Birthday</label>
+                            <!--This should be switched to the signed in account with no option to change it-->
+                            <input type="date" name="bd" id="bd" class="form-control" ng-model="bd"
+                                   placeholder="12/04/1995" required/>
+                        </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="user">Username</label>
@@ -97,6 +102,13 @@
                             <label for="ln">RPI Address</label>
                             <!--This should be switched to the signed in account with no option to change it-->
                             <input type="text" name="add" id="add" class="form-control" ng-model="add"
+                                   placeholder="Shed 1, Sodor, Island of Sodor" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6 fixed-height-form-element">
+                            <label for="ln">Home Address</label>
+                            <!--This should be switched to the signed in account with no option to change it-->
+                            <input type="text" name="home_add" id="home_add" class="form-control" ng-model="home_add"
                                    placeholder="Shed 1, Sodor, Island of Sodor" required/>
                         </div>
 
@@ -324,6 +336,11 @@
 
                         <label class="radio-inline"><input type="radio" name="optradio">Yes</label>
                         <label class="radio-inline"><input type="radio" name="optradio">No</label>
+
+                        <h3>Website Access</h3>
+
+                        <label class="radio-inline"><input type="radio" name="optradio">Access Granted</label>
+                        <label class="radio-inline"><input type="radio" name="optradio">Access Revoked</label>
 
                         <h3>Member Status</h3>
 

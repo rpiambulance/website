@@ -118,7 +118,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'radio-callsigns', title: 'Radio Callsigns'},
             {page: 'rensco-resources', title: 'RENSCO Resources'},
             {page: 'sop', title: 'SOPs'},
-            {page: 'doh-resources', title: 'Supervisor'},
+            {page: 'doh-resources', title: 'DOH Resources'},
             {page: 'text-message-dispatch', title: 'Text Message Dispatch'}
         ]
         },

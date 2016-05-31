@@ -13,7 +13,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$q', fu
             }),
             $http({
                 method: 'POST',
-                url: '.member_table.php',
+                url: 'member_table.php',
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
         ]).then(function (responses) {
