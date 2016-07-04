@@ -3,7 +3,9 @@ angular.module('FuelLogCtrl', []).controller('FuelLogCtrl', ['$scope', '$http', 
     $scope.formData = {
         name: "",
         date: $scope.getDatetime,
-
+        qty: "",
+        mileage: "",
+        vehicle: ""
     };
 
     var autocompleteValidate = function () {
@@ -44,27 +46,22 @@ angular.module('FuelLogCtrl', []).controller('FuelLogCtrl', ['$scope', '$http', 
 
         $scope.formData["g-recaptcha-response"] = document.getElementById("g-recaptcha-response").value;
 
+        if ($scope.vehicle["Amb"] == true) {
+            $scope.formData["vehicle"]= "5939"
+        }
+        else if ($scope.vehicle["FR59"] == true) {
+            $scope.formData["vehicle"]= "FR-59"
+        }
+
         $http({
             method: 'POST',
-            url: '.contact_submit.php',
-            data: autocompleteValidate(), // pass in data as strings
+            url: '.fuel.php',
+            data: $scope.formData, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).success(function (data) {
             if (!data.success) {
                 console.log("it failed!");
                 // if not successful, bind errors to error variables
-                if(data.errors.name) {
-                    $scope.errorName = data.errors.name;
-                }
-                if(data.errors.email) {
-                    $scope.errorEmail = data.errors.email;
-                }
-                if(data.errors.message) {
-                    $scope.errorTextarea = data.errors.message;
-                }
-                if(data.messageError) {
-                    $scope.submissionMessage = data.messageError;
-                }
 
                 $scope.submission = true; //shows the error message
             } else {

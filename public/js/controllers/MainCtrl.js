@@ -144,7 +144,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             page: '', title: 'Account', isDropdown: true, dividersAfter: [], dropdownOptions: [
             {page: 'my-settings', title: 'My Settings'},
             {page: 'my-training', title: 'My Training'},
-            {page: '', title: 'Log Out'}
+            {page: 'logout', title: 'Log Out'}
         ]
         }
     ];

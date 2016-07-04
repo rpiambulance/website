@@ -2,14 +2,19 @@
 //header("Access-Control-Allow-Origin: *");
 //header("Content-Type: application/json; charset=UTF-8");
 
+
 require_once ".db_config.php";
 
-$connection = new PDO($dsn, $duser, $dpassword);
+$connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+if(!isset($dname)) {
+  $dname = 'ambulanc_web';
+}
+
 // Selecting Database
-//$db = mysql_select_db("$db_name", $connection);
-$connection->exec("USE `$db_name`");
+//$db = mysql_select_db("$dname", $connection);
+$connection->exec("USE `$dname`");
 
 $statement=$connection->prepare("SELECT * FROM members WHERE active = 1 AND dob != 0000-00-00;");
 $statement->execute();

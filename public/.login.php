@@ -42,15 +42,15 @@ if (!empty($errors)) {
     //******SET TEMP VARS*******
     //**************************
 
-    $user       =   $input['username'];
+    $username  =   $input['username'];
     $pass      =   $input['password'];
 
-    $connection = new PDO($dsn, $duser, $dpassword);
+    $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Selecting Database
-    //$db = mysql_select_db("$db_name", $connection);
-    $connection->exec("USE `$db_name`");
+    //$db = mysql_select_db("$dname", $connection);
+    $connection->exec("USE `$dname`");
 
 
     $pass = md5($pass);
@@ -58,19 +58,22 @@ if (!empty($errors)) {
     // SQL query to fetch information of registerd users and finds user match.
     //$query = mysql_query("SELECT * FROM login WHERE password='$password' AND username='$username'", $connection);
     //$rows = mysql_num_rows($query);
-    $sql="SELECT * FROM members WHERE username='$user' AND password='$pass';";
+    $sql="SELECT * FROM members WHERE username=:username AND password=:password";
     $stmt=$connection->prepare($sql);
-    $stmt->bindParam(':password', $pass);
-    $stmt->bindParam(':username', $user);
-    $stmt->execute();
+    $stmt->bindParam(':password', $password);
+    $stmt->bindParam(':username', $username);
+    $didSucceed = $stmt->execute();
     $rows=$stmt->fetch();
-    $rows=$rows[57];
     //GET ACTIVE MEMBER STATUS SINCE ONLY ACTIVE MEMBERS CAN SIGN IN
     //echo('Rows' .$rows);
 
-    if ($rows == 1) {
-        //echo("RIGHT!");
-//        $_SESSION['login_user']=$username; // Initializing Session
+    if ($didSucceed) {
+        // Initializing Session
+        session_start();
+        // $_SESSION['name'] =
+        $_SESSION['username'] = $username;
+
+        $data['session_id'] = session_id();
         //header("location:#/night-crews"); // Redirecting To Other Page
     }
     else{

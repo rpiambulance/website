@@ -13,7 +13,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="o in civilSide | orderBy:['-pres','-vicepres']">
-                    <td><span ng-if="m.radionum != 0">{{o.radionum}}</span></td>
+                    <td class="text-center"><span ng-if="m.radionum != 0">{{o.radionum}}</span></td>
                     <td>{{o.last_name}}</td>
                     <td>{{o.first_name}}</td>
                     <td ng-if="o.pres == 1">President</td>
@@ -35,7 +35,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="o in lineSide | orderBy:['-captain','-firstlt','-secondlt']">
-                    <td><span ng-if="m.radionum != 0">{{o.radionum}}</span></td>
+                    <td class="text-center"><span ng-if="m.radionum != 0">{{o.radionum}}</span></td>
                     <td>{{o.last_name}}</td>
                     <td>{{o.first_name}}</td>
                     <td ng-if="o.captain == 1">Captain</td>
@@ -59,12 +59,13 @@
             </thead>
             <tbody>
                 <tr ng-repeat="o in otherOfficers">
-                    <td><span ng-if="m.radionum != 0">{{o.radionum}}</span></td>
+                    <td class="text-center"><span ng-if="m.radionum != 0">{{o.radionum}}</span></td>
                     <td>{{o.last_name}}</td>
                     <td>{{o.first_name}}</td>
                     <td ng-if="o.radioco == 1">Radio Coordinator</td>
                     <td ng-if="o.traincommchair == 1">Training Committee Chair</td>
                     <td ng-if="o.schedco == 1">Scheduling Coordinator</td>
+                    <td ng-if="o.admin == 1 && o.captain == 0">Webmaster</td>
                     <td><a ng-href="mailto:{{o.email.toLowerCase()}}">{{o.email.toLowerCase()}}</a></td>
                 </tr>
             </tbody>
@@ -94,10 +95,10 @@
             </thead>
             <tbody>
                 <tr ng-repeat="m in members | orderBy:'last_name'" ng-if="!radioFilter || m.radionum != 0">
-                    <td><span ng-if="m.radionum != 0">{{m.radionum}}</span></td>
+                    <td class="text-center"><span ng-if="m.radionum != 0">{{m.radionum}}</span></td>
                     <td>{{m.last_name}}</td>
                     <td>{{m.first_name}}</td>
-                    <td>{{determinePositions(m)}}</td>
+                    <td class="text-center">{{determinePositions(m)}}</td>
                     <td><a ng-href="mailto:{{o.email.toLowerCase()}}">{{m.email.toLowerCase()}}</a></td>
                 </tr>
             </tbody>

@@ -21,6 +21,11 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         });
     });
 
+    $routeProvider.when('/logout', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl'
+    });
+
     $routeProvider.otherwise({
         redirectTo:'/home'
     });

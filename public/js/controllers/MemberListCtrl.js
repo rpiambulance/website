@@ -50,7 +50,7 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
                 $scope.lineSide.push(elem);
             } else if(elem.pres == 1 || elem.vicepres == 1) {
                 $scope.civilSide.push(elem);
-            } else if(elem.radioco == 1 || elem.traincommchair == 1 || elem.schedco == 1) {
+            } else if(elem.radioco == 1 || elem.traincommchair == 1 || elem.schedco == 1 || ((elem.admin == 1) && (elem.captain == 0))) {
                 $scope.otherOfficers.push(elem);
             }
         });

@@ -34,8 +34,8 @@ $connection = new PDO($dsn, $duser, $dpassword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 // Selecting Database
-//$db = mysql_select_db("$db_name", $connection);
-$connection->exec("USE `$db_name`");
+//$db = mysql_select_db("$dname", $connection);
+$connection->exec("USE `$dname`");
 
 $statement = $connection->prepare("SELECT * FROM members WHERE username = '$username'");
 

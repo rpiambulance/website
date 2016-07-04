@@ -4,12 +4,16 @@
 
 require_once ".db_config.php";
 
-$connection = new PDO($dsn, $duser, $dpassword);
+$connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+if(!isset($dname)) {
+  $dname = 'ambulanc_web';
+}
+
 // Selecting Database
-//$db = mysql_select_db("$db_name", $connection);
-$connection->exec("USE `$db_name`");
+//$db = mysql_select_db("$dname", $connection);
+$connection->exec("USE `$dname`");
 
 $query = <<<EOT
   SELECT
@@ -40,9 +44,9 @@ $query = <<<EOT
       m.first_name,
       m.last_name
     FROM
-      ambulanc.crews c
+      $dname.crews c
     LEFT JOIN
-      ambulanc.members m
+      $dname.members m
     ON
       m.id = c.cc) cc,
     (SELECT
@@ -52,9 +56,9 @@ $query = <<<EOT
       m.first_name,
       m.last_name
     FROM
-      ambulanc.crews c
+      $dname.crews c
     LEFT JOIN
-      ambulanc.members m
+      $dname.members m
     ON
       m.id = c.driver) d,
     (SELECT
@@ -64,9 +68,9 @@ $query = <<<EOT
       m.first_name,
       m.last_name
     FROM
-      ambulanc.crews c
+      $dname.crews c
     LEFT JOIN
-      ambulanc.members m
+      $dname.members m
     ON
       m.id = c.attendant) a,
     (SELECT
@@ -76,9 +80,9 @@ $query = <<<EOT
       m.first_name,
       m.last_name
     FROM
-      ambulanc.crews c
+      $dname.crews c
     LEFT JOIN
-      ambulanc.members m
+      $dname.members m
     ON
       m.id = c.observer) o
   WHERE

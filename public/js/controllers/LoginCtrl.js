@@ -1,4 +1,4 @@
-angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$window', function($scope, $http, $window) {
+angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$window', '$cookies', 'AuthService', function($scope, $http, $window, $cookies, AuthService) {
     $scope.formData = {
         username: "",
         password: ""
@@ -28,35 +28,6 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$wi
     };
 
     $scope.submitForm = function () {
-        $http({
-            method: 'POST',
-            url: 'login.php',
-            data: autocompleteValidate(), // pass in data as strings
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
-        }).success(function (data) {
-            console.log("This is weird.");
-            if (!data.success) {
-                console.log("it failed!");
-                // if not successful, bind errors to error variables
-                //if(data.errors.username) {
-                //    $scope.errorUser = data.errors.username;
-                //}
-                //if(data.errors.password) {
-                //    $scope.errorPass = data.errors.password;
-                //}
-
-                $scope.submission = true; //shows the error message
-            } else {
-                console.log("YES");
-                $scope.showContactSuccess = true;
-                // if successful, bind success message to message
-                $scope.submissionMessage = data.messageSuccess;
-                $scope.formData = {}; // form fields are emptied with this line
-                $scope.submission = true; //shows the success message
-                $window.location.href = '#/night-crews';
-            }
-        });
+        AuthService.login($scope.formData);
     };
-
-
 }]);
