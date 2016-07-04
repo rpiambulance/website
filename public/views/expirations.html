@@ -17,11 +17,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Wolmark</td>
-                    <td>David</td>
-                    <td>CPR</td>
-                    <td>1/31/16</td>
+                <tr ng-repeat="e in expired | orderBy:'exp'">
+                    <td ng-bind="e.last_name"></td>
+                    <td ng-bind="e.first_name"></td>
+                    <td ng-bind="e.type"></td>
+                    <td ng-bind="e.exp"></td>
                     <td>
                         <button class="btn btn-xs">Fix</button>
                     </td>
@@ -44,11 +44,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                    <td>Wolmark</td>
-                    <td>David</td>
-                    <td>CPR</td>
-                    <td>2/31/16</td>
+                <tr ng-repeat="e in expiring | orderBy:'exp'">
+                    <td ng-bind="e.last_name"></td>
+                    <td ng-bind="e.first_name"></td>
+                    <td ng-bind="e.type"></td>
+                    <td ng-bind="e.exp"></td>
                     <td>
                         <button class="btn btn-xs">Fix</button>
                     </td>

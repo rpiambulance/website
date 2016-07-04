@@ -63,7 +63,7 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
             });
         } else if(SCHEDULING_PAGES.indexOf(nextPageUrl) !== -1) {
             AuthService.isAdmin().then(function (data) {
-                if(data.schedco != 1) {
+                if(data.schedco != 1 && data.admin != 1) {
                     console.log('Scheduling Coordinator page attempted by non-coordinator');
                     event.preventDefault();
                     $location.path('/login');
