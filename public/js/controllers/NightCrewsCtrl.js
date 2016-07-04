@@ -1,6 +1,13 @@
 angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$http', 'AuthService', function ($scope, $http, AuthService) {
-    AuthService.getUsername().then(function (username) {
-        $scope.username = username;
+    AuthService.getUserMetadata().then(function (data) {
+        console.log(data);
+        $scope.username = data.username;
+        $scope.crewchief = data.crewchief == 1;
+        $scope.cctrainer = data.cctrainer == 1;
+        $scope.backupcc = data.backupcc == 1;
+        $scope.driver = data.driver == 1;
+        $scope.drivertrainer = data.drivertrainer == 1;
+
     }, function (error) { console.log(error); });
 
     $scope.currentWeekCrews = [];
@@ -44,5 +51,13 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
 
     $scope.canDelete = function (username) {
         return username === $scope.username;
-    }
+    };
+
+    $scope.canRegisterCC = function (crew) {
+        return $scope.crewchief || $scope.cctrainer;
+    };
+
+    $scope.canRegisterDriver = function (crew) {
+        return $scope.driver || $scope.drivertrainer;
+    };
 }]);

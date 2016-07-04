@@ -42,7 +42,21 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
         });
 
         return deferred.promise;
-    }
+    };
+
+    this.getUserMetadata = function () {
+        var sessionId = $cookies.get(SESSION_ID_COOKIE);
+
+        var deferred = $q.defer();
+
+        $http.get('.get_user_metadata.php?session_id=' + sessionId).then(function (response) {
+            deferred.resolve(response.data);
+        }, function (error) {
+            deferred.reject(error);
+        });
+
+        return deferred.promise;
+    };
 
     this.isLoggedIn = function () {
         var sessionId = $cookies.get(SESSION_ID_COOKIE);

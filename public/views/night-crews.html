@@ -19,7 +19,7 @@
                     <td>{{i.date | date:'shortDate'}}</td>
                     <td>
                         {{formatName(i.cc_first_name, i.cc_last_name)}}
-                        <button ng-if="i.cc_member_id == 0" class="btn btn-danger btn-xs nc-button">Register</button>
+                        <button ng-if="i.cc_member_id == 0 && canRegisterCC(i)" class="btn btn-danger btn-xs nc-button">Register</button>
                         <button ng-if="canDelete(i.cc_username)" class="btn btn-danger btn-xs"><span class="fa fa-close"></span></button>
                     </td>
                     <td>
@@ -58,12 +58,12 @@
                     <td>{{i.date | date:'shortDate'}}</td>
                     <td>
                         {{formatName(i.cc_first_name, i.cc_last_name)}}
-                        <button ng-if="i.cc_member_id == 0" class="btn btn-danger btn-xs nc-button">Register</button>
+                        <button ng-if="i.cc_member_id == 0 && canRegisterCC(i)" class="btn btn-danger btn-xs nc-button">Register</button>
                         <button ng-if="canDelete(i.cc_username)" class="btn btn-danger btn-xs"><span class="fa fa-close"></span></button>
                     </td>
                     <td>
                         {{formatName(i.driver_first_name, i.driver_last_name)}}
-                        <button ng-if="i.driver_member_id == 0" class="btn btn-danger btn-xs nc-button">Register</button>
+                        <button ng-if="i.driver_member_id == 0 && canRegisterDriver(i)" class="btn btn-danger btn-xs nc-button">Register</button>
                         <button ng-if="canDelete(i.driver_username)" class="btn btn-danger btn-xs"><span class="fa fa-close"></span></button>
                     </td>
                     <td>
