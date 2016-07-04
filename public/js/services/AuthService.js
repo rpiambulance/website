@@ -30,6 +30,20 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
         });
     };
 
+    this.getUsername = function () {
+        var sessionId = $cookies.get(SESSION_ID_COOKIE);
+
+        var deferred = $q.defer();
+
+        $http.get('.get_session_info.php?session_id=' + sessionId + '&key=username').then(function (response) {
+            deferred.resolve(response.data.username);
+        }, function (error) {
+            deferred.reject(error);
+        });
+
+        return deferred.promise;
+    }
+
     this.isLoggedIn = function () {
         var sessionId = $cookies.get(SESSION_ID_COOKIE);
 

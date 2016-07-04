@@ -1,4 +1,7 @@
-angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$http', function ($scope, $http) {
+angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$http', 'AuthService', function ($scope, $http, AuthService) {
+    AuthService.getUsername().then(function (username) {
+        $scope.username = username;
+    }, function (error) { console.log(error); });
 
     $scope.currentWeekCrews = [];
     $scope.upcomingWeekCrews = [];
@@ -39,8 +42,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
         return first ? (first.substr(0,1) + '. ' + last) : (last ? last : '');
     };
 
-    $scope.canDelete = function (id) {
-        // TODO: write logic for when someone can remove someone from crews
-        return id > 0 ? true: false;
+    $scope.canDelete = function (username) {
+        return username === $scope.username;
     }
 }]);
