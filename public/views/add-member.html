@@ -61,7 +61,7 @@
                         <div class="form-group">
                             <label for="cpass">Confirm Password</label>
                             <input type="password" name="cpass" id="cpass" class="form-control"
-                                   ng-model="formData.conf_pass"
+                                   ng-model="formData.conf_password"
                                    required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
@@ -110,7 +110,7 @@
 
                         <div class="form-group">
                             <label for="hadd">Home Address</label>
-                            <input type="text" name="hadd" id="hadd" class="form-control" ng-model="formData.h_add"
+                            <input type="text" name="hadd" id="hadd" class="form-control" ng-model="formData.home_add"
                                    placeholder="Shed 1, Sodor, Island of Sodor" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>

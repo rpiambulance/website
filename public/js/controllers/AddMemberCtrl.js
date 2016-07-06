@@ -19,21 +19,6 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
 
     console.log($scope.formData);
 
-    var autocompleteValidate = function () {
-        console.log($scope.formData);
-        var corrected = {};
-        for (var d in $scope.formData) {
-            if($scope.formData.hasOwnProperty(d)) {
-                if(document.getElementById(d).value !== $scope.formData[d]) {
-                    corrected[d] = document.getElementById(d).value;
-                } else {
-                    corrected[d] = $scope.formData[d];
-                }
-            }
-        }
-        return corrected;
-    };
-
     $scope.clearForm = function () {
         for (var d in $scope.formData) {
             if ($scope.formData.hasOwnProperty(d))
@@ -42,7 +27,7 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
     };
 
     $scope.submitForm = function () {
-        if($scope.formData.password === $scope.formData.conf_password) {
+        if($scope.formData.password == $scope.formData.conf_password) {
 
 
             console.log($scope.formData);
@@ -66,6 +51,9 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
                     $scope.submission = true; //shows the success message
                 }
             });
+        }
+        else{
+            console.log("Stupid Human");
         }
     };
 
