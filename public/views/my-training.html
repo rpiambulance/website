@@ -1,14 +1,11 @@
 <section id="my-training">
     <div class="container">
-        <div class="btn-group btn-group-sm pull-right">
-        <ul>
-            <li class="btn btn-default navbtn"
+        <div class="btn-group pull-right">
+            <button class="btn btn-default navbtn"
                 ng-repeat="tab in tabs"
                 ng-class="{active:isActiveTab(tab.url)}"
-                ng-click="onClickTab(tab)">{{tab.title}}
-            </li>
-        </ul>
-    </div>
+                ng-click="onClickTab(tab)">{{tab.title}}</button>
+        </div>
         <div id="mainView">
             <div ng-include="currentTab"></div>
         </div>
