@@ -9,10 +9,10 @@
             <div class="alert alert-success alert-dismissible" ng-show="showContactSuccess" role="alert">
                 <button type="button" class="close" ng-click="showContactSuccess = false"><span
                         aria-hidden="false">&times;</span></button>
-                <i class="fa fa-user-plus"></i><strong> Success!</strong> Woot!! You are now a member!
+                <i class="fa fa-user-plus"></i><strong> Success!</strong> {{successName}} is now a member!
             </div>
             <div class="alert alert-danger alert-dismissible" ng-show="showError" role="alert">
-                <button type="button" class="close" ng-click="showContactSuccess = false"><span
+                <button type="button" class="close" ng-click="showError = false"><span
                         aria-hidden="false">&times;</span></button>
                 <i class="fa fa-times-circle"></i><strong> Oh no!</strong> Something went wrong. Please make sure every
                 field is filled out.

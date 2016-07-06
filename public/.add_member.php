@@ -2,16 +2,6 @@
 
 require_once ".db_config.php";
 
-$connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
-$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-if(!isset($dname)) {
-  $dname = 'ambulanc_web';
-}
-
-// Selecting Database
-$connection->exec("USE `$dname`");
-
 // empty response
 $response = null;
 
@@ -39,35 +29,52 @@ $home_address = $input['home_add'];
 $dob = $input['dob'];
 $username = $input['user_name'];
 
+try {
+  $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
+  $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// Selecting Database
-//$db = mysql_select_db("$dname", $connection);
+  if(!isset($dname)) {
+    $dname = 'ambulanc_web';
+  }
 
-$sql= "SELECT * FROM members WHERE username = :username";
-$statement = $connection->prepare($sql);
+  // Selecting Database
+  $connection->exec("USE `$dname`");
 
-$statement->bindParam(':username', $username);
+  $statement = $connection->query("SELECT MAX(id) as max FROM members");
 
-$statement->execute();
+  $logid = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['max'] + 1;
 
-$statement->fetchAll(PDO::FETCH_ASSOC);
+  $statement = $connection->prepare("INSERT INTO members(id, username, password,
+    first_name, last_name, dob, email, rcs_id, rin, rpi_address, home_address,
+    cell_phone, home_phone) VALUES (:logid, :username, :password, :first_name,
+    :last_name, :dob, :email, :rcs, :rin, :rpi_address, :home_address,
+    :cell_phone, :home_phone)");
 
-$usernamecheck = mysqli_num_rows($statement);
-if ($usernamecheck == 0) {
-    $highID = $connection->exec("SELECT MAX(id) FROM members");
-    $logid = $highID + 1;
-    $connection->exec("INSERT INTO members(id, username, password, first_name,
-      last_name, dob, email, rcs_id, rin, rpi_address, home_address, cell_phone,
-      home_phone) VALUES ($logid, '$username', '$password', '$first_name',
-        '$last_name', '$dob', '$email', '$rcs', $rin, '$rpi_address',
-        '$home_address', '$cell_phone', '$home_phone')");
-    $data['success']= true;
+  $statement->bindParam(":logid", $logid);
+  $statement->bindParam(":username", $username);
+  $statement->bindParam(":password", $password);
+  $statement->bindParam(":first_name", $first_name);
+  $statement->bindParam(":last_name", $last_name);
+  $statement->bindParam(":dob", $dob);
+  $statement->bindParam(":email", $email);
+  $statement->bindParam(":rcs", $rcs);
+  $statement->bindParam(":rin", $rin);
+  $statement->bindParam(":rpi_address", $rpi_address);
+  $statement->bindParam(":home_address", $home_address);
+  $statement->bindParam(":cell_phone", $cell_phone);
+  $statement->bindParam(":home_phone", $home_phone);
+
+  $result = $statement->execute();
+
+  if($result) {
+    $data['success'] = true;
+  } else {
+    $data['success'] = false;
+  }
+} catch(PDOException $e) {
+  $data['success'] = false;
+  $data['error'] = $e;
 }
-else{
-    $data['success']= false;
-}
-
-$connection= null;
 
 echo(json_encode($data));
 

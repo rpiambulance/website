@@ -44,6 +44,8 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
                     $scope.submission = true; //shows the error message
                     $scope.showError= true;
                 } else {
+                    console.log("it succeeded!");
+                    $scope.successName = $scope.formData.first_name + ' ' + $scope.formData.last_name;
                     $scope.showContactSuccess = true;
                     // if successful, bind success message to message
                     $scope.submissionMessage = data.messageSuccess;
