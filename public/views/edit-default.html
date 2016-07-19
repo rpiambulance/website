@@ -3,247 +3,40 @@
         <div class="center">
             <h2>Edit Default Schedule</h2>
         </div>
-        <table id="default-week" class="table table-bordered table-striped">
+        <table id="default-week" class="table table-bordered table-striped table-center">
             <thead>
-            <tr>
-                <th>Night</th>
-                <th>Crew Chief</th>
-                <th>Driver</th>
-                <th>Rider</th>
-                <th>Rider</th>
-            </tr>
+                <tr>
+                    <th>Night</th>
+                    <th>Crew Chief</th>
+                    <th>Driver</th>
+                    <th>Rider</th>
+                    <th>Rider</th>
+                </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Sunday</td>
+                <tr ng-repeat="d in defaultSchedule track by $index">
+                    <td ng-bind="days[d.day]"></td>
 
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="suc.levels"
-                            ng-options="obj.value as obj.label for obj in cc.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="sud.levels"
-                            ng-options="obj.value as obj.label for obj in d.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="sua.levels"
-                            ng-options="obj.value as obj.label for obj in a.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="suo.levels"
-                            ng-options="obj.value as obj.label for obj in o.levelsArr">
-                        </select>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Monday</td>
-
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="moc.levels"
-                            ng-options="obj.value as obj.label for obj in cc.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="mod.levels"
-                            ng-options="obj.value as obj.label for obj in d.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="moa.levels"
-                            ng-options="obj.value as obj.label for obj in a.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="moo.levels"
-                            ng-options="obj.value as obj.label for obj in o.levelsArr">
-                        </select>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Tuesday</td>
-
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="tuc.levels"
-                            ng-options="obj.value as obj.label for obj in cc.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="tud.levels"
-                            ng-options="obj.value as obj.label for obj in d.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="tua.levels"
-                            ng-options="obj.value as obj.label for obj in a.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="tuo.levels"
-                            ng-options="obj.value as obj.label for obj in o.levelsArr">
-                        </select>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Wednesday</td>
-
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="wec.levels"
-                            ng-options="obj.value as obj.label for obj in cc.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="wed.levels"
-                            ng-options="obj.value as obj.label for obj in d.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="wea.levels"
-                            ng-options="obj.value as obj.label for obj in a.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="weo.levels"
-                            ng-options="obj.value as obj.label for obj in o.levelsArr">
-                        </select>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Thursday</td>
-
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="thc.levels"
-                            ng-options="obj.value as obj.label for obj in cc.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="thd.levels"
-                            ng-options="obj.value as obj.label for obj in d.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="tha.levels"
-                            ng-options="obj.value as obj.label for obj in a.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="tho.levels"
-                            ng-options="obj.value as obj.label for obj in o.levelsArr">
-                        </select>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Friday</td>
-
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="frc.levels"
-                            ng-options="obj.value as obj.label for obj in cc.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="frd.levels"
-                            ng-options="obj.value as obj.label for obj in d.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="fra.levels"
-                            ng-options="obj.value as obj.label for obj in a.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="fro.levels"
-                            ng-options="obj.value as obj.label for obj in o.levelsArr">
-                        </select>
-                    </div>
-                </td>
-            </tr>
-            <tr>
-                <td>Saturday</td>
-
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="sac.levels"
-                            ng-options="obj.value as obj.label for obj in cc.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="sad.levels"
-                            ng-options="obj.value as obj.label for obj in d.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="saa.levels"
-                            ng-options="obj.value as obj.label for obj in a.levelsArr">
-                        </select>
-                    </div>
-                </td>
-                <td>
-                    <div class="form-group">
-                        <select name="level" class=form-control ng-model="sao.levels"
-                            ng-options="obj.value as obj.label for obj in o.levelsArr">
-                        </select>
-                    </div>
-                </td>
-            </tr>
+                    <td ng-repeat="r in roles">
+                        <div class="form-group">
+                            <select class="form-control" ng-change="changeMade()" ng-model="d[r]">
+                                <option value="-2" ng-selected="d[r] == -2">OUT OF SERVICE</option>
+                                <option value="-1" ng-selected="d[r] == -1">RESERVED</option>
+                                <option value="0" ng-selected="d[r] == 0"></option>
+                                <option ng-repeat="m in members | orderBy:'last_name'"  ng-selected="d[r] == m.id"
+                                        ng-if="validChoice(m, r)" value="{{m.id}}">
+                                    {{m.last_name.trim() + ', ' + m.first_name.trim()}}
+                                </option>
+                            </select>
+                        </div>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <div class="center">
-            <button class="btn btn-success">Update Defualt Nights</button>
+            <button class="btn btn-success pull-left" ng-click="save()" ng-disabled="!areChangesPending">Save Changes</button>
             <button class="btn btn-warning" ng-click="oos_all()">Out of Service All</button>
-            <button class="btn btn-danger">Cancel Change</button>
+            <button class="btn btn-danger pull-right" ng-click="cancel()" ng-disabled="!areChangesPending">Cancel Changes</button>
         </div>
     </div>
 </section>

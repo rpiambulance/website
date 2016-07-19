@@ -1,97 +1,83 @@
-var ctrl_name = 'EditDefaultCtrl';
-angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', function($scope, $http) {
+angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '$http', '$q', function($scope, $http, $q) {
+    $scope.days = [
+        'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
+    ];
 
-$scope.suc = {};
-$scope.sud = {};
-$scope.sua = {};
-$scope.suo = {};
-$scope.moc = {};
-$scope.mod = {};
-$scope.moa = {};
-$scope.moo = {};
-$scope.tuc = {};
-$scope.tud = {};
-$scope.tua = {};
-$scope.tuo = {};
-$scope.wec = {};
-$scope.wed = {};
-$scope.wea = {};
-$scope.weo = {};
-$scope.thc = {};
-$scope.thd = {};
-$scope.tha = {};
-$scope.tho = {};
-$scope.frc = {};
-$scope.frd = {};
-$scope.fra = {};
-$scope.fro = {};
-$scope.sac = {};
-$scope.sad = {};
-$scope.saa = {};
-$scope.sao = {};
+    $scope.roles = [
+        'cc', 'driver', 'attendant', 'observer'
+    ];
 
-$scope.cc= {};
-$scope.d= {};
-$scope.a= {};
-$scope.o= {};
+    $scope.changeMade = function () {
+        $scope.areChangesPending = true;
+    };
 
-$scope.cc.levelsArr = [
+    function loadData () {
+        $scope.defaultSchedule = [];
 
-                      { value: "NO DATA", label: "NO DATA" },
-                      { value: "oos", label: "OUT OF SERVICE" }
+        $q.all([
+            $http.get('member_table.php'),
+            $http.get('.defaults.php')
+        ]).then(function (responses) {
+            $scope.members = responses[0].data;
+            $scope.defaultSchedule = responses[1].data;
+        });
+    }
+    loadData();
 
-                  ];
-  $scope.d.levelsArr = [
+    $scope.validChoice = function (member, role) {
+        if(role == 'cc') {
+            return member.crewchief == 1 || member.cctrainer == 1 || member.backupcc == 1;
+        } else if(role == 'driver') {
+            return member.driver == 1 || member.drivertrainer == 1 || member.backupdriver == 1;
+        } else {
+            return member.attendant == 1 || member.observer == 1
+        }
+    }
 
-                      { value: "NO DATA", label: "NO DATA" },
-                      { value: "oos", label: "OUT OF SERVICE" }
+    $scope.oos_all = function () {
+        $scope.areChangesPending = true;
 
-                  ];
-  $scope.a.levelsArr = [
+        for(var i = 0;  i < $scope.days.length; i++) {
+            for(var j = 0; j < $scope.roles.length; j++) {
+                $scope.defaultSchedule[i][$scope.roles[j]] = -2;
+            }
+        }
+    };
 
-                      { value: "NO DATA", label: "NO DATA" },
-                      { value: "oos", label: "OUT OF SERVICE" }
+    $scope.save = function () {
+        if(!$scope.areChangesPending) {
+            return;
+        }
 
-                  ];
-$scope.o.levelsArr = [
+        var data = 'data=' + JSON.stringify($scope.defaultSchedule) + '&session_id=' + $scope.getSessionIDCookie();
 
-                      { value: "NO DATA", label: "NO DATA" },
-                      { value: "oos", label: "OUT OF SERVICE" }
+        $http({
+            method: 'POST',
+            url: '.defaults.php',
+            data: data, // pass in data as strings
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
+        }).success(function (data) {
+            console.log(data);
+            if (!data.success) {
+                console.log("it failed!");
+                $scope.submission = true; //shows the error message
+                $scope.showError= true;
+            } else {
+                console.log("it succeeded!");
 
-                  ];
+                $scope.areChangesPending = false;
 
+                $scope.successName = $scope.formData.first_name + ' ' + $scope.formData.last_name;
+                $scope.showContactSuccess = true;
+                // if successful, bind success message to message
+                $scope.submissionMessage = data.messageSuccess;
+                $scope.submission = true; //shows the success message
+            }
+        });
+    };
 
-$scope.oos_all= function () {
-  $scope.suc.levels = $scope.cc.levelsArr[1].value;
-  $scope.sud.levels = $scope.d.levelsArr[1].value;
-  $scope.sua.levels = $scope.a.levelsArr[1].value;
-  $scope.suo.levels = $scope.o.levelsArr[1].value;
-  $scope.moc.levels = $scope.cc.levelsArr[1].value;
-  $scope.mod.levels = $scope.d.levelsArr[1].value;
-  $scope.moa.levels = $scope.a.levelsArr[1].value;
-  $scope.moo.levels = $scope.o.levelsArr[1].value;
-  $scope.tuc.levels = $scope.cc.levelsArr[1].value;
-  $scope.tud.levels = $scope.d.levelsArr[1].value;
-  $scope.tua.levels = $scope.a.levelsArr[1].value;
-  $scope.tuo.levels = $scope.o.levelsArr[1].value;
-  $scope.wec.levels = $scope.cc.levelsArr[1].value;
-  $scope.wed.levels = $scope.d.levelsArr[1].value;
-  $scope.wea.levels = $scope.a.levelsArr[1].value;
-  $scope.weo.levels = $scope.o.levelsArr[1].value;
-  $scope.thc.levels = $scope.cc.levelsArr[1].value;
-  $scope.thd.levels = $scope.d.levelsArr[1].value;
-  $scope.tha.levels = $scope.a.levelsArr[1].value;
-  $scope.tho.levels = $scope.o.levelsArr[1].value;
-  $scope.frc.levels = $scope.cc.levelsArr[1].value;
-  $scope.frd.levels = $scope.d.levelsArr[1].value;
-  $scope.fra.levels = $scope.a.levelsArr[1].value;
-  $scope.fro.levels = $scope.o.levelsArr[1].value;
-  $scope.sac.levels = $scope.cc.levelsArr[1].value;
-  $scope.sad.levels = $scope.d.levelsArr[1].value;
-  $scope.saa.levels = $scope.a.levelsArr[1].value;
-  $scope.sao.levels = $scope.o.levelsArr[1].value;
-
-};
-
-
+    $scope.cancel = function () {
+        $scope.areChangesPending = false;
+        loadData();
+    };
 }]);

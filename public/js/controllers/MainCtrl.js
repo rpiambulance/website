@@ -1,4 +1,4 @@
-angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '$route', '$location', 'EditablePageService', function ($rootScope, $scope, $route, $location, EditablePageService) {
+angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '$route', '$location', '$cookies', 'EditablePageService', function ($rootScope, $scope, $route, $location, $cookies, EditablePageService) {
     // TODO: IMPLEMENT AUTHENTICATION, REMOVE DEFAULT VALUE OF TRUE
     $scope.loggedIn = false;
     $scope.username = '';
@@ -152,6 +152,11 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
     var chooseAppropriateMenu = function () {
         var currentPage = $location.url();
         var isMemberPage = false;
+
+        if(currentPage.split('/')[1] == 'edit-member') {
+            return true;
+        }
+
         for (var i = 0; i < $scope.memberNavbar.length; i++) {
             if ($scope.memberNavbar[i].isDropdown) {
                 for (var j = 0; j < $scope.memberNavbar[i].dropdownOptions.length; j++) {
@@ -187,4 +192,8 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             return true;
         }
     };
+
+    $scope.getSessionIDCookie = function () {
+        return $cookies.get('__RPIA_SESSION_ID');
+    }
 }]);

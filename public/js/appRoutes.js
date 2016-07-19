@@ -21,6 +21,14 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         });
     });
 
+    $routeProvider.when('/edit-member/:memberId', {
+        templateUrl: 'views/edit-member.html',
+        controller: 'EditMemberCtrl',
+        caseInsensitiveMatch: true,
+        activeTab: 'edit-member',
+        title: 'Edit Member'
+    })
+
     $routeProvider.when('/logout', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'

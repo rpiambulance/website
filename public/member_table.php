@@ -16,7 +16,20 @@ if(!isset($dname)) {
 //$db = mysql_select_db("$dname", $connection);
 $connection->exec("USE `$dname`");
 
-$statement=$connection->prepare("SELECT * FROM members WHERE active = 1 AND dob != 0000-00-00;");
+$sql = "SELECT * FROM members WHERE dob != 0000-00-00";
+
+if(isset($_GET['member_id'])) {
+  $sql .= ' AND id = :id';
+} else if(!isset($_GET['include_inactive'])) {
+  $sql .= " AND active = 1";
+}
+
+$statement=$connection->prepare($sql);
+
+if(isset($_GET['member_id'])) {
+  $statement->bindParam(':id', $_GET['member_id']);
+}
+
 $statement->execute();
 $results=$statement->fetchAll(PDO::FETCH_ASSOC);
 $json=json_encode($results);
