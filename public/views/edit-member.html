@@ -47,89 +47,89 @@
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="fn">First Name</label>
                             <!--This should be switched to the signed in account with no option to change it-->
-                            <input type="text" name="fn" id="fn" class="form-control" ng-model="selectedMember.first_name"
-                                   placeholder="Thomas" ng-change="changeMade()" required/>
+                            <input type="text" name="fn" id="fn" class="form-control" ng-model="selectedMember.first_name" ng-change="changeMade()"
+                                   placeholder="Thomas"  required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="ln">Last Name</label>
-                            <input type="text" name="ln" id="ln" class="form-control" ng-model="selectedMember.last_name"
+                            <input type="text" name="ln" id="ln" class="form-control"  ng-model="selectedMember.last_name" ng-change="changeMade()"
                                    placeholder="Tankengine" required/>
-                            <span ng-show="form.username.$dirty && form.username.$error.required" ng-change="changeMade()" class="help-block">Name is required</span>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="bd">Birthday</label>
                             <!--This should be switched to the signed in account with no option to change it-->
-                            <input type="date" name="bd" id="bd" class="form-control" ng-change="changeMade()" ng-model="selectedMember.dob"
+                            <input type="date" name="bd" id="bd" class="form-control"  ng-model="selectedMember.dob" ng-change="changeMade()"
                                    placeholder="12/04/1995" required/>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="user">Username</label>
-                            <input type="text" name="user" id="user" class="form-control" ng-change="changeMade()" ng-model="selectedMember.username"
-                                   placeholder="david.sparkman" required/>
+                            <input type="text" name="user" id="user" class="form-control"  ng-model="selectedMember.username" ng-change="changeMade()"
+                                   placeholder="david.sparkman" autocomplete="off" required/>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="pass">Password</label>
-                            <input type="password" name="pass" id="pass" class="form-control" ng-change="changeMade()" ng-model="pass" autocomplete='off' required/>
+                            <input type="password" name="pass" id="pass" class="form-control"  ng-model="selectedMember.pass" ng-change="changeMade()" autocomplete='off' required/>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="email">Email</label>
-                            <input type="email" name="email" id="email" class="form-control" ng-change="changeMade()" ng-model="selectedMember.email"
+                            <input type="email" name="email" id="email" class="form-control"  ng-model="selectedMember.email" ng-change="changeMade()"
                                    placeholder="Example: webmaster@rpiambulance.com" required/>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="rcs">RCS</label>
-                            <input type="text" name="rcs" id="rcs" class="form-control" ng-change="changeMade()" ng-model="selectedMember.rcs_id"
+                            <input type="text" name="rcs" id="rcs" class="form-control"  ng-model="selectedMember.rcs_id" ng-change="changeMade()"
                                    placeholder="sparkd" required/>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="rin">RIN</label>
-                            <input type="number" name="rin" id="rin" class="form-control" ng-change="changeMade()" ng-model="selectedMember.rin"
+                            <input type="number" name="rin" id="rin" class="form-control" ng-model="selectedMember.rin" ng-change="changeMade()"
                                    placeholder="6612345" required/>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="hphone">Home Phone</label>
-                            <input type="tel" name="hphone" id="hphone" class="form-control" ng-change="changeMade()" ng-model="selectedMember.home_phone"
+                            <input type="tel" name="hphone" id="hphone" class="form-control" ng-model="selectedMember.home_phone" ng-change="changeMade()"
                                    placeholder="555 555-5555" required/>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="cphone">Cell Phone</label>
-                            <input type="tel" name="cphone" id="cphone" class="form-control" ng-change="changeMade()" ng-model="selectedMember.cell_phone"
+                            <input type="tel" name="cphone" id="cphone" class="form-control"  ng-model="selectedMember.cell_phone" ng-change="changeMade()"
                                    placeholder="555 555-5555" required/>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="ln">RPI Address</label>
                             <!--This should be switched to the signed in account with no option to change it-->
-                            <input type="text" name="add" id="add" class="form-control" ng-change="changeMade()" ng-model="selectedMember.rpi_address"
+                            <input type="text" name="add" id="add" class="form-control"  ng-model="selectedMember.rpi_address" ng-change="changeMade()"
                                    placeholder="Shed 1, Sodor, Island of Sodor" required/>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="ln">Home Address</label>
                             <!--This should be switched to the signed in account with no option to change it-->
-                            <input type="text" name="home_add" id="home_add" class="form-control" ng-change="changeMade()" ng-model="selectedMember.home_address"
+                            <input type="text" name="home_add" id="home_add" class="form-control"  ng-model="selectedMember.home_address" ng-change="changeMade()"
                                    placeholder="Shed 1, Sodor, Island of Sodor" required/>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="rid">Radio ID</label>
                             <!--This should be switched to the signed in account with no option to change it-->
-                            <input type="number" name="rid" id="rid" class="form-control" ng-change="changeMade()" ng-model="selectedMember.radionum"
+                            <input type="number" name="rid" id="rid" class="form-control"  ng-model="selectedMember.radionum" ng-change="changeMade()"
                                    placeholder="982" required/>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="cpr">CPR Provider</label>
-                            <select class="form-control" id="cpr" ng-change="changeMade()" ng-model="selectedMember.cpr_assoc">
+                            <select class="form-control" id="cpr"  ng-model="selectedMember.cpr_assoc" ng-change="changeMade()">
                                 <option>No CPR Certificate</option>
                                 <option>American Heart Association</option>
                                 <option>American Red Cross</option>
@@ -141,13 +141,13 @@
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="cpr_exp">CPR Expiration Date</label>
-                            <input type="date" name="rid" id="rid" class="form-control" ng-change="changeMade()" ng-model="selectedMember.cpr_exp"
+                            <input type="date" name="rid" id="rid" class="form-control"  ng-model="selectedMember.cpr_exp" ng-change="changeMade()"
                                    placeholder="12-12-2019" required/>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="emt">EMT Level</label>
-                            <select class="form-control" id="emt" ng-change="changeMade()" ng-model="selectedMember.emt_level">
+                            <select class="form-control" id="emt"  ng-model="selectedMember.emt_level" ng-change="changeMade()">
                                 <option>Not an EMT</option>
                                 <option>EMT-B</option>
                                 <option>AEMT-I</option>
@@ -160,31 +160,31 @@
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="emt_exp">EMT Expiration</label>
-                                <input type="date" name="emt_exp" id="emt_exp" class="form-control" ng-change="changeMade()" ng-model="selectedMember.emt_exp"
+                                <input type="date" name="emt_exp" id="emt_exp" class="form-control"  ng-model="selectedMember.emt_exp" ng-change="changeMade()"
                                        placeholder="12-12-2019" required/>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="emt_num">EMT Number</label>
                             <!--This should be switched to the signed in account with no option to change it-->
-                            <input type="number" name="emt_num" id="emt_num" class="form-control" ng-change="changeMade()" ng-model="selectedMember.emt_num"
+                            <input type="number" name="emt_num" id="emt_num" class="form-control"  ng-model="selectedMember.emt_num" ng-change="changeMade()"
                                    placeholder="123456" required/>
                         </div>
 
                         <h3>Training</h3>
 
                         <div class="checkbox text-left-al" ng-repeat="t in trainingFields">
-                            <label><input type="checkbox" value="1" ng-model="selectedMember[t.field]" ng-change="changeMade()" ng-checked="selectedMember[t.field] == 1">{{t.label}}</label>
+                            <label><input type="checkbox" value="1" ng-model="selectedMember[t.field]"  ng-checked="selectedMember[t.field] == 1" ng-change="changeMade()">{{t.label}}</label>
                         </div>
 
                         <div class="form-group col-xs-6" id="other_tr_div">
                             <label for="other_tr">Other Training:</label>
-                            <textarea class="form-control" rows="5" id="other_tr" ng-change="changeMade()" ng-model="selectedMember.other_training"></textarea>
+                            <textarea class="form-control" rows="5" id="other_tr"  ng-model="selectedMember.other_training" ng-change="changeMade()"></textarea>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="dl_state">Driver License State</label>
-                            <select class="form-control" id="dl_state" ng-change="changeMade()" ng-model="selectedMember.dl_state">
+                            <select class="form-control" id="dl_state"  ng-model="selectedMember.dl_state" ng-change="changeMade()">
                                 <option value="">None</option>
                                 <option ng-repeat="s in stateCodes" value="{{s}}" ng-bind="s"></option>
                             </select>
@@ -193,7 +193,7 @@
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="dl_exp">Licence Expiration Month</label>
                             <select class="form-control" id="dl_exp">
-                                <option ng-repeat="m in months" value="{{m}}" ng-change="changeMade()" ng-bind="m"></option>
+                                <option ng-repeat="m in months" value="{{m}}"  ng-bind="m"></option>
                             </select>
                         </div>
 
@@ -202,13 +202,13 @@
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="evdd">EVDD, CEVO, EVOC Date</label>
                             <select class="form-control" id="evdd">
-                                <option ng-repeat="m in months" value="{{m}}" ng-change="changeMade()" ng-bind="m"></option>
+                                <option ng-repeat="m in months" value="{{m}}"  ng-bind="m"></option>
                             </select>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="evdd">Officer Position</label>
-                            <select class="form-control" id="evdd"  ng-change="changeMade()" ng-model="selectedMember.position">
+                            <select class="form-control" id="evdd"   ng-model="selectedMember.position" ng-change="changeMade()">
                                 <option>None</option>
                                 <option ng-repeat="p in positions"
                                         value="{{p.field}}" ng-bind="p.label"
@@ -236,8 +236,8 @@
                         <br>
 
                         <div class="form-actions">
-                            <button type="submit" ng-disabled="form.$invalid || dataLoading || !changes" class="btn btn-success"
-                                    value="Submit">
+                            <button type="submit" ng-disabled="form.$invalid || dataLoading || !areChangesPending" class="btn btn-success"
+                                    value="Submit" ng-click="save()">
                                 Update Record
                             </button>
                             <button type="reset" class="btn btn-danger">Delete Member</button>

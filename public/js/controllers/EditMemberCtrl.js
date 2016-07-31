@@ -1,7 +1,7 @@
-angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$http', '$location', '$routeParams', function($scope, $http, $location, $routeParams) {
+angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$http', '$location', '$routeParams', '$q', function($scope, $http, $location, $routeParams, $q) {
     $scope.searchFilter = "";
 
-    $scope.changes= false;
+    $scope.areChangesPending= false;
 
     $scope.trainingFields = [
         { field: 'nims100',     label: 'NIMS-100'    },
@@ -156,7 +156,8 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
     }
 
     $scope.changeMade = function() {
-        $scope.changes = true;
+        $scope.areChangesPending = true;
+        console.log("change!")
     }
 
 
