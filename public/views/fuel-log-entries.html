@@ -1,0 +1,60 @@
+<section id="NightCrews">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2 class="view-header">Fuel Log</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <button ng-click="displayModal()" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-plus"></span> Add Entry
+                </button>
+            </div>
+            <div class="col-md-4 col-md-offset-4">
+                <div class="btn-group pull-right">
+                    <button class="btn btn-default" ng-click="changeVehicle(v)" ng-class="{'active': v === vehicle}"
+                            ng-repeat="v in vehicleOptions" ng-bind="v"></button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div class="row center">
+            <div class="col-xs-12">
+                <table id="current_week" class="table table-bordered table-striped">
+                    <thead>
+                      <tr>
+                          <th>Date</th>
+                          <th>Time</th>
+                          <th>Member</th>
+                          <th>Vehicle</th>
+                          <th>Fuel</th>
+                          <th>Mileage</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="f in fuelLog">
+                          <td ng-bind="f.date"></td>
+                          <td ng-bind="f.time"></td>
+                          <td ng-bind="f.first_name + ' ' + f.last_name"></td>
+                          <td ng-bind="f.vehicle"></td>
+                          <td ng-bind="f.amount"></td>
+                          <td ng-bind="f.mileage"></td>
+                      </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="row center">
+            <div class="btn-group btn-group-sm">
+                <button class="btn btn-default" ng-repeat="p in pages" ng-bind="p" ng-click="changePage(p)" ng-class="{'active': p === page}"></button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<modal title="'Add Fuel Entry'" visible="showModal">
+    <form role="form" ng-submit="submitForm()" novalidate>
+        <!-- TODO: Sparky do this -->
+    </form>
+</modal>

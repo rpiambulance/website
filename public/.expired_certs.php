@@ -12,9 +12,9 @@ if(!isset($dname)) {
 // Selecting Database
 $connection->exec("USE `$dname`");
 
-$CPR_QUERY = "SELECT username, first_name, last_name, cpr_exp AS exp, cpr_assoc, 'CPR' as type FROM members WHERE active = 1 AND";
-$EMT_QUERY = "SELECT username, first_name, last_name, emt_exp AS exp, emt_num, emt_level, 'EMT' as type FROM members WHERE active = 1 AND";
-$DL_QUERY  = "SELECT username, first_name, last_name, dl_exp AS exp, dl_state, 'DL' as type FROM members WHERE active = 1 AND";
+$CPR_QUERY = "SELECT id, username, first_name, last_name, cpr_exp AS exp, cpr_assoc, 'CPR' as type FROM members WHERE active = 1 AND";
+$EMT_QUERY = "SELECT id, username, first_name, last_name, emt_exp AS exp, emt_num, emt_level, 'EMT' as type FROM members WHERE active = 1 AND";
+$DL_QUERY  = "SELECT id, username, first_name, last_name, dl_exp AS exp, dl_state, 'DL' as type FROM members WHERE active = 1 AND";
 
 if(isset($_GET['type']) && $_GET['type'] == 'expiring') {
   $CPR_QUERY .= " cpr_exp < DATE_ADD(CURDATE(), INTERVAL 1 MONTH) AND cpr_exp >= CURDATE() AND cpr_exp != '0000-00-00'";
