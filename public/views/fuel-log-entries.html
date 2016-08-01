@@ -1,4 +1,4 @@
-<section id="NightCrews">
+<section id="FuelLocEntries">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
@@ -55,6 +55,42 @@
 
 <modal title="'Add Fuel Entry'" visible="showModal">
     <form role="form" ng-submit="submitForm()" novalidate>
-        <!-- TODO: Sparky do this -->
+        <div class="form-group">
+            <label><strong>Username: </strong>{{username}}</label><br/>
+        </div>
+            <div class="form-group">
+                <label><strong>Current Date and Time</strong></label><br/>
+                <p>{{getDatetime | date:'MM/dd/yy @ HH:mm'}}<p>
+            </div>
+            <div class="form-group">
+                <label><strong>Vehicle</strong></label><br/>
+                <label for="Amb">5939</label>
+                <input type="radio" name="vehicle" id="Amb" value="Amb" ng-model="vehicle.Amb"><br>
+                <label for="FR59">FR-59</label>
+                <input type="radio" name="vehicle" id="FR59" value="FR59" ng-model="vehicle.FR59"><br>
+
+            </div>
+            <div class="form-group">
+                <label for="qty"><strong>Fuel Quantity</strong></label>
+                <input type="number" min="0" step=".5" name="qty" id="qty" class="form-control"
+                       ng-model="formData.qty"
+                       placeholder="Fuel in Gallons" required/>
+            </div>
+            <div class="form-group">
+                <label for="miles"><strong>Mileage</strong></label>
+                <input type="number" name="miles" id="miles" class="form-control" ng-model="formData.miles"
+                       placeholder="Mileage rounded to nearest 1" required/>
+            </div>
+            <div class="form-group">
+                <div class="g-recaptcha" data-sitekey="6LdHKxUTAAAAAGTBpgYEJZDoAz1uGqG_tX_gQb1K"></div>
+            </div>
+
+            <div class="form-actions center">
+                <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success"
+                        value="Submit">
+                    Submit
+                </button>
+                <button type="reset" class="btn btn-danger">Reset</button>
+            </div>
     </form>
 </modal>
