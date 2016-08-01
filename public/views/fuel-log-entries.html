@@ -56,7 +56,7 @@
 <modal title="'Add Fuel Entry'" visible="showModal">
     <form role="form" ng-submit="submitForm()" novalidate>
         <div class="form-group">
-            <label><strong>Username: </strong>{{username}}</label><br/>
+            <label><strong>Name: </strong>{{user}}</label><br/>
         </div>
             <div class="form-group">
                 <label><strong>Current Date and Time</strong></label><br/>
@@ -72,7 +72,7 @@
             </div>
             <div class="form-group">
                 <label for="qty"><strong>Fuel Quantity</strong></label>
-                <input type="number" min="0" step=".5" name="qty" id="qty" class="form-control"
+                <input type="number" min="0" step=".1" name="qty" id="qty" class="form-control"
                        ng-model="formData.qty"
                        placeholder="Fuel in Gallons" required/>
             </div>
@@ -94,3 +94,5 @@
             </div>
     </form>
 </modal>
+
+<script src='https://www.google.com/recaptcha/api.js'></script>

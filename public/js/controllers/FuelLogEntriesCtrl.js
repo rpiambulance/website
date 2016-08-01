@@ -10,12 +10,7 @@ angular.module('FuelLogEntriesCtrl', []).controller('FuelLogEntriesCtrl', ['$sco
 
     AuthService.getUserMetadata().then(function (data) {
         console.log(data);
-        $scope.username = data.username;
-        $scope.crewchief = data.crewchief == 1;
-        $scope.cctrainer = data.cctrainer == 1;
-        $scope.backupcc = data.backupcc == 1;
-        $scope.driver = data.driver == 1;
-        $scope.drivertrainer = data.drivertrainer == 1;
+        $scope.user= data.first_name + ' ' + data.last_name;
 
     }, function (error) { console.log(error); });
 
