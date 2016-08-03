@@ -1,4 +1,4 @@
-<section id="fuel-log">
+<section id="stocking">
     <div class="container">
         <div class="center">
             <h2>Report Stocking Issue</h2>
@@ -23,31 +23,29 @@
                         <div class="form-group">
                             <label for="name">Name</label>
                             <!--This should be switched to the signed in account with no option to change it-->
-                            <input type="text" name="name" id="name" class="form-control" ng-model="name"
+                            <input type="text" name="name" id="name" class="form-control" ng-model="formData.name"
                                    placeholder="Name" required/>
                             <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
                         </div>
-                        <div class="form-group">
-                            <p>Select the facility or vehicle in question...</p>
-                            <select id="type" ng-model="formData.type">
-                                <option value="5939">5939</option>
-                                <option value="FR-59">FR-59</option>
-                                <option value="Garage">Garage</option>
-                                <option value="Office">Office</option>
-                                <option value="Houston Field House PCF">Houston Field House PCF</option>
-                                <option value="ECAV Stadium PCF">ECAV Stadium PCF</option>
-                                <option value="Other">Other (Please describe below)</option>
+                        <div class="form-group fixed-height-form-element">
+                            <label for="dl_state">Facility or Vehicle</label>
+                            <select class="form-control" id="dl_state"  ng-model="formData.facility">
+                                <option value="">None</option>
+                                <option ng-repeat="f in facilities" value="{{f}}" ng-bind="f"></option>
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="details">List the items needed...</label>
-                            <textarea id="details" class="form-control" ng-model="msg"
+                            <textarea id="details" class="form-control" ng-model="formData.items"
                                       placeholder="Oral Glucose, Gauze, Sterile Water, etc..." required></textarea>
                             <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">List is required</span>
                         </div>
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-sitekey="6LdHKxUTAAAAAGTBpgYEJZDoAz1uGqG_tX_gQb1K"></div>
+                        </div>
                         <div class="form-actions">
                             <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success"
-                                    value="Submit">
+                                    value="Submit" ng-click="submitForm()">
                                 Submit
                             </button>
                             <button type="reset" class="btn btn-danger">Reset</button>
@@ -66,3 +64,4 @@
     <!--/.container-->
 </section>
 <!--/about-us-->
+<script src='https://www.google.com/recaptcha/api.js'></script>
