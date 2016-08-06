@@ -105,35 +105,66 @@ function isUsernameValid ($c, $u) {
     return (intval($statement->fetch(PDO::FETCH_ASSOC)['user_found']) == 1);
 }
 
+function queryLoginCredentials ($c, $u, $p) {
+    $query = <<<SQL
+        SELECT
+            *
+        FROM
+            members
+        WHERE
+            username = :username AND
+            password = :password;
+    SQL;
+
+    $statement = $connection->prepare($query);
+    $statement->bindParam(':password', $pass);
+    $statement->bindParam(':username', $user);
+    $statement->execute();
+
+    $userInfo = $statement->fetch(PDO::FETCH_ASSOC);
+}
+
+
 if (!isset($_POST['username'])) {
+    // Check if the POST request body contains a username field. If not, error.
     $errors['username'] = 'Username is required.';
 }
 
 if (!isset($_POST['password'])) {
+    // Check if the POST request body contains a password field. If not, error.
     $errors['password'] = 'Password is required.';
 }
 
 if (!empty($errors)) {
+    // If either the username or the password were not entered, fail the login.
     loginFailed('incomplete', 'Please ensure you entered a username and a password.');
 } else {
+    // Otherwise, we have both values. Full speed ahead.
+
+    // Get the values into temp variables, password hashed.
     $user = $_POST['username'];
     $pass = md5($_POST['password']);
 
+    // Connect to the database and prep for error checking
     $connection = new PDO($dsn, $duser, $dpassword);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
+    // Ensure we're using the right database. ($dname needed in .db_config.php)
     $connection->exec("USE `$dname`");
 
-    $statement = $connection->prepare("SELECT * FROM members WHERE username=:username AND password=:password");
-    $statement->bindParam(':password', $pass);
-    $statement->bindParam(':username', $user);
-    $statement->execute();
-    $userInfo = $statement->fetch(PDO::FETCH_ASSOC);
+    // Find the user given the username and hashed password
+    $userInfo = queryLoginCredentials($connection, $user, $pass);
 
     if (empty($userInfo)) {
-        loginFailed('credentials', 'Your username and/or password are not correct. Please contact ' . $support_email . ' for assistance.');
+        // If the user was not found by the query, then the user didn't enter in
+        // either a correct username or password. Fail accordingly
+        $message = 'Your username and/or password are not correct. Please '
+                 . 'contact ' . $support_email . ' for assistance.';
+        loginFailed('credentials', $message);
     } else if($userInfo['active'] != '1') {
-        loginFailed('inactive', 'Your account is not active. Please contact ' . $support_email . ' for assistance.');
+        $message = 'Your account is not active. Please contact '
+                 . $support_email . ' for assistance.';
+        loginFailed('inactive', $message);
     } else if($userInfo['access_revoked'] == '1') {
         loginFailed('revoked', 'Access has been revoked for your account. Please contact ' . $support_email . ' if you believe this was done in error.');
     } else if(checkFailedAttempts($user) >= 3) {
