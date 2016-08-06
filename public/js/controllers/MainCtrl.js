@@ -1,7 +1,13 @@
-angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '$route', '$location', '$cookies', 'EditablePageService', function ($rootScope, $scope, $route, $location, $cookies, EditablePageService) {
+angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '$route', '$location', '$cookies', 'EditablePageService', 'AuthService', function ($rootScope, $scope, $route, $location, $cookies, EditablePageService, AuthService) {
     // TODO: IMPLEMENT AUTHENTICATION, REMOVE DEFAULT VALUE OF TRUE
     $scope.loggedIn = false;
     $scope.username = '';
+
+    AuthService.getUserMetadata().then(function (data) {
+        console.log(data);
+        $scope.user= data.first_name;
+
+    }, function (error) { console.log(error); });
 
     $rootScope.$on("$routeChangeSuccess", function (currentRoute, previousRoute) {
         //Change page title, based on Route information

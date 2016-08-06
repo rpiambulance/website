@@ -64,10 +64,11 @@ if (!empty($errors)) {
     $stmt->bindParam(':username', $username);
     $didSucceed = $stmt->execute();
     $rows=$stmt->fetch();
+    $num= $rows->rowCount();
     //GET ACTIVE MEMBER STATUS SINCE ONLY ACTIVE MEMBERS CAN SIGN IN
     //echo('Rows' .$rows);
 
-    if ($didSucceed) {
+    if ($didSucceed && $num == 1) {
         // Initializing Session
         session_start();
         // $_SESSION['name'] =
