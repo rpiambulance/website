@@ -12,8 +12,8 @@ $support_email = 'webmaster@rpiambulance.com';
 /**
  * Notifies the user that the login failed for the given reason why with the
  * given message
- * @param  [string] $why     the reason why it failed
- * @param  [string] $message the message explaining the circumstances
+ * @param  string $why     the reason why it failed
+ * @param  string $message the message explaining the circumstances
  */
 function loginFailed ($why, $message) {
     $errors[$why] = $message;
@@ -25,9 +25,9 @@ function loginFailed ($why, $message) {
 /**
  * Counts the username's failed login attempts in the past hour and since the
  * last failed attempt override (if applicable).
- * @param  [PDO]    $c the database connection
- * @param  [string] $u the user to check
- * @return [int]       num of times the user has failed to login the past hour
+ * @param  PDO     $c the database connection
+ * @param  string  $u the user to check
+ * @return int        num of times the user has failed to login the past hour
  */
 function checkFailedAttempts ($c, $u) {
     $query = <<<SQL
@@ -62,8 +62,8 @@ function checkFailedAttempts ($c, $u) {
 
 /**
  * Add an entry to the login_attempts table
- * @param [PDO]    $c the database connection
- * @param [string] $u the user to log
+ * @param PDO      $c the database connection
+ * @param string   $u the user to log
  */
 function addLoginAttempt ($c, $u) {
     $was_successful = ($data['success'] ? 1 : 0);
@@ -87,7 +87,7 @@ function addLoginAttempt ($c, $u) {
  * Checks if the provided username is a valid username.
  * @param  PDO       $c the database connection
  * @param  string    $u the user to check
- * @return boolean      the user 
+ * @return boolean      the user
  */
 function isUsernameValid ($c, $u) {
     $query = <<<SQL
