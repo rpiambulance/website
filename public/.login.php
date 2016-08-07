@@ -7,6 +7,8 @@ require_once ".db_config.php";
  * given message
  * @param  string $why     the reason why it failed
  * @param  string $message the message explaining the circumstances
+ * @param  [type] $e       the errors array to add to $d
+ * @param  [type] $d       the data array to add the message and why to
  */
 function loginFailed ($why, $message, $e, &$d) {
     $e[$why] = $message;
@@ -105,6 +107,14 @@ SQL;
     return (intval($statement->fetch(PDO::FETCH_ASSOC)['user_found']) == 1);
 }
 
+/**
+ * Queries the database for the user information using the provided username
+ * and hashed password. If the combination isn't found, returns null
+ * @param  PDO    $c the database connection
+ * @param  string $u the username
+ * @param  string $p the hashed password
+ * @return array     the user information, or null if not found
+ */
 function queryLoginCredentials ($c, $u, $p) {
     $query = <<<SQL
         SELECT
@@ -124,6 +134,11 @@ SQL;
     return $statement->fetch(PDO::FETCH_ASSOC);
 }
 
+/**
+ * Updates the user's row with the current date as last login date.
+ * @param  PDO   $c     the database connection
+ * @param  array $uInfo the user details to locate in the database
+ */
 function updateLastLogin ($c, $uInfo) {
     $query = <<<SQL
         UPDATE
@@ -139,16 +154,32 @@ SQL;
     $statement->execute();
 }
 
+/**
+ * Takes attributes from the user details and adds them to the session
+ * @param array $uInfo the user info to grab from
+ */
 function setSessionVariables ($uInfo) {
     $_SESSION['first_name'] = $uInfo['first_name'];
     $_SESSION['last_name']  = $uInfo['last_name'];
     $_SESSION['username']   = $uInfo['username'];
 }
 
+/**
+ * Checks a number of factors to determine whether or not the user should
+ * receive a message that informs them they are locked out
+ * @param  PDO     $c the database connection
+ * @param  string  $u the username
+ * @param  string  $d the data array
+ * @return boolean    whether or not the user should be notified of lock out
+ */
 function shouldLockUserSignIn($c, $u, $d) {
     return !$d['success'] && $d['fail_type'] == 'credentials'
            && isUsernameValid($c, $u) && checkFailedAttempts($c, $u) >= 3;
 }
+
+// ============================================================================
+//  Main
+// ============================================================================
 
 $ip = $_SERVER['REMOTE_ADDR'];
 
@@ -194,46 +225,64 @@ if (!empty($errors)) {
         $message = 'Your username and/or password are not correct. Please '
                  . 'contact ' . $support_email . ' for assistance.';
         loginFailed('credentials', $message, $errors, $data);
+
+        // In the event the user failed to enter in the right credentials, we
+        // run through a number of checks that, if the user failed enough times
+        // in a time period, we disable their account access temporarily. To
+        // determine this, we check to ensure that the username entered was
+        // valid and we check to see if the user has failed to enter the
+        // correct password at least three times in the past hour. If both are
+        // true, revoke their access.
+        if(shouldLockUserSignIn($connection, $user, $data)) {
+            $message = 'Your account has been locked for one hour for too many'
+                     . ' failed login attempts. Please contact '
+                     . $support_email . ' for assistance.';
+            $data['errors']['locked'] = $message;
+        }
     } else if($userInfo['active'] != '1') {
+        // If the user was found but their account is not active, notify them
         $message = 'Your account is not active. Please contact '
                  . $support_email . ' for assistance.';
         loginFailed('inactive', $message, $errors, $data);
     } else if($userInfo['access_revoked'] == '1') {
+        // If the user was found but access has been revoked, notify them
         $message = 'Access has been revoked for your account. Please contact '
                  . $support_email . ' if you believe this was done in error.';
         loginFailed('revoked', $message, $errors, $data);
     } else if(checkFailedAttempts($connection, $user) >= 3) {
+        // If the user was found but they exceeded 3 failures in the past hour,
+        // notify them
         $message = 'Your account has been locked for one hour for too many '
                  . 'failed login attempts. Please contact ' . $support_email
                  . ' for assistance.';
         loginFailed('locked', $message, $errors, $data);
     } else {
+        // Successful login
+
+        // Update the last_login attribute of the user in the database
         updateLastLogin($connection, $userInfo);
 
+        // Initiate a new session
         session_start();
 
+        // Set the session variables that might be needed by the app later on
         setSessionVariables($userInfo);
 
+        // Denote success and return the session ID so the client can store
+        // it in cookies for temporarily-persistent login
         $data['success'] = true;
         $data['session_id'] = session_id();
     }
 
+    // Regardless of success or failure, add an entry to the login attempts
+    // table to serve as a historical record of logins
     addLoginAttempt($connection, $user, $data, $ip);
-
-    // In the event the user failed to enter in the right credentials, we run
-    // through a number of checks that, if the user failed enough times in
-    // a time period, we disable their account access temporarily
-
-    // Check to ensure that the username entered was valid
-    // We found the user and checked to see if the user has failed to
-    // enter the correct password at least three times in the past hour.
-    // If so, revoke their access.
-    if(shouldLockUserSignIn($connection, $user, $data)) {
-        $message = 'Your account has been locked for one hour for too many'
-                 . ' failed login attempts. Please contact ' . $support_email
-                 . ' for assistance.';
-        $data['errors']['locked'] = $message;
-    }
 }
 
+// Specify in our response that we are returning JSON data
+header('Content-Type: application/json');
+
+// Return the data array in JSON format
 echo json_encode($data);
+
+?>
