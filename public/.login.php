@@ -2,24 +2,17 @@
 
 require_once ".db_config.php";
 
-$ip = $_SERVER['REMOTE_ADDR'];
-
-$errors = array();
-$data = array();
-
-$support_email = 'webmaster@rpiambulance.com';
-
 /**
  * Notifies the user that the login failed for the given reason why with the
  * given message
  * @param  string $why     the reason why it failed
  * @param  string $message the message explaining the circumstances
  */
-function loginFailed ($why, $message) {
-    $errors[$why] = $message;
-    $data['success'] = false;
-    $data['fail_type'] = $why;
-    $data['errors'] = $errors;
+function loginFailed ($why, $message, $e, &$d) {
+    $e[$why] = $message;
+    $d['success'] = false;
+    $d['fail_type'] = $why;
+    $d['errors'] = $e;
 }
 
 /**
@@ -46,12 +39,12 @@ function checkFailedAttempts ($c, $u) {
                 FROM
                     `login_overrides`
                 WHERE
-                    username = 'justetz'
+                    username = :username
                 ORDER BY
                     timestamp DESC
                 LIMIT 1
             ), '0000-00-00');
-    SQL;
+SQL;
 
     $statement = $c->prepare($query);
     $statement->bindParam(':username', $u);
@@ -62,18 +55,25 @@ function checkFailedAttempts ($c, $u) {
 
 /**
  * Add an entry to the login_attempts table
- * @param PDO      $c the database connection
- * @param string   $u the user to log
+ * @param PDO      $c  the database connection
+ * @param string   $u  the user to log
+ * @param array    $d  the data to check for success
+ * @param array    $ip the client's IP address
  */
-function addLoginAttempt ($c, $u) {
-    $was_successful = ($data['success'] ? 1 : 0);
-    $fail_type = ($data['success'] ? null : $data['fail_type']);
+function addLoginAttempt ($c, $u, $d, $ip) {
+    if($d['success']) {
+        $was_successful = 1;
+        $fail_type = null;
+    } else {
+        $was_successful = 0;
+        $fail_type = $d['fail_type'];
+    }
 
     $query = <<<SQL
         INSERT INTO `login_attempts`
         (`username`, `was_successful`, `ip_address`, `fail_type`) VALUES
         (:username,  :was_successful,  :ip_address,  :fail_type);
-    SQL;
+SQL;
 
     $statement = $c->prepare($query);
     $statement->bindParam(':username', $u);
@@ -97,7 +97,7 @@ function isUsernameValid ($c, $u) {
             members
         WHERE
             username = :username;
-    SQL;
+SQL;
 
     $statement = $c->prepare($query);
     $statement->bindParam(':username', $user);
@@ -114,16 +114,48 @@ function queryLoginCredentials ($c, $u, $p) {
         WHERE
             username = :username AND
             password = :password;
-    SQL;
+SQL;
 
-    $statement = $connection->prepare($query);
-    $statement->bindParam(':password', $pass);
-    $statement->bindParam(':username', $user);
+    $statement = $c->prepare($query);
+    $statement->bindParam(':username', $u);
+    $statement->bindParam(':password', $p);
     $statement->execute();
 
-    $userInfo = $statement->fetch(PDO::FETCH_ASSOC);
+    return $statement->fetch(PDO::FETCH_ASSOC);
 }
 
+function updateLastLogin ($c, $uInfo) {
+    $query = <<<SQL
+        UPDATE
+            members
+        SET
+            lastlogin=CURDATE()
+        WHERE
+            id = :id;
+SQL;
+
+    $statement = $c->prepare($query);
+    $statement->bindParam(':id', $uInfo['id']);
+    $statement->execute();
+}
+
+function setSessionVariables ($uInfo) {
+    $_SESSION['first_name'] = $uInfo['first_name'];
+    $_SESSION['last_name']  = $uInfo['last_name'];
+    $_SESSION['username']   = $uInfo['username'];
+}
+
+function shouldLockUserSignIn($c, $u, $d) {
+    return !$d['success'] && $d['fail_type'] == 'credentials'
+           && isUsernameValid($c, $u) && checkFailedAttempts($c, $u) >= 3;
+}
+
+$ip = $_SERVER['REMOTE_ADDR'];
+
+$errors = array();
+$data = array();
+
+$support_email = 'webmaster@rpiambulance.com';
 
 if (!isset($_POST['username'])) {
     // Check if the POST request body contains a username field. If not, error.
@@ -137,7 +169,8 @@ if (!isset($_POST['password'])) {
 
 if (!empty($errors)) {
     // If either the username or the password were not entered, fail the login.
-    loginFailed('incomplete', 'Please ensure you entered a username and a password.');
+    $message = 'Please ensure you entered a username and a password.';
+    loginFailed('incomplete', $message, $errors, $data);
 } else {
     // Otherwise, we have both values. Full speed ahead.
 
@@ -156,35 +189,36 @@ if (!empty($errors)) {
     $userInfo = queryLoginCredentials($connection, $user, $pass);
 
     if (empty($userInfo)) {
-        // If the user was not found by the query, then the user didn't enter in
-        // either a correct username or password. Fail accordingly
+        // If the user was not found by the query, then the user didn't enter
+        // in either a correct username or password. Fail accordingly
         $message = 'Your username and/or password are not correct. Please '
                  . 'contact ' . $support_email . ' for assistance.';
-        loginFailed('credentials', $message);
+        loginFailed('credentials', $message, $errors, $data);
     } else if($userInfo['active'] != '1') {
         $message = 'Your account is not active. Please contact '
                  . $support_email . ' for assistance.';
-        loginFailed('inactive', $message);
+        loginFailed('inactive', $message, $errors, $data);
     } else if($userInfo['access_revoked'] == '1') {
-        loginFailed('revoked', 'Access has been revoked for your account. Please contact ' . $support_email . ' if you believe this was done in error.');
-    } else if(checkFailedAttempts($user) >= 3) {
-        loginFailed('locked', 'Your account has been locked for one hour for too many failed login attempts. Please contact ' . $support_email . ' for assistance.');
+        $message = 'Access has been revoked for your account. Please contact '
+                 . $support_email . ' if you believe this was done in error.';
+        loginFailed('revoked', $message, $errors, $data);
+    } else if(checkFailedAttempts($connection, $user) >= 3) {
+        $message = 'Your account has been locked for one hour for too many '
+                 . 'failed login attempts. Please contact ' . $support_email
+                 . ' for assistance.';
+        loginFailed('locked', $message, $errors, $data);
     } else {
-        $statement = $connection->prepare("UPDATE members SET lastlogin=CURDATE() WHERE id = :id");
-        $statement->bindParam(':id', $userInfo['id']);
-        $statement->execute();
+        updateLastLogin($connection, $userInfo);
 
         session_start();
 
-        $_SESSION['first_name'] = $userInfo['first_name'];
-        $_SESSION['last_name'] = $userInfo['last_name'];
-        $_SESSION['username'] = $userInfo['username'];
+        setSessionVariables($userInfo);
 
         $data['success'] = true;
         $data['session_id'] = session_id();
     }
 
-    addLoginAttempt($connection, $user, $data);
+    addLoginAttempt($connection, $user, $data, $ip);
 
     // In the event the user failed to enter in the right credentials, we run
     // through a number of checks that, if the user failed enough times in
@@ -194,8 +228,11 @@ if (!empty($errors)) {
     // We found the user and checked to see if the user has failed to
     // enter the correct password at least three times in the past hour.
     // If so, revoke their access.
-    if(!$data['success'] && $data['fail_type'] == 'credentials' && isUsernameValid($connection, $user) && checkFailedAttempts($connection, $user) >= 3) {
-        $data['errors']['locked'] = 'Your account has been locked for one hour for too many failed login attempts. Please contact ' . $support_email . ' for assistance.';
+    if(shouldLockUserSignIn($connection, $user, $data)) {
+        $message = 'Your account has been locked for one hour for too many'
+                 . ' failed login attempts. Please contact ' . $support_email
+                 . ' for assistance.';
+        $data['errors']['locked'] = $message;
     }
 }
 
