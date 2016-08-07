@@ -21,6 +21,7 @@
     "angular-ui-calendar": "^1.0.2"
   },
   "resolutions": {
-    "angular": "1.4.6"
+    "angular": "1.5.8",
+    "Chart.js": "^2.1.3"
   }
 }
