@@ -15,7 +15,9 @@ if(!isset($dname)) {
 //$db = mysql_select_db("$dname", $connection);
 $connection->exec("USE `$dname`");
 
-if(date(D) == "Sun") {
+
+
+if(date("D") == "Sun") {
     $oneweek = date("Y-m-d", mktime(0, 0, 0, date("m"), date("d")+7, date("Y")));
 
     $statement = $connection->prepare("SELECT COUNT(id) FROM crews WHERE date = :oneweek");
@@ -40,7 +42,7 @@ if(date(D) == "Sun") {
 }
 
 try {
-  $statement=$connection->prepare("SELECT * FROM $dname.night_crews_view");
+  $statement=$connection->prepare("SELECT * FROM $dname.crews");
   $statement->execute();
   $results=$statement->fetchAll(PDO::FETCH_ASSOC);
 
