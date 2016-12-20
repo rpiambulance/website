@@ -24,6 +24,8 @@ function loginFailed ($why, $message, $e, &$d) {
  * @param  string  $u the user to check
  * @return int        num of times the user has failed to login the past hour
  */
+
+
 function checkFailedAttempts ($c, $u) {
     $query = <<<SQL
         SELECT
@@ -116,6 +118,7 @@ SQL;
  * @return array     the user information, or null if not found
  */
 function queryLoginCredentials ($c, $u, $p) {
+
     $query = <<<SQL
         SELECT
             *
@@ -190,12 +193,12 @@ $support_email = 'webmaster@rpiambulance.com';
 
 if (!isset($_POST['username'])) {
     // Check if the POST request body contains a username field. If not, error.
-    $errors['username'] = 'Username is required.';
+    // $errors['username'] = 'Username is required.';
 }
 
 if (!isset($_POST['password'])) {
     // Check if the POST request body contains a password field. If not, error.
-    $errors['password'] = 'Password is required.';
+    // $errors['password'] = 'Password is required.';
 }
 
 if (!empty($errors)) {
@@ -283,6 +286,6 @@ if (!empty($errors)) {
 header('Content-Type: application/json');
 
 // Return the data array in JSON format
-echo json_encode($data);
+echo json_encode($data, $POST);
 
 ?>

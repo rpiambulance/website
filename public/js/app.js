@@ -19,7 +19,7 @@ var dependencies = [
     'CoverageDetailsCtrl', 'JoinCtrl', 'NightCrewsCtrl', 'MemberListCtrl', 'FuelLogCtrl', 'StockingIssueCtrl',
     'AddMemberCtrl', 'ExpirationsCtrl', 'CommunityCtrl', 'EditMemberCtrl', 'GamesEventsCtrl', 'AddEventCtrl', 'EditDefaultCtrl',
     'EventCtrl', 'GameCtrl', 'GamesEventsCtrl', 'ModifyScheduleCtrl', 'MySettingsCtrl', 'MyTrainingCtrl', 'AnnouncementsCtrl',
-    'NominationsCtrl', 'FuelLogEntriesCtrl'
+    'NominationsCtrl', 'FuelLogEntriesCtrl', 'mwl.calendar', 'ui.bootstrap', 'moment'
 ];
 
 var app = angular.module('RPIA', dependencies);
@@ -36,7 +36,7 @@ app.config(['$showdownProvider', function($showdownProvider) {
 
 app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $location, AuthService) {
 	var AUTHED_PAGES = [
-		'night-crews', 'games-events', 'member-list', 'fuel-log', 'stocking-issue', 'expirations', 'announcements',
+		'night-crews', 'member-list', 'fuel-log', 'stocking-issue', 'expirations', 'announcements',
 		'attendant-training', 'driver-training', 'crew-chief-training', 'supervisor-training', 'in-service-training',
 		'communications', 'emt-reciprocity', 'minutes', 'misc-forms', 'mutual-aid', 'misc-forms', 'radio-callsigns',
 		'rensco-resources', 'sop', 'doh-resources', 'text-message-dispatch', 'my-settings', 'my-training', 'logout'
