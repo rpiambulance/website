@@ -64,6 +64,7 @@ angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', 
                 $scope.submissionMessage = data.messageSuccess;
                 $scope.formData = {}; // form fields are emptied with this line
                 $scope.submission = true; //shows the success message
+                sweetAlert("Message Sent!", "Thanks for reaching out to us. You should have received a copy of your email to the address you provided. One of our members should be in touch with you shortly.", "success");
             }
         });
     };

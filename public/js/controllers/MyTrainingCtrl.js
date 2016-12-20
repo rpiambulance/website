@@ -1,5 +1,8 @@
 angular.module('MyTrainingCtrl', []).controller('MyTrainingCtrl', ['$scope', '$http', function ($scope, $http) {
 
+    sweetAlert("Hi There!", "This feature is just an example. Your actual training records are currently not stored here. We'll let you know once this feature exists.", "warning");
+
+
     $scope.tabs = [
         {
             title: 'Attendant',
@@ -28,5 +31,7 @@ angular.module('MyTrainingCtrl', []).controller('MyTrainingCtrl', ['$scope', '$h
         return tabUrl == $scope.currentTab;
     }
 
+    $scope.testalert = function(){
+    }
 
 }]);

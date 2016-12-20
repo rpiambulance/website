@@ -26,6 +26,9 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
     $scope.toggleModal = function (id) {
         $scope.currentTier = id;
         $scope.showModal = !$scope.showModal;
+        if ($scope.showModal == false && $scope.sumbission == false) {
+            sweetAlert("Heads up!", "You've just closed the form, but have not submitted anything.", "error");
+        }
     };
 
     var autocompleteValidate = function () {
@@ -75,6 +78,7 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
                 if(data.messageError) {
                     $scope.submissionMessage = data.messageError;
                 }
+                sweetAlert("Heads up!", "You've just closed the form, but have not submitted anything. Please make sure all fields are filled out and that you have completed the Captcha.", "error");
                 $scope.submission = true; //shows the error message
             } else {
                 $scope.showCoverageSuccess = true;
@@ -82,6 +86,7 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
                 $scope.submissionMessage = data.messageSuccess;
                 $scope.formData = {}; // form fields are emptied with this line
                 $scope.submission = true; //shows the success message
+                sweetAlert("Thanks!", "Thanks for submitting a request for EMS coverage. You should have received a copy of your reqest to the email you provided. Our Second Leiutenant should be in touch with you shortly.", "success");
             }
         });
     };

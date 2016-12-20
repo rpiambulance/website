@@ -51,6 +51,7 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
                     $scope.submissionMessage = data.messageSuccess;
                     $scope.formData = {}; // form fields are emptied with this line
                     $scope.submission = true; //shows the success message
+                    sweetAlert("Welcome!", "Thanks for joining our team! We look forward to seeing you around!", "success");
                 }
             });
         }
