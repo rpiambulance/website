@@ -2,6 +2,7 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
     var SESSION_ID_COOKIE = '__RPIA_SESSION_ID';
 
     this.login = function (formData) {
+        console.log(formData);
         $http({
             method: 'POST',
             url: '.login.php',
