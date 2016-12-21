@@ -1,7 +1,7 @@
 
 angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap']).controller('GamesEventsCtrl', ['$scope', function($scope) {
 
-  $scope.getDatetime = function () {
+  getDatetime = function () {
     var date= new Date();
     var month_arr=[
       'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August',
@@ -10,11 +10,10 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap']).controller('
 
     var month= month_arr[date.getMonth()];
 
-
     return month;
 
   }
-  $scope.month= $scope.getDatetime();
 
+  $scope.month= getDatetime();
 
 }]);
