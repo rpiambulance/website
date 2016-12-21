@@ -6,7 +6,6 @@
                 ng-class="{active:isActiveTab(tab.url)}"
                 ng-click="onClickTab(tab)">{{tab.title}}</button>
         </div>
-        <button class="btn btn-primary" ng-click="testalert()">Hi</button>
         <div id="mainView">
             <div ng-include="currentTab"></div>
         </div>
