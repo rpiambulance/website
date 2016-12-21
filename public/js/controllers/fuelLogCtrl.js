@@ -1,7 +1,63 @@
-angular.module('FuelLogCtrl', []).controller('FuelLogCtrl', ['$scope', '$http', function($scope, $http) {
+angular.module('FuelLogCtrl', []).controller('FuelLogCtrl', ['$scope', '$http', 'AuthService', function($scope, $http, AuthService) {
+    $scope.fuelLog = [];
+    $scope.page = 1;
+
+    $scope.vehicleOptions = ['Both', 'FR-59', '5939'];
+    $scope.vehicle = $scope.vehicleOptions[0];
+    $scope.pages = [];
+    $scope.showModal = false;
+
+
+    AuthService.getUserMetadata().then(function (data) {
+        console.log(data);
+        $scope.user= data.first_name + ' ' + data.last_name;
+
+    }, function (error) { console.log(error); });
+
+
+    function load() {
+        var url = '.fuel_log_entries.php?page=' + $scope.page;
+
+        if($scope.vehicle !== 'Both') {
+            url += '&vehicle=' + $scope.vehicle;
+        }
+
+        $http.get(url).then(function (response) {
+            $scope.fuelLog    = response.data.results;
+            $scope.totalPages = response.data.totalPages;
+            $scope.count      = response.data.count;
+            $scope.pages      = [];
+
+            for(var i = 1; i <= $scope.totalPages; i++) {
+                $scope.pages.push(i);
+            }
+        });
+    }
+    load();
+
+    $scope.changePage = function (p) {
+        $scope.page = p;
+
+        load();
+    };
+
+    $scope.changeVehicle = function (v) {
+        $scope.vehicle = v;
+        $scope.page = 1;
+
+        load();
+    }
+
+    $scope.displayModal = function () {
+        $scope.showModal = true;
+    }
+
+
+    //ADDED FUNCTIONS
+
 
     $scope.formData = {
-        name: "",
+        name: "David Sparkman",
         date: $scope.getDatetime,
         qty: "",
         mileage: "",
@@ -62,7 +118,7 @@ angular.module('FuelLogCtrl', []).controller('FuelLogCtrl', ['$scope', '$http', 
             if (!data.success) {
                 console.log("it failed!");
                 // if not successful, bind errors to error variables
-
+                console.log(data);
                 $scope.submission = true; //shows the error message
             } else {
                 $scope.showContactSuccess = true;
@@ -73,5 +129,7 @@ angular.module('FuelLogCtrl', []).controller('FuelLogCtrl', ['$scope', '$http', 
             }
         });
     };
+
+
 
 }]);

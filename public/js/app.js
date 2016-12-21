@@ -19,7 +19,7 @@ var dependencies = [
     'CoverageDetailsCtrl', 'JoinCtrl', 'NightCrewsCtrl', 'MemberListCtrl', 'FuelLogCtrl', 'StockingIssueCtrl',
     'AddMemberCtrl', 'ExpirationsCtrl', 'CommunityCtrl', 'EditMemberCtrl', 'GamesEventsCtrl', 'AddEventCtrl', 'EditDefaultCtrl',
     'EventCtrl', 'GameCtrl', 'GamesEventsCtrl', 'ModifyScheduleCtrl', 'MySettingsCtrl', 'MyTrainingCtrl', 'AnnouncementsCtrl',
-    'NominationsCtrl', 'FuelLogEntriesCtrl', 'mwl.calendar', 'ui.bootstrap'
+    'NominationsCtrl', 'FuelLogCtrl', 'mwl.calendar', 'ui.bootstrap'
 ];
 
 var app = angular.module('RPIA', dependencies);

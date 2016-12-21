@@ -2,6 +2,7 @@
 
 require_once ".recaptchalib.php";
 require_once ".db_config.php";
+require_once ".form_config.php";
 
 $response = null;
 
