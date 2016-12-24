@@ -191,12 +191,22 @@ $data = array();
 
 $support_email = 'webmaster@rpiambulance.com';
 
-if (!isset($_POST['username'])) {
+if(isset($_POST['json'])) {
+    $data = json_decode($_POST['json'], true);
+    if (json_last_error() != JSON_ERROR_NONE) {
+        // invalid json
+        $errors['json'] = 'The JSON string provided is not valid.';
+    }
+} else {
+    $data = $_POST;
+}
+
+if (!isset($data['username'])) {
     // Check if the POST request body contains a username field. If not, error.
     $errors['username'] = 'Username is required.';
 }
 
-if (!isset($_POST['password'])) {
+if (!isset($data['password'])) {
     // Check if the POST request body contains a password field. If not, error.
     $errors['password'] = 'Password is required.';
 }
@@ -209,8 +219,9 @@ if (!empty($errors)) {
     // Otherwise, we have both values. Full speed ahead.
 
     // Get the values into temp variables, password hashed.
-    $user = $_POST['username'];
-    $pass = md5($_POST['password']);
+    $user = $data['username'];
+    $pass = md5($data['password']);
+    unset($data['password']);
 
     // Connect to the database and prep for error checking
     $connection = new PDO($dsn, $duser, $dpassword);
@@ -286,6 +297,6 @@ if (!empty($errors)) {
 header('Content-Type: application/json');
 
 // Return the data array in JSON format
-echo json_encode($_POST);
+echo json_encode($data);
 
 ?>

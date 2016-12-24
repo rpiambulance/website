@@ -2,18 +2,18 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
     var SESSION_ID_COOKIE = '__RPIA_SESSION_ID';
 
     this.login = function (formData) {
-        console.log(formData);
+        console.log("json=" + JSON.stringify(formData));
         $http({
             method: 'POST',
             url: '.login.php',
-            data: formData,
+            data: "json=" + JSON.stringify(formData),
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        }).success(function (data) {
-            if (!data.success) {
+        }).then(function (response) {
+            if (!response.data || !response.data.success) {
                 console.log("it failed!");
-                console.log(data);
+                console.log(response || response.data);
             } else {
-                $cookies.put(SESSION_ID_COOKIE, data.session_id);
+                $cookies.put(SESSION_ID_COOKIE, response.data.session_id);
                 $location.path('/night-crews');
             }
         });

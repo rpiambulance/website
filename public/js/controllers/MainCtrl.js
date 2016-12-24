@@ -4,9 +4,9 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
     $scope.username = '';
 
     AuthService.getUserMetadata().then(function (data) {
-        console.log(data);
-        $scope.user= data.first_name;
-
+        if(data != '0') {
+            $scope.user = data.first_name;
+        }
     }, function (error) { console.log(error); });
 
     $rootScope.$on("$routeChangeSuccess", function (currentRoute, previousRoute) {
