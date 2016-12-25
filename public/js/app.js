@@ -36,10 +36,10 @@ app.config(['$showdownProvider', function($showdownProvider) {
 
 app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $location, AuthService) {
 	var AUTHED_PAGES = [
-		// 'night-crews', 'member-list', 'fuel-log', 'stocking-issue', 'expirations', 'announcements',
-		// 'attendant-training', 'driver-training', 'crew-chief-training', 'supervisor-training', 'in-service-training',
-		// 'communications', 'emt-reciprocity', 'minutes', 'misc-forms', 'mutual-aid', 'misc-forms', 'radio-callsigns',
-		// 'rensco-resources', 'sop', 'doh-resources', 'text-message-dispatch', 'my-settings', 'my-training', 'logout'
+		'night-crews', 'member-list', 'fuel-log', 'stocking-issue', 'expirations', 'announcements',
+		'attendant-training', 'driver-training', 'crew-chief-training', 'supervisor-training', 'in-service-training',
+		'communications', 'emt-reciprocity', 'minutes', 'misc-forms', 'mutual-aid', 'misc-forms', 'radio-callsigns',
+		'rensco-resources', 'sop', 'doh-resources', 'text-message-dispatch', 'my-settings', 'my-training', 'logout'
 	];
 
 	var SCHEDULING_PAGES = [

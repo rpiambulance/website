@@ -3,6 +3,9 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
 
     this.login = function (formData) {
         console.log("json=" + JSON.stringify(formData));
+
+        var deferred = $q.defer();
+
         $http({
             method: 'POST',
             url: '.login.php',
@@ -10,13 +13,14 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function (response) {
             if (!response.data || !response.data.success) {
-                console.log("it failed!");
-                console.log(response || response.data);
+                deferred.reject(response);
             } else {
                 $cookies.put(SESSION_ID_COOKIE, response.data.session_id);
-                $location.path('/night-crews');
+                deferred.resolve(response);
             }
         });
+
+        return deferred.promise;
     };
 
     this.logout = function () {

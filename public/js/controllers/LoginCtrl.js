@@ -4,22 +4,8 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$wi
         password: ""
     };
 
-
-
-    // var autocompleteValidate = function () {
-    //     console.log("Ran this thing.");
-    //     var corrected = {};
-    //     for (var d in $scope.formData) {
-    //         if($scope.formData.hasOwnProperty(d)) {
-    //             if(document.getElementById(d).value !== $scope.formData[d]) {
-    //                 corrected[d] = document.getElementById(d).value;
-    //             } else {
-    //                 corrected[d] = $scope.formData[d];
-    //             }
-    //         }
-    //     }
-    //     return corrected;
-    // };
+    $scope.showError = false;
+    $scope.errorMessage = '';
 
     $scope.clearForm = function () {
         for (var d in $scope.formData) {
@@ -30,6 +16,12 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$wi
 
     $scope.submitForm = function () {
         console.log("Submit");
-        AuthService.login($scope.formData);
+        AuthService.login($scope.formData).then(function (response) {
+            console.log('here1');
+            $location.path('/night-crews');
+        }, function (error) {
+            console.log('here2', error);
+            $scope.showError = true;
+        })
     };
 }]);
