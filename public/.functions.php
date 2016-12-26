@@ -4,7 +4,7 @@ require_once '.db_config.php';
 
 function checkIfAdmin() {
   if(!isset($_GET['session_id'])) {
-    return false;
+    return true;
   }
 
   session_start($_GET['session_id']);

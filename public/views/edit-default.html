@@ -3,6 +3,16 @@
         <div class="center">
             <h2>Edit Default Schedule</h2>
         </div>
+        <div class="alert alert-success alert-dismissible" ng-show="worked == true" role="alert">
+            <button type="button" class="close" ng-click="showContactSuccess = false"><span
+                    aria-hidden="true">&times;</span></button>
+            <i class="fa fa-calendar-check-o"></i><strong> Success!</strong> The default schedule was successfully updated!
+        </div>
+        <div class="alert alert-danger alert-dismissible" ng-show="worked == false" role="alert">
+            <button type="button" class="close" ng-click="showContactSuccess = false"><span
+                    aria-hidden="true">&times;</span></button>
+            <i class="fa fa-ban"></i><strong> Whoops!</strong> Something here went very wrong. Please check your inputs. If everthing looks right, contact the webmaster.
+        </div>
         <table id="default-week" class="table table-bordered table-striped table-center">
             <thead>
                 <tr>

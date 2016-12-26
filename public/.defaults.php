@@ -32,7 +32,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $statement->bindParam(':day', $elem['day']);
         $result = $statement->execute();
       }
-      echo(json_encode(array('success' => true)));
+      echo(json_encode(array('success' => true, 'message' => 'Updated')));
     } catch (PDOException $e) {
       echo(json_encode(array('success' => false, 'error' => $e)));
     }

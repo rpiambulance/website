@@ -1,4 +1,5 @@
 angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '$http', '$q', function($scope, $http, $q) {
+    $scope.worked= null;
     $scope.days = [
         'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
     ];
@@ -58,6 +59,7 @@ angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).success(function (data) {
             console.log(data);
+            $scope.worked= data.success;
             if (!data.success) {
                 console.log("it failed!");
                 $scope.submission = true; //shows the error message
@@ -67,7 +69,6 @@ angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '
 
                 $scope.areChangesPending = false;
 
-                $scope.successName = $scope.formData.first_name + ' ' + $scope.formData.last_name;
                 $scope.showContactSuccess = true;
                 // if successful, bind success message to message
                 $scope.submissionMessage = data.messageSuccess;
