@@ -1,4 +1,4 @@
-angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$window', '$cookies', 'AuthService', function($scope, $http, $window, $cookies, AuthService) {
+angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$location', '$cookies', 'AuthService', function($scope, $http, $location, $cookies, AuthService) {
     $scope.formData = {
         username: "",
         password: ""
