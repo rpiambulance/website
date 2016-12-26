@@ -236,8 +236,8 @@ if (!empty($errors)) {
     if (empty($userInfo)) {
         // If the user was not found by the query, then the user didn't enter
         // in either a correct username or password. Fail accordingly
-        $message = 'Your username and/or password are not correct. Please '
-                 . 'contact ' . $support_email . ' for assistance.';
+        $message = 'We don\'t recongize that username and password combination. Make sure they both are correct. If all else fails, please '
+                 . 'contact ' . $support_email . ' for further assistance.';
         loginFailed('credentials', $message, $errors, $data);
 
         // In the event the user failed to enter in the right credentials, we
