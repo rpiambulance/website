@@ -2,8 +2,6 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
     var SESSION_ID_COOKIE = '__RPIA_SESSION_ID';
 
     this.login = function (formData) {
-        console.log("json=" + JSON.stringify(formData));
-
         var deferred = $q.defer();
 
         $http({
