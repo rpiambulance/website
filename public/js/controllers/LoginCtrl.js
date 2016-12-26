@@ -21,6 +21,7 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$lo
             $location.path('/night-crews');
         }, function (error) {
             console.log('here2', error);
+            sweetAlert("Houston, we have a problem!", error.data.errors.credentials, "error");
             $scope.showError = true;
         })
     };
