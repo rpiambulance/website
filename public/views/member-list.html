@@ -62,10 +62,11 @@
                     <td class="text-center"><span ng-if="m.radionum != 0">{{o.radionum}}</span></td>
                     <td>{{o.last_name}}</td>
                     <td>{{o.first_name}}</td>
-                    <td ng-if="o.radioco == 1">Radio Coordinator</td>
+                    <td>{{o.card_id}}</td>
+                    <!-- <td ng-if="o.radioco == 1">Radio Coordinator</td>
                     <td ng-if="o.traincommchair == 1">Training Committee Chair</td>
                     <td ng-if="o.schedco == 1">Scheduling Coordinator</td>
-                    <td ng-if="o.admin == 1 && o.captain == 0">Webmaster</td>
+                    <td ng-if="o.admin == 1 && o.captain == 0">Webmaster</td> -->
                     <td><a ng-href="mailto:{{o.email.toLowerCase()}}">{{o.email.toLowerCase()}}</a></td>
                 </tr>
             </tbody>

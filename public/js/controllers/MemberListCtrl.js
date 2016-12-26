@@ -54,5 +54,23 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
                 $scope.otherOfficers.push(elem);
             }
         });
+        $scope.otherOfficers.forEach(function (elem){
+            elem.card_id = [];
+            if(elem.radioco == 1){
+                elem.card_id.push("Radio Coordinator");
+            }
+            if (elem.traincommchair == 1) {
+                elem.card_id.push("Training Committee Chair");
+            }
+            if (elem.schedco == 1) {
+                elem.card_id.push("Scheduling Coordinator");
+            }
+            if (elem.admin ==1 && elem.captain == 0) {
+                elem.card_id.push("Webmaster");
+            }
+        })
+        $scope.otherOfficers.forEach(function (elem){
+            elem.card_id = elem.card_id.join(", ");
+        })
     });
 }]);
