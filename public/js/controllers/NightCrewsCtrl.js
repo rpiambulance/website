@@ -10,58 +10,82 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
 
     }, function (error) { console.log(error); });
 
-    $scope.currentWeekCrews = [];
-    $scope.upcomingWeekCrews = [];
-
-    $http({
-        method: 'GET',
-        url: '.crews.php',
-        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        // set the headers so angular passing info as form data (not request payload)
-    }).then(function (response) {
-        console.log('we here', response);
-        if (!response.data.success) {
-            console.log(response.data);
-            console.log("it failed!");
-            // if not successful, bind errors to error variables
-
-            $scope.submission = true; //shows the error message
-        } else {
-            // Since the crews come in order of latest first, we need to separate
-            // them in a way that almost seems backwards.
-
-            console.log(response.data.result);
-
-            $scope.currentWeekCrews = response.data.result.slice(7);
-            $scope.upcomingWeekCrews = response.data.result.slice(0, 7);
+    $scope.tables = [
+        {
+            attribute: 'currentWeek',
+            title: 'Current Week'
+        }, {
+            attribute: 'nextWeek',
+            title: 'Upcoming Week'
         }
-    });
+    ];
+
+    $scope.loadCrews = function() {
+        $scope.loadedCrews = false;
+        $http({
+            method: 'POST',
+            url: '.crews.php',
+            data: "session_id=" + AuthService.getSessionId(),
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function (response) {
+            if (!response.data.success) {
+                console.log("it failed!");
+            } else {
+                // Since the crews come in order of latest first, we need to separate
+                // them in a way that almost seems backwards.
+
+                $scope.tableHeadings = response.data.headings;
+                $scope.crews = response.data.crews;
+                // $scope.currentWeekCrews = response.data.currentWeek;
+                // $scope.upcomingWeekCrews = response.data.nextWeek;
+                $scope.positions = response.data.positions;
+
+                $scope.loadedCrews = true;
+            }
+        });
+    };
+    $scope.loadCrews();
 
     $scope.number = 7;
     $scope.getNumber = function (num) {
         return new Array(num);
     };
 
-    $scope.clearForm = function () {
-        for (var d in $scope.formData) {
-            if ($scope.formData.hasOwnProperty(d))
-                $scope.formData[d] = "";
+    var crewAction = function (a, s) {
+        var data = a + '=true';
+        data += '&crewid=' + s.crewid;
+        data += '&position=' + s.position;
+        data += '&signature=' + s.signature;
+        data += '&session_id=' + AuthService.getSessionId();
+
+        $http({
+            method: 'POST',
+            url: '.crews.php',
+            data: data,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).then(function (response) {
+            console.log(response.data);
+            if(response.data == "true") {
+                $scope.loadCrews();
+            } else {
+                alert('Something went wrong...');
+            }
+        });
+    }
+
+    $scope.confirmCrew = function (spot) {
+        if(!spot || !spot.vacant || !spot.eligible) {
+            return false;
         }
+
+        crewAction('confirmcrew', spot);
     };
 
-    $scope.formatName = function (first, last) {
-        return first ? (first.substr(0,1) + '. ' + last) : (last ? last : '');
-    };
+    $scope.clearCrew = function (spot, clear) {
+        if(!spot || !clear || spot.vacant) {
+            return false;
+        }
 
-    $scope.canDelete = function (username) {
-        return username === $scope.username;
-    };
-
-    $scope.canRegisterCC = function (crew) {
-        return $scope.crewchief || $scope.cctrainer;
-    };
-
-    $scope.canRegisterDriver = function (crew) {
-        return $scope.driver || $scope.drivertrainer;
+        crewAction('clearcrew', clear);
     };
 }]);

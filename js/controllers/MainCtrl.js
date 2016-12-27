@@ -50,6 +50,16 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         }
     };
 
+    $scope.createFormData = function (json) {
+        var formData = new FormData();
+
+        for ( var key in json ) {
+            formData.append(key, json[key]);
+        }
+
+        return formData;
+    };
+
 
     /**
      * Contains the data to dynamically populate the navigation bar

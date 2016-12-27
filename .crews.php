@@ -1,42 +1,52 @@
 <?php
+
 // if ($_GET['page'] == "nightcrews") {
 //     require "error.php";
 //     die();
 // }
 
 date_default_timezone_set("America/New_York");
-session_start('iv9vbj5mo33i5qdf8bqctmcp40');
 
 main();
 
-function confirmCrew($connection, $signature, $id, $position, $crewid) {
-    $secret = "cfa7kBwsjV9DrE0gxGnPXlRq1";
-
-    $statement = $connection->prepare("SELECT $position FROM crews WHERE id = :crewid");
-    $statement->bindParam(":crewid", $crewid);
-    $statement->execute();
-    $spot = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-    if (sha1($crewid . $position . $id . $secret) == $signature && $spot[$position] == 0) {
-        $statement = $connection->prepare("UPDATE crews SET $position = :id WHERE id = :crewid");
-        $statement->bindParam(":id", $id);
-        $statement->bindParam(":crewid", $crewid);
-        $statement->execute();
-    }
-}
-
-function clearCrew($connection, $signature, $id, $position, $crewid) {
+function modifyCrewAssignment ($connection, $signature, $id, $position, $crewid, $action) {
     $secret = "cfa7kBwsjV9DrE0gxGnPXlRq1";
 
     if (sha1($crewid . $position . $id . $secret) == $signature) {
-        $statement = $connection->prepare("UPDATE crews SET $position = 0 WHERE id = :crewid");
-        $statement->bindParam(":crewid", $crewid);
+        $statement = $connection->prepare("UPDATE crews SET $position = :id WHERE id = :crewid");
+        $statement->bindValue(":id", ($action == 'clear' ? 0 : $id));
+        $statement->bindValue(":crewid", $crewid);
         $statement->execute();
+
+        echo 'true';
+        exit;
+    } else {
+        echo $crewid . ' ' . $position . ' ' . $id . ' ' . $secret;
+        echo 'false';
+        exit;
     }
 }
 
+function confirmCrew ($connection, $signature, $id, $position, $crewid) {
+    $statement = $connection->prepare("SELECT $position FROM crews WHERE id = :crewid");
+    $statement->bindParam(":crewid", $crewid);
+    $statement->execute();
+    $spot = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+
+    if($spot[$position] == 0) {
+        modifyCrewAssignment($connection, $signature, $id, $position, $crewid, 'confirm');
+    } else {
+        echo 'false';
+        exit;
+    }
+}
+
+function clearCrew ($connection, $signature, $id, $position, $crewid) {
+    modifyCrewAssignment($connection, $signature, $id, $position, $crewid, 'clear');
+}
+
 function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton, $atton, $obson, $y, $m, $d) {
-    if(!isset($_SESSION['id'])) {
+    if(!isset($member['id'])) {
         return false;
     } else if(mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')) > mktime(23, 59, 59, $m, $d, $y)) {
         return false;
@@ -101,11 +111,11 @@ function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthiswe
             $spot['email'] = strtolower($spotMemberArray['email']);
         }
 
-        if ($spotMemberArray['id'] == $_SESSION['id'] && mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')) <= mktime(18, 00, 00, $m, $d - 2, $y)) {
+        if ($spotMemberArray['id'] == $member['id'] && mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')) <= mktime(18, 00, 00, $m, $d - 2, $y)) {
             $clear = array(
                 "crewid" => $row['id'],
                 "position" => $pos,
-                "signature" => sha1($row['id'] . $pos . $_SESSION['id'] . "cfa7kBwsjV9DrE0gxGnPXlRq1"),
+                "signature" => sha1($row['id'] . $pos . $member['id'] . "cfa7kBwsjV9DrE0gxGnPXlRq1"),
             );
         } else {
             $clear = false;
@@ -115,7 +125,7 @@ function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthiswe
         $spot["eligible"] = true;
         $spot["crewid"] = $row['id'];
         $spot["position"] = $pos;
-        $spot["signature"] = sha1($row['id'] . $pos . $_SESSION['id'] . "cfa7kBwsjV9DrE0gxGnPXlRq1");
+        $spot["signature"] = sha1($row['id'] . $pos . $member['id'] . "cfa7kBwsjV9DrE0gxGnPXlRq1");
     } else {
         $spot['vacant'] = true;
         $spot['eligible'] = false;
@@ -127,6 +137,24 @@ function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthiswe
 function main () {
     require_once ".db_config.php";
 
+    parse_str(file_get_contents("php://input"), $post);
+
+    if(!isset($post['session_id'])) {
+      header('Bad Request', true, 400);
+      echo 'Bad Request';
+      exit;
+    }
+
+    session_start($post['session_id']);
+
+    if(!isset($_SESSION['username'])) {
+      header('Unauthorized', true, 409);
+      echo 'Unauthorized';
+      exit;
+    }
+
+    $username = $_SESSION['username'];
+
     $connection = new PDO("mysql:host=$dhost:3306;dbname=$dname", $duser, $dpassword);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -136,7 +164,10 @@ function main () {
 
     $connection->exec("USE `$dname`");
 
-    $_SESSION['id'] = 564;
+    $statement = $connection->prepare("SELECT * FROM members WHERE username=:username");
+    $statement->bindParam(':username', $username);
+    $statement->execute();
+    $memberId = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['id'];
 
     // TODO: This:
 
@@ -157,12 +188,12 @@ function main () {
     //     }
     // }
 
-    if (isset($_POST['confirmcrew'])) {
-        confirmCrew($connection, $_POST['signature'], $_SESSION['id'], $_POST['position'], $_POST['crewid']);
+    if (isset($post['confirmcrew'])) {
+        confirmCrew($connection, $post['signature'], $memberId, $post['position'], $post['crewid']);
     }
 
-    if (isset($_POST['clearcrew'])) {
-        clearCrew($connection, $_POST['signature'], $_SESSION['id'], $_POST['position'], $_POST['crewid']);
+    if (isset($post['clearcrew'])) {
+        clearCrew($connection, $post['signature'], $memberId, $post['position'], $post['crewid']);
     }
 
     $statement = $connection->prepare("SELECT id FROM crews ORDER BY id DESC LIMIT 1");
@@ -189,9 +220,14 @@ function main () {
     }
 
     $response = array(
+        "headings" => array(
+            'Night', 'Date', 'Crew Chief', 'Driver', 'Rider', 'Rider'
+        ),
         "pagers" => array(),
-        "currentWeek" => array(),
-        "nextWeek" => array(),
+        "crews" => array(
+            "currentWeek" => array(),
+            "nextWeek" => array(),
+        ),
     );
 
     if ($prev_week >= 36 && $prev_week <= $idarray['id'] - 13) {
@@ -222,8 +258,8 @@ function main () {
         $ccton      = array();
         $dton       = array();
 
-        if (isset($_SESSION['id'])) {
-            $memid  = $_SESSION['id'];
+        if (isset($memberId)) {
+            $memid  = $memberId;
 
             $statement = $connection->prepare("SELECT * FROM members WHERE id = :memid LIMIT 1");
             $statement->bindParam(':memid', $memid);
@@ -273,6 +309,8 @@ function main () {
                         $dton[$x] = 1;
                     }
                 }
+
+                $response['positions'] = $positions;
             }
         }
 
@@ -303,9 +341,11 @@ function main () {
                 $nightCrew['clear'][$pos] = $spot['clear'];
             }
 
-            $response[($tableloop == 0 ? "currentWeek" : "nextWeek")][] = $nightCrew;
+            $response['crews'][($tableloop == 0 ? "currentWeek" : "nextWeek")][] = $nightCrew;
         }
     }
+
+    $response['success'] = true;
 
     echo json_encode($response);
 }

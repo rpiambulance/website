@@ -191,14 +191,22 @@ $data = array();
 
 $support_email = 'webmaster@rpiambulance.com';
 
-if(isset($_POST['json'])) {
-    $data = json_decode($_POST['json'], true);
+if(getenv('REQUEST_METHOD') != 'POST') {
+    header('Bad Request', true, 400);
+    echo 'Bad Request';
+    exit;
+}
+
+parse_str(file_get_contents("php://input"), $post);
+
+if(isset($post['json'])) {
+    $data = json_decode($post['json'], true);
     if (json_last_error() != JSON_ERROR_NONE) {
         // invalid json
         $errors['json'] = 'The JSON string provided is not valid.';
     }
 } else {
-    $data = $_POST;
+    $data = $post;
 }
 
 if (!isset($data['username'])) {

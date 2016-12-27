@@ -92,4 +92,8 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
 
         return deferred.promise;
     };
+
+    this.getSessionId = function () {
+        return $cookies.get(SESSION_ID_COOKIE);
+    }
 }]);
