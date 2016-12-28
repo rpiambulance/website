@@ -1,4 +1,7 @@
 angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$http', 'AuthService', function ($scope, $http, AuthService) {
+
+    $scope.activeWeek = true;
+
     AuthService.getUserMetadata().then(function (data) {
         console.log(data);
         $scope.username = data.username;
@@ -45,6 +48,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
         });
     };
     $scope.loadCrews();
+
 
     $scope.number = 7;
     $scope.getNumber = function (num) {

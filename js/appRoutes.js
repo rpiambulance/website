@@ -1,4 +1,5 @@
 angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', function($routeProvider, $locationProvider) {
+    $locationProvider.hashPrefix('');
 
     var views = [
         'Home', 'RPIA-About', 'FAQ', '5939-About', 'FR59-About', 'Officers', 'Communications', 'Media', 'Minutes',
@@ -38,6 +39,6 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         redirectTo:'/home'
     });
 
-    //$locationProvider.html5Mode(true);
+    // $locationProvider.html5Mode(true);
 
 }]);
