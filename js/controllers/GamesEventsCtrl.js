@@ -18,7 +18,8 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap']).controller('
 
 }]);
 
-angular.module('mwl.calendar.docs', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('KitchenSinkCtrl', function(moment, alert, calendarConfig) {
+angular.module('KitchenSinkCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('KitchenSinkCtrl', function(moment, calendarConfig) {
+  // TO the next developer: good luck. You're probably screwed. God bless.
 
     var vm = this;
 
@@ -28,12 +29,14 @@ angular.module('mwl.calendar.docs', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'
     var actions = [{
       label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
       onClick: function(args) {
-        alert.show('Edited', args.calendarEvent);
+        sweetAlert('Edited', JSON.stringify(event), 'success');
+        // alert.show('Edited', args.calendarEvent);
       }
     }, {
       label: '<i class=\'glyphicon glyphicon-remove\'></i>',
       onClick: function(args) {
-        alert.show('Deleted', args.calendarEvent);
+        sweetAlert('Deleted', JSON.stringify(event), 'succcess');
+        // alert.show('Deleted', args.calendarEvent);
       }
     }];
     vm.events = [
@@ -79,19 +82,23 @@ angular.module('mwl.calendar.docs', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'
     };
 
     vm.eventClicked = function(event) {
-      alert.show('Clicked', event);
+      sweetAlert('Clicked', JSON.stringify(event), 'info');
+      //alert.show('Clicked', event);
     };
 
     vm.eventEdited = function(event) {
-      alert.show('Edited', event);
+      sweetAlert('Edited', JSON.stringify(event), 'success');
+      //alert.show('Edited', event);
     };
 
     vm.eventDeleted = function(event) {
-      alert.show('Deleted', event);
+      sweetAlert('Deleted', JSON.stringify(event), 'success');
+      //alert.show('Deleted', event);
     };
 
     vm.eventTimesChanged = function(event) {
-      alert.show('Dropped or resized', event);
+      sweetAlert('Dropped or resized', JSON.stringify(event), 'success');
+      //alert.show('Dropped or resized', event);
     };
 
     vm.toggle = function($event, field, event) {

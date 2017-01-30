@@ -1,6 +1,7 @@
 var dependencies = [
     // REMOTE DEPENDENCIES:
-    'ngRoute', 'ngCookies', 'ng-showdown',
+    'ngRoute', 'ngCookies', 'ng-showdown',  'mwl.calendar',
+    'ui.bootstrap', 'ngAnimate',
 
     // LOCAL DEPENDENCIES:
     'appRoutes',
@@ -19,7 +20,7 @@ var dependencies = [
     'CoverageDetailsCtrl', 'JoinCtrl', 'NightCrewsCtrl', 'MemberListCtrl', 'FuelLogCtrl', 'StockingIssueCtrl',
     'AddMemberCtrl', 'ExpirationsCtrl', 'CommunityCtrl', 'EditMemberCtrl', 'GamesEventsCtrl', 'AddEventCtrl', 'EditDefaultCtrl',
     'EventCtrl', 'GameCtrl', 'GamesEventsCtrl', 'ModifyScheduleCtrl', 'MySettingsCtrl', 'MyTrainingCtrl', 'AnnouncementsCtrl',
-    'NominationsCtrl', 'FuelLogCtrl', 'mwl.calendar', 'ui.bootstrap'
+    'NominationsCtrl', 'FuelLogCtrl', 'KitchenSinkCtrl'
 ];
 
 var app = angular.module('RPIA', dependencies);
