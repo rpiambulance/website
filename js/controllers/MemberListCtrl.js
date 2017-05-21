@@ -43,9 +43,9 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
         method: 'POST',
         url: 'member_table.php',
         headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
-    }).success(function (response) {
-        $scope.members = response;
-        response.forEach(function (elem) {
+    }).then(function (response) {
+        $scope.members = response.data;
+        response.data.forEach(function (elem) {
             if(elem.captain == 1 || elem.firstlt == 1 || elem.secondlt == 1) {
                 $scope.lineSide.push(elem);
             } else if(elem.pres == 1 || elem.vicepres == 1) {
