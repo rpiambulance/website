@@ -4,7 +4,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
         {
             header: '',
             internal_title: 'Officers Description',
-            body: 'The officers of RPI Ambulance are elected at the first general body meeting of April. The ' +
+            body: 'The officers of RPI Ambulance are elected at the first general body meeting of November. The ' +
             'officers perform day to day and long term operational and administrative tasks. In 2009 the RPI Ambulance ' +
             'Constitution was changed to reduce the officer board from 8 officers to 5 consolidating "non-steering" ' +
             'positions into more important roles. This will allow for a smaller, more efficient officer board and the ' +
@@ -13,7 +13,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
 
 
         {
-            header: 'Officer Board 2015-2016',
+            header: 'Officer Board 2017-2018',
             internal_title: 'O-Board Photo',
             type: 'img',
             img: 'img/O-Board.jpg',
@@ -23,11 +23,23 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
         },
 
         {
-            header: 'Current Officer Board 2016-2017',
+            header: 'Current Officer Board 2017-2018',
+            internal_title: 'Current Officer Board',
+            body: 'Line Side: \n' +
+            '* Captain: Harrison Leinweber \n' +
+            '* First Lieutenant: David Sparkman \n' +
+            '* Second Lieutenant: Sean Waclawik \n' +
+            '\nCivil Side:\n' +
+            '* President: Ciera Williams\n' +
+            '* Vice President: Justina Thompson'
+        },
+
+        {
+            header: 'Officer Board 2016-2017',
             internal_title: 'Past Officer Boards',
             body: 'Line Side: \n' +
             '* Captain: Joshua Correira \n' +
-            '* First Lieutenant: Brittany Rupp \n' +
+            '* First Lieutenant: Harrison Leinweber \n' +
             '* Second Lieutenant: Jody Ostrander \n' +
             '\nCivil Side:\n' +
             '* President: Zackery White\n' +
