@@ -16,6 +16,9 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap']).controller('
 
   $scope.month= getDatetime();
 
+  var d = new Date();
+  $scope.year = d.getFullYear();
+
 }]);
 
 angular.module('KitchenSinkCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('KitchenSinkCtrl', function(moment, calendarConfig) {

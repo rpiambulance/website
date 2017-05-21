@@ -1,18 +1,23 @@
 <section id="games-events">
-  <div class="container">
-    <div class="center">
-      <h2>Games and Events for {{month}}</h2>
-    </div>
-</div>
-</section>
+
   <div class="container">
     <div ng-controller="KitchenSinkCtrl as vm">
-  <h2 class="text-center">{{ vm.calendarTitle }}</h2>
-
+      <div class="center">
+        <h2>Games and Events for {{vm.calendarTitle}}</h2>
+      </div>
   <div class="row">
 
-    <div class="col-md-6 text-center">
-      <div class="btn-group">
+    <div class="col-md-6 text-center pull-left">
+      <div class="btn-group pull-left">
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'year'" ng-click="vm.cellIsOpen = false">Year</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'month'" ng-click="vm.cellIsOpen = false">Month</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'week'" ng-click="vm.cellIsOpen = false">Week</label>
+        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'day'" ng-click="vm.cellIsOpen = false">Day</label>
+      </div>
+    </div>
+
+    <div class="col-md-6 text-center pull-right">
+      <div class="btn-group pull-right">
 
         <button
           class="btn btn-primary"
@@ -23,7 +28,7 @@
           Previous
         </button>
         <button
-          class="btn btn-default"
+          class="btn btn-primary"
           mwl-date-modifier
           date="vm.viewDate"
           set-to-today
@@ -42,7 +47,7 @@
     </div>
   </div>
 
-    <br class="visible-xs visible-sm">
+    <br>
 
     <mwl-calendar
       events="vm.events"
@@ -60,14 +65,7 @@
       on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
     </mwl-calendar>
 
-    <div class="col-md-6 text-center">
-      <div class="btn-group">
-        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'year'" ng-click="vm.cellIsOpen = false">Year</label>
-        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'month'" ng-click="vm.cellIsOpen = false">Month</label>
-        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'week'" ng-click="vm.cellIsOpen = false">Week</label>
-        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'day'" ng-click="vm.cellIsOpen = false">Day</label>
-      </div>
-    </div>
+    <br>
 
   </div>
   </div>
