@@ -1,16 +1,23 @@
 
-angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap']).controller('GamesEventsCtrl', ['$scope', '$http', function($scope, $http) {
+angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap']).controller('GamesEventsCtrl', ['$scope', '$http',  function($scope, $http, AuthService) {
 
 
 }]);
 
-angular.module('KitchenSinkCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('KitchenSinkCtrl', ['moment', 'calendarConfig', '$http', '$scope', function(moment, calendarConfig, $http, $scope) {
+angular.module('KitchenSinkCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('KitchenSinkCtrl', ['moment', 'calendarConfig', '$http', '$scope', 'AuthService', '$q', function(moment, calendarConfig, $http, $scope, AuthService, $q) {
   // TO the next developer: good luck. You're probably screwed. God bless
   var vm = this;
   vm.calendarView = 'month';
   vm.viewDate = new Date();
-  vm.events = []
+  vm.events = [];
 
+  var hold = AuthService.isAdmin();
+
+  console.log(hold.condition);
+
+// NOTE: This doesn't work
+
+  if(AuthService.isAdmin()){
   var actions = [{
     label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
     onClick: function(args) {
@@ -20,10 +27,13 @@ angular.module('KitchenSinkCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
   }, {
     label: '<i class=\'glyphicon glyphicon-remove\'></i>',
     onClick: function(args) {
-      sweetAlert('Deleted', JSON.stringify(event), 'succcess');
+      sweetAlert('Deleted', JSON.stringify(event), 'success');
       // alert.show('Deleted', args.calendarEvent);
     }
   }];
+}else{
+  var actions = [];
+}
 
   $http({
       method: 'POST',

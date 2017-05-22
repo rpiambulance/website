@@ -173,7 +173,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
             url: '.edit_member.php',
             data: data, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
-        }).success(function (data) {
+        }).then(function (data) {
             console.log(data);
             if (!data.success) {
                 console.log("it failed!");

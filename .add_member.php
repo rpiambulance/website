@@ -44,7 +44,7 @@ try {
 
   $logid = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['max'] + 1;
 
-  $statement = $connection->prepare("INSERT INTO members(id, username, password,
+  $statement = $connection->prepare("INSERT IGNORE INTO members(id, username, password,
     first_name, last_name, dob, email, rcs_id, rin, rpi_address, home_address,
     cell_phone, home_phone) VALUES (:logid, :username, :password, :first_name,
     :last_name, :dob, :email, :rcs, :rin, :rpi_address, :home_address,

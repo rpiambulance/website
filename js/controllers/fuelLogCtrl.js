@@ -114,13 +114,14 @@ angular.module('FuelLogCtrl', []).controller('FuelLogCtrl', ['$scope', '$http', 
             url: '.fuel.php',
             data: $scope.formData, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
-        }).success(function (data) {
+        }).then(function (data) {
             if (!data.success) {
                 console.log("it failed!");
                 // if not successful, bind errors to error variables
                 console.log(data);
                 $scope.submission = true; //shows the error message
             } else {
+                console.log(data);
                 $scope.showContactSuccess = true;
                 // if successful, bind success message to message
                 $scope.submissionMessage = data.messageSuccess;

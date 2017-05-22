@@ -36,8 +36,8 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
                 url: '.add_member.php',
                 data: $scope.formData, // pass in data as strings
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
-            }).success(function (data) {
-                if (!data.success) {
+            }).then(function (data) {
+                if (!data.data.success) {
                     console.log("it failed!");
                     console.log(data);
 
