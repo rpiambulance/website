@@ -100,7 +100,7 @@ angular.module('KitchenSinkCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
       console.log(vm.events);
 
 
-       vm.cellIsOpen = true;
+       vm.cellIsOpen = false;
 
        vm.addEvent = function() {
          vm.events.push({
