@@ -110,7 +110,14 @@
             <h2>Upcoming Events</h2>
 
             <p class="lead">This is a calendar containing all our upcoming events.<br> Come stop by and see us!</p>
-            <p class="lead">No upcoming events to show...</p>
+            <p class="lead" ng-show="events.length === 0">No upcoming events to show...</p>
+
+            <div class="col-md-3 col-sm-6" ng-repeat="e in events">
+                <h3><strong>{{e.description}}</strong></h3>
+                <p>{{e.location}}</p>
+                <p><i>{{e.date}}</i></p>
+            </div>
+
         </div>
         <!--Place Calendar Insert here and remove current content-->
         <!--The current calendar uses a Google Calendar API to add events to a g-cal.

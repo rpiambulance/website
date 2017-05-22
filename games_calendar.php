@@ -16,7 +16,7 @@ if(!isset($dname)) {
 //$db = mysql_select_db("$dname", $connection);
 $connection->exec("USE `$dname`");
 
-$sql = "SELECT * FROM events";
+$sql = "SELECT * FROM games";
 
 $statement=$connection->prepare($sql);
 

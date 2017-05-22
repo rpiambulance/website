@@ -16,7 +16,7 @@ if(!isset($dname)) {
 //$db = mysql_select_db("$dname", $connection);
 $connection->exec("USE `$dname`");
 
-$sql = "SELECT * FROM events";
+$sql = "SELECT * FROM events WHERE date > DATE_SUB(NOW(), INTERVAL 1 MONTH)";
 
 $statement=$connection->prepare($sql);
 
