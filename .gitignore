@@ -2,6 +2,7 @@
 ######################
 *.log
 .db_config.php
+api/config/db.php
 
 # OS generated files #
 ######################
@@ -17,8 +18,8 @@ Thumbs.db
 # Node/Bower modules #
 ######################
 node_modules/
-public/libs/
-public/.form_config.php
+libs/
+.form_config.php
 
 # IDE generated      #
 ######################

@@ -1,0 +1,41 @@
+<section id="NightCrews">
+    <div class="container">
+        <div class="row center" ng-repeat="t in tables">
+            <button class="btn btn-default btn-sm pull-right" ng-disabled="!loadedCrews" ng-click="loadCrews()"><span class="fa fa-refresh"></span></button>
+            <h2>{{t.title}}</h2>
+            <table class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                    <th ng-repeat="th in tableHeadings track by $index" width="16%">
+                        {{th}}
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="c in crews[t.attribute] | orderBy:'date'">
+                    <td>{{c.day}}</td>
+                    <td>{{c.date | date:'shortDate'}}</td>
+                    <td ng-repeat='p in positions'>
+                        <span ng-if="c.spots[p]">
+                            <a ng-if="c.spots[p].email" ng-href="mailto:{{c.spots[p].email}}">{{c.spots[p].name}}</a>
+                            <strong ng-if="!c.spots[p].email">{{c.spots[p].name}}</strong>
+                        </span>
+                        <span ng-if="c.spots[p] && c.spots[p].vacant && c.spots[p].eligible">
+                            <button class="btn btn-danger btn-xs nc-button" ng-click="confirmCrew(c.spots[p])">Sign Up</button>
+                        </span>
+                        <span ng-if="c.clear[p]">
+                            <button class="btn btn-danger btn-xs" ng-click="clearCrew(c.spots[p], c.clear[p])"><span class="fa fa-close"></span></button>
+                        </span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="row pull-left">
+            <button class="btn btn-danger" ng-model="prevWeekbtn">Previous Week</button>
+        </div>
+        <div class="row pull-right">
+            <button class="btn btn-danger" ng-model="nextWeekbtn" ng-disabled="activeWeek" ng-click="loadNext()">Next Week</button>
+        </div>
+    </div>
+</section>
