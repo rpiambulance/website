@@ -2895,6 +2895,14 @@ li .view-nav-tabs{
     padding: 2px 20px;
 }
 
+.img404{
+    width: 80%;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    display: block;
+    margin: 0 auto;
+}
+
 /*.navbtn{*/
     /*padding: 5px;*/
 /*}*/

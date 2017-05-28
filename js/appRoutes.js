@@ -9,7 +9,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         'SOP', 'Supervisor-Training', 'System-Requirements', 'Text-Message-Dispatch', 'Coverage-Details',
         'Join', 'Night-Crews', 'Member-List', 'Stocking-Issue', 'Fuel-Log', 'Add-Member', 'Expirations', 'Community',
         'Edit-Member', 'Games-Events', 'Add-Event', 'Edit-Default', 'Event', 'Game', 'Modify-Schedule', 'My-Training',
-        'My-Settings', 'Announcements', 'Nominations', 'Fuel-Log'
+        'My-Settings', 'Announcements', 'Nominations', 'Fuel-Log', '404'
     ];
 
     views.forEach(function (elem, index) {
@@ -36,7 +36,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     });
 
     $routeProvider.otherwise({
-        redirectTo:'/home'
+        redirectTo:'/404'
     });
 
     // $locationProvider.html5Mode(true);

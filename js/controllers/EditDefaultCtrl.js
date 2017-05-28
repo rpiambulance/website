@@ -36,11 +36,14 @@ angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '
     }
 
     $scope.oos_all = function () {
-        $scope.areChangesPending = true;
+
 
         for(var i = 0;  i < $scope.days.length; i++) {
             for(var j = 0; j < $scope.roles.length; j++) {
-                $scope.defaultSchedule[i][$scope.roles[j]] = -2;
+                if($scope.defaultSchedule[i][$scope.roles[j]] != -2){
+                    $scope.areChangesPending = true;
+                    $scope.defaultSchedule[i][$scope.roles[j]] = -2;
+                }
             }
         }
     };
@@ -57,10 +60,10 @@ angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '
             url: '.defaults.php',
             data: data, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
-        }).success(function (data) {
+        }).then(function (data) {
             console.log(data);
-            $scope.worked= data.success;
-            if (!data.success) {
+            $scope.worked= data.data.success;
+            if (!data.data.success) {
                 console.log("it failed!");
                 $scope.submission = true; //shows the error message
                 $scope.showError= true;
