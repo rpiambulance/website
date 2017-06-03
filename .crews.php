@@ -9,10 +9,12 @@ date_default_timezone_set("America/New_York");
 
 main();
 
-function modifyCrewAssignment ($connection, $signature, $id, $position, $crewid, $action) {
-    $secret = "cfa7kBwsjV9DrE0gxGnPXlRq1";
+$SECRET_KEY = "SUPERSECRETADMINKEYWOOHOO";
 
-    if (sha1($crewid . $position . $id . $secret) == $signature) {
+function modifyCrewAssignment ($connection, $signature, $id, $position, $crewid, $action) {
+    global $SECRET_KEY;
+
+    if (sha1($crewid . $position . $id . $SECRET_KEY) == $signature) {
         $statement = $connection->prepare("UPDATE crews SET $position = :id WHERE id = :crewid");
         $statement->bindValue(":id", ($action == 'clear' ? 0 : $id));
         $statement->bindValue(":crewid", $crewid);
@@ -45,7 +47,7 @@ function clearCrew ($connection, $signature, $id, $position, $crewid) {
     modifyCrewAssignment($connection, $signature, $id, $position, $crewid, 'clear');
 }
 
-function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton, $atton, $obson, $y, $m, $d) {
+function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton, $dton, $atton, $obson, $y, $m, $d) {
     if(!isset($member['id'])) {
         return false;
     } else if(mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')) > mktime(23, 59, 59, $m, $d, $y)) {
@@ -84,7 +86,7 @@ function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton,
     return false;
 }
 
-function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthisweek, $ccton, $atton, $obson) {
+function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthisweek, $ccton, $dton, $atton, $obson) {
     $y = substr($row['date'], 0, 4);
     $m = substr($row['date'], 5, 2);
     $d = substr($row['date'], 8, 2);
@@ -100,6 +102,8 @@ function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthiswe
         $spotMemberArray = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
 
         $clear = array();
+
+        $spot['id'] = $spotMemberArray['id'];
 
         if ($spotMemberArray['id'] < 0) {
             $spot['name'] = $spotMemberArray['last_name'];
@@ -120,7 +124,7 @@ function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthiswe
         } else {
             $clear = false;
         }
-    } else if (determineEligibility($member, $pos, $i, $ontoday, $onthisweek, $ccton, $atton, $obson, $y, $m, $d)) {
+    } else if (determineEligibility($member, $pos, $i, $ontoday, $onthisweek, $ccton, $dton, $atton, $obson, $y, $m, $d)) {
         $spot["vacant"] = true;
         $spot["eligible"] = true;
         $spot["crewid"] = $row['id'];
@@ -135,6 +139,8 @@ function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthiswe
 }
 
 function main () {
+    global $SECRET_KEY;
+
     require_once ".db_config.php";
 
     parse_str(file_get_contents("php://input"), $post);
@@ -167,7 +173,8 @@ function main () {
     $statement = $connection->prepare("SELECT * FROM members WHERE username=:username");
     $statement->bindParam(':username', $username);
     $statement->execute();
-    $memberId = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['id'];
+    $memberInfo = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+    $memberId = $memberInfo['id'];
 
     // TODO: This:
 
@@ -325,6 +332,7 @@ function main () {
             $d = substr($row['date'], 8, 2);
 
             $nightCrew = array(
+                "id" => $row["id"],
                 "day" => date('l', mktime(0, 0, 0, $m, $d, $y)),
                 "date" => $m . '/' . $d . '/' . substr($y, 2, 2),
                 "spots" => array(),
@@ -336,13 +344,19 @@ function main () {
             ];
 
             foreach($positons as $pos) {
-                $spot = populateSpot($connection, $i, $row, $pos, $member, $ontoday, $onthisweek, $ccton, $atton, $obson);
+                $spot = populateSpot($connection, $i, $row, $pos, $member, $ontoday, $onthisweek, $ccton, $dton, $atton, $obson);
                 $nightCrew['spots'][$pos] = $spot['spot'];
                 $nightCrew['clear'][$pos] = $spot['clear'];
             }
 
             $response['crews'][($tableloop == 0 ? "currentWeek" : "nextWeek")][] = $nightCrew;
         }
+    }
+
+    if($memberInfo['admin'] == 1) {
+        $response['isAdmin'] = 1;
+        $response['modifyScheduleSignature'] = sha1($memberInfo['username'] . $SECRET_KEY);
+        $response['username'] = $memberInfo['username'];
     }
 
     $response['success'] = true;

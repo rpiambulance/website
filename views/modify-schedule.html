@@ -1,154 +1,45 @@
 <section id="ModifySchedule">
     <div class="container">
-        <div class="center">
-            <h2>Current Week</h2>
-            <table id="current_week" class="table table-bordered table-striped">
+        <div class="alert alert-success alert-dismissible" ng-show="showSuccess == true" role="alert">
+            <button type="button" class="close" ng-click="showSuccess = false"><span aria-hidden="true">&times;</span></button>
+            <i class="fa fa-calendar-check-o"></i><strong> Success!</strong> The current schedule was successfully updated!
+        </div>
+        <div class="row center" ng-repeat="t in tables">
+            <button class="btn btn-default btn-sm pull-right" ng-disabled="!loadedCrews" ng-click="loadCrews()"><span class="fa fa-refresh"></span></button>
+            <h2>{{t.title}}</h2>
+            <table class="table table-bordered table-striped">
                 <thead>
-                    <tr>
-                        <th>Night</th>
-                        <th>Date</th>
-                        <th>Crew Chief</th>
-                        <th>Driver</th>
-                        <th>Rider</th>
-                        <th>Rider</th>
-                    </tr>
+                <tr>
+                    <th ng-repeat="th in tableHeadings track by $index" width="16%">
+                        {{th}}
+                    </th>
+                </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="i in currentWeekCrews | orderBy:'id'">
-                    <td>{{i.date | date:'EEEE'}}</td>
-                    <td>{{i.date | date:'shortDate'}}</td>
-                    <td>
+                <tr ng-repeat="c in crews[t.attribute] | orderBy:'date'">
+                    <td>{{c.day}}</td>
+                    <td>{{c.date | date:'shortDate'}}</td>
+                    <td ng-repeat='p in positions' ng-class="{'info': c.spots[p].changed}">
                         <div class="form-group">
-                            <select class="form-control" ng-model="i.cc_member_id">
+                            <select class="form-control" ng-init="c.spots[p].id = fixBlank(c.spots[p].id)" ng-model="c.spots[p].id" ng-change="changeMade(c.spots[p])">
                                 <option value="-2">OUT OF SERVICE</option>
                                 <option value="-1">RESERVED</option>
                                 <option value="0"></option>
                                 <option ng-repeat="m in members | orderBy:'last_name'"
-                                        ng-if="m.crewchief == 1 || m.cctrainer == 1 || m.backupcc == 1" value="{{m.id}}">
+                                        ng-if="determineEligibility(p, m)" value="{{m.id}}">
                                     {{m.last_name.trim() + ', ' + m.first_name.trim()}}
                                 </option>
                             </select>
                         </div>
                     </td>
-                    <td>
-                        <div class="form-group">
-                            <select class="form-control" ng-model="i.driver_member_id">
-                                <option value="-2">OUT OF SERVICE</option>
-                                <option value="-1">RESERVED</option>
-                                <option value="0"></option>
-                                <option ng-repeat="m in members | orderBy:'last_name'"
-                                        ng-if="m.driver == 1 || m.drivertrainer == 1 || m.backupdriver == 1" value="{{m.id}}">
-                                    {{m.last_name.trim() + ', ' + m.first_name.trim()}}
-                                </option>
-                            </select>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-group">
-                            <select class="form-control" ng-model="i.attendant_member_id">
-                                <option value="-2">OUT OF SERVICE</option>
-                                <option value="-1">RESERVED</option>
-                                <option value="0"></option>
-                                <option ng-repeat="m in members | orderBy:'last_name'"
-                                        ng-if="m.attendant == 1 || m.observer == 1" value="{{m.id}}">
-                                    {{m.last_name.trim() + ', ' + m.first_name.trim()}}
-                                </option>
-                            </select>
-                        </div>
-                    </td>
-                    <td>
-                        <div class="form-group">
-                            <select class="form-control" ng-model="i.observer_member_id">
-                                <option value="-2">OUT OF SERVICE</option>
-                                <option value="-1">RESERVED</option>
-                                <option value="0"></option>
-                                <option ng-repeat="m in members | orderBy:'last_name'"
-                                        ng-if="m.attendant == 1 || m.observer == 1" value="{{m.id}}">
-                                    {{m.last_name.trim() + ', ' + m.first_name.trim()}}
-                                </option>
-                            </select>
-                        </div>
-                    </td>
-                    </tr>
+                </tr>
                 </tbody>
             </table>
-            <h2>Upcoming Week</h2>
-            <table id="upcoming_week" class="table table-bordered table-striped">
-                <thead>
-                    <tr>
-                        <th>Night</th>
-                        <th>Date</th>
-                        <th>Crew Chief</th>
-                        <th>Driver</th>
-                        <th>Rider</th>
-                        <th>Rider</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="i in upcomingWeekCrews | orderBy:'id'">
-                        <td>{{i.date | date:'EEEE'}}</td>
-                        <td>{{i.date | date:'shortDate'}}</td>
-                        <td>
-                            <div class="form-group">
-                                <select class="form-control" ng-model="i.cc_member_id">
-                                    <option value="-2">OUT OF SERVICE</option>
-                                    <option value="-1">RESERVED</option>
-                                    <option value="0"></option>
-                                    <option ng-repeat="m in members | orderBy:'last_name'"
-                                            ng-if="m.crewchief == 1 || m.cctrainer == 1 || m.backupcc == 1" value="{{m.id}}">
-                                        {{m.last_name.trim() + ', ' + m.first_name.trim()}}
-                                    </option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <select class="form-control" ng-model="i.driver_member_id">
-                                    <option value="-2">OUT OF SERVICE</option>
-                                    <option value="-1">RESERVED</option>
-                                    <option value="0"></option>
-                                    <option ng-repeat="m in members | orderBy:'last_name'"
-                                            ng-if="m.driver == 1 || m.drivertrainer == 1 || m.backupdriver == 1" value="{{m.id}}">
-                                        {{m.last_name.trim() + ', ' + m.first_name.trim()}}
-                                    </option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <select class="form-control" ng-model="i.attendant_member_id">
-                                    <option value="-2">OUT OF SERVICE</option>
-                                    <option value="-1">RESERVED</option>
-                                    <option value="0"></option>
-                                    <option ng-repeat="m in members | orderBy:'last_name'"
-                                            ng-if="m.attendant == 1 || m.observer == 1" value="{{m.id}}">
-                                        {{m.last_name.trim() + ', ' + m.first_name.trim()}}
-                                    </option>
-                                </select>
-                            </div>
-                        </td>
-                        <td>
-                            <div class="form-group">
-                                <select class="form-control" ng-model="i.observer_member_id">
-                                    <option value="-2">OUT OF SERVICE</option>
-                                    <option value="-1">RESERVED</option>
-                                    <option value="0"></option>
-                                    <option ng-repeat="m in members | orderBy:'last_name'"
-                                            ng-if="m.attendant == 1 || m.observer == 1" value="{{m.id}}">
-                                        {{m.last_name.trim() + ', ' + m.first_name.trim()}}
-                                    </option>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-        </div> <!--/center-->
+        </div>
         <div class="center">
-            <button class="btn btn-success">Update Schedule</button>
-            <button class="btn btn-warning">Clear Upcoming</button>
-            <button class="btn btn-danger" ng-click="load()">Cancel Change</button>
+            <button class="btn btn-success pull-left" ng-click="save()" ng-disabled="!areChangesPending">Update Schedule</button>
+            <button class="btn btn-warning" ng-click="clearUpcoming()">Clear Upcoming</button>
+            <button class="btn btn-danger pull-right" ng-click="cancel()" ng-disabled="!areChangesPending">Cancel Changes</button>
         </div>
     </div> <!--/.container-->
 </section>

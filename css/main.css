@@ -2906,3 +2906,7 @@ li .view-nav-tabs{
 /*.navbtn{*/
     /*padding: 5px;*/
 /*}*/
+
+td.info {
+  background-color: #d9edf7 !important;
+}
