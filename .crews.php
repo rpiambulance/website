@@ -138,6 +138,41 @@ function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthiswe
     return array("spot" => $spot, "clear" => $clear);
 }
 
+function processTurnover ($connection) {
+    if (date("D") == "Sun") {
+        $oneweek = date("Y-m-d", mktime(0, 0, 0, date("m"), date("d") + 7, date("Y")));
+
+        $statement = $connection->prepare("SELECT id FROM crews WHERE date = :oneweek");
+        $statement->bindValue(":oneweek", $oneweek);
+        $statement->execute();
+
+        if ($statement->fetchColumn() < 1) {
+            for ($i = 7; $i < 14; $i++) {
+                $statement = $connection->prepare("SELECT id FROM crews ORDER BY id DESC LIMIT 1");
+                $statement->execute();
+                $logid = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['id'];// + 1:
+                $logid += 1;
+
+                $statement = $connection->prepare("SELECT * FROM default_crews WHERE day = :i");
+                $statement->bindValue(":i", $i - 7);
+                $statement->execute();
+                $default = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+
+                $date = date('Y-m-d', mktime(0, 0, 0, date('m'), date('d') + $i, date('Y')));
+
+                $statement = $connection->prepare("INSERT INTO crews (id, date, cc, driver, attendant, observer) VALUES (:logid, :date, :cc, :driver, :attendant, :observer)");
+                $statement->bindValue(":logid", $logid);
+                $statement->bindValue(":date", $date);
+                $statement->bindValue(":cc", $default['cc']);
+                $statement->bindValue(":driver", $default['driver']);
+                $statement->bindValue(":attendant", $default['attendant']);
+                $statement->bindValue(":observer", $default['observer']);
+                $statement->execute();
+            }
+        }
+    }
+}
+
 function main () {
     global $SECRET_KEY;
 
@@ -146,17 +181,17 @@ function main () {
     parse_str(file_get_contents("php://input"), $post);
 
     if(!isset($post['session_id'])) {
-      header('Bad Request', true, 400);
-      echo 'Bad Request';
-      exit;
+        header('Bad Request', true, 400);
+        echo 'Bad Request';
+        exit;
     }
 
     session_start($post['session_id']);
 
     if(!isset($_SESSION['username'])) {
-      header('Unauthorized', true, 409);
-      echo 'Unauthorized';
-      exit;
+        header('Unauthorized', true, 409);
+        echo 'Unauthorized';
+        exit;
     }
 
     $username = $_SESSION['username'];
@@ -176,24 +211,7 @@ function main () {
     $memberInfo = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
     $memberId = $memberInfo['id'];
 
-    // TODO: This:
-
-    // if (date("D") == "Sun") {
-    //     $oneweek = date("Y-m-d", mktime(0, 0, 0, date("m"), date("d") + 7, date("Y")));
-    //     if (mysql_num_rows(mysql_query("SELECT id FROM crews WHERE date = '$oneweek'")) < 1) {
-    //         for ($i = 7; $i < 14; $i++) {
-    //             $idarray = mysql_fetch_array(mysql_query("SELECT id FROM crews ORDER BY id DESC LIMIT 1")) or die(mysql_error());
-    //             $logid     = $idarray['id'] + 1;
-    //             $default   = mysql_fetch_array(mysql_query("SELECT * FROM default_crews WHERE day = $i-7"));
-    //             $date      = date('Y-m-d', mktime(0, 0, 0, date('m'), date('d') + $i, date('Y')));
-    //             $cc        = $default['cc'];
-    //             $driver    = $default['driver'];
-    //             $attendant = $default['attendant'];
-    //             $observer  = $default['observer'];
-    //             mysql_query("INSERT INTO crews (id, date, cc, driver, attendant, observer) VALUES ($logid, '$date', $cc, $driver, $attendant, $observer)") or die(mysql_error());
-    //         }
-    //     }
-    // }
+    processTurnover($connection);
 
     if (isset($post['confirmcrew'])) {
         confirmCrew($connection, $post['signature'], $memberId, $post['position'], $post['crewid']);

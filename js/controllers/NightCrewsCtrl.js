@@ -33,6 +33,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
         }).then(function (response) {
             if (!response.data.success) {
                 console.log("it failed!");
+                console.log(response.data);
             } else {
                 // Since the crews come in order of latest first, we need to separate
                 // them in a way that almost seems backwards.
