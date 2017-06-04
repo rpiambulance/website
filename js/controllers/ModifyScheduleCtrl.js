@@ -45,7 +45,13 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$q', 'A
     };
     $scope.load();
 
-    $scope.determineEligibility = function(position, member) {
+    $scope.determineEligibility = function(position, member, crew) {
+        for(var i = 0; i < $scope.positions.length; i++) {
+            if($scope.positions[i] == position) continue;
+
+            if(crew.spots[$scope.positions[i]].id == member.id) return false;
+        }
+
         if(position == 'cc') {
             return member.crewchief == 1 || member.firstresponsecc == 1 || member.cctrainer == 1 || member.backupcc == 1;
         } else if(position == 'driver') {

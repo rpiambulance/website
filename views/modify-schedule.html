@@ -26,7 +26,7 @@
                                 <option value="-1">RESERVED</option>
                                 <option value="0"></option>
                                 <option ng-repeat="m in members | orderBy:'last_name'"
-                                        ng-if="determineEligibility(p, m)" value="{{m.id}}">
+                                        ng-if="determineEligibility(p, m, c)" value="{{m.id}}">
                                     {{m.last_name.trim() + ', ' + m.first_name.trim()}}
                                 </option>
                             </select>
