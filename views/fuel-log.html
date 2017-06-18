@@ -64,10 +64,10 @@
             </div>
             <div class="form-group">
                 <label><strong>Vehicle</strong></label><br/>
-                <label for="Amb">5939</label>
-                <input type="radio" name="vehicle" id="Amb" value="Amb" ng-model="vehicle.Amb" ng-readonly="false"><br>
-                <label for="FR59">FR-59</label>
-                <input type="radio" name="vehicle" id="FR59" value="FR59" ng-model="vehicle.FR59" ng-readonly="false"><br>
+                <label for="5939">5939</label>
+                <input type="radio" name="vehicle" id="5939" value="5939" ng-model="formData.vehicle" ng-readonly="false"><br>
+                <label for="FR-59">FR-59</label>
+                <input type="radio" name="vehicle" id="FR-59" value="FR-59" ng-model="formData.vehicle" ng-readonly="false"><br>
 
             </div>
             <div class="form-group">
@@ -86,7 +86,7 @@
             </div>
 
             <div class="form-actions center">
-                <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success"
+                <button type="submit" ng-disabled="!formData.vehicle || !formData.miles || formData.qty == undefined || dataLoading" class="btn btn-success"
                         value="Submit">
                     Submit
                 </button>

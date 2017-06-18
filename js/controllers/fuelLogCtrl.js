@@ -10,7 +10,8 @@ angular.module('FuelLogCtrl', []).controller('FuelLogCtrl', ['$scope', '$http', 
 
     AuthService.getUserMetadata().then(function (data) {
         console.log(data);
-        $scope.user= data.first_name + ' ' + data.last_name;
+        $scope.user = data.first_name + ' ' + data.last_name;
+        $scope.userid = data.id;
 
     }, function (error) { console.log(error); });
 
@@ -57,7 +58,7 @@ angular.module('FuelLogCtrl', []).controller('FuelLogCtrl', ['$scope', '$http', 
 
 
     $scope.formData = {
-        name: "David Sparkman",
+        name: $scope.user,
         date: $scope.getDatetime,
         qty: "",
         mileage: "",
@@ -109,24 +110,28 @@ angular.module('FuelLogCtrl', []).controller('FuelLogCtrl', ['$scope', '$http', 
             $scope.formData["vehicle"]= "FR-59"
         }
 
+        $scope.formData['userid'] = $scope.userid;
+
+        console.log($scope.formData);
         $http({
             method: 'POST',
             url: '.fuel.php',
             data: $scope.formData, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
-        }).then(function (data) {
-            if (!data.success) {
+        }).then(function (response) {
+            if (!response.data.success) {
                 console.log("it failed!");
                 // if not successful, bind errors to error variables
-                console.log(data);
+                console.log(response.data);
                 $scope.submission = true; //shows the error message
             } else {
-                console.log(data);
+                console.log(response.data);
                 $scope.showContactSuccess = true;
-                // if successful, bind success message to message
-                $scope.submissionMessage = data.messageSuccess;
                 $scope.formData = {}; // form fields are emptied with this line
                 $scope.submission = true; //shows the success message
+
+                $scope.showModal = false;
+                load();
             }
         });
     };

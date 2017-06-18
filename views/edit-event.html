@@ -1,0 +1,91 @@
+<section id="edit-event">
+    <div class="container">
+        <div class="center">
+            <h2>Edit Event</h2>
+
+            <div class="lead text-justify">
+                Use this form to edit and event already on the calendar.
+            </div>
+            <div class="alert alert-success alert-dismissible" ng-show="showContactSuccess" role="alert">
+                <button type="button" class="close" ng-click="showContactSuccess = false"><span
+                        aria-hidden="false">&times;</span></button>
+                <i class="fa fa-calendar-plus-o"></i><strong> Success!</strong> Your event has been scheduled. You will now
+                get a call in the middle of whatever you are planning. That's how EMS works. Get used to it.
+            </div>
+            <div class="row">
+                <div class="card card-container-lg">
+                    <form role="form" ng-submit="submitForm()" class="form" novalidate>
+                        <div class="form-group col-xs-6 fixed-height-form-element">
+                            <label for="fn">Event Name</label>
+                            <!--This should be switched to the signed in account with no option to change it-->
+                            <input type="text" name="fn" id="fn" class="form-control" ng-model="fn"
+                                   placeholder="Dodgeball" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+                        <div class="form-group col-xs-6 fixed-height-form-element">
+                            <label for="loc">Event Location</label>
+                            <input type="text" name="loc" id="loc" class="form-control" ng-model="loc"
+                                   placeholder="87 Gym" required/>
+                            <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Name is required</span>
+                        </div>
+
+                        <!--DATE PICKER FOR TIME AND DATE-->
+
+                        <div class="form-group col-xs-6 fixed-height-form-element">
+                            <label for="tm">Start Time</label>
+                            <input type="time" name="tm" id="tm" class="form-control" ng-model="tm"
+                                   placeholder="8:00" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6 fixed-height-form-element">
+                            <label for="tme">End Time</label>
+                            <input type="time" name="tme" id="tme" class="form-control" ng-model="tme"
+                                   placeholder="13:00" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6 fixed-height-form-element">
+                            <label for="dt">Date</label>
+                            <input type="date" name="dt" id="dt" class="form-control" ng-model="dt" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6 fixed-height-form-element">
+                            <label for="lim">Attendance Limit</label>
+                            <input type="number" name="lim" id="lim" class="form-control" ng-model="lim"
+                                   placeholder="0 for no limit, -1 for no signups" required/>
+                        </div>
+
+                        <div class="form-group col-xs-6 fixed-height-form-element">
+                            <label for="type">Event Type</label>
+                            <select class="form-control" id="type">
+                                <option>SELECT ONE</option>
+                                <option>Event</option>
+                                <option>Game (EES Present)</option>
+                                <option>Game (NO EES)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group col-xs-6 fixed-height-form-element">
+
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success"
+                                    value="Submit">
+                                Update Event
+                            </button>
+                            <button type="reset" class="btn btn-danger">Clear Form</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+
+        <!--/.our-skill-->
+
+
+        <!-- our-team -->
+    </div>
+    <!--/.container-->
+</section>
+<!--/about-us-->

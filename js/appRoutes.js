@@ -9,7 +9,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         'SOP', 'Supervisor-Training', 'System-Requirements', 'Text-Message-Dispatch', 'Coverage-Details',
         'Join', 'Night-Crews', 'Member-List', 'Stocking-Issue', 'Fuel-Log', 'Add-Member', 'Expirations', 'Community',
         'Edit-Member', 'Games-Events', 'Add-Event', 'Edit-Default', 'Event', 'Game', 'Modify-Schedule', 'My-Training',
-        'My-Settings', 'Announcements', 'Nominations', 'Fuel-Log', '404'
+        'My-Settings', 'Announcements', 'Nominations', 'Fuel-Log', '404', 'edit-event'
     ];
 
     views.forEach(function (elem, index) {
@@ -28,7 +28,15 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         caseInsensitiveMatch: true,
         activeTab: 'edit-member',
         title: 'Edit Member'
-    })
+    });
+
+    $routeProvider.when('/add-event/:eventId', {
+        templateUrl: 'views/edit-event.html',
+        controller: 'EditEventCtrl',
+        caseInsensitiveMatch: true,
+        activeTab: 'add-event',
+        title: 'Add Event'
+    });
 
     $routeProvider.when('/logout', {
         templateUrl: 'views/login.html',

@@ -61,7 +61,7 @@ if (!empty($errors)) {
         "\nReported by: " . $name;
 
         $subject= $facility . " stocking issue reported!";
-        $email= 'webmaster@rpiambulance.com';
+        $email= 'firstlt@rpiambulance.com';
         $headers_requester= "From: no-reply-robots@rpiambulance.com";
 
         @mail($email, $subject, $message, $headers_requester);
