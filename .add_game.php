@@ -20,7 +20,15 @@ $event_location = $input['event_location'];
 $start_time = $input['start_time'];
 $end_time = $input['end_time'];
 $date = $input['date'];
-$limit = $input['limit']
+$type = $input['type'];
+$ees = "";
+
+if ($type == 3) {
+  $ees = 0;
+}
+else{
+  $ees = 1;
+}
 
 try {
   $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
@@ -33,13 +41,13 @@ try {
   // Selecting Database
   $connection->exec("USE `$dname`");
 
-  $statement = $connection->query("SELECT MAX(id) as max FROM events");
+  $statement = $connection->query("SELECT MAX(id) as max FROM games");
 
   $logid = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['max'] + 1;
 
-  $statement = $connection->prepare("INSERT INTO events(id, `date`, start,
-    end, description, location, `limit`, hide) VALUES (:logid, :date, :start_time, :end_time,
-    :event_name, :event_location, :limit, 0)");
+  $statement = $connection->prepare("INSERT INTO events(id, date, start,
+    end, description, location, ees, hide) VALUES (:logid, :date, :start_time, :end_time,
+    :event_name, :event_location, :ees, 0)");
 
   $statement->bindParam(":logid", $logid);
   $statement->bindParam(":date", $date);
@@ -47,7 +55,7 @@ try {
   $statement->bindParam(":end_time", $end_time);
   $statement->bindParam(":event_name", $event_name);
   $statement->bindParam(":event_location", $event_location);
-  $statement->bindParam(":limit", $limit);
+  $statement->bindParam(":ees", $ees);
 
 
   $result = $statement->execute();
