@@ -101,18 +101,19 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
 
         $scope.eventClicked = function(event) {
             console.log('HELLO');
-            console.log(event);
-            if (event.color.primary == '#ad2121' || event.color.primary == '#1E90FF') {
+            console.log(event.color);
+            if (event.color.primary == '#ad2121' || event.color.primary == '#1e90ff') {
                 console.log("/game/" + event.dbId);
                 $location.url("/game/" + event.dbId);
             } else {
+                console.log("YO!", event.color.primary);
                 console.log("/event/" + event.dbId);
                 $location.url("/event/" + event.dbId);
             }
         };
 
         $scope.eventEdited = function(event) {
-          if (event.color.primary == '#ad2121' || event.color.primary == '#1E90FF') {
+          if (event.color.primary == '#ad2121' || event.color.primary == '#1e90ff') {
               console.log("/add-game/" + event.dbId);
               $location.url("/add-event/" + event.dbId);
           } else {

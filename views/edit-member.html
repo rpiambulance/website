@@ -173,9 +173,6 @@
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="date">EMT Expiration Date</label>
-                            <!-- <input type="date" name="date" id="date" class="form-control" ng-model="formData.date" required /> -->
-                            <!-- <div uib-datepicker ng-model="formData.date" class="well well-sm"></div> -->
-                            <!-- <input type="text" class="form-control" uib-datepicker-popup ng-model="formData.date" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" /> -->
                             <p class="input-group">
                                 <input type="text" class="form-control" uib-datepicker-popup ng-model="selectedMember.emt_exp" is-open="datepicker3.opened" datepicker-options="datepicker3.options" ng-required="true" close-text="Close" />
                                 <span class="input-group-btn">
@@ -211,19 +208,23 @@
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
-                            <label for="dl_exp">Licence Expiration Month</label>
-                            <select class="form-control" id="dl_exp">
-                                <option ng-repeat="m in months" value="{{m}}"  ng-bind="m"></option>
-                            </select>
+                            <label for="date">Driver License Expiration Date</label>
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup ng-model="selectedMember.dl_exp" is-open="datepicker4.opened" datepicker-options="datepicker4.options" ng-required="true" close-text="Close" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openDatepicker4()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
                         </div>
 
-                        <!--DATEPICKER FOR CEVO OR EVDD-->
-
                         <div class="form-group col-xs-6 fixed-height-form-element">
-                            <label for="evdd">EVDD, CEVO, EVOC Date</label>
-                            <select class="form-control" id="evdd">
-                                <option ng-repeat="m in months" value="{{m}}"  ng-bind="m"></option>
-                            </select>
+                            <label for="date">EVDD, CEVO, EVOC Date</label>
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup ng-model="selectedMember.evdd" is-open="datepicker5.opened" datepicker-options="datepicker5.options" ng-required="true" close-text="Close" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openDatepicker5()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">

@@ -17,9 +17,9 @@ $input = json_decode($formData, true);
 
 $event_name = $input['event_name'];
 $event_location = $input['event_location'];
-$start_time = $input['start_time'];
-$end_time = $input['end_time'];
-$date = $input['date'];
+$start_time = $input['startstamp'];
+$end_time = $input['endstamp'];
+$date = $input['datestamp'];
 $type = $input['type'];
 $ees = 0;
 
@@ -47,7 +47,7 @@ try {
 
 
 
-  $statement = $connection->prepare("INSERT INTO events(id, `date`, start, `end`, description, location, ees, hide) VALUES (:logid, :date, :start_time, :end_time, :event_name, :event_location, :ees, 0)");
+  $statement = $connection->prepare("INSERT INTO games(id, `date`, start, `end`, description, location, ees, hide) VALUES (:logid, :date, :start_time, :end_time, :event_name, :event_location, :ees, 0)");
 
   $statement->bindParam(":logid", $logid);
   $statement->bindParam(":date", $date);

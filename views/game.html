@@ -1,5 +1,74 @@
 <section id="game">
     <div class="container">
+        <div class="row">
+            <div class="col-xs-1">
+                <a class="btn btn-sm btn-default" href="#/games-games">
+                    <span class="fa fa-chevron-left"></span> Calendar
+                </a>
+            </div>
+            <div class="col-xs-10 center">
+                <h2 ng-bind="game.description"></h2>
+                <h3 class="text-muted">
+                    Location: <span ng-bind="game.location"></span> |
+                    <span ng-bind="game.date | date:'EEEE, MMMM d, y'"></span> |
+                    <span data-toggle="tooltip" data-placement="bottom" title="{{game.startObj | date:'h:mm a'}}–{{game.endObj | date:'h:mm a'}}">
+                        <span ng-bind="game.startObj | date:'HH:mm'"></span>&ndash;<span ng-bind="game.endObj | date:'HH:mm'"></span>
+                    </span>
+                </h3>
+                <p>
+                    <button class="btn btn-default btn-sm">
+                        <span class="fa fa-pencil"></span> Edit Game
+                    </button>
+                    <button class="btn btn-danger btn-sm" ng-click="deleteGame()">
+                        <span class="fa fa-trash"></span> Delete Game
+                    </button>
+                </p>
+                <hr>
+            </div>
+        </div>
+        <div class="row" ng-repeat="p in positions">
+            <div class="col-xs-12 center">
+                <h3 ng-bind="p.title"></h3>
+            </div>
+            <div class="col-xs-12 center" ng-if="!filtered[p.value].length">
+                <p class="text-muted"><em>No members are signed up for this position!</em></p>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="a in filtered[p.value] = (attendees | filter: { 'position': p.value })">
+                <div class="panel" ng-class="{'panel-default': a.is_viewing_member === '0', 'panel-primary': a.is_viewing_member === '1' }">
+                    <div class="panel-heading">
+                        <a class="pull-right" ng-click="dropMember(a.memberid)">
+                            <span class="fa fa-lg fa-times"></span>
+                        </a>
+                        <h3 class="panel-title" ng-bind="a.ambulance_name"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 center">
+                <h3 class="btn-toolbar">
+                    <button class="btn btn-primary btn-lg" ng-if="alreadySignedUp" ng-click="drop()">
+                        <span class="fa fa-minus"></span> Drop Game
+                    </button>
+                    <button class="btn btn-primary btn-lg" ng-repeat="p in positions" ng-if="p.value !== currentPosition && eligiblePositions.indexOf(p.value) !== -1" ng-click="signup(p.value)">
+                        <span class="fa fa-plus"></span>
+                        <span ng-if="!alreadySignedUp">Sign up as</span>
+                        <span ng-if="alreadySignedUp">Switch to</span>
+                        <span ng-bind="p.title"></span>
+                    </button>
+                </h3>
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/javascript">
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});
+</script>
+
+<!-- <section id="game">
+    <div class="container">
         <div class="center">
             <h2>GAME NAME</h2>
             <table id="game_table" class="table table-bordered table-striped">
@@ -24,4 +93,4 @@
         </table>
         </div>
     </div>
-</section>
+</section> -->

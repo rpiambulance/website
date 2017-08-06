@@ -10,7 +10,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
         opened: false
       };
 
-      $scope.datepicker2 = {
+     $scope.datepicker2 = {
           options: {
             formatYear: 'yy',
             minDate: new Date(1800, 1, 1),
@@ -19,7 +19,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
           opened: false
         };
 
-        $scope.datepicker3 = {
+     $scope.datepicker3 = {
             options: {
               formatYear: 'yy',
               minDate: new Date(1800, 1, 1),
@@ -27,6 +27,23 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
             },
             opened: false
           };
+    $scope.datepicker4 = {
+              options: {
+                formatYear: 'yy',
+                minDate: new Date(1800, 1, 1),
+                startingDay: 1
+              },
+              opened: false
+            };
+
+    $scope.datepicker5 = {
+                options: {
+                  formatYear: 'yy',
+                  minDate: new Date(1800, 1, 1),
+                  startingDay: 1
+                },
+                opened: false
+              };
 
       $scope.formatTime = function (t) {
         return new Date(t.getTime() - (t.getTimezoneOffset() * 60000)).toISOString().substring(11, 19);
@@ -42,6 +59,14 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
 
       $scope.openDatepicker3 = function() {
         $scope.datepicker3.opened = !$scope.datepicker3.opened;
+      };
+
+      $scope.openDatepicker4 = function() {
+        $scope.datepicker4.opened = !$scope.datepicker4.opened;
+      };
+
+      $scope.openDatepicker5 = function() {
+        $scope.datepicker5.opened = !$scope.datepicker5.opened;
       };
 
     $scope.areChangesPending= false;
