@@ -1,5 +1,22 @@
 var ctrl_name = 'AddEventCtrl';
-angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', function($scope, $http) {
+angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', 'moment', function($scope, $http, moment) {
+  $scope.datepicker = {
+    options: {
+      formatYear: 'yy',
+      maxDate: new Date(2020, 5, 22),
+      minDate: new Date(),
+      startingDay: 1
+    },
+    opened: false
+  };
+
+  $scope.formatTime = function (t) {
+    return new Date(t.getTime() - (t.getTimezoneOffset() * 60000)).toISOString().substring(11, 19);
+  }
+
+  $scope.openDatepicker = function() {
+    $scope.datepicker.opened = !$scope.datepicker.opened;
+  };
 
   $scope.formData = {
       event_name: "",
@@ -21,6 +38,11 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', function
   };
 
   $scope.submitForm = function () {
+      $scope.formData.datestamp = $scope.formData.date.toISOString().substring(0, 10);
+      $scope.formData.startstamp = $scope.formatTime($scope.formData.start_time);
+      $scope.formData.endstamp = $scope.formatTime($scope.formData.end_time);
+      // $scope.formData['date'] =  moment($scope.formData['date'].format("YYYY-MM-DD HH:mm:ss");
+      // $scope.formData.date = "POOP";
 
       console.log("Submitted");
       console.log($scope.formData);
@@ -48,13 +70,12 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', function
                   $scope.showContactSuccess = true;
                   // if successful, bind success message to message
                   $scope.submissionMessage = data.messageSuccess;
+                  sweetAlert("Game Added!", "Your game: " +$scope.formData.event_name + " was added to the calendar.", "success");
                   $scope.formData = {}; // form fields are emptied with this line
                   $scope.submission = true; //shows the success message
-                  sweetAlert("Game Added!", "Your game: " +$scope.formData.event_name + " was added to the calendar.", "success");
               }
           });
-      }
-      else{
+      } else {
         // Event creation here
         $http({
             method: 'POST',
@@ -74,9 +95,9 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', function
                 $scope.showContactSuccess = true;
                 // if successful, bind success message to message
                 $scope.submissionMessage = data.messageSuccess;
+                sweetAlert("Game Added!", "Your event: " +$scope.formData.event_name + " was added to the calendar.", "success");
                 $scope.formData = {}; // form fields are emptied with this line
                 $scope.submission = true; //shows the success message
-                sweetAlert("Game Added!", "Your game: " +$scope.formData.event_name + " was added to the calendar.", "success");
             }
         });
       }

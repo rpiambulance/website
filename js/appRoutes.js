@@ -38,6 +38,22 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         title: 'Add Event'
     });
 
+    $routeProvider.when('/game/:gameId', {
+        templateUrl: 'views/game.html',
+        controller: 'GameCtrl',
+        caseInsensitiveMatch: true,
+        activeTab: 'games-events',
+        title: 'View Game Details'
+    });
+
+    $routeProvider.when('/event/:eventId', {
+        templateUrl: 'views/event.html',
+        controller: 'EventCtrl',
+        caseInsensitiveMatch: true,
+        activeTab: 'games-events',
+        title: 'View Event Details'
+    });
+
     $routeProvider.when('/logout', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'

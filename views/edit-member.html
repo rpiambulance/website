@@ -59,10 +59,16 @@
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
-                            <label for="bd">Birthday</label>
-                            <!--This should be switched to the signed in account with no option to change it-->
-                            <input type="date" name="bd" id="bd" class="form-control"  ng-model="selectedMember.dob" ng-change="changeMade()"
-                                   placeholder="12/04/1995" required/>
+                            <label for="date">Birthdate</label>
+                            <!-- <input type="date" name="date" id="date" class="form-control" ng-model="formData.date" required /> -->
+                            <!-- <div uib-datepicker ng-model="formData.date" class="well well-sm"></div> -->
+                            <!-- <input type="text" class="form-control" uib-datepicker-popup ng-model="formData.date" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" /> -->
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup ng-model="selectedMember.dob" is-open="datepicker.opened" datepicker-options="datepicker.options" ng-required="true" close-text="Close" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
@@ -140,9 +146,16 @@
                         <!--MAKE THIS A DATE PICKER-->
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
-                            <label for="cpr_exp">CPR Expiration Date</label>
-                            <input type="date" name="rid" id="rid" class="form-control"  ng-model="selectedMember.cpr_exp" ng-change="changeMade()"
-                                   placeholder="12-12-2019" required/>
+                            <label for="date">CPR Expiration Date</label>
+                            <!-- <input type="date" name="date" id="date" class="form-control" ng-model="formData.date" required /> -->
+                            <!-- <div uib-datepicker ng-model="formData.date" class="well well-sm"></div> -->
+                            <!-- <input type="text" class="form-control" uib-datepicker-popup ng-model="formData.date" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" /> -->
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup ng-model="selectedMember.cpr_exp" is-open="datepicker2.opened" datepicker-options="datepicker2.options" ng-required="true" close-text="Close" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openDatepicker2()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
@@ -159,9 +172,16 @@
                         <!--MAKE THIS A DATE PICKER-->
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
-                            <label for="emt_exp">EMT Expiration</label>
-                                <input type="date" name="emt_exp" id="emt_exp" class="form-control"  ng-model="selectedMember.emt_exp" ng-change="changeMade()"
-                                       placeholder="12-12-2019" required/>
+                            <label for="date">EMT Expiration Date</label>
+                            <!-- <input type="date" name="date" id="date" class="form-control" ng-model="formData.date" required /> -->
+                            <!-- <div uib-datepicker ng-model="formData.date" class="well well-sm"></div> -->
+                            <!-- <input type="text" class="form-control" uib-datepicker-popup ng-model="formData.date" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" /> -->
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup ng-model="selectedMember.emt_exp" is-open="datepicker3.opened" datepicker-options="datepicker3.options" ng-required="true" close-text="Close" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openDatepicker3()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">

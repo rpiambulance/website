@@ -1,72 +1,46 @@
-<section id="games-events">
-
-  <div class="container">
-    <div ng-controller="KitchenSinkCtrl as vm">
-      <div class="center">
-        <h2>Games and Events for {{vm.calendarTitle}}</h2>
-      </div>
-  <div class="row">
-
-    <div class="col-md-6 text-center pull-left">
-      <div class="btn-group pull-left">
-        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'year'" ng-click="vm.cellIsOpen = false">Year</label>
-        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'month'" ng-click="vm.cellIsOpen = false">Month</label>
-        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'week'" ng-click="vm.cellIsOpen = false">Week</label>
-        <label class="btn btn-primary" ng-model="vm.calendarView" uib-btn-radio="'day'" ng-click="vm.cellIsOpen = false">Day</label>
-      </div>
+<section id="games-events" class="noselect">
+    <div class="container">
+        <div>
+            <div class="center">
+                <h2>Games and Events for {{calendarTitle}}</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <div class="btn-group pull-left">
+                        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'year'" ng-click="cellIsOpen = false">Year</label>
+                        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'month'" ng-click="cellIsOpen = false">Month</label>
+                        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'week'" ng-click="cellIsOpen = false">Week</label>
+                        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'day'" ng-click="cellIsOpen = false">Day</label>
+                    </div>
+                </div>
+                <div class="text-center" ng-class="{'col-md-5': admin, 'col-md-6': !admin}">
+                    <div class="btn-group pull-right">
+                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" decrement="calendarView" ng-click="cellIsOpen = false">
+                            Previous
+                        </button>
+                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" set-to-today ng-click="cellIsOpen = false">
+                            Today
+                        </button>
+                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" increment="calendarView" ng-click="cellIsOpen = false">
+                            Next
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-1" ng-if="admin">
+                    <a class="btn btn-default pull-right" href="#/add-event">
+                        <span class="fa fa-plus"></span>
+                    </a>
+                </div>
+            </div>
+            <br>
+            <mwl-calendar events="events" view="calendarView" view-title="calendarTitle"
+                          view-date="viewDate" on-event-click="eventClicked(calendarEvent)"
+                          on-event-times-changed="onEventTimesChanged(calendarEvent, calendarNewEventStart, calendarNewEventEnd)"
+                          cell-is-open="cellIsOpen" day-view-start="06:00" day-view-end="22:59"
+                          day-view-split="30" cell-modifier="modifyCell(calendarCell)"
+                          cell-auto-open-disabled="true" on-timespan-click="timespanClicked(calendarDate, calendarCell)">
+            </mwl-calendar>
+            <br>
+        </div>
     </div>
-
-    <div class="col-md-6 text-center pull-right">
-      <div class="btn-group pull-right">
-
-        <button
-          class="btn btn-primary"
-          mwl-date-modifier
-          date="vm.viewDate"
-          decrement="vm.calendarView"
-          ng-click="vm.cellIsOpen = false">
-          Previous
-        </button>
-        <button
-          class="btn btn-primary"
-          mwl-date-modifier
-          date="vm.viewDate"
-          set-to-today
-          ng-click="vm.cellIsOpen = false">
-          Today
-        </button>
-        <button
-          class="btn btn-primary"
-          mwl-date-modifier
-          date="vm.viewDate"
-          increment="vm.calendarView"
-          ng-click="vm.cellIsOpen = false">
-          Next
-        </button>
-      </div>
-    </div>
-  </div>
-
-    <br>
-
-    <mwl-calendar
-      events="vm.events"
-      view="vm.calendarView"
-      view-title="vm.calendarTitle"
-      view-date="vm.viewDate"
-      on-event-click="vm.eventClicked(calendarEvent)"
-      on-event-times-changed="vm.eventTimesChanged(calendarEvent); calendarEvent.startsAt = calendarNewEventStart; calendarEvent.endsAt = calendarNewEventEnd"
-      cell-is-open="vm.cellIsOpen"
-      day-view-start="06:00"
-      day-view-end="22:59"
-      day-view-split="30"
-      cell-modifier="vm.modifyCell(calendarCell);"
-      cell-auto-open-disabled="true"
-      on-timespan-click="vm.timespanClicked(calendarDate, calendarCell)">
-    </mwl-calendar>
-
-    <br>
-
-  </div>
-  </div>
 </section>

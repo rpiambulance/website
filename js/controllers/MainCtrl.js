@@ -171,6 +171,8 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
 
         if(currentPage.split('/')[1] == 'edit-member') {
             return true;
+        } else if (currentPage.split('/')[1] === "event" || currentPage.split('/')[1] === "game") {
+            return true;
         }
 
         for (var i = 0; i < $scope.memberNavbar.length; i++) {
@@ -181,9 +183,6 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
                     }
                 }
             } else if ("/" + $scope.memberNavbar[i].page === currentPage && currentPage !== "/home") {
-                return true;
-            }
-            else if (currentPage === "/event" || currentPage === "/game") {
                 return true;
             }
         }

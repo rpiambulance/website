@@ -1,6 +1,49 @@
 angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$http', '$location', '$routeParams', '$q', function($scope, $http, $location, $routeParams, $q) {
     $scope.searchFilter = "";
 
+    $scope.datepicker = {
+        options: {
+          formatYear: 'yy',
+          minDate: new Date(1800, 1, 1),
+          startingDay: 1
+        },
+        opened: false
+      };
+
+      $scope.datepicker2 = {
+          options: {
+            formatYear: 'yy',
+            minDate: new Date(1800, 1, 1),
+            startingDay: 1
+          },
+          opened: false
+        };
+
+        $scope.datepicker3 = {
+            options: {
+              formatYear: 'yy',
+              minDate: new Date(1800, 1, 1),
+              startingDay: 1
+            },
+            opened: false
+          };
+
+      $scope.formatTime = function (t) {
+        return new Date(t.getTime() - (t.getTimezoneOffset() * 60000)).toISOString().substring(11, 19);
+      }
+
+      $scope.openDatepicker = function() {
+        $scope.datepicker.opened = !$scope.datepicker.opened;
+      };
+
+      $scope.openDatepicker2 = function() {
+        $scope.datepicker2.opened = !$scope.datepicker2.opened;
+      };
+
+      $scope.openDatepicker3 = function() {
+        $scope.datepicker3.opened = !$scope.datepicker3.opened;
+      };
+
     $scope.areChangesPending= false;
 
     $scope.trainingFields = [

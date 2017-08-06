@@ -44,13 +44,21 @@
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
-                            <label for="dt">Date</label>
-                            <input type="date" name="dt" id="dt" class="form-control" ng-model="formData.date" required/>
+                            <label for="date">Date</label>
+                            <!-- <input type="date" name="date" id="date" class="form-control" ng-model="formData.date" required /> -->
+                            <!-- <div uib-datepicker ng-model="formData.date" class="well well-sm"></div> -->
+                            <!-- <input type="text" class="form-control" uib-datepicker-popup ng-model="formData.date" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" /> -->
+                            <p class="input-group">
+                                <input type="text" class="form-control" uib-datepicker-popup ng-model="formData.date" is-open="datepicker.opened" datepicker-options="datepicker.options" ng-required="true" close-text="Close" />
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn btn-default" ng-click="openDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+                                </span>
+                            </p>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="lim">Attendance Limit</label>
-                            <input type="number" name="lim" id="lim" class="form-control" ng-model="formData.limit"
+                            <input type="number" name="lim" id="lim" class="form-control" ng-model="formData.limit" min="-1"
                                    placeholder="0 for no limit, -1 for no signups" required/>
                         </div>
 

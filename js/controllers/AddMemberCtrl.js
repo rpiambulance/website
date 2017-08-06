@@ -17,6 +17,24 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
         user_name: ""
     };
 
+    $scope.datepicker = {
+      options: {
+        formatYear: 'yy',
+        maxDate: new Date(),
+        minDate: new Date(1800, 1, 1),
+        startingDay: 1
+      },
+      opened: false
+    };
+
+    $scope.formatTime = function (t) {
+      return new Date(t.getTime() - (t.getTimezoneOffset() * 60000)).toISOString().substring(11, 19);
+    }
+
+    $scope.openDatepicker = function() {
+      $scope.datepicker.opened = !$scope.datepicker.opened;
+    };
+
     console.log($scope.formData);
 
     $scope.clearForm = function () {

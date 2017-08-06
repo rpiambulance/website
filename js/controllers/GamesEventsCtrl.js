@@ -1,38 +1,19 @@
 
-angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap']).controller('GamesEventsCtrl', ['$scope', '$http',  function($scope, $http, AuthService) {
-
-
-}]);
-
-angular.module('KitchenSinkCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('KitchenSinkCtrl', ['moment', 'calendarConfig', '$http', '$scope', 'AuthService', '$q', '$location', function(moment, calendarConfig, $http, $scope, AuthService, $q, $location) {
+angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('GamesEventsCtrl', ['moment', 'calendarConfig', '$http', '$scope', 'AuthService', '$q', '$location', function(moment, calendarConfig, $http, $scope, AuthService, $q, $location) {
     // TO the next developer: good luck. You're probably screwed. God bless
-    var vm = this;
-    vm.calendarView = 'month';
-    vm.viewDate = new Date();
-    vm.events = [];
+    AuthService.isAdmin().then(function (response) {
+        $scope.admin = response.admin === '1';
+    });
+
+    $scope.calendarView = 'month';
+    $scope.viewDate = new Date();
+    $scope.events = [];
 
     var hold = AuthService.isAdmin();
 
     console.log(hold.condition);
 
-    // NOTE: This doesn't work
-
-    if(AuthService.isAdmin()) {
-        var actions = [{
-            label: '<i class=\'glyphicon glyphicon-pencil\'></i>',
-            onClick: function(args) {
-                vm.eventEdited(args.calendarEvent);
-            }
-        }, {
-            label: '<i class=\'glyphicon glyphicon-remove\'></i>',
-            onClick: function(args) {
-                vm.eventDeleted(args.calendarEvent);
-                // alert.show('Deleted', args.calendarEvent);
-            }
-        }];
-    } else {
-        var actions = [];
-    }
+    var actions = [];
 
     $http({
         method: 'POST',
@@ -56,6 +37,7 @@ angular.module('KitchenSinkCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
             }
 
             var temp = {
+                dbId: elem.id,
                 title: elem.description + ' &mdash; ' + elem.location,
                 startsAt: nsdt,
                 endsAt: nedt,
@@ -64,7 +46,7 @@ angular.module('KitchenSinkCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
                 actions: actions,
                 color: game
             }
-            vm.events.push(temp);
+            $scope.events.push(temp);
         });
     });
 
@@ -90,6 +72,7 @@ angular.module('KitchenSinkCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
             }
 
             var temp = {
+                dbId: elem.id,
                 title: elem.description + ' &mdash; ' + elem.location,
                 startsAt: nsdt,
                 endsAt: nedt,
@@ -98,15 +81,15 @@ angular.module('KitchenSinkCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
                 actions: actions,
                 color: game
             }
-            vm.events.push(temp);
+            $scope.events.push(temp);
         });
 
-        console.log(vm.events);
+        console.log($scope.events);
 
-        vm.cellIsOpen = false;
+        $scope.cellIsOpen = false;
 
-        vm.addEvent = function() {
-            vm.events.push({
+        $scope.addEvent = function() {
+            $scope.events.push({
                 title: 'New event',
                 startsAt: moment().startOf('day').toDate(),
                 endsAt: moment().endOf('day').toDate(),
@@ -116,53 +99,67 @@ angular.module('KitchenSinkCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
             });
         };
 
-        vm.eventClicked = function(event) {
-            console.log(event.calendarEventId);
+        $scope.eventClicked = function(event) {
+            console.log('HELLO');
+            console.log(event);
             if (event.color.primary == '#ad2121' || event.color.primary == '#1E90FF') {
-                $location.url("/game/:event.calendarEventId");
-            }
-            else{
-                $location.url("/event/" + event.calendarEventId);
+                console.log("/game/" + event.dbId);
+                $location.url("/game/" + event.dbId);
+            } else {
+                console.log("/event/" + event.dbId);
+                $location.url("/event/" + event.dbId);
             }
         };
 
-        vm.eventEdited = function(event) {
-            $location.url("/edit-event/" + event.calendarEventId);
+        $scope.eventEdited = function(event) {
+          if (event.color.primary == '#ad2121' || event.color.primary == '#1E90FF') {
+              console.log("/add-game/" + event.dbId);
+              $location.url("/add-event/" + event.dbId);
+          } else {
+              console.log("/event/" + event.dbId);
+              $location.url("/event-event/" + event.dbId);
+          }
         };
 
-        vm.eventDeleted = function(event) {
-            console.log(event.calendarEventId);
+        $scope.eventDeleted = function(event) {
+            console.log(event.dbId);
             sweetAlert('Deleted', 'success');
             //alert.show('Deleted', event);
         };
 
-        vm.eventTimesChanged = function(event) {
+        $scope.eventTimesChanged = function(event) {
             sweetAlert('Dropped or resized', JSON.stringify(event), 'success');
             //alert.show('Dropped or resized', event);
         };
 
-        vm.toggle = function($event, field, event) {
+        $scope.toggle = function($event, field, event) {
             $event.preventDefault();
             $event.stopPropagation();
             event[field] = !event[field];
         };
 
-        vm.timespanClicked = function(date, cell) {
-            if (vm.calendarView === 'month') {
-                if ((vm.cellIsOpen && moment(date).startOf('day').isSame(moment(vm.viewDate).startOf('day'))) || cell.events.length === 0 || !cell.inMonth) {
-                    vm.cellIsOpen = false;
+        $scope.timespanClicked = function(date, cell) {
+            if ($scope.calendarView === 'month') {
+                if (($scope.cellIsOpen && moment(date).startOf('day').isSame(moment($scope.viewDate).startOf('day'))) || cell.events.length === 0 || !cell.inMonth) {
+                    $scope.cellIsOpen = false;
                 } else {
-                    vm.cellIsOpen = true;
-                    vm.viewDate = date;
+                    $scope.cellIsOpen = true;
+                    $scope.viewDate = date;
                 }
-            } else if (vm.calendarView === 'year') {
-                if ((vm.cellIsOpen && moment(date).startOf('month').isSame(moment(vm.viewDate).startOf('month'))) || cell.events.length === 0) {
-                    vm.cellIsOpen = false;
+            } else if ($scope.calendarView === 'year') {
+                if (($scope.cellIsOpen && moment(date).startOf('month').isSame(moment($scope.viewDate).startOf('month'))) || cell.events.length === 0) {
+                    $scope.cellIsOpen = false;
                 } else {
-                    vm.cellIsOpen = true;
-                    vm.viewDate = date;
+                    $scope.cellIsOpen = true;
+                    $scope.viewDate = date;
                 }
             }
         };
+
+        $scope.onEventTimesChanged = function (calendarEvent, calendarNewEventStart, calendarNewEventEnd) {
+            $scope.eventTimesChanged(calendarEvent);
+            calendarEvent.startsAt = calendarNewEventStart;
+            calendarEvent.endsAt = calendarNewEventEnd
+        }
     });
 }]);

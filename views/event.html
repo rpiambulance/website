@@ -1,21 +1,66 @@
 <section id="game">
     <div class="container">
-        <div class="center">
-            <h2>EVENT NAME</h2>
-            <table id="event table" class="table table-bordered table-striped">
-            <tbody>
-            <tr>
-                <td>H. Leinweber</td>
-                <td>Z. White</td>
-                <td>F. Freshman</td>
-            </tr>
-            <tr>
-                <td>D. Sparkman</td>
-                <td>C. Williams</td>
-                <td></td>
-            </tr>
-            </tbody>
-        </table>
+        <div class="row">
+            <div class="col-xs-1">
+                <a class="btn btn-sm btn-default" href="#/games-events">
+                    <span class="fa fa-chevron-left"></span> Calendar
+                </a>
+            </div>
+            <div class="col-xs-10 center">
+                <h2 ng-bind="event.description"></h2>
+                <h3 class="text-muted">
+                    Location: <span ng-bind="event.location"></span> |
+                    <span ng-bind="event.date | date:'EEEE, MMMM d, y'"></span> |
+                    <span data-toggle="tooltip" data-placement="bottom" title="{{event.startObj | date:'h:mm a'}}–{{event.endObj | date:'h:mm a'}}">
+                        <span ng-bind="event.startObj | date:'HH:mm'"></span>&ndash;<span ng-bind="event.endObj | date:'HH:mm'"></span>
+                    </span>
+                    <span ng-if="event.limit > 0"> |
+                        Limit: <span ng-bind="event.limit"></span>
+                        <!-- todo: ng-pluralize 'members' -->
+                    </span>
+                </h3>
+                <p>
+                    <button class="btn btn-default btn-sm">
+                        <span class="fa fa-pencil"></span> Edit Event
+                    </button>
+                    <button class="btn btn-danger btn-sm" ng-click="deleteEvent()">
+                        <span class="fa fa-trash"></span> Delete Event
+                    </button>
+                </p>
+                <hr>
+
+                <h3 ng-if="attendees.length">Attendees:</h3>
+                <h3 ng-if="!attendees.length && event.limit !== '0'"><em>No members are signed up!</em></h3>
+                <h3 ng-if="!attendees.length && event.limit === '0'"><em>Sign ups are disabled for this event.</em></h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="a in attendees">
+                <div class="panel" ng-class="{'panel-default': a.is_viewing_member === '0', 'panel-primary': a.is_viewing_member === '1' }">
+                    <div class="panel-heading">
+                        <a class="pull-right" ng-click="dropMember(a.memberid)">
+                            <span class="fa fa-lg fa-times"></span>
+                        </a>
+                        <h3 class="panel-title" ng-bind="a.ambulance_name"></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12 center">
+                <button class="btn btn-primary btn-lg" ng-if="!alreadySignedUp && event.limit !== '0' && attendees.length < event.limit" ng-click="signup()">
+                    <span class="fa fa-plus"></span> Sign up
+                </button>
+                <button class="btn btn-primary btn-lg" ng-if="alreadySignedUp" ng-click="drop()">
+                    <span class="fa fa-minus"></span> Drop Event
+                </button>
+                <h3 ng-if="!alreadySignedUp && attendees.length == event.limit && event.limit !== '0'"><em>This event has reached the limit of allowed sign ups.</em></h3>
+            </div>
         </div>
     </div>
 </section>
+<script type="text/javascript">
+$(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+});
+</script>

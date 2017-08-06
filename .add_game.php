@@ -21,9 +21,9 @@ $start_time = $input['start_time'];
 $end_time = $input['end_time'];
 $date = $input['date'];
 $type = $input['type'];
-$ees = "";
+$ees = 0;
 
-if ($type == 3) {
+if ($type == '3') {
   $ees = 0;
 }
 else{
@@ -45,9 +45,9 @@ try {
 
   $logid = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['max'] + 1;
 
-  $statement = $connection->prepare("INSERT INTO events(id, date, start,
-    end, description, location, ees, hide) VALUES (:logid, :date, :start_time, :end_time,
-    :event_name, :event_location, :ees, 0)");
+
+
+  $statement = $connection->prepare("INSERT INTO events(id, `date`, start, `end`, description, location, ees, hide) VALUES (:logid, :date, :start_time, :end_time, :event_name, :event_location, :ees, 0)");
 
   $statement->bindParam(":logid", $logid);
   $statement->bindParam(":date", $date);

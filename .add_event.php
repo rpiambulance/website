@@ -17,10 +17,10 @@ $input = json_decode($formData, true);
 
 $event_name = $input['event_name'];
 $event_location = $input['event_location'];
-$start_time = $input['start_time'];
-$end_time = $input['end_time'];
-$date = $input['date'];
-$limit = $input['limit']
+$start_time = $input['startstamp'];
+$end_time = $input['endstamp'];
+$date = $input['datestamp'];
+$limit = $input['limit'];
 
 try {
   $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
