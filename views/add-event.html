@@ -1,9 +1,10 @@
 <section id="add-event">
     <div class="container">
         <div class="center">
-            <h2>Add Event</h2>
+            <h2 ng-if="editMode">Editing: {{originalName}}</h2>
 
-            <div class="lead text-justify">
+            <h2 ng-if-start="!editMode">Add Event</h2>
+            <div ng-if-end class="lead text-justify">
                 Use this form to add a new event to the calendar.
             </div>
             <div class="alert alert-success alert-dismissible" ng-show="showContactSuccess" role="alert">
@@ -53,7 +54,7 @@
                             </p>
                         </div>
 
-                        <div class="form-group col-xs-6 fixed-height-form-element">
+                        <div class="form-group col-xs-6 fixed-height-form-element" ng-if="!editMode">
                             <label for="type">Event Type</label>
                             <select class="form-control" id="type" ng-model="formData.type">
                                 <option value="" selected="true" disabled>Select One</option>
@@ -62,21 +63,29 @@
                                 <option value="3">Game (NO EES)</option>
                             </select>
                         </div>
+                        <div class="form-group col-xs-6 fixed-height-form-element" ng-if="editMode && formData.type != 1"></div>
 
-                        <div class="form-group col-xs-6 fixed-height-form-element" ng-if-start="!formData.type || formData.type == 1">
+                        <div class="form-group col-xs-6 fixed-height-form-element" ng-if="!formData.type || formData.type == 1">
                             <label for="lim">Attendance Limit</label>
                             <input type="number" name="lim" id="lim" class="form-control" ng-model="formData.limit" min="-1"
                                    placeholder="0 for no limit, -1 for no signups" required/>
                            <p class="help-block text-small">Note: Games do not have a specifiable limit.</p>
                         </div>
-                        <div class="form-group col-xs-6 fixed-height-form-element" ng-if-end></div>
+                        <div class="form-group col-xs-6 fixed-height-form-element" ng-if="!editMode && (!formData.type || formData.type == 1)"></div>
 
-                        <div class="form-actions">
+                        <div class="form-actions" ng-if="!editMode">
                             <button type="submit" class="btn btn-success"
                                     value="Submit">
                                 Create Event
                             </button>
                             <button type="reset" class="btn btn-danger">Clear Form</button>
+                        </div>
+                        <div class="form-actions" ng-if="editMode">
+                            <button type="submit" class="btn btn-success"
+                                    value="Submit">
+                                Update Event
+                            </button>
+                            <button type="button" class="btn btn-default" ng-click="returnToEvent()">Cancel</button>
                         </div>
                     </form>
                 </div>

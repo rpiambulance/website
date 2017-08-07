@@ -1,5 +1,5 @@
 var ctrl_name = 'AddEventCtrl';
-angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', 'moment', function($scope, $http, moment) {
+angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$location', 'moment', '$routeParams', 'AuthService', function($scope, $http, $location, moment, $routeParams, AuthService) {
   $scope.datepicker = {
     options: {
       formatYear: 'yy',
@@ -28,7 +28,75 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', 'moment'
       limit: ""
   };
 
-  console.log($scope.formData);
+  function parseDateString(string) {
+    return new Date().setFullYear(string.substring(0, 4), string.substring(5, 7) - 1, string.substring(9, 11));
+  }
+
+  $scope.initPage = function() {
+    if(!$routeParams.type) {
+      $scope.editMode = false;
+      return;
+    }
+
+    $scope.editMode = true;
+
+    if($routeParams.type === "event") {
+      $http({
+              method: 'POST',
+              url: '.get_event_info.php',
+              data: "session_id=" + AuthService.getSessionId() + "&event_id=" + $routeParams.eventId,
+              headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+          }).then(function (response) {
+              if (!response.data.success) {
+                  console.log("it failed!");
+                  console.log(response.data);
+                  $location.url('/games-events');
+              } else {
+                  console.log(response.data);
+                  $scope.originalName = response.data.event.description;
+                  $scope.formData.event_name = response.data.event.description;
+                  $scope.formData.event_location = response.data.event.location;
+                  $scope.formData.start_time = new Date(parseInt(response.data.event.start_epoch) * 1000);//response.data.event.start;
+                  $scope.formData.end_time = new Date(parseInt(response.data.event.end_epoch) * 1000);//response.data.event.end;
+                  $scope.formData.date = parseDateString(response.data.event.date);
+                  $scope.formData.type = "1";
+                  $scope.formData.limit = parseInt(response.data.event.limit);
+                  console.log("FD: ", $scope.formData);
+              }
+          });
+
+    } else if ($routeParams.type === "game") {
+
+      $http({
+              method: 'POST',
+              url: '.get_game_info.php',
+              data: "session_id=" + AuthService.getSessionId() + "&game_id=" + $routeParams.eventId,
+              headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+          }).then(function (response) {
+              if (!response.data.success) {
+                  console.log("it failed!");
+                  console.log(response.data);
+                  $location.url('/games-events');
+              } else {
+                  console.log(response.data);
+                  $scope.originalName = response.data.game.description;
+                  $scope.formData.event_name = response.data.game.description;
+                  $scope.formData.event_location = response.data.game.location;
+                  $scope.formData.start_time = new Date(parseInt(response.data.game.start_epoch) * 1000);//response.data.event.start;
+                  $scope.formData.end_time = new Date(parseInt(response.data.game.end_epoch) * 1000);//response.data.event.end;
+                  $scope.formData.date = parseDateString(response.data.game.date);
+                  if (response.data.game.ees = 0) {
+                    $scope.formData.type = "3";
+                  } else {
+                    $scope.formData.type = "2";
+                  }
+                  console.log("FD: ", $scope.formData);
+              }
+          });
+    }
+  }
+
+  $scope.initPage();
 
   $scope.clearForm = function () {
       for (var d in $scope.formData) {
@@ -38,7 +106,12 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', 'moment'
   };
 
   $scope.submitForm = function () {
-      $scope.formData.datestamp = $scope.formData.date.toISOString().substring(0, 10);
+      console.log($scope.formData.date);
+      if(typeof $scope.formData.date === 'number') {
+        $scope.formData.datestamp = new Date($scope.formData.date).toISOString().substring(0, 10);
+      } else {
+        $scope.formData.datestamp = $scope.formData.date.toISOString().substring(0, 10);
+      }
       $scope.formData.startstamp = $scope.formatTime($scope.formData.start_time);
       $scope.formData.endstamp = $scope.formatTime($scope.formData.end_time);
       // $scope.formData['date'] =  moment($scope.formData['date'].format("YYYY-MM-DD HH:mm:ss");
@@ -47,8 +120,13 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', 'moment'
       console.log("Submitted");
       console.log($scope.formData);
 
-      if($scope.formData.type == 2 || $scope.formData.type == 3) {
+      $scope.formData.mode = ($scope.editMode ? 'edit' : 'add');
 
+      if($scope.editMode) {
+        $scope.formData.id = $routeParams.eventId;
+      }
+
+      if($scope.formData.type == 2 || $scope.formData.type == 3) {
         // Game creation
 
           console.log($scope.formData);
@@ -70,9 +148,14 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', 'moment'
                   $scope.showContactSuccess = true;
                   // if successful, bind success message to message
                   $scope.submissionMessage = data.messageSuccess;
-                  sweetAlert("Game Added!", "Your game: " +$scope.formData.event_name + " was added to the calendar.", "success");
-                  $scope.formData = {}; // form fields are emptied with this line
-                  $scope.submission = true; //shows the success message
+                  if($scope.editMode) {
+                    sweetAlert("Game Updated!", "Your game, entitled " +$scope.formData.event_name + ", was updated on the calendar.", "success");
+                    $location.url('/game/' + $routeParams.eventId);
+                  } else {
+                    sweetAlert("Game Added!", "Your game, entitled " +$scope.formData.event_name + " was added to the calendar.", "success");
+                    $scope.formData = {}; // form fields are emptied with this line
+                    $scope.submission = true; //shows the success message
+                  }
               }
           });
       } else {
@@ -95,13 +178,22 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', 'moment'
                 $scope.showContactSuccess = true;
                 // if successful, bind success message to message
                 $scope.submissionMessage = data.messageSuccess;
-                sweetAlert("Game Added!", "Your event: " +$scope.formData.event_name + " was added to the calendar.", "success");
-                $scope.formData = {}; // form fields are emptied with this line
-                $scope.submission = true; //shows the success message
+                if($scope.editMode) {
+                  sweetAlert("Event Updated!", "Your event, entitled " +$scope.formData.event_name + ", was updated on the calendar.", "success");
+                  $location.url('/event/' + $routeParams.eventId);
+                } else {
+                  sweetAlert("Event Added!", "Your event, entitled " +$scope.formData.event_name + ", was added to the calendar.", "success");
+                  $scope.formData = {}; // form fields are emptied with this line
+                  $scope.submission = true; //shows the success message
+                }
             }
         });
       }
   };
 
-
+  $scope.returnToEvent = function () {
+    if($scope.editMode) {
+      $location.url('/' + ($scope.formData.type == 1 ? 'event' : 'game') + '/' + $routeParams.eventId);
+    }
+  };
 }]);

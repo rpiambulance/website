@@ -1,4 +1,4 @@
-angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$http', '$location', '$routeParams', '$q', function($scope, $http, $location, $routeParams, $q) {
+angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$http', '$location', '$route', '$routeParams', '$q', function($scope, $http, $location, $route, $routeParams, $q) {
     $scope.searchFilter = "";
 
     $scope.datepicker = {
@@ -136,7 +136,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
     ];
 
     var DATES = [
-        'dob', 'emt_exp', 'cpr_exp'
+        'dob', 'dl_exp', 'emt_exp', 'cpr_exp', 'cevo_date'
     ];
 
     $scope.chooseMember = function (member) {
@@ -145,26 +145,6 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
 
     $scope.clearSelected = function (member) {
         $location.path('/edit-member');
-    };
-
-    $scope.save = function () {
-        if($scope.selectedMember.position === 'webmaster') {
-            $scope.selectedMember.admin = '1';
-            $scope.selectedMember.captain = '0';
-        } else if($scope.selectedMember.position) {
-            $scope.selectedMember[$scope.selectedMember.position] = '1';
-        }
-
-        $http({
-            method: 'POST',
-            url: 'member_table.php',
-            data: $scope.selectedMember,
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
-        }).then(function (response) {
-
-        });
-
-        // TODO: Save the stuff here
     };
 
     $scope.feelingLucky = function () {
@@ -176,6 +156,11 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
             $http.get('member_table.php?member_id=' + $routeParams.memberId).then(function (response) {
                 $scope.selectedMember = response.data[0];
                 memberPostProcessing($scope.selectedMember);
+                $scope.selectedMember.access_revoked = parseInt($scope.selectedMember.access_revoked);
+                $scope.selectedMember.admin = parseInt($scope.selectedMember.admin);
+                $scope.selectedMember.active = parseInt($scope.selectedMember.active);
+
+                console.log($scope.selectedMember);
             });
         } else {
             $http.get('member_table.php?include_inactive').then(function (response) {
@@ -183,6 +168,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
                 memberlistPostProcessing();
             });
         }
+
     }
     loadData();
 
@@ -194,7 +180,9 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
 
     function memberPostProcessing (member) {
         for(var j = 0; j < DATES.length; j++) {
-            member[DATES[j]] = new Date(member[DATES[j]]);
+            if(member[DATES[j]] !== null) {
+                member[DATES[j]] = new Date(member[DATES[j]]);
+            }
         }
 
         for(var j = 0; j < NUMBERS.length; j++) {
@@ -234,29 +222,45 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
             return;
         }
 
-        var data = 'data=' + JSON.stringify($scope.selectedMember) + '&session_id=' + $scope.getSessionIDCookie();
+        $scope.selectedMember.id = $routeParams.memberId;
+
+        var toSubmit = $scope.selectedMember;
+
+        if(toSubmit.position === 'webmaster') {
+            toSubmit.admin = '1';
+            toSubmit.captain = '0';
+        } else if(toSubmit.position) {
+            toSubmit[toSubmit.position] = '1';
+        }
+
+        for(var j = 0; j < DATES.length; j++) {
+            if(toSubmit[DATES[j]] !== null) {
+                if(typeof toSubmit[DATES[j]] === 'number') {
+                    toSubmit[DATES[j]] = new Date(toSubmit[DATES[j]]).toISOString().substring(0, 10);
+                } else if(toSubmit[DATES[j]] instanceof Date) {
+                    toSubmit[DATES[j]] = toSubmit[DATES[j]].toISOString().substring(0, 10);
+                } else {
+                    toSubmit[DATES[j]] = null;
+                }
+            }
+        }
+
+        var data = 'data=' + JSON.stringify(toSubmit) + '&session_id=' + $scope.getSessionIDCookie();
 
         $http({
             method: 'POST',
             url: '.edit_member.php',
             data: data, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
-        }).then(function (data) {
-            console.log(data);
-            if (!data.success) {
+        }).then(function (response) {
+            console.log(response.data);
+            if (!response.data.success) {
                 console.log("it failed!");
                 $scope.submission = true; //shows the error message
                 $scope.showError= true;
             } else {
-                console.log("it succeeded!");
-
-                $scope.areChangesPending = false;
-
-                $scope.successName = $scope.formData.first_name + ' ' + $scope.formData.last_name;
-                $scope.showContactSuccess = true;
-                // if successful, bind success message to message
-                $scope.submissionMessage = data.messageSuccess;
-                $scope.submission = true; //shows the success message
+                swal("Success!", "The user record has been updated. The EMS gods have been made aware of this change. Please be prepared to sacrifice a hot meal.", "success");
+                $route.reload();
             }
         });
     };

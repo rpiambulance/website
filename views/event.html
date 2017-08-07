@@ -20,7 +20,7 @@
                     </span>
                 </h3>
                 <p ng-if="admin">
-                    <button class="btn btn-default btn-sm">
+                    <button class="btn btn-default btn-sm" ng-click="editEvent()">
                         <span class="fa fa-pencil"></span> Edit Event
                     </button>
                     <button class="btn btn-danger btn-sm" ng-click="deleteEvent()">
@@ -30,8 +30,8 @@
                 <hr>
 
                 <h3 ng-if="attendees.length">Attendees:</h3>
-                <h3 ng-if="!attendees.length && event.limit !== '0'"><em>No members are signed up!</em></h3>
-                <h3 ng-if="!attendees.length && event.limit === '0'"><em>Sign ups are disabled for this event.</em></h3>
+                <h3 ng-if="!attendees.length && event.limit !== '-1'"><em>No members are signed up!</em></h3>
+                <h3 ng-if="!attendees.length && event.limit === '-1'"><em>Sign ups are disabled for this event.</em></h3>
             </div>
         </div>
         <div class="row">
@@ -48,13 +48,13 @@
         </div>
         <div class="row">
             <div class="col-xs-12 center">
-                <button class="btn btn-primary btn-lg" ng-if="!alreadySignedUp && event.limit !== '0' && attendees.length < event.limit" ng-click="signup()">
+                <button class="btn btn-primary btn-lg" ng-if="!alreadySignedUp && (event.limit === '0' || attendees.length < event.limit)" ng-click="signup()">
                     <span class="fa fa-plus"></span> Sign up
                 </button>
                 <button class="btn btn-primary btn-lg" ng-if="alreadySignedUp" ng-click="drop()">
                     <span class="fa fa-minus"></span> Drop Event
                 </button>
-                <h3 ng-if="!alreadySignedUp && attendees.length == event.limit && event.limit !== '0'"><em>This event has reached the limit of allowed sign ups.</em></h3>
+                <h3 ng-if="!alreadySignedUp && attendees.length == event.limit && event.limit === '-1'"><em>This event has reached the limit of allowed sign ups.</em></h3>
             </div>
         </div>
     </div>

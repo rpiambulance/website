@@ -20,22 +20,21 @@ $connection->exec("USE `$dname`");
 $modifiableFields = array(
   "username", "password", "first_name", "last_name", "dob", "email",
   "rpi_address", "home_address", "cell_phone", "home_phone", "rcs_id", "rin",
-  "radionum", "radio", "radiomodel", "radioserial", "radiocharger",
-  "radiotacmic", "radioebattery", "cpr_exp", "cpr_assoc", "emt_level",
+  "radionum", "cpr_exp", "cpr_assoc", "emt_level",
   "emt_num", "emt_exp", "other_training", "dl_state", "dl_exp", "cevo_date",
   "epinipherine", "atropine", "glucometry", "nims100", "nims200", "nims700",
   "nims800", "admin", "rank", "pres", "vicepres", "captain", "firstlt",
   "secondlt", "schedco", "radioco", "traincommchair", "dutysup", "ees",
   "cctrainer", "drivertrainer", "firstresponsecc", "crewchief", "driver",
-  "backupcc", "backupdriver", "attendant", "observer", "active", "lastlogin",
-  "facility_id", "card_id", "access_revoked"
+  "backupcc", "backupdriver", "attendant", "observer", "active",
+  "access_revoked"
 );
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
   if(checkIfAdmin()) {
     $data = json_decode($_POST['data'], true);
 
-    try {
+    // try {
       foreach($data as $elem) {
         $sql = "UPDATE members SET";
 
@@ -48,19 +47,23 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Eliminate last comma
         $sql = substr($sql, 0, -1);
 
+        $sql .= " WHERE id = :memberId";
+
         $statement = $connection->prepare($sql);
 
         foreach($modifiableFields as $mf) {
           if(isset($data[$mf])) {
-            $statement->bindValue(':$mf', $data[$mf]);
+            $statement->bindValue(":$mf", $data[$mf]);
           }
         }
+        $statement->bindValue(':memberId', $data['id']);
         $result = $statement->execute();
       }
       echo(json_encode(array('success' => true)));
-    } catch (PDOException $e) {
-      echo(json_encode(array('success' => false, 'error' => $e)));
-    }
+    // } catch (PDOException $e) {
+    //   echo $e;
+    //   echo(json_encode(array('success' => false, 'error' => $e)));
+    // }
   } else {
     echo 'nice try';
   }

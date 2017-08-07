@@ -30,12 +30,12 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         title: 'Edit Member'
     });
 
-    $routeProvider.when('/add-event/:eventId', {
-        templateUrl: 'views/edit-event.html',
-        controller: 'EditEventCtrl',
+    $routeProvider.when('/edit/:type/:eventId', {
+        templateUrl: 'views/add-event.html',
+        controller: 'AddEventCtrl',
         caseInsensitiveMatch: true,
         activeTab: 'add-event',
-        title: 'Add Event'
+        title: 'Edit Event'
     });
 
     $routeProvider.when('/game/:gameId', {

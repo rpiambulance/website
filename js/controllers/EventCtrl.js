@@ -99,4 +99,9 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
             });
         });
     }
+
+    $scope.editEvent = function () {
+           $location.url('/edit/event/' + $routeParams.eventId);
+       }
+
 }]);

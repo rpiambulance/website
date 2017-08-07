@@ -22,6 +22,11 @@ $end_time = $input['endstamp'];
 $date = $input['datestamp'];
 $type = $input['type'];
 $ees = 0;
+$mode = $input['mode'];
+
+if($mode == 'edit') {
+  $id = $input['id'];
+}
 
 if ($type == '3') {
   $ees = 0;
@@ -41,24 +46,43 @@ try {
   // Selecting Database
   $connection->exec("USE `$dname`");
 
-  $statement = $connection->query("SELECT MAX(id) as max FROM games");
+  if($mode == 'add') {
+    $statement = $connection->query("SELECT MAX(id) as max FROM games");
 
-  $logid = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['max'] + 1;
+    $logid = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['max'] + 1;
 
+    $statement = $connection->prepare("INSERT INTO games(id, `date`, start, `end`, description, location, ees, hide) VALUES (:logid, :date, :start_time, :end_time, :event_name, :event_location, :ees, 0)");
 
+    $statement->bindParam(":logid", $logid);
+    $statement->bindParam(":date", $date);
+    $statement->bindParam(":start_time", $start_time);
+    $statement->bindParam(":end_time", $end_time);
+    $statement->bindParam(":event_name", $event_name);
+    $statement->bindParam(":event_location", $event_location);
+    $statement->bindParam(":ees", $ees);
 
-  $statement = $connection->prepare("INSERT INTO games(id, `date`, start, `end`, description, location, ees, hide) VALUES (:logid, :date, :start_time, :end_time, :event_name, :event_location, :ees, 0)");
+    $result = $statement->execute();
+  } else {
+    $statement = $connection->prepare("UPDATE games SET
+      `date`=:date,
+      `start`=:start_time,
+      `end`=:end_time,
+      `description`=:event_name,
+      `location`=:event_location,
+      `ees`=:ees,
+      `hide`=0
+    WHERE id=:id");
 
-  $statement->bindParam(":logid", $logid);
-  $statement->bindParam(":date", $date);
-  $statement->bindParam(":start_time", $start_time);
-  $statement->bindParam(":end_time", $end_time);
-  $statement->bindParam(":event_name", $event_name);
-  $statement->bindParam(":event_location", $event_location);
-  $statement->bindParam(":ees", $ees);
+    $statement->bindParam(":id", $id);
+    $statement->bindParam(":date", $date);
+    $statement->bindParam(":start_time", $start_time);
+    $statement->bindParam(":end_time", $end_time);
+    $statement->bindParam(":event_name", $event_name);
+    $statement->bindParam(":event_location", $event_location);
+    $statement->bindParam(":ees", $ees);
 
-
-  $result = $statement->execute();
+    $result = $statement->execute();
+  }
 
   if($result) {
     $data['success'] = true;

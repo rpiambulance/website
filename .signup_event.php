@@ -52,7 +52,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $statement->execute();
   $limit = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['limit'];
 
-  if($limit == '-1' || $currentCount >= intval($limit)) {
+  if($limit == '-1' || ($limit != '0' && $currentCount >= intval($limit))) {
     return;
   }
 
