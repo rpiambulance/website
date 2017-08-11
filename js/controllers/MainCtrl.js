@@ -110,8 +110,8 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'member-list', title: 'Member List'},
             {page: 'fuel-log', title: 'Fuel Log'},
             {page: 'stocking-issue', title: 'Stocking'},
-            {page: 'expirations', title: 'Expiring Items'},
-            {page: 'announcements', title: 'Announcements'}
+            {page: 'expirations', title: 'Expiring Items'}
+            // {page: 'announcements', title: 'Announcements'}
         ]
         },
 
@@ -159,7 +159,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         {
             page: '', title: 'Account', isDropdown: true, dividersAfter: [], dropdownOptions: [
             {page: 'my-settings', title: 'My Settings'},
-            {page: 'my-training', title: 'My Training'},
+            // {page: 'my-training', title: 'My Training'},
             {page: 'logout', title: 'Log Out'}
         ]
         }

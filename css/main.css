@@ -2704,7 +2704,7 @@ span.comm-list-other {
     outline: none !important;
     padding: 3px 0 3px 3px !important;
     margin: 5px 1px 3px 0 !important;
-    border: 1px solid #DDDDDD !important;
+    border: 1px solid #DDDDDD /*!important*/;
 }
 
 .form-group > input[type=text]:focus, input[type=password]:focus, input[type=email]:focus, textarea:focus {
@@ -2948,4 +2948,15 @@ td.info {
 .panel-primary > .panel-heading {
     background-color: #c52d2f;
     border-color: #c52d2f;
+}
+
+.help-block.text-danger {
+  color: #a94442;
+}
+
+.has-error .form-control,
+.form-group.has-error > input[type=text] {
+    border-color: #a94442;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
 }

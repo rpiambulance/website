@@ -8,8 +8,8 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         'EMT-Reciprocity', 'In-Service-Training', 'Login', 'Misc-Forms', 'New-Members-Training', 'RENSCO-Resources',
         'SOP', 'Supervisor-Training', 'System-Requirements', 'Text-Message-Dispatch', 'Coverage-Details',
         'Join', 'Night-Crews', 'Member-List', 'Stocking-Issue', 'Fuel-Log', 'Add-Member', 'Expirations', 'Community',
-        'Edit-Member', 'Games-Events', 'Add-Event', 'Edit-Default', 'Event', 'Game', 'Modify-Schedule', 'My-Training',
-        'My-Settings', 'Announcements', 'Nominations', 'Fuel-Log', '404', 'edit-event'
+        'Edit-Member', 'Games-Events', 'Add-Event', 'Edit-Default', 'Event', 'Game', 'Modify-Schedule', /*'My-Training',*/
+        'My-Settings', /*'Announcements',*/ 'Nominations', 'Fuel-Log', '404', 'edit-event'
     ];
 
     views.forEach(function (elem, index) {
