@@ -44,7 +44,7 @@
                 <div class="col-sm-6 col-xs-6">
                     <div class="social">
                         <ul class="social-share">
-                            <li><div class="top-number" ng-show="AuthService.isloggedIn" style="padding-right: 5px">Welcome, {{user}}!</div></li>
+                            <li><div class="top-number" ng-if="user" style="padding-right: 5px">Welcome, {{user}}!</div></li>
                             <li><a href="https://www.facebook.com/rpiamb"><i class="fa fa-facebook"></i></a></li>
                         </ul>
                     </div>
@@ -69,7 +69,7 @@
 
             <div class="collapse navbar-collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li ng-repeat="n in navbar" ng-class="{'active': isActive(n), 'dropdown': n.isDropdown}">
+                    <li ng-repeat="n in navbar" ng-class="{'active': isActive(n), 'dropdown': n.isDropdown}" ng-if="!n.adminOnly || isAdmin">
                         <a ng-hide="n.isDropdown" ng-click="ensureEditDisabled()" ng-bind="n.title"
                            ng-href="{{n.customLink ? n.link : '#/' + n.page}}"></a>
                         <a ng-show="n.isDropdown" class="dropdown-toggle" data-toggle="dropdown" ng-class="{'active': isActive(n)}">

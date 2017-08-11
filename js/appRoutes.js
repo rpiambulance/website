@@ -60,7 +60,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     });
 
     $routeProvider.otherwise({
-        redirectTo:'/404'
+        redirectTo:'/home'
     });
 
     // $locationProvider.html5Mode(true);

@@ -1,17 +1,19 @@
-angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$http', 'AuthService', function ($scope, $http, AuthService) {
+angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$http', '$location', 'AuthService', function ($scope, $http, $location, AuthService) {
 
     $scope.activeWeek = true;
 
     AuthService.getUserMetadata().then(function (data) {
-        console.log(data);
         $scope.username = data.username;
         $scope.crewchief = data.crewchief == 1;
         $scope.cctrainer = data.cctrainer == 1;
         $scope.backupcc = data.backupcc == 1;
         $scope.driver = data.driver == 1;
         $scope.drivertrainer = data.drivertrainer == 1;
-
-    }, function (error) { console.log(error); });
+        $scope.loadCrews();
+    }, function (error) {
+        $location.url('/login');
+        return;
+    });
 
     $scope.tables = [
         {
@@ -24,6 +26,11 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
     ];
 
     $scope.loadCrews = function() {
+        if(!AuthService.getSessionId()) {
+            $location.url('/login');
+            return;
+        }
+
         $scope.loadedCrews = false;
         $http({
             method: 'POST',
@@ -48,7 +55,6 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
             }
         });
     };
-    $scope.loadCrews();
 
 
     $scope.number = 7;

@@ -23,6 +23,9 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
 
     this.logout = function () {
         var sessionId = $cookies.get(SESSION_ID_COOKIE);
+        if(!sessionId) {
+            return;
+        }
 
         $http.get('.logout.php?session_id=' + sessionId).then(function (response) {
             console.log(response.data);
@@ -38,6 +41,11 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
 
         var deferred = $q.defer();
 
+        if(!sessionId) {
+            deferred.reject('No Session');
+            return deferred.promise;
+        }
+
         $http.get('.get_session_info.php?session_id=' + sessionId + '&key=username').then(function (response) {
             deferred.resolve(response.data.username);
         }, function (error) {
@@ -51,6 +59,11 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
         var sessionId = $cookies.get(SESSION_ID_COOKIE);
 
         var deferred = $q.defer();
+
+        if(!sessionId) {
+            deferred.reject('No Session');
+            return deferred.promise;
+        }
 
         $http.get('.get_user_metadata.php?session_id=' + sessionId).then(function (response) {
             deferred.resolve(response.data);
@@ -66,7 +79,13 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
 
         var deferred = $q.defer();
 
+        if(!sessionId) {
+            deferred.resolve(false);
+            return deferred.promise;
+        }
+
         $http.get('.get_session_info.php?session_id=' + sessionId + '&key=username').then(function (response) {
+            console.log(response);
             if(response.data.username !== undefined) {
                 deferred.resolve(true);
             } else {
@@ -83,6 +102,11 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
         var sessionId = $cookies.get(SESSION_ID_COOKIE);
 
         var deferred = $q.defer();
+
+        if(!sessionId) {
+            deferred.reject('No Session');
+            return deferred.promise;
+        }
 
         $http.get('.get_if_admin.php?session_id=' + sessionId).then(function (response) {
             deferred.resolve(response.data);
