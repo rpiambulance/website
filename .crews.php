@@ -9,7 +9,7 @@ date_default_timezone_set("America/New_York");
 
 main();
 
-$SECRET_KEY = "SUPERSECRETADMINKEYWOOHOO";
+require_once ".admin_config.php";
 
 function modifyCrewAssignment ($connection, $signature, $id, $position, $crewid, $action) {
     global $SECRET_KEY;
@@ -87,6 +87,8 @@ function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton,
 }
 
 function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthisweek, $ccton, $dton, $atton, $obson) {
+    global $SECRET_KEY;
+
     $y = substr($row['date'], 0, 4);
     $m = substr($row['date'], 5, 2);
     $d = substr($row['date'], 8, 2);
@@ -119,7 +121,7 @@ function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthiswe
             $clear = array(
                 "crewid" => $row['id'],
                 "position" => $pos,
-                "signature" => sha1($row['id'] . $pos . $member['id'] . "cfa7kBwsjV9DrE0gxGnPXlRq1"),
+                "signature" => sha1($row['id'] . $pos . $member['id'] . $SECRET_KEY),
             );
         } else {
             $clear = false;
@@ -129,7 +131,7 @@ function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthiswe
         $spot["eligible"] = true;
         $spot["crewid"] = $row['id'];
         $spot["position"] = $pos;
-        $spot["signature"] = sha1($row['id'] . $pos . $member['id'] . "cfa7kBwsjV9DrE0gxGnPXlRq1");
+        $spot["signature"] = sha1($row['id'] . $pos . $member['id'] . $SECRET_KEY);
     } else {
         $spot['vacant'] = true;
         $spot['eligible'] = false;

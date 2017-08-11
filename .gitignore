@@ -2,6 +2,7 @@
 ######################
 *.log
 .db_config.php
+.admin_config.php
 api/config/db.php
 
 # OS generated files #
