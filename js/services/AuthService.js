@@ -88,6 +88,7 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
             if(response.data.username) {
                 deferred.resolve(true);
             } else {
+                swal('Logged Out!', 'You have been automatically logged out. If you\'d like to keep using the members portion of the site, please log in again!', 'info');
                 deferred.resolve(false);
             }
         }, function (error) {
