@@ -85,8 +85,7 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
         }
 
         $http.get('.get_session_info.php?session_id=' + sessionId + '&key=username').then(function (response) {
-            console.log(response);
-            if(response.data.username !== undefined) {
+            if(response.data.username) {
                 deferred.resolve(true);
             } else {
                 deferred.resolve(false);
