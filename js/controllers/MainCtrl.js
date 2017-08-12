@@ -113,7 +113,6 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'member-list', title: 'Member List'},
             {page: 'fuel-log', title: 'Fuel Log'},
             {page: 'stocking-issue', title: 'Stocking'},
-            {page: 'expirations', title: 'Expiring Items'}
             // {page: 'announcements', title: 'Announcements'}
         ]
         },
@@ -155,7 +154,8 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'edit-default', title: 'Edit Default Schedule'},
             {page: 'add-event', title: 'Add Game or Event'},
             {page: 'add-member', title: 'Add Member'},
-            {page: 'edit-member', title: 'Edit Member'}
+            {page: 'edit-member', title: 'Edit Member'},
+            {page: 'expirations', title: 'Expiring Items'}
         ]
         },
 
