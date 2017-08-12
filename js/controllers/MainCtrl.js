@@ -88,10 +88,9 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         },
         {page: 'coverage', title: 'Request Coverage', isDropdown: false},
         {
-            page: 'login',
+            page: '404',
             title: 'Members',
-            isDropdown: false,
-            customLink: false ,link: 'index.php?page=members'
+            isDropdown: false
         },
         {page: 'contact', title: 'Contact Us', isDropdown: false}
 
