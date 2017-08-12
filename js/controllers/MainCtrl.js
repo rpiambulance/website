@@ -4,10 +4,14 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
     $scope.username = '';
 
     AuthService.getUserMetadata().then(function (data) {
+
         if(data != '0') {
             $scope.user = data.first_name;
+            $scope.isAdmin = data.admin == 1;
         }
-    }, function (error) { console.log(error); });
+    }, function (error) {
+        console.log(error);
+    });
 
     $rootScope.$on("$routeChangeSuccess", function (currentRoute, previousRoute) {
         //Change page title, based on Route information
@@ -146,7 +150,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         //    ]
         //},
         {
-            page: '', title: 'Admin', isDropdown: true, dividersAfter: [], dropdownOptions: [
+            page: '', title: 'Admin', isDropdown: true, dividersAfter: [], adminOnly: true, dropdownOptions: [
             {page: 'modify-schedule', title: 'Modify Schedule'},
             {page: 'edit-default', title: 'Edit Default Schedule'},
             {page: 'add-event', title: 'Add Game or Event'},
@@ -193,6 +197,15 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
 
     $scope.navbar = chooseAppropriateMenu() ? $scope.memberNavbar : $scope.publicNavbar;
     $scope.$on('$locationChangeStart', function () {
+        AuthService.getUserMetadata().then(function (data) {
+            if(data != '0') {
+                $scope.user = data.first_name;
+                $scope.isAdmin = data.admin == 1;
+            }
+        }, function (error) {
+            console.log(error);
+        });
+
         $scope.navbar = chooseAppropriateMenu() ? $scope.memberNavbar : $scope.publicNavbar;
     });
 

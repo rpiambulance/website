@@ -15,12 +15,10 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$lo
     };
 
     $scope.submitForm = function () {
-        console.log("Submit");
         AuthService.login($scope.formData).then(function (response) {
-            console.log('here1');
             $location.path('/night-crews');
         }, function (error) {
-            console.log('here2', error);
+            console.log(error);
             sweetAlert("Houston, we have a problem!", error.data.errors.credentials, "error");
             $scope.errorMessage= error.data.errors.credentials;
             $scope.showError = true;
