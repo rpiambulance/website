@@ -92,7 +92,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         },
         {page: 'coverage', title: 'Request Coverage', isDropdown: false},
         {
-            page: '404',
+            page: 'login',
             title: 'Members',
             isDropdown: false
         },
