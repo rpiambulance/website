@@ -15,7 +15,7 @@ angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$http', '$loca
       var all_ev = response.data;
 
       all_ev.forEach(function(elem){
-        if (elem.limit == 0 || elem.limit == -1) {
+        if (elem.limit == -1) {
           $scope.events.push(elem);
         }
       });

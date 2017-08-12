@@ -121,6 +121,9 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
       }
 
       $scope.editGame = function () {
+        if(!$scope.admin) {
+            return;
+        }
           $location.url('/edit/game/' + $routeParams.gameId);
       }
 
