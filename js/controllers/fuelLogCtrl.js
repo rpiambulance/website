@@ -100,6 +100,10 @@ angular.module('FuelLogCtrl', []).controller('FuelLogCtrl', ['$scope', '$http', 
         if(!document.getElementById("g-recaptcha-response")) {
             return;
         }
+        if ($scope.formData.vehicle == '') {
+          sweetAlert("Whoops!", "Please specify a vehicle so the EMS gods don't have to track you down later.", "error");
+          return;
+        }
 
         $scope.formData["g-recaptcha-response"] = document.getElementById("g-recaptcha-response").value;
 
