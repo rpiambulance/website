@@ -10,7 +10,14 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             $scope.isAdmin = data.admin == 1;
         }
     }, function (error) {
+        if (error == 'No Session') {
+        //   $location.url('/404');
+        }
         console.log(error);
+    });
+    AuthService.getUserMetadata().catch(function (error){
+        console.log(error);
+        // $location.url('/404');
     });
 
     $rootScope.$on("$routeChangeSuccess", function (currentRoute, previousRoute) {
@@ -78,8 +85,8 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'officers', title: 'Officers'},
             {page: '5939-about', title: 'Ambulance'},
             {page: 'fr59-about', title: 'First Response'},
-            {page: 'media', title: 'Media'},
-            {page: 'nominations', title: 'Nominations'}
+            {page: 'media', title: 'Media'}
+            // {page: 'nominations', title: 'Nominations'}
         ]
         },
         {page: 'join', title: 'Join Us', isDropdown: false},
@@ -113,7 +120,6 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'member-list', title: 'Member List'},
             {page: 'fuel-log', title: 'Fuel Log'},
             {page: 'stocking-issue', title: 'Stocking'},
-            {page: 'expirations', title: 'Expiring Items'}
             // {page: 'announcements', title: 'Announcements'}
         ]
         },
@@ -130,6 +136,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         {
             page: '', title: 'Resources', isDropdown: true, dividersAfter: [], dropdownOptions: [
             {page: 'communications', title: 'Communications'},
+            {page: 'constitution', title: 'Constitution'},
             {page: 'emt-reciprocity', title: 'Reciprocity'},
             {page: 'minutes', title: 'Meeting Minutes'},
             {page: 'misc-forms', title: 'Misc Forms'},
@@ -155,7 +162,8 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'edit-default', title: 'Edit Default Schedule'},
             {page: 'add-event', title: 'Add Game or Event'},
             {page: 'add-member', title: 'Add Member'},
-            {page: 'edit-member', title: 'Edit Member'}
+            {page: 'edit-member', title: 'Edit Member'},
+            {page: 'expirations', title: 'Expiring Items'}
         ]
         },
 
@@ -203,7 +211,13 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
                 $scope.isAdmin = data.admin == 1;
             }
         }, function (error) {
+            if (error == "No Session") {
+            //   $location.url('/404');
+            }
             console.log(error);
+        });
+        AuthService.getUserMetadata().catch(function (){
+            // $location.url('/404');
         });
 
         $scope.navbar = chooseAppropriateMenu() ? $scope.memberNavbar : $scope.publicNavbar;

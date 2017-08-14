@@ -16,10 +16,10 @@
                     </span>
                 </h3>
                 <p>
-                    <button class="btn btn-default btn-sm" ng-click="editGame()">
+                    <button class="btn btn-default btn-sm" ng-click="editGame()" ng-if="admin">
                         <span class="fa fa-pencil"></span> Edit Game
                     </button>
-                    <button class="btn btn-danger btn-sm" ng-click="deleteGame()">
+                    <button class="btn btn-danger btn-sm" ng-click="deleteGame()" ng-if="admin">
                         <span class="fa fa-trash"></span> Delete Game
                     </button>
                 </p>

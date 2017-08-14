@@ -18,8 +18,10 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
             {field: 'dutysup', abbreviation: 'DS'},
             {field: 'ees', abbreviation: 'EES'},
             {field: 'firstresponsecc', abbreviation: 'FR-CC'},
+            {field: 'backupcc', abbreviation: 'P-CC'},
             {field: 'crewchief', abbreviation: 'CC'},
             {field: 'cctrainer', abbreviation: 'CC-T'},
+            {field: 'backupdriver', abbreviation: 'P-D'},
             {field: 'driver', abbreviation: 'D'},
             {field: 'drivertrainer', abbreviation: 'D-T'}
         ];
@@ -67,6 +69,9 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
             }
             if (elem.admin ==1 && elem.captain == 0) {
                 elem.card_id.push("Webmaster");
+            }
+            if (elem.radioid == 0){
+                elem.radioid = '';
             }
         })
         $scope.otherOfficers.forEach(function (elem){

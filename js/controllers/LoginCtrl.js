@@ -18,10 +18,22 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$lo
         AuthService.login($scope.formData).then(function (response) {
             $location.path('/night-crews');
         }, function (error) {
-            console.log(error);
+            if (error.data.fail_type == "locked") {
+              sweetAlert("Account Disabled", error.data.errors.locked, "error");
+            }
+            else if (error.data.fail_type == "incomplete") {
+              if (error.data.errors.username) {
+                sweetAlert(error.data.errors.username, error.data.errors.incomplete, "error")
+              }
+              else if (error.data.errors.password) {
+                sweetAlert(error.data.errors.password, error.data.errors.incomplete, "error")
+              }
+            }
+            else{
             sweetAlert("Houston, we have a problem!", error.data.errors.credentials, "error");
             $scope.errorMessage= error.data.errors.credentials;
             $scope.showError = true;
+          }
         })
     };
 }]);

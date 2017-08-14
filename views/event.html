@@ -20,10 +20,10 @@
                     </span>
                 </h3>
                 <p ng-if="admin">
-                    <button class="btn btn-default btn-sm" ng-click="editEvent()">
+                    <button class="btn btn-default btn-sm" ng-click="editEvent()" ng-if="admin">
                         <span class="fa fa-pencil"></span> Edit Event
                     </button>
-                    <button class="btn btn-danger btn-sm" ng-click="deleteEvent()">
+                    <button class="btn btn-danger btn-sm" ng-click="deleteEvent()" ng-if="admin">
                         <span class="fa fa-trash"></span> Delete Event
                     </button>
                 </p>

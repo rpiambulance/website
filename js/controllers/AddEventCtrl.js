@@ -41,6 +41,12 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
   }
 
   $scope.initPage = function() {
+
+    AuthService.getUserMetadata().catch( function(error){
+      conosle.log("CATCH");
+      $location.url('/404');
+    });
+
     if(!$routeParams.type) {
       $scope.editMode = false;
       return;
@@ -56,11 +62,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
               headers: {'Content-Type': 'application/x-www-form-urlencoded'}
           }).then(function (response) {
               if (!response.data.success) {
-                  console.log("it failed!");
-                  console.log(response.data);
                   $location.url('/games-events');
               } else {
-                  console.log(response.data);
                   $scope.originalName = response.data.event.description;
                   $scope.formData.event_name = response.data.event.description;
                   $scope.formData.event_location = response.data.event.location;
@@ -69,7 +72,6 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
                   $scope.formData.date = parseDateString(response.data.event.date);
                   $scope.formData.type = "1";
                   $scope.formData.limit = parseInt(response.data.event.limit);
-                  console.log("FD: ", $scope.formData);
               }
           });
 
@@ -82,11 +84,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
               headers: {'Content-Type': 'application/x-www-form-urlencoded'}
           }).then(function (response) {
               if (!response.data.success) {
-                  console.log("it failed!");
-                  console.log(response.data);
                   $location.url('/games-events');
               } else {
-                  console.log(response.data);
                   $scope.originalName = response.data.game.description;
                   $scope.formData.event_name = response.data.game.description;
                   $scope.formData.event_location = response.data.game.location;
@@ -98,7 +97,6 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
                   } else {
                     $scope.formData.type = "2";
                   }
-                  console.log("FD: ", $scope.formData);
               }
           });
     }
@@ -112,7 +110,6 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
   };
 
   $scope.submitForm = function () {
-      console.log($scope.formData.date);
       if(typeof $scope.formData.date === 'number') {
         $scope.formData.datestamp = new Date($scope.formData.date).toISOString().substring(0, 10);
       } else {
@@ -123,8 +120,6 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
       // $scope.formData['date'] =  moment($scope.formData['date'].format("YYYY-MM-DD HH:mm:ss");
       // $scope.formData.date = "POOP";
 
-      console.log("Submitted");
-      console.log($scope.formData);
 
       $scope.formData.mode = ($scope.editMode ? 'edit' : 'add');
 
@@ -135,7 +130,6 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
       if($scope.formData.type == 2 || $scope.formData.type == 3) {
         // Game creation
 
-          console.log($scope.formData);
           $http({
               method: 'POST',
               url: '.add_game.php',
@@ -143,13 +137,11 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
               headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
           }).then(function (data) {
               if (!data.data.success) {
-                  console.log("it failed!");
-                  console.log(data);
+
 
                   $scope.submission = true; //shows the error message
                   $scope.showError= true;
               } else {
-                  console.log("it succeeded!");
                   $scope.successName = $scope.formData.first_name + ' ' + $scope.formData.last_name;
                   $scope.showContactSuccess = true;
                   // if successful, bind success message to message
@@ -173,13 +165,10 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).then(function (data) {
             if (!data.data.success) {
-                console.log("it failed!");
-                console.log(data);
 
                 $scope.submission = true; //shows the error message
                 $scope.showError= true;
             } else {
-                console.log("it succeeded!");
                 $scope.successName = $scope.formData.first_name + ' ' + $scope.formData.last_name;
                 $scope.showContactSuccess = true;
                 // if successful, bind success message to message
