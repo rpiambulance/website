@@ -78,8 +78,8 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'officers', title: 'Officers'},
             {page: '5939-about', title: 'Ambulance'},
             {page: 'fr59-about', title: 'First Response'},
-            {page: 'media', title: 'Media'},
-            {page: 'nominations', title: 'Nominations'}
+            {page: 'media', title: 'Media'}
+            // {page: 'nominations', title: 'Nominations'}
         ]
         },
         {page: 'join', title: 'Join Us', isDropdown: false},
@@ -129,6 +129,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         {
             page: '', title: 'Resources', isDropdown: true, dividersAfter: [], dropdownOptions: [
             {page: 'communications', title: 'Communications'},
+            {page: 'constitution', title: 'Constitution'},
             {page: 'emt-reciprocity', title: 'Reciprocity'},
             {page: 'minutes', title: 'Meeting Minutes'},
             {page: 'misc-forms', title: 'Misc Forms'},

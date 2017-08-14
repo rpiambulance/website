@@ -69,7 +69,6 @@ try {
       `end`=:end_time,
       `description`=:event_name,
       `location`=:event_location,
-      `ees`=:ees,
       `hide`=0
     WHERE id=:id");
 
@@ -79,7 +78,6 @@ try {
     $statement->bindParam(":end_time", $end_time);
     $statement->bindParam(":event_name", $event_name);
     $statement->bindParam(":event_location", $event_location);
-    $statement->bindParam(":ees", $ees);
 
     $result = $statement->execute();
   }

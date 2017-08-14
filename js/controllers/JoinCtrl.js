@@ -8,7 +8,7 @@ angular.module('JoinCtrl', []).controller('JoinCtrl', ['$scope', function ($scop
             body: 'We are always more than happy to welcome more people to our agency. If you are an active RPI student ' +
             'feel free to stop by one of our general body meetings to learn more. You should be able to find the dates in ' +
             '\'upcoming events\' section on the home page. If you feel you will not be able to join us for a meeting, just ' +
-            'reach out to us below or using the <a href="#/contact">contact us</a> page and we\'ll figure something out.'
+            'reach out to us using the <a href="#/contact">contact us</a> page and we\'ll figure something out.'
         },
 
         {
@@ -30,7 +30,7 @@ angular.module('JoinCtrl', []).controller('JoinCtrl', ['$scope', function ($scop
         {
             header: 'Any more questions?',
             body: 'Check out our <a href="#/FAQ">FAQ</a> page if you have any other questions. If there is still more ' +
-            'that you want to learn about how to join, let us know below, or through the <a href="#/contact">contact us </a>' +
+            'that you want to learn about how to join, drop us a line using the <a href="#/contact">contact us </a>' +
             'page'
         }
     ];

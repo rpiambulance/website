@@ -19,9 +19,14 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$lo
             $location.path('/night-crews');
         }, function (error) {
             console.log(error);
+            if (error.data.fail_type == "locked") {
+              sweetAlert("Account Disabled", error.data.errors.locked, "error");
+            }
+            else{
             sweetAlert("Houston, we have a problem!", error.data.errors.credentials, "error");
             $scope.errorMessage= error.data.errors.credentials;
             $scope.showError = true;
+          }
         })
     };
 }]);
