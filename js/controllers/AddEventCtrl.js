@@ -33,6 +33,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
   }
 
   $scope.initPage = function() {
+
     if(!$routeParams.type) {
       $scope.editMode = false;
       return;
@@ -125,7 +126,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
               headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
           }).then(function (data) {
               if (!data.data.success) {
-                
+
 
                   $scope.submission = true; //shows the error message
                   $scope.showError= true;
