@@ -1,5 +1,13 @@
 var ctrl_name = 'AddEventCtrl';
 angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$location', 'moment', '$routeParams', 'AuthService', function($scope, $http, $location, moment, $routeParams, AuthService) {
+  AuthService.getUserMetadata().then(function (data) {
+      $scope.userdata = data;
+      $scope.initPage();
+  }, function (error) {
+      $location.url('/login');
+      return;
+  });
+
   $scope.datepicker = {
     options: {
       formatYear: 'yy',
@@ -95,8 +103,6 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
           });
     }
   }
-
-  $scope.initPage();
 
   $scope.clearForm = function () {
       for (var d in $scope.formData) {

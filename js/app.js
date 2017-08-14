@@ -55,20 +55,36 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
         var nextPageUrl = next.$$route.originalPath.split('/').pop();
 
         if(ADMIN_PAGES.indexOf(nextPageUrl) !== -1) {
-            AuthService.isAdmin().then(function (data) {
-                if(data.admin != 1) {
-                    console.log('Admin page attempted by non-admin');
+            AuthService.isLoggedIn().then(function (isLoggedIn) {
+                if(!isLoggedIn) {
+                    console.log('Authed page attemped by signed-out user');
                     event.preventDefault();
                     $location.path('/login');
                 }
+
+                AuthService.isAdmin().then(function (data) {
+                    if(data.admin != 1) {
+                        console.log('Admin page attempted by non-admin');
+                        event.preventDefault();
+                        $location.path('/login');
+                    }
+                });
             });
         } else if(SCHEDULING_PAGES.indexOf(nextPageUrl) !== -1) {
-            AuthService.isAdmin().then(function (data) {
-                if(data.schedco != 1 && data.admin != 1) {
-                    console.log('Scheduling Coordinator page attempted by non-coordinator');
+            AuthService.isLoggedIn().then(function (isLoggedIn) {
+                if(!isLoggedIn) {
+                    console.log('Authed page attemped by signed-out user');
                     event.preventDefault();
                     $location.path('/login');
                 }
+
+                AuthService.isAdmin().then(function (data) {
+                    if(data.schedco != 1 && data.admin != 1) {
+                        console.log('Scheduling Coordinator page attempted by non-coordinator');
+                        event.preventDefault();
+                        $location.path('/login');
+                    }
+                });
             });
         } else if(AUTHED_PAGES.indexOf(nextPageUrl) !== -1) {
             AuthService.isLoggedIn().then(function (isLoggedIn) {
