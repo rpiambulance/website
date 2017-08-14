@@ -1,4 +1,4 @@
-angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$http', '$location', '$route', '$routeParams', '$q', function($scope, $http, $location, $route, $routeParams, $q) {
+angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$http', '$location', '$route', '$routeParams', '$q', 'AuthService', function($scope, $http, $location, $route, $routeParams, $q, AuthService) {
     $scope.searchFilter = "";
 
     $scope.datepicker = {
@@ -152,22 +152,29 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
     };
 
     function loadData () {
-        if($routeParams.memberId) {
-            $http.get('member_table.php?member_id=' + $routeParams.memberId).then(function (response) {
-                $scope.selectedMember = response.data[0];
-                memberPostProcessing($scope.selectedMember);
-                $scope.selectedMember.access_revoked = parseInt($scope.selectedMember.access_revoked);
-                $scope.selectedMember.admin = parseInt($scope.selectedMember.admin);
-                $scope.selectedMember.active = parseInt($scope.selectedMember.active);
+        AuthService.getUserMetadata().then(function (data) {
+            if (data.admin == 1 || data.captain == 1 || data.firstlt == 1 || data.secondlt == 1 || data.vicepres == 1 || data.president == 1) {
+                if($routeParams.memberId) {
+                    $http.get('member_table.php?member_id=' + $routeParams.memberId).then(function (response) {
+                        $scope.selectedMember = response.data[0];
+                        memberPostProcessing($scope.selectedMember);
+                        $scope.selectedMember.access_revoked = parseInt($scope.selectedMember.access_revoked);
+                        $scope.selectedMember.admin = parseInt($scope.selectedMember.admin);
+                        $scope.selectedMember.active = parseInt($scope.selectedMember.active);
 
-                console.log($scope.selectedMember);
-            });
-        } else {
-            $http.get('member_table.php?include_inactive').then(function (response) {
-                $scope.members = response.data;
-                memberlistPostProcessing();
-            });
-        }
+                        console.log($scope.selectedMember);
+                    });
+                } else {
+                    $http.get('member_table.php?include_inactive').then(function (response) {
+                        $scope.members = response.data;
+                        memberlistPostProcessing();
+                    });
+                }
+            } else{
+                $location.path('/404');
+            }
+        });
+
 
     }
     loadData();

@@ -70,6 +70,9 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
             if (elem.admin ==1 && elem.captain == 0) {
                 elem.card_id.push("Webmaster");
             }
+            if (elem.radioid == 0){
+                elem.radioid = '';
+            }
         })
         $scope.otherOfficers.forEach(function (elem){
             elem.card_id = elem.card_id.join(", ");
