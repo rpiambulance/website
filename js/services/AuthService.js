@@ -43,7 +43,7 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
 
         if(!sessionId) {
             deferred.reject('No Session');
-            $location.url('/404')
+            // $location.url('/404')
             return deferred.promise;
         }
 
@@ -63,7 +63,7 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
 
         if(!sessionId) {
             deferred.reject('No Session');
-            $location.url('/404')
+            // $location.url('/404')
             return deferred.promise;
         }
 
@@ -107,7 +107,7 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
 
         if(!sessionId) {
             deferred.reject('No Session');
-            $location.url('/404')
+            // $location.url('/404')
             return deferred.promise;
         }
 

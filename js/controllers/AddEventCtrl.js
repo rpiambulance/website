@@ -34,6 +34,11 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
 
   $scope.initPage = function() {
 
+    AuthService.getUserMetadata().catch( function(error){
+      conosle.log("CATCH");
+      $location.url('/404');
+    });
+
     if(!$routeParams.type) {
       $scope.editMode = false;
       return;

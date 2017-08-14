@@ -11,13 +11,13 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         }
     }, function (error) {
         if (error == 'No Session') {
-          $location.url('/404');
+        //   $location.url('/404');
         }
         console.log(error);
     });
     AuthService.getUserMetadata().catch(function (error){
-        console.log("Caught:", error);
-        $location.url('/404');
+        console.log(error);
+        // $location.url('/404');
     });
 
     $rootScope.$on("$routeChangeSuccess", function (currentRoute, previousRoute) {
@@ -212,12 +212,12 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             }
         }, function (error) {
             if (error == "No Session") {
-              $location.url('/404');
+            //   $location.url('/404');
             }
             console.log(error);
         });
         AuthService.getUserMetadata().catch(function (){
-            $location.url('/404');
+            // $location.url('/404');
         });
 
         $scope.navbar = chooseAppropriateMenu() ? $scope.memberNavbar : $scope.publicNavbar;
