@@ -35,7 +35,6 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
       $scope.datepicker.opened = !$scope.datepicker.opened;
     };
 
-    console.log($scope.formData);
 
     $scope.clearForm = function () {
         for (var d in $scope.formData) {
@@ -57,10 +56,10 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
             }).then(function (data) {
                 if (!data.data.success) {
                     console.log("it failed!");
-                    console.log(data);
 
                     $scope.submission = true; //shows the error message
                     $scope.showError= true;
+                    sweetAlert("Oops!", "That didn't go quite right. Please check to make sure everything was filled out correclty.", "error");
                 } else {
                     console.log("it succeeded!");
                     $scope.successName = $scope.formData.first_name + ' ' + $scope.formData.last_name;

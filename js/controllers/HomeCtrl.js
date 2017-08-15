@@ -27,7 +27,6 @@ angular.module('HomeCtrl', []).controller('HomeCtrl', ['$scope', '$http', '$loca
 
       });
 
-      console.log($scope.events);
   });
 
 }]);

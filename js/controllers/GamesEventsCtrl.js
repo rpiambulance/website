@@ -11,7 +11,6 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
 
     var hold = AuthService.isAdmin();
 
-    console.log(hold.condition);
 
     var actions = [];
 
@@ -56,7 +55,6 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
         headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
     }).then(function (response) {
         var games = response.data;
-        console.log(games)
 
         games.forEach(function (elem) {
             var sdt= elem.date.split("-");
@@ -84,7 +82,6 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
             $scope.events.push(temp);
         });
 
-        console.log($scope.events);
 
         $scope.cellIsOpen = false;
 
@@ -100,30 +97,22 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
         };
 
         $scope.eventClicked = function(event) {
-            console.log('HELLO');
-            console.log(event.color);
             if (event.color.primary == '#ad2121' || event.color.primary == '#1e90ff') {
-                console.log("/game/" + event.dbId);
                 $location.url("/game/" + event.dbId);
             } else {
-                console.log("YO!", event.color.primary);
-                console.log("/event/" + event.dbId);
                 $location.url("/event/" + event.dbId);
             }
         };
 
         $scope.eventEdited = function(event) {
           if (event.color.primary == '#ad2121' || event.color.primary == '#1e90ff') {
-              console.log("/add-game/" + event.dbId);
               $location.url("/add-event/" + event.dbId);
           } else {
-              console.log("/event/" + event.dbId);
               $location.url("/event-event/" + event.dbId);
           }
         };
 
         $scope.eventDeleted = function(event) {
-            console.log(event.dbId);
             sweetAlert('Deleted', 'success');
             //alert.show('Deleted', event);
         };

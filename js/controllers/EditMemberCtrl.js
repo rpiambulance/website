@@ -162,7 +162,6 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
                         $scope.selectedMember.admin = parseInt($scope.selectedMember.admin);
                         $scope.selectedMember.active = parseInt($scope.selectedMember.active);
 
-                        console.log($scope.selectedMember);
                     });
                 } else {
                     $http.get('member_table.php?include_inactive').then(function (response) {
@@ -231,7 +230,16 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
 
         $scope.selectedMember.id = $routeParams.memberId;
 
+
         var toSubmit = $scope.selectedMember;
+
+        // console.log("TS1", toSubmit);
+
+        toSubmit.access_revoked = toSubmit.access_revoked.toString();
+        toSubmit.admin = toSubmit.admin.toString();
+        toSubmit.active = toSubmit.active.toString();
+
+        // console.log("TS2", toSubmit);
 
         if(toSubmit.position === 'webmaster') {
             toSubmit.admin = '1';
@@ -252,6 +260,8 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
             }
         }
 
+
+
         var data = 'data=' + JSON.stringify(toSubmit) + '&session_id=' + $scope.getSessionIDCookie();
 
         $http({
@@ -260,11 +270,11 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
             data: data, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).then(function (response) {
-            console.log(response.data);
             if (!response.data.success) {
                 console.log("it failed!");
                 $scope.submission = true; //shows the error message
                 $scope.showError= true;
+                swal("Error!", "Something went wrong. Please make sure all data was entered correctly and try again.", "error");
             } else {
                 swal("Success!", "The user record has been updated. The EMS gods have been made aware of this change. Please be prepared to sacrifice a hot meal.", "success");
                 $route.reload();

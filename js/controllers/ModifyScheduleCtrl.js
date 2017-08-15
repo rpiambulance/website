@@ -29,7 +29,6 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$q', 'A
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             })
         ]).then(function (responses) {
-            console.log(responses);
 
             $scope.tableHeadings = responses[0].data.headings;
             $scope.crews = responses[0].data.crews;
@@ -90,14 +89,11 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$q', 'A
             data: data, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).then(function (data) {
-            console.log(data);
             $scope.worked= data.data.success;
             if (!data.data.success) {
-                console.log("it failed!");
                 $scope.submission = true; //shows the error message
                 $scope.showError= true;
             } else {
-                console.log("it succeeded!");
 
                 $scope.showSuccess =  true;
                 $scope.areChangesPending = false;

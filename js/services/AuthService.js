@@ -28,11 +28,11 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
         }
 
         $http.get('.logout.php?session_id=' + sessionId).then(function (response) {
-            console.log(response.data);
+            // console.log(response.data);
             $cookies.remove(SESSION_ID_COOKIE);
             $location.path('/login');
         }, function (error) {
-            console.log(error);
+            // console.log(error);
         });
     };
 

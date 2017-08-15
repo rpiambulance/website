@@ -9,7 +9,6 @@ angular.module('FuelLogCtrl', []).controller('FuelLogCtrl', ['$scope', '$http', 
 
 
     AuthService.getUserMetadata().then(function (data) {
-        console.log(data);
         $scope.user = data.first_name + ' ' + data.last_name;
         $scope.userid = data.id;
 
@@ -124,10 +123,9 @@ angular.module('FuelLogCtrl', []).controller('FuelLogCtrl', ['$scope', '$http', 
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).then(function (response) {
             if (!response.data.success) {
-                console.log("it failed!");
                 // if not successful, bind errors to error variables
-                console.log(response.data);
                 $scope.submission = true; //shows the error message
+                sweetAlert("Something went wrong", "Something went wrong with your request. Please check your submission, and then try again. If the issues persists, notify the webmaster.", "error");
             } else {
                 console.log(response.data);
                 $scope.showContactSuccess = true;
