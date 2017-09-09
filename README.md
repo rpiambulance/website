@@ -1,5 +1,3 @@
-# RPI Ambulance Website [![Build Status](https://travis-ci.org/rpiambulance/website.svg?branch=master)](https://travis-ci.org/rpiambulance/website)
-
 This website is built in the MEAN stack (MongoDB, Express.js, Angular.js, and Node.js), and can be deployed using the following steps:
 
 1. Clone this git repository by running the following command in a Git-enabled terminal:
