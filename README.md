@@ -28,7 +28,7 @@ This project was created for the RPI Ambulance organization by the [Web Technolo
 #### Developers 
 * [David Sparkman](http://github.com/David-Sparky)
 * [Dan Bruce](http://github.com/ddbruce)
-* [Justin Etzine] (http://github.com/justetz)
+* [Justin Etzine](http://github.com/justetz)
 
 #### Copyrights
 * Photos are copyrighted by David Sparkman and are used with permission from the author.
