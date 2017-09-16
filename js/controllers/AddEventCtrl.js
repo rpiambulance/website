@@ -37,7 +37,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
   };
 
   function parseDateString(string) {
-    return new Date().setFullYear(string.substring(0, 4), string.substring(5, 7) - 1, string.substring(9, 11));
+    return new Date().setFullYear(string.substring(0, 4), string.substring(5, 7) - 1, string.substring(8, 10));
   }
 
   $scope.initPage = function() {
