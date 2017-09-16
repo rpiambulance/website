@@ -37,7 +37,7 @@
                     <button class="btn btn-default pull-left" ng-click="clearSelected()"><span class="fa fa-chevron-left"></span></button>
                     <div class="clearfix"></div>
 
-                    <form role="form" ng-submit="submitForm()" class="form" novalidate>
+                    <form role="form" ng-submit="submitForm()" class="form" novalidate autocomplete="off">
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="fn">First Name</label>
                             <!--This should be switched to the signed in account with no option to change it-->
@@ -245,7 +245,7 @@
                         <br>
 
                         <div class="form-actions">
-                            <button type="submit" ng-disabled="form.$invalid || dataLoading || !areChangesPending" class="btn btn-success"
+                            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success"
                                     value="Submit" ng-click="save()">
                                 Update Record
                             </button>

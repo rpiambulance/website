@@ -225,9 +225,9 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
 
 
     $scope.save = function () {
-        if(!$scope.areChangesPending) {
-            return;
-        }
+        // if(!$scope.areChangesPending) {
+        //     return;
+        // }
 
         $scope.selectedMember.id = $routeParams.memberId;
 
