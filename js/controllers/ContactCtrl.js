@@ -7,6 +7,9 @@ angular.module('ContactCtrl', []).controller('ContactCtrl', ['$scope', '$http', 
         message: ""
     };
 
+    sweetAlert("Heads up!", "Due to some changes with our hosting service, our email forms are currently not working. We are trying our best to resolve the issue. For now, please contact us directly at officers@rpiambulance.com.", 'error');
+
+
     var autocompleteValidate = function () {
         var corrected = {};
         for (var d in $scope.formData) {

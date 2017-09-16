@@ -40,6 +40,14 @@ try {
   // Selecting Database
   $connection->exec("USE `$dname`");
 
+  $sthandler = $connection->prepare("SELECT username FROM members WHERE username = :name");
+  $sthandler->bindParam(':name', $username);
+  $sthandler->execute();
+
+  if($sthandler->rowCount() > 0){
+      throw new Exception("Username already exists! " . $sthandler->rowCount());
+  }
+
   $statement = $connection->query("SELECT MAX(id) as max FROM members");
 
   $logid = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['max'] + 1;
@@ -74,6 +82,9 @@ try {
 } catch(PDOException $e) {
   $data['success'] = false;
   $data['error'] = $e;
+} catch(Exception $e){
+  $data['success'] = false;
+  $data['error'] = $e->getMessage();
 }
 
 echo(json_encode($data));

@@ -56,10 +56,11 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
             }).then(function (data) {
                 if (!data.data.success) {
                     console.log("it failed!");
-
+                    console.log(data);
                     $scope.submission = true; //shows the error message
                     $scope.showError= true;
-                    sweetAlert("Oops!", "That didn't go quite right. Please check to make sure everything was filled out correclty.", "error");
+                    var alert_text = "That didn't go quite right. Please check to make sure everything was filled out correclty. Error is as follows: " + data.data.error;
+                    sweetAlert("Oops!", alert_text, "error");
                 } else {
                     console.log("it succeeded!");
                     $scope.successName = $scope.formData.first_name + ' ' + $scope.formData.last_name;
@@ -73,7 +74,7 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
             });
         }
         else{
-            console.log("Stupid Human");
+            sweetAlert("Password Mismatch!", "Your passwords do not match. Please try again.", "error");
         }
     };
 

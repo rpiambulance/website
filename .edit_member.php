@@ -35,8 +35,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode($_POST['data'], true);
 
     // try {
-      foreach($data as $elem) {
+      // foreach($data as $elem) {
         $sql = "UPDATE members SET";
+
+        if(isset($data['password'])) {
+          $data['password'] = md5($data['password']);
+        }
 
         foreach($modifiableFields as $mf) {
           if(isset($data[$mf])) {
@@ -58,7 +62,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
         $statement->bindValue(':memberId', $data['id']);
         $result = $statement->execute();
-      }
+      // }
       echo(json_encode(array('success' => true)));
     // } catch (PDOException $e) {
     //   echo $e;

@@ -293,7 +293,7 @@ function main () {
             $statement->execute();
             $member = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
 
-            for ($x = 0; $x < 7; $x++) {
+            for ($x = -7; $x < 7; $x++) { //THIS SHOULD BE 0 ON START IF IT BREAKS
                 $ontoday[$x] = 0;
                 $ccton[$x]   = 0;
                 $dton[$x]    = 0;

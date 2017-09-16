@@ -50,7 +50,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
                 // $scope.currentWeekCrews = response.data.currentWeek;
                 // $scope.upcomingWeekCrews = response.data.nextWeek;
                 $scope.positions = response.data.positions;
-
+                console.log(response.data);
                 $scope.loadedCrews = true;
             }
         });

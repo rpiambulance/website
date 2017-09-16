@@ -157,6 +157,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
                 if($routeParams.memberId) {
                     $http.get('member_table.php?member_id=' + $routeParams.memberId).then(function (response) {
                         $scope.selectedMember = response.data[0];
+                        console.log($scope.selectedMember);
                         memberPostProcessing($scope.selectedMember);
                         $scope.selectedMember.access_revoked = parseInt($scope.selectedMember.access_revoked);
                         $scope.selectedMember.admin = parseInt($scope.selectedMember.admin);
@@ -230,6 +231,9 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
 
         $scope.selectedMember.id = $routeParams.memberId;
 
+        if ($scope.selectedMember.change_password != "") {
+            $scope.selectedMember.password = $scope.selectedMember.change_password;
+        }
 
         var toSubmit = $scope.selectedMember;
 

@@ -15,6 +15,8 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
         duration: ""
     };
 
+    sweetAlert("Heads up!", "Due to some changes with our hosting service, our email forms are currently not working. We are trying our best to resolve the issue. For now, please contact us directly at officers@rpiambulance.com.", 'error');
+
     $scope.getAttendanceLims = function () {
         return {
             "Tier I": "15-99",
@@ -58,7 +60,6 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
         if(!document.getElementById("g-recaptcha-response")) {
             return;
         }
-
         $scope.formData["g-recaptcha-response"] = document.getElementById("g-recaptcha-response").value;
         $scope.formData.tier = $scope.currentTier;
         console.log(autocompleteValidate());

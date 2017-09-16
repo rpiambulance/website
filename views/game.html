@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-xs-1">
-                <a class="btn btn-sm btn-default" href="#/games-games">
+                <a class="btn btn-sm btn-default" href="#/games-events">
                     <span class="fa fa-chevron-left"></span> Calendar
                 </a>
             </div>
@@ -36,7 +36,7 @@
             <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" ng-repeat="a in filtered[p.value] = (attendees | filter: { 'position': p.value })">
                 <div class="panel" ng-class="{'panel-default': a.is_viewing_member === '0', 'panel-primary': a.is_viewing_member === '1' }">
                     <div class="panel-heading">
-                        <a class="pull-right" ng-click="dropMember(a.memberid)">
+                        <a class="pull-right" ng-click="dropMember(a.memberid)" ng-if="admin">
                             <span class="fa fa-lg fa-times"></span>
                         </a>
                         <h3 class="panel-title" ng-bind="a.ambulance_name"></h3>

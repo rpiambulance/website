@@ -55,7 +55,7 @@
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="date">Birthdate</label>
                             <p class="input-group">
-                                <input type="text" class="form-control" uib-datepicker-popup ng-model="selectedMember.dob" is-open="datepicker.opened" datepicker-options="datepicker.options" ng-required="false" close-text="Close" />
+                                <input type="date" class="form-control" uib-datepicker-popup ng-model="selectedMember.dob" is-open="datepicker.opened" datepicker-options="datepicker.options" ng-required="false" close-text="Close" />
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="openDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>
@@ -70,7 +70,7 @@
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="pass">Password</label>
-                            <input type="password" name="pass" id="pass" class="form-control"  ng-model="selectedMember.pass" ng-change="changeMade()" autocomplete='off' required/>
+                            <input type="password" name="pass" id="pass" class="form-control"  ng-model="selectedMember.change_password" ng-change="changeMade()" autocomplete='off' required/>
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element">
@@ -139,7 +139,7 @@
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="date">CPR Expiration Date</label>
                             <p class="input-group">
-                                <input type="text" class="form-control" uib-datepicker-popup ng-model="selectedMember.cpr_exp" is-open="datepicker2.opened" datepicker-options="datepicker2.options" ng-required="false" close-text="Close" />
+                                <input type="date" class="form-control" uib-datepicker-popup ng-model="selectedMember.cpr_exp" is-open="datepicker2.opened" datepicker-options="datepicker2.options" ng-required="false" close-text="Close" />
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="openDatepicker2()"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>
@@ -162,7 +162,7 @@
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="date">EMT Expiration Date</label>
                             <p class="input-group">
-                                <input type="text" class="form-control" uib-datepicker-popup ng-model="selectedMember.emt_exp" is-open="datepicker3.opened" datepicker-options="datepicker3.options" ng-required="false" close-text="Close" />
+                                <input type="date" class="form-control" uib-datepicker-popup ng-model="selectedMember.emt_exp" is-open="datepicker3.opened" datepicker-options="datepicker3.options" ng-required="false" close-text="Close" />
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="openDatepicker3()"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>
@@ -198,7 +198,7 @@
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="date">Driver License Expiration Date</label>
                             <p class="input-group">
-                                <input type="text" class="form-control" uib-datepicker-popup ng-model="selectedMember.dl_exp" is-open="datepicker4.opened" datepicker-options="datepicker4.options" ng-required="false" close-text="Close" />
+                                <input type="date" class="form-control" uib-datepicker-popup ng-model="selectedMember.dl_exp" is-open="datepicker4.opened" datepicker-options="datepicker4.options" ng-required="false" close-text="Close" />
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="openDatepicker4()"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>
@@ -208,7 +208,7 @@
                         <div class="form-group col-xs-6 fixed-height-form-element">
                             <label for="date">EVDD, CEVO, EVOC Date</label>
                             <p class="input-group">
-                                <input type="text" class="form-control" uib-datepicker-popup ng-model="selectedMember.evdd" is-open="datepicker5.opened" datepicker-options="datepicker5.options" ng-required="false" close-text="Close" />
+                                <input type="date" class="form-control" uib-datepicker-popup ng-model="selectedMember.evdd" is-open="datepicker5.opened" datepicker-options="datepicker5.options" ng-required="false" close-text="Close" />
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-default" ng-click="openDatepicker5()"><i class="glyphicon glyphicon-calendar"></i></button>
                                 </span>
