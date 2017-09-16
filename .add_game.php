@@ -15,7 +15,8 @@ $data = array();
 $formData = file_get_contents('php://input');
 $input = json_decode($formData, true);
 
-$event_name = $input['event_name'];
+// $event_name = $input['event_name'];
+$event_name = "Hard coded name";
 $event_location = $input['event_location'];
 $start_time = $input['startstamp'];
 $end_time = $input['endstamp'];
@@ -57,7 +58,7 @@ try {
     $statement->bindParam(":date", $date);
     $statement->bindParam(":start_time", $start_time);
     $statement->bindParam(":end_time", $end_time);
-    $statement->bindParam(":event_name", "THIS SHOULD BREAK IT");
+    $statement->bindParam(":event_name", $event_name);
     $statement->bindParam(":event_location", $event_location);
     $statement->bindParam(":ees", $ees);
 
