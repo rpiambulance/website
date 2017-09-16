@@ -38,8 +38,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
       // foreach($data as $elem) {
         $sql = "UPDATE members SET";
 
-        if(isset($data['password'])) {
-          $data['password'] = md5($data['password']);
+        if($data['change_password'] != ''){
+          if(isset($data['password'])) {
+            $data['password'] = md5($data['password']);
+          }
         }
 
         foreach($modifiableFields as $mf) {
