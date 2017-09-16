@@ -57,12 +57,12 @@ try {
     $statement->bindParam(":date", $date);
     $statement->bindParam(":start_time", $start_time);
     $statement->bindParam(":end_time", $end_time);
-    $statement->bindParam(":event_name", $event_name);
+    $statement->bindParam(":event_name", "THIS SHOULD BREAK IT");
     $statement->bindParam(":event_location", $event_location);
     $statement->bindParam(":ees", $ees);
 
     $result = $statement->execute();
-  } else if ($mode == "edit") {
+  } else {
     $statement = $connection->prepare("UPDATE games SET
       `date`=:date,
       `start`=:start_time,
