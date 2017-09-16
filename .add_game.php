@@ -62,7 +62,7 @@ try {
     $statement->bindParam(":ees", $ees);
 
     $result = $statement->execute();
-  } else {
+  } else if ($mode == "edit") {
     $statement = $connection->prepare("UPDATE games SET
       `date`=:date,
       `start`=:start_time,
