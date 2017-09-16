@@ -15,8 +15,7 @@ $data = array();
 $formData = file_get_contents('php://input');
 $input = json_decode($formData, true);
 
-// $event_name = $input['event_name'];
-$event_name = "Hard coded name";
+$event_name = $input['event_name'];
 $event_location = $input['event_location'];
 $start_time = $input['startstamp'];
 $end_time = $input['endstamp'];
@@ -63,7 +62,7 @@ try {
     $statement->bindParam(":ees", $ees);
 
     $result = $statement->execute();
-  } else {
+  } else if ($mode == "edit") {
     $statement = $connection->prepare("UPDATE games SET
       `date`=:date,
       `start`=:start_time,
