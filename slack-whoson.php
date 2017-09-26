@@ -43,7 +43,7 @@ try {
   $statement->execute();
   $attendant2 = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-  $today_crew = "Crew chief: " . cleanName($cc) . "\n" .
+  $today_crew = "Crew Chief: " . cleanName($cc) . "\n" .
   "Driver: " . cleanName($driver) . "\n" .
   "Attendants: " . cleanName($attendant1) . " and " . cleanName($attendant2);
 
@@ -63,7 +63,7 @@ try {
   $statement->execute();
   $attendant2 = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-  $yesterday_crew = "Crew chief: " . cleanName($cc) . "\n" .
+  $yesterday_crew = "Crew Chief: " . cleanName($cc) . "\n" .
   "Driver: " . cleanName($driver) . "\n" .
   "Attendants: " . cleanName($attendant1) . " and " . cleanName($attendant2);
 
