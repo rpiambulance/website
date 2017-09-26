@@ -13,7 +13,9 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
             if (!response.data || !response.data.success) {
                 deferred.reject(response);
             } else {
-                $cookies.put(SESSION_ID_COOKIE, response.data.session_id);
+                var date = new Date();
+                date.setDate(date.getDate() + 5);
+                $cookies.put(SESSION_ID_COOKIE, response.data.session_id, {expires: date});
                 deferred.resolve(response);
             }
         });
