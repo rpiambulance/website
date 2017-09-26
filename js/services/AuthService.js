@@ -14,8 +14,8 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
                 deferred.reject(response);
             } else {
                 var date = new Date();
-                date.setDate(date.getDate() + 5);
-                $cookies.put(SESSION_ID_COOKIE, response.data.session_id, {expires: date});
+                date.setDate(date.getDate() + 5); //create date object 5 days from NOW
+                $cookies.put(SESSION_ID_COOKIE, response.data.session_id, {expires: date}); //set cookie expiration to that date
                 deferred.resolve(response);
             }
         });
@@ -90,6 +90,9 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
 
         $http.get('.get_session_info.php?session_id=' + sessionId + '&key=username').then(function (response) {
             if(response.data.username) {
+                var date = new Date();
+                date.setDate(date.getDate() + 5); //create date object 5 days from NOW
+                $cookies.put(SESSION_ID_COOKIE, sessionId, {expires: date}); //reset cookie expiration to that date
                 deferred.resolve(true);
             } else {
                 swal('Logged Out!', 'You have been automatically logged out. If you\'d like to keep using the members portion of the site, please log in again!', 'info');
