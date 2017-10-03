@@ -1,7 +1,10 @@
 <?php
 
 function cleanName($name) {
-  if ($name[0]["last_name"] == "") {
+  if ($name[0]["first_name"] == "") {
+    if ($name[0]["last_name"] != "") {
+      return $name[0]["last_name"];
+    }
     return "<EMPTY>";
   }
   return substr($name[0]["first_name"],0,1) . "." . " " . $name[0]["last_name"];
