@@ -27,7 +27,7 @@ angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '
 
     $scope.validChoice = function (member, role) {
         if(role == 'cc') {
-            return member.crewchief == 1 || member.cctrainer == 1 || member.backupcc == 1;
+            return member.crewchief == 1 || member.cctrainer == 1 || member.backupcc == 1 || member.firstresponsecc == 1;
         } else if(role == 'driver') {
             return member.driver == 1 || member.drivertrainer == 1 || member.backupdriver == 1;
         } else {
