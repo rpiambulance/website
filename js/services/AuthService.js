@@ -16,6 +16,7 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
                 var date = new Date();
                 date.setDate(date.getDate() + 5); //create date object 5 days from NOW
                 $cookies.put(SESSION_ID_COOKIE, response.data.session_id, {expires: date}); //set cookie expiration to that date
+                $cookies.put('PHPSESSID', response.data.session_id, {expires: date}); //Extends PHP Session cookie to match expiration of RPI Ambulance Cookie
                 deferred.resolve(response);
             }
         });
@@ -93,6 +94,7 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
                 var date = new Date();
                 date.setDate(date.getDate() + 5); //create date object 5 days from NOW
                 $cookies.put(SESSION_ID_COOKIE, sessionId, {expires: date}); //reset cookie expiration to that date
+                $cookies.put('PHPSESSID', sessionId, {expires: date}); //reset PHP Session cookie to match expiration of RPI Ambulance Cookie
                 deferred.resolve(true);
             } else {
                 swal('Logged Out!', 'You have been automatically logged out. If you\'d like to keep using the members portion of the site, please log in again!', 'info');
