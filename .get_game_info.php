@@ -65,7 +65,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $statement->bindValue(':gameId', $gameId);
   $statement->bindValue(':memberId', $memberId);
   $statement->execute();
-  
+
   $results['alreadySignedUp'] = ($statement->rowCount() > 0);
   if($results['alreadySignedUp'] > 0) {
     $results['currentPosition'] = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['position'];
@@ -79,7 +79,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     $results['eligiblePositions'][] = 'ees';
   }
 
-  if($memberInfo['cctrainer'] == 1 || $memberInfo['crewchief'] == 1 || $memberInfo['backupcc'] == 1) {
+  if($memberInfo['cctrainer'] == 1 || $memberInfo['crewchief'] == 1 || $memberInfo['backupcc'] == 1 || $memberInfo['firstresponsecc'] == 1) {
     $results['eligiblePositions'][] = 'cc';
   }
 

@@ -41,14 +41,15 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   if($position == 'ees' && ($memberInfo['ees'] != 1 || !$canEES)) {
     echo 'invalid ees';
     return;
-  } else if($position == 'cc' && $memberInfo['cctrainer'] != 1 && $memberInfo['crewchief'] != 1 && $memberInfo['backupcc'] != 1) {
+  } else if($position == 'cc' && $memberInfo['cctrainer'] != 1 && $memberInfo['crewchief'] != 1 && $memberInfo['backupcc'] != 1 && $memberinfo['firstresponsecc'] != 1) {
     echo 'invalid cc';
     return;
   } else if($position == 'driver' && $memberInfo['drivertrainer'] != 1 && $memberInfo['driver'] != 1 && $memberInfo['backupdriver'] != 1) {
     echo 'invalid driver';
     return;
   } else if($position == 'attendant' && $memberInfo['attendant'] != 1 && $memberInfo['cctrainer'] != 1 && $memberInfo['crewchief'] != 1 &&
-            $memberInfo['backupcc'] != 1 && $memberInfo['drivertrainer'] != 1 && $memberInfo['driver'] != 1 && $memberInfo['backupdriver'] != 1) {
+            $memberInfo['backupcc'] != 1 && $memberInfo['firstresponsecc'] != 1 && $memberInfo['drivertrainer'] != 1 &&
+            $memberInfo['driver'] != 1 && $memberInfo['backupdriver'] != 1) {
     echo 'invalid attendant';
     return;
   }
