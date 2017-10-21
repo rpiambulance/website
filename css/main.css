@@ -78,7 +78,6 @@ hr {
 }
 .btn-success, .btn-danger {
     border-radius: 4px;
-    margin-top: 0px;
 }
 
 .uib-datepicker-popup .btn {
@@ -2959,4 +2958,8 @@ td.info {
     border-color: #a94442;
     -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
     box-shadow: inset 0 1px 1px rgba(0,0,0,0.075);
+}
+
+.table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
+    vertical-align: inherit;
 }
