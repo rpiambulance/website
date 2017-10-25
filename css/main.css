@@ -2034,25 +2034,13 @@ textarea.vertical-resize {
     color: #fff;
 }
 
-.badge:before {
-    border-color: transparent transparent transparent #c52d2f;
-    border-style: solid;
-    border-width: 10px;
-    bottom: -8px;
-    content: "";
-    height: 0;
-    left: 5px;
-    position: absolute;
-    z-index: -99999;
-}
-
 .badge {
     background-color: #c52d2f;
     border-radius: 5px;
     color: #fff;
     padding: 8px;
     position: relative;
-    left: 60px;
+    left: 10px;
     top: -18px;
     font-weight: normal;
 }
