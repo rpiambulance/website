@@ -2040,7 +2040,7 @@ textarea.vertical-resize {
     color: #fff;
     padding: 8px;
     position: relative;
-    left: 10px;
+    left: -10px;
     top: -18px;
     font-weight: normal;
 }
