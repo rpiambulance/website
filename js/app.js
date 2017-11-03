@@ -49,7 +49,7 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
 	];
 
 	var ADMIN_PAGES = [
-		'add-event', 'add-member', 'edit-member', 'expirations'
+		'add-event', 'add-member', 'edit-member', 'expirations', 'edit-event'
 	];
 
     $rootScope.$on('$routeChangeStart', function (event, next, other) {

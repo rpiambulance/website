@@ -19,20 +19,24 @@ $secret = "SUPERSECRETADMINKEYWOOHOO";
 parse_str(file_get_contents("php://input"), $post);
 
 $weeks = ['currentWeek', 'nextWeek'];
+if (checkIfAdmin()){
+  $post['data'] = json_decode($post['data'], true);
 
-$post['data'] = json_decode($post['data'], true);
-
-foreach($weeks as $w) {
-  foreach($post['data'][$w] as $elem) {
-    $sql = "UPDATE crews SET cc=:cc, driver=:driver, attendant=:attendant, observer=:observer WHERE id=:id";
-    $statement = $connection->prepare($sql);
-    $statement->bindValue(':cc', $elem["spots"]["cc"]["id"]);
-    $statement->bindValue(':driver', $elem["spots"]["driver"]["id"]);
-    $statement->bindValue(':attendant', $elem["spots"]["attendant"]["id"]);
-    $statement->bindValue(':observer', $elem["spots"]["observer"]["id"]);
-    $statement->bindValue(':id', $elem['id']);
-    $result = $statement->execute();
+  foreach($weeks as $w) {
+    foreach($post['data'][$w] as $elem) {
+      $sql = "UPDATE crews SET cc=:cc, driver=:driver, attendant=:attendant, observer=:observer WHERE id=:id";
+      $statement = $connection->prepare($sql);
+      $statement->bindValue(':cc', $elem["spots"]["cc"]["id"]);
+      $statement->bindValue(':driver', $elem["spots"]["driver"]["id"]);
+      $statement->bindValue(':attendant', $elem["spots"]["attendant"]["id"]);
+      $statement->bindValue(':observer', $elem["spots"]["observer"]["id"]);
+      $statement->bindValue(':id', $elem['id']);
+      $result = $statement->execute();
+    }
   }
+  echo(json_encode(array('success' => true, 'message' => 'Updated')));
+} else {
+  echo 'Nice Try.';
 }
 
-echo(json_encode(array('success' => true, 'message' => 'Updated')));
+?>
