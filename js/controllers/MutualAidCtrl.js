@@ -37,8 +37,8 @@ angular.module('MutualAidCtrl', []).controller('MutualAidCtrl', ['$scope', funct
             'directly through downtown Troy. Sand Lake Ambulance or Empire provides ALS intercepts, if available, ' +
             'with Troy Fire Department providing if the transport runs through Troy. The Wynantskill or ' +
             'Defreestville fire departments provide first response in North Greenbush for delta reponses or if ' +
-            'there will be a delayed ambulance response (such as with mutual aid). North Greenbush also respond to ' +
-            'nearly every call in the town'
+            'there will be a delayed ambulance response (such as with mutual aid). North Greenbush Police Department ' +
+            'also responds to nearly every call in the town.'
         },
         {
             header: 'In Troy',

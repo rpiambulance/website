@@ -49,29 +49,27 @@ angular.module('CommunicationsCtrl', []).controller('CommunicationsCtrl', ['$sco
             internal_title: 'VHF System',
             header: 'The RPI Ambulance VHF system',
             body:
-                'Most communication is done over the main RPIA channel using agency portables, mobiles, or base ' +
-                'stations. Dispatches are also sent over the frequency; Rensselaer County Public Safety uses a radio ' +
-                'link on an old Troy Fire frequency (460.2875 MHz) that gets retransmitted on our frequency from a ' +
-                'transmitter on Walker Laboratory.' + '\n' +
-                '* Channel 1: RPI Ambulance (155.220 MHz)\n' +
-                '* Channel 2: RPIA alert (exactly like channel 1, but only activates upon pager tones)\n' +
-                '* Channel 3: RPI Parking and Transportation\n' +
-                '* Channel 4: Houston Field House operations\n' +
-                '* Channel 5: RPI Department of Public Safety (expired license)\n' +
-                '* Channel 6: BLS 340 (155.340 MHz: hospital radio frequency for Albany hospitals)\n' +
-                '* Channel 7: BLS 400 (155.400 MHz: hospital radio frequency for Troy and Schenectady hospitals)\n' +
+                'Most communication is done over RPIA Ops (channel 1) using agency portables, mobiles, or base ' +
+                'stations. Dispatches can be recieved on channel 4 or 5 or by activating the scan feature on channels 1 or 3.'+
+                ' A breakdown of the channels is listed below.' + '\n' +
+                '* Channel 1: RPIA Ops (repeated channel suitible for normal day to day operations)\n' +
+                '* Channel 2: RPIA Tac 1 (Talkaround channel compatible with Ops used when outside of the range of the repeater)\n' +
+                '* Channel 3: RPIA Tac 2 (Talkaround channel usually used for events)\n' +
+                '* Channel 4: RPIA Dispatch (activates upon receiving tones from county)\n' +
+                '* Channel 5: County Dispatches\n' +
+                '* Channel 6: Individual Pageing (for supervisors and officers)\n' +
+                '* Channel 7: EMS 400 (155.400 MHz: hospital radio frequency for Troy and Schenectady hospitals)\n' +
                 '* Channel 8: EMS 715 (155.715 MHz: statewide, inter-agency operations frequency: all emergency ' +
                 'units equipped to use this channel)\n' +
-                '* Channel 9: Empire Ambulance dispatch\n' +
-                '* Channel 10: Mohawk Ambulance dispatch\n' +
-                '* Channel 11: Weather'
+                '* Channel 9: Weather\n' +
+                'If you seek more information contact the radio coordinator.'
         },
         {
             internal_title: 'HEAR',
             header: 'H.E.A.R. (Hospital Emergency and Administrative Radio)',
             body:
                 'The patient compartment of the ambulance has a radio used to contact hospitals prior to ' +
-                'arrival. BLS 340 (used for Albany hospitals) and BLS 400 (used for all other Capital District ' +
+                'arrival. EMS 340 (used for Albany hospitals) and EMS 400 (used for all other Capital District ' +
                 'hospitals) utilize a code to open the frequency at the hospital to allow communication. Crew chiefs ' +
                 'and drivers are trained in the usage of this radio and the appropriate hospital radio codes.'
         },
