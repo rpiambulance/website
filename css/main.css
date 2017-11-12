@@ -417,6 +417,7 @@ input.search-form:hover {
 }
 
 #main-slider .carousel .btn-slide {
+    cursor: pointer;
     padding: 8px 20px;
     background: #c52d2f;
     color: #fff;
@@ -437,6 +438,7 @@ input.search-form:hover {
     background-repeat: no-repeat;
     background-size: cover;
     left: 0 !important;
+    visibility: hidden;
     opacity: 0;
     top: 0;
     position: absolute;
@@ -455,6 +457,7 @@ input.search-form:hover {
 }
 
 #main-slider .carousel .item.active {
+    visibility: visible;
     opacity: 1;
     -webkit-transition: opacity ease-in-out 500ms;
     -moz-transition: opacity ease-in-out 500ms;
