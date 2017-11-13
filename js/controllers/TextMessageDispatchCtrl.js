@@ -45,8 +45,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             ' as a member of RPI Ambulance.\n' +
             '* Do not respond to night calls (1800-0600) when you are not on crew \n' +
             '* This service is not reliable enough to be used while on a duty crew. If you are on a night crew or in ' +
-            'some other way required to respond by a duty to act, you must have a radio with you at all times\n' +
-            '*These rules may change at any time. Changes will be emailed to the ambulance mailing list'
+            'some other way required to respond by a duty to act, you must have a radio with you at all times \n' +
+            '* These rules may change at any time. Changes will be emailed to the ambulance mailing list'
 
         }
 

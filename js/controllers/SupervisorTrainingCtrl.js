@@ -46,10 +46,9 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
         {
             header: 'Current Duty Supervisors',
             internal_title: 'Current DS',
-            body: '* Brent Campbell\n' +
-            '* Nick Hopkins\n' +
-            '* Tom Manzini\n' +
-            '* Jordan Williams\n'
+            body: '* Josh Correira\n' +
+            '* Harrison Leinweber\n' +
+            '* Thomas Manzini'
 
         }
 

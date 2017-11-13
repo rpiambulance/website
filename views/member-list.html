@@ -13,7 +13,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="o in civilSide | orderBy:['-pres','-vicepres']">
-                    <td class="text-center"><span ng-if="m.radionum != 0">{{o.radionum}}</span></td>
+                    <td class="text-center"><span ng-if="o.radionum != 0">{{o.radionum}}</span></td>
                     <td>{{o.last_name}}</td>
                     <td>{{o.first_name}}</td>
                     <td ng-if="o.pres == 1">President</td>
@@ -35,7 +35,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="o in lineSide | orderBy:['-captain','-firstlt','-secondlt']">
-                    <td class="text-center"><span ng-if="m.radionum != 0">{{o.radionum}}</span></td>
+                    <td class="text-center"><span ng-if="o.radionum != 0">{{o.radionum}}</span></td>
                     <td>{{o.last_name}}</td>
                     <td>{{o.first_name}}</td>
                     <td ng-if="o.captain == 1">Captain</td>
@@ -59,7 +59,7 @@
             </thead>
             <tbody>
                 <tr ng-repeat="o in otherOfficers">
-                    <td class="text-center"><span ng-if="m.radionum != 0">{{o.radionum}}</span></td>
+                    <td class="text-center"><span ng-if="o.radionum != 0">{{o.radionum}}</span></td>
                     <td>{{o.last_name}}</td>
                     <td>{{o.first_name}}</td>
                     <td>{{o.card_id}}</td>
