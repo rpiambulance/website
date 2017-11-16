@@ -23,27 +23,29 @@ angular.module('CommunicationsCtrl', []).controller('CommunicationsCtrl', ['$sco
             'called that because it uses frequencies in the 800 MHz range. There is one mobile unit in the ambulance,' +
             'and three portables&mdash;one at the office, one in the ambulance, and one in the first response vehicle.' +
             '\n\n' +
-            'The 800 system is broken up in to channels or talk groups based on function and geography. The numbering ' +
-            'format is &ldquo;system&rdquo; followed by &ldquo;group,&rdquo; i.e. the &ldquo;alert&rdquo; channel is ' +
-            'system 1, group 15.' +
+            'The 800 system is broken up in to zones and channels based on function and geography. The numbering ' +
+            'format is &ldquo;zone&rdquo; followed by &ldquo;channel,&rdquo; ' +
             '\n\n' +
             'The important channels are as follows:\n' +
-            '* 1-1: Dispatch <span class="comm-list">Communication with EMS dispatcher</span>' + '\n' +
-            '* 1-2: Amb to amb <span class="comm-list">Ambulance to ambulance communication; used to directly contact another unit, such ' +
+            '* EMS Dispatch: <span class="comm-list">Communication with EMS dispatcher</span>' + '\n' +
+            '* Tac 10 EMS Ops: <span class="comm-list">Communications between EMS units; used to directly contact another unit, such ' +
                 'as an ALS intercept</span>' + '\n' +
-            '* 1-3, 1-4, and 1-5: EMS ops <span class="comm-list">Used for MCIs and other multiple-agency events</span>' + '\n' +
-            '* 1-15: Alert <span class="comm-list">Dispatch channel for other agencies (RPIA is dispatched on its own system)</span>' + '\n' +
-            '<span class="comm-list-other">Although it is possible, do not transmit on this channel</span>' +
+            '* Tac 2 Battalion 2: <span class="comm-list"> Brunswick fire departments </span> ' + '\n' +
+            '* Tac 3 Battalion 3: <span class="comm-list"> North Greenbush and Poestenkill departments </span>' + '\n' +
+            '* Ground 1:  <span class="comm-list"> unrepeated channel typically used on firegrounds</span>' + '\n' +
+            '* Alert: <span class="comm-list">Simulcast of county paging system</span>' + '\n' +
             '\n\n' +
             'The system relies on a series of repeater towers to transmit messages. Your transmission is picked ' +
             'up by the nearest tower, and then relayed to the appropriate party. If there is no available tower, ' +
-            'you may receive a text error or an error tone on the radio. Try retransmitting, and then try turning ' +
-            'off the radio and turning it back on again if that doesn&rsquo;t work.' +
+            'you may receive a text error or an error tone on the radio.' +
             '\n\n' +
             'If you hit the red emergency activation button on any 800 unit, the unit will automatically switch over ' +
-            'to system 10, and you receive a dedicated communications line to dispatch; all other communications are ' +
-            'blocked out. Power off the unit to clear the emergency activation, and contact the dispatcher (over the ' +
-            'air or land-line preferable) to inform them of any &ldquo;accidental trips&rdquo;.'
+            'to a dedicated channel, and you receive a dedicated communications line to dispatch; all other communications are ' +
+            'blocked out. The radio transmits an open mic for 10 seconds. ' +
+            'Power off the unit to clear the emergency activation, and contact the dispatcher (over the ' +
+            'air or land-line preferable) to inform them of any &ldquo;accidental trips&rdquo;.' +
+            '\n\n' +
+            'For more information on the 800 system, see the RensCo training documents.'
         },
         {
             internal_title: 'VHF System',
@@ -52,16 +54,16 @@ angular.module('CommunicationsCtrl', []).controller('CommunicationsCtrl', ['$sco
                 'Most communication is done over RPIA Ops (channel 1) using agency portables, mobiles, or base ' +
                 'stations. Dispatches can be recieved on channel 4 or 5 or by activating the scan feature on channels 1 or 3.'+
                 ' A breakdown of the channels is listed below.' + '\n' +
-                '* Channel 1: RPIA Ops (repeated channel suitible for normal day to day operations)\n' +
-                '* Channel 2: RPIA Tac 1 (Talkaround channel compatible with Ops used when outside of the range of the repeater)\n' +
-                '* Channel 3: RPIA Tac 2 (Talkaround channel usually used for events)\n' +
-                '* Channel 4: RPIA Dispatch (activates upon receiving tones from county)\n' +
+                '* Channel 1: RPIA Ops <span class="comm-list">repeated channel suitible for normal day to day operations</span>\n' +
+                '* Channel 2: RPIA Tac 1 <span class="comm-list">Talkaround channel compatible with Ops used when outside of the range of the repeater</span>\n' +
+                '* Channel 3: RPIA Tac 2 <span class="comm-list">Talkaround channel usually used for events</span>\n' +
+                '* Channel 4: RPIA Dispatch <span class="comm-list">activates upon receiving tones from county</span>\n' +
                 '* Channel 5: County Dispatches\n' +
-                '* Channel 6: Individual Pageing (for supervisors and officers)\n' +
-                '* Channel 7: EMS 400 (155.400 MHz: hospital radio frequency for Troy and Schenectady hospitals)\n' +
-                '* Channel 8: EMS 715 (155.715 MHz: statewide, inter-agency operations frequency: all emergency ' +
-                'units equipped to use this channel)\n' +
-                '* Channel 9: Weather\n' +
+                '* Channel 6: Individual Paging <span class="comm-list">for supervisors and officers</span>\n' +
+                '* Channel 7: EMS 400 <span class="comm-list">155.400 MHz: hospital radio frequency for Troy and Schenectady hospitals</span>\n' +
+                '* Channel 8: EMS 715 <span class="comm-list">155.715 MHz: statewide, inter-agency operations frequency: all emergency ' +
+                'units equipped to use this channel</span>\n' +
+                '* Channel 9: Weather \n\n ' +
                 'If you seek more information contact the radio coordinator.'
         },
         {
