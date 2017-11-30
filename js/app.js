@@ -55,6 +55,8 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
     $rootScope.$on('$routeChangeStart', function (event, next, other) {
         var nextPageUrl = next.$$route.originalPath.split('/').pop();
 
+        nextPageUrl = (nextPageUrl == ":gameId") ? "game" : (nextPageUrl == ":eventId") ? "event" : nextPageUrl;
+
         if(ADMIN_PAGES.indexOf(nextPageUrl) !== -1) {
             AuthService.isLoggedIn().then(function (isLoggedIn) {
                 if(!isLoggedIn) {
