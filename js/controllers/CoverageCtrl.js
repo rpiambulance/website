@@ -68,16 +68,16 @@ angular.module('CoverageCtrl', []).controller('CoverageCtrl', ['$scope', '$http'
             url: '.email_submit.php',
             data: autocompleteValidate(), // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
-        }).success(function (data) {
-            console.log(data);
-            if (!data.success) {
+        }).then(function (data) {
+            console.log(data.data);
+            if (!data.data.success) {
                 console.log("it failed!");
                 // if not successful, bind errors to error variables
-                if(data.errors.name) {
-                    $scope.errorName = data.errors.name;
+                if(data.data.errors.name) {
+                    $scope.errorName = data.data.errors.name;
                 }
                 if(data.messageError) {
-                    $scope.submissionMessage = data.messageError;
+                    $scope.submissionMessage = data.data.messageError;
                 }
                 sweetAlert("Heads up!", "You've just closed the form, but have not submitted anything. Please make sure all fields are filled out and that you have completed the Captcha.", "error");
                 $scope.submission = true; //shows the error message
