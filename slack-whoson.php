@@ -13,7 +13,7 @@ function cleanName($name) {
   return substr($name[0]["first_name"],0,1) . "." . " " . $name[0]["last_name"];
 }
 
-function getCrew($date) {
+function getCrew($connection, $date) {
   $statement = $connection->query("SELECT first_name, last_name FROM members WHERE id = (SELECT cc FROM crews WHERE date = '$date')");
   $statement->execute();
   $cc = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -33,6 +33,7 @@ function getCrew($date) {
   return (cleanName($cc) == "OOS") ? "OUT OF SERVICE" : "Crew chief: " . cleanName($cc) . "\n" .
   "Driver: " . cleanName($driver) . "\n" .
   "Attendants: " . cleanName($attendant1) . " and " . cleanName($attendant2);
+
 }
 
 require_once ".db_config.php";
@@ -54,11 +55,11 @@ try {
 
   if (!isset($_GET["date"])) {
 
-    $date = date("Y-m-d");
+    $today = date("Y-m-d");
     $yesterday = date("Y-m-d", time() - 60 * 60 * 24);
 
-    $today_crew = getCrew($today);
-    $yesterday_crew = getCrew($yesterday);
+    $today_crew = getCrew($connection, $today);
+    $yesterday_crew = getCrew($connection, $yesterday);
 
     $now = new Datetime("now");
     $shiftstart = new DateTime('18:00');
@@ -81,14 +82,25 @@ try {
       echo $today_crew;
     }
   } else {
+    $today = date('l');
     $date = date_create_from_format('Y-m-d', $_GET["date"]);
-    $crew = getCrew($date)
 
-    echo $date->format('l') . "'s crew:" . "\n";
+
+    $next = ($today == $date->format('l')) ? true : false;
+
+    $crew = getCrew($connection, $_GET["date"]);
+
+
+    if ($next) {
+      echo "Next " . $date->format('l') . "'s crew:" . "\n";
+    } else {
+      echo $date->format('l') . "'s crew:" . "\n";
+    }
     echo $crew;
   }
 
 } catch (Exception $e) {
   echo $e;
 }
+
 ?>
