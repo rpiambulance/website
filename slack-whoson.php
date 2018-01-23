@@ -52,32 +52,40 @@ try {
 
   $connection->exec("USE `$dname`");
 
-  $date = date("Y-m-d");
-  $yesterday = date("Y-m-d", time() - 60 * 60 * 24);
+  if (!isset($_GET["date"])) {
 
-  $today_crew = getCrew($today);
+    $date = date("Y-m-d");
+    $yesterday = date("Y-m-d", time() - 60 * 60 * 24);
 
-  $yesterday_crew = getCrew($yesterday);
+    $today_crew = getCrew($today);
+    $yesterday_crew = getCrew($yesterday);
 
-  $now = new Datetime("now");
-  $shiftstart = new DateTime('18:00');
-  $shiftend = new DateTime('06:00');
-  $crewchange = new DateTime('09:00');
+    $now = new Datetime("now");
+    $shiftstart = new DateTime('18:00');
+    $shiftend = new DateTime('06:00');
+    $crewchange = new DateTime('09:00');
 
-  if ($now >= $shiftstart) { //handles 1800-0000 hours
-    echo "Current crew:" . "\n";
-    echo $today_crew;
-  } else if ($now <= $shiftend){ //handles 0000-0600 hours
-    echo "Current crew:" . "\n";
-    echo $yesterday_crew;
-  } else if ($now > $shiftend && $now <= $crewchange) { //handles 0600-0900 hours
-    echo "Last night's crew:" . "\n";
-    echo $yesterday_crew . "\n\n";
-    echo "Tonight's crew:" . "\n";
-    echo $today_crew;
-  } else { //handles 0900-1800 hours
-    echo "Tonight's crew:" . "\n";
-    echo $today_crew;
+    if ($now >= $shiftstart) { //handles 1800-0000 hours
+      echo "Current crew:" . "\n";
+      echo $today_crew;
+    } else if ($now <= $shiftend){ //handles 0000-0600 hours
+      echo "Current crew:" . "\n";
+      echo $yesterday_crew;
+    } else if ($now > $shiftend && $now <= $crewchange) { //handles 0600-0900 hours
+      echo "Last night's crew:" . "\n";
+      echo $yesterday_crew . "\n\n";
+      echo "Tonight's crew:" . "\n";
+      echo $today_crew;
+    } else { //handles 0900-1800 hours
+      echo "Tonight's crew:" . "\n";
+      echo $today_crew;
+    }
+  } else {
+    $date = date_create_from_format('Y-m-d', $_GET["date"]);
+    $crew = getCrew($date)
+
+    echo $date->format('l') . "'s crew:" . "\n";
+    echo $crew;
   }
 
 } catch (Exception $e) {
