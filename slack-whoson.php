@@ -83,6 +83,7 @@ try {
     }
   } else {
     $tomorrow = (isset($_GET["tomorrow"]) && ($_GET["tomorrow"]) == 1) ? true : false;
+    $yesterday = (isset($_GET["yesterday"]) && ($_GET["yesterday"]) == 1) ? true : false;
 
     $today = date('l');
     $date = date_create_from_format('Y-m-d', $_GET["date"]);
@@ -96,7 +97,9 @@ try {
     if ($next) {
       echo "Next " . $date->format('l') . "'s crew:" . "\n";
     } else if ($tomorrow) {
-      echo "Tomorrow's crew:" . "\n";      
+      echo "Tomorrow's crew:" . "\n";
+    } else if ($yesterday) {
+      echo "Yesterday's crew:" . "\n";
     } else {
       echo $date->format('l') . "'s crew:" . "\n";
     }
