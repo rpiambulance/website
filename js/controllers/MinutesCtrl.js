@@ -1,6 +1,6 @@
 angular.module('MinutesCtrl', []).controller('MinutesCtrl', ['$scope', function($scope) {
     $scope.pageHeader = 'Meeting Minutes';
-    $scope.columns = true;
+    $scope.columns = false;
 
     $scope.sections = [
         {
