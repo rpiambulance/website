@@ -77,7 +77,10 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
         { field: 'nims700',      label: 'NIMS-700'    },
         { field: 'nims800',      label: 'NIMS-800'    },
         //{ field: 'ics5',         label: 'ICS-0005'    },
-        { field: 'atropine',     label: 'Atropine'    },
+        //{ field: 'atropine',     label: 'Atropine'    },
+        { field: 'atropine',     label: 'Albuterol'    },
+        //  yes I know the above is weird. We need to remake db.
+        //  since db 
         //{ field: 'albuterol',    label: 'Albuterol'   },
         //{ field: 'aspirin',          label: 'Aspirin'   },
         { field: 'epinipherine', label: 'Epinephrine' },
