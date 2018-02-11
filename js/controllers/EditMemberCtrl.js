@@ -72,15 +72,16 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
     $scope.areChangesPending= false;
 
     $scope.trainingFields = [
-        { field: 'nims100',     label: 'NIMS-100'    },
-        { field: 'nims200',     label: 'NIMS-200'    },
-        { field: 'nims700',     label: 'NIMS-700'    },
-        { field: 'nims800',     label: 'NIMS-800'    },
-        { field: 'ics5',        label: 'ICS-0005'    },
-        { field: 'atropine',    label: 'Atropine'    },
-        { field: 'albuterol',   label: 'Albuterol'   },
-        { field: 'epiniperine', label: 'Epinephrine' },
-        { field: 'glucometry',  label: 'Glucometry'  },
+        { field: 'nims100',      label: 'NIMS-100'    },
+        { field: 'nims200',      label: 'NIMS-200'    },
+        { field: 'nims700',      label: 'NIMS-700'    },
+        { field: 'nims800',      label: 'NIMS-800'    },
+        //{ field: 'ics5',         label: 'ICS-0005'    },
+        { field: 'atropine',     label: 'Atropine'    },
+        //{ field: 'albuterol',    label: 'Albuterol'   },
+        //{ field: 'aspirin',          label: 'Aspirin'   },
+        { field: 'epinipherine', label: 'Epinephrine' },
+        { field: 'glucometry',   label: 'Glucometry'  },
     ];
 
     $scope.crewPositions = [
