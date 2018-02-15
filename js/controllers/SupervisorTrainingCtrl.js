@@ -48,7 +48,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             internal_title: 'Current DS',
             body: '* Josh Correira\n' +
             '* Harrison Leinweber\n' +
-            '* Thomas Manzini'
+            '* David Wolmark'
 
         }
 
