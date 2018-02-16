@@ -86,17 +86,17 @@
         </h2>
         <table id="General" class="table table-bordered table-striped">
             <thead>
-                <tr>
-                    <th width="10%">Radio ID</th>
-                    <th width="22.5%">Last Name</th>
-                    <th width="22.5%">First Name</th>
-                    <th width="22.5%">Position(s)</th>
-                    <th width="22.5%">Email</th>
-                </tr>
+              <tr>
+                <th width="10%" ng-click="changeFilter='radionum'">Radio ID</th>
+                <th width="22.5%" ng-click="changeFilter='last_name'">Last Name</th>
+                <th width="22.5%" ng-click="changeFilter='first_name'">First Name</th>
+                <th width="22.5%">Position(s)</th>
+                <th width="22.5%">Email</th>
+              </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="m in members | orderBy:'last_name'" ng-if="!radioFilter || m.radionum != 0">
-                    <td class="text-center"><span ng-if="m.radionum != 0">{{m.radionum}}</span></td>
+              <tr ng-repeat="m in members | orderBy:changeFilter" ng-if="!radioFilter || m.radionum != 9999">
+                    <td class="text-center"><span ng-if="m.radionum != 9999">{{m.radionum}}</span></td>
                     <td>{{m.last_name}}</td>
                     <td>{{m.first_name}}</td>
                     <td class="text-center">{{determinePositions(m)}}</td>

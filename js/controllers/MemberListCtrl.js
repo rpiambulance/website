@@ -4,6 +4,7 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
     $scope.otherOfficers = [];
     $scope.members = [];
     $scope.radioFilter = false;
+    $scope.changeFilter = 'last_name';
 
     function positionHelper(positions, member, fieldToCheck, toAdd) {
         if(member[fieldToCheck] == 1) {
@@ -76,6 +77,11 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
         })
         $scope.otherOfficers.forEach(function (elem){
             elem.card_id = elem.card_id.join(", ");
+        })
+        $scope.members.forEach(function (elem){
+          if (elem.radionum == 0){
+            elem.radionum = '9999';
+          }
         })
     });
 }]);
