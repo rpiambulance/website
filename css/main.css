@@ -78,6 +78,7 @@ hr {
 }
 .btn-success, .btn-danger {
     border-radius: 4px;
+    margin-top: 11px;
 }
 
 .uib-datepicker-popup .btn {
