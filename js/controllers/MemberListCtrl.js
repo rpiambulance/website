@@ -4,7 +4,7 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
     $scope.otherOfficers = [];
     $scope.members = [];
     $scope.radioFilter = false;
-    $scope.changeFilter = 'last_name';
+    $scope.orderer = 'last_name';
 
     function positionHelper(positions, member, fieldToCheck, toAdd) {
         if(member[fieldToCheck] == 1) {
@@ -83,5 +83,26 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
         //     elem.radionum = '9999';
         //   }
         // })
+
+        $scope.sortFun = function(sortname) {
+     			if ($scope.orderer == sortname){
+  	        $scope.orderer = '-'+sortname;
+          }
+          else {
+          $scope.orderer = sortname;
+          }
+        }
     });
-}]);
+}]).filter("emptyToEnd", function () {
+    return function (array, key) {
+        if(!angular.isArray(array)) return;
+        var present = array.filter(function (item) {
+            return item[key];
+        });
+        var empty = array.filter(function (item) {
+            return !item[key]
+        });
+        return present.concat(empty);
+    };
+});
+;
