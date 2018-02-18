@@ -68,7 +68,7 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
             if (elem.schedco == 1) {
                 elem.card_id.push("Scheduling Coordinator");
             }
-            if (elem.admin ==1 && elem.captain == 0) {
+            if (elem.admin == 1 && (!(elem.captain == 1 || elem.traincommchair == 1))) {
                 elem.card_id.push("Webmaster");
             }
             if (elem.radioid == 0){
@@ -78,10 +78,10 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
         $scope.otherOfficers.forEach(function (elem){
             elem.card_id = elem.card_id.join(", ");
         })
-        $scope.members.forEach(function (elem){
-          if (elem.radionum == 0){
-            elem.radionum = '9999';
-          }
-        })
+        // $scope.members.forEach(function (elem){
+        //   if (elem.radionum == 0){
+        //     elem.radionum = '9999';
+        //   }
+        // })
     });
 }]);
