@@ -53,7 +53,7 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
                 $scope.lineSide.push(elem);
             } else if(elem.pres == 1 || elem.vicepres == 1) {
                 $scope.civilSide.push(elem);
-            } else if(elem.radioco == 1 || elem.traincommchair == 1 || elem.schedco == 1 || ((elem.admin == 1) && (elem.captain == 0))) {
+            } else if(elem.cprco == 1 || elem.radioco == 1 || elem.traincommchair == 1 || elem.schedco == 1 || ((elem.admin == 1) && (elem.captain == 0))) {
                 $scope.otherOfficers.push(elem);
             }
         });
@@ -67,6 +67,9 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
             }
             if (elem.schedco == 1) {
                 elem.card_id.push("Scheduling Coordinator");
+            }
+            if (elem.cprco == 1) {
+              elem.card_id.push("CPR Coordinator");
             }
             if (elem.admin == 1 && (!(elem.captain == 1 || elem.traincommchair == 1))) {
                 elem.card_id.push("Webmaster");

@@ -58,7 +58,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="o in otherOfficers">
+                <tr ng-repeat="o in (otherOfficers|orderBy:orderer)">
                     <td class="text-center"><span ng-if="o.radionum != 0">{{o.radionum}}</span></td>
                     <td>{{o.last_name}}</td>
                     <td>{{o.first_name}}</td>
