@@ -27,6 +27,19 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="img/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="img/ico/apple-touch-icon-57-precomposed.png">
 
+    <style>
+      a#nav-donate {
+        background: linear-gradient(to bottom, #efcc5a 0%, #846916 100%);
+        background-size:1px 50px;
+        color: black;
+        transition: background 300ms;
+      }
+
+      a#nav-donate:hover {
+        background-position:100px;
+      }
+    </style>
+
 </head>
 <!--/head-->
 
@@ -83,6 +96,7 @@
                             <li ng-if="showDivider(n, $index)" role="separator" class="divider" ng-repeat-end></li>
                         </ul>
                     </li>
+                    <li><a id="nav-donate" href="https://impact.rpi.edu/project/9041">Donate</a></li>
                 </ul>
             </div>
         </div>
