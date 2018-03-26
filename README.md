@@ -1,3 +1,7 @@
+**Note:** This repo was previously forked from [wtg/ambulance](https://github.com/wtg/ambulance), but was removed from the fork network by GitHub Support. The former repository is no longer developed, leaving this repo as the most up-to-date version. 
+
+---
+
 This website is built in the MEAN stack (MongoDB, Express.js, Angular.js, and Node.js), and can be deployed using the following steps:
 
 1. Clone this git repository by running the following command in a Git-enabled terminal:
