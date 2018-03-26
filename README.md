@@ -30,9 +30,13 @@ This website is built in the MEAN stack (MongoDB, Express.js, Angular.js, and No
 This project was created for the RPI Ambulance organization by the [Web Technologies Group](http://stugov.union.rpi.edu/senate/projects/wtg).
 
 #### Developers 
-* [David Sparkman](http://github.com/David-Sparky)
 * [Dan Bruce](http://github.com/ddbruce)
 * [Justin Etzine](http://github.com/justetz)
+* [John Jacangelo](https://github.com/jcub)
+* [Matt Peveler](https://github.com/MasterOdin)
+* [Logan Ramos](https://github.com/lramos15)
+* [David Sparkman](http://github.com/David-Sparky)
+
 
 #### Copyrights
 * Photos are copyrighted by David Sparkman and are used with permission from the author.
