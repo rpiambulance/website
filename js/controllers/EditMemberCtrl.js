@@ -5,7 +5,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
         options: {
           formatYear: 'yy',
           minDate: new Date(1800, 1, 1),
-          startingDay: 1
+          startingDay: 0
         },
         opened: false
       };
@@ -14,7 +14,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
           options: {
             formatYear: 'yy',
             minDate: new Date(1800, 1, 1),
-            startingDay: 1
+            startingDay: 0
           },
           opened: false
         };
@@ -23,7 +23,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
             options: {
               formatYear: 'yy',
               minDate: new Date(1800, 1, 1),
-              startingDay: 1
+              startingDay: 0
             },
             opened: false
           };
@@ -31,7 +31,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
               options: {
                 formatYear: 'yy',
                 minDate: new Date(1800, 1, 1),
-                startingDay: 1
+                startingDay: 0
               },
               opened: false
             };
@@ -40,7 +40,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
                 options: {
                   formatYear: 'yy',
                   minDate: new Date(1800, 1, 1),
-                  startingDay: 1
+                  startingDay: 0
                 },
                 opened: false
               };
@@ -80,7 +80,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
         //{ field: 'atropine',     label: 'Atropine'    },
         { field: 'atropine',     label: 'Albuterol'    },
         //  yes I know the above is weird. We need to remake db.
-        //  since db 
+        //  since db
         //{ field: 'albuterol',    label: 'Albuterol'   },
         //{ field: 'aspirin',          label: 'Aspirin'   },
         { field: 'epinipherine', label: 'Epinephrine' },

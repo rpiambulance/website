@@ -13,7 +13,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
       formatYear: 'yy',
       maxDate: new Date(2020, 5, 22),
       minDate: new Date(),
-      startingDay: 1
+      startingDay: 0
     },
     opened: false
   };

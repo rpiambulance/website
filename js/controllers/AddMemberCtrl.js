@@ -22,7 +22,7 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
         formatYear: 'yy',
         maxDate: new Date(),
         minDate: new Date(1800, 1, 1),
-        startingDay: 1
+        startingDay: 0
       },
       opened: false
     };
