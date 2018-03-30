@@ -22,6 +22,16 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
     return new Date(t.getTime() - (t.getTimezoneOffset() * 60000)).toISOString().substring(11, 19);
   }
 
+  $scope.formatDate = function (input) {
+    if(typeof input === 'number') {
+      day = new Date(input)
+    } else {
+      day = input
+    }
+    day = day - day.getTimezoneOffset()*60000
+    return new Date(day).toISOString().substring(0, 10)
+  }
+
   $scope.openDatepicker = function() {
     $scope.datepicker.opened = !$scope.datepicker.opened;
   };
@@ -110,11 +120,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
   };
 
   $scope.submitForm = function () {
-      if(typeof $scope.formData.date === 'number') {
-        $scope.formData.datestamp = new Date($scope.formData.date).toISOString().substring(0, 10);
-      } else {
-        $scope.formData.datestamp = $scope.formData.date.toISOString().substring(0, 10);
-      }
+      $scope.formData.datestamp = $scope.formatDate($scope.formData.date)
       $scope.formData.startstamp = $scope.formatTime($scope.formData.start_time);
       $scope.formData.endstamp = $scope.formatTime($scope.formData.end_time);
       // $scope.formData['date'] =  moment($scope.formData['date'].format("YYYY-MM-DD HH:mm:ss");
