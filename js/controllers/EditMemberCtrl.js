@@ -114,6 +114,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
     ];
 
     $scope.positions = [
+        { field: 'NoNe1',           label: 'NoNe1'                     },
         { field: 'captain',        label: 'Captain'                  },
         { field: 'firstlt',        label: 'First Lt'                 },
         { field: 'secondlt',       label: 'Second Lt'                },
@@ -247,11 +248,14 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
         toSubmit.admin = toSubmit.admin.toString();
         toSubmit.active = toSubmit.active.toString();
 
-        // console.log("TS2", toSubmit);
 
         if(toSubmit.position === 'webmaster') {
             toSubmit.admin = '1';
             toSubmit.captain = '0';
+        } else if(toSubmit.position === 'NoNe1')
+          for (var i = 1; i<$scope.positions.length; i++){
+            toSubmit[$scope.positions[i].field] = '0'
+          }
         } else if(toSubmit.position) {
             toSubmit[toSubmit.position] = '1';
         }
