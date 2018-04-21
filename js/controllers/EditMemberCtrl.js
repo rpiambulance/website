@@ -248,7 +248,8 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
         toSubmit.admin = toSubmit.admin.toString();
         toSubmit.active = toSubmit.active.toString();
 
-
+        console.log("TS2", toSubmit);
+        
         if(toSubmit.position === 'webmaster') {
             toSubmit.admin = '1';
             toSubmit.captain = '0';
