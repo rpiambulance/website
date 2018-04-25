@@ -97,7 +97,8 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
                 $cookies.put('PHPSESSID', sessionId, {expires: date}); //reset PHP Session cookie to match expiration of RPI Ambulance Cookie
                 deferred.resolve(true);
             } else {
-                swal('Logged Out!', 'You have been automatically logged out. If you\'d like to keep using the members portion of the site, please log in again!', 'info');
+                //Commented out because it doesn't work currently and is just annoying
+                //swal('Logged Out!', 'You have been automatically logged out. If you\'d like to keep using the members portion of the site, please log in again!', 'info');
                 deferred.resolve(false);
             }
         }, function (error) {
