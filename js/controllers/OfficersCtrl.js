@@ -13,7 +13,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
 
 
         {
-            header: 'Officer Board 2017-2018',
+            header: 'Officer Board 2018-2019',
             internal_title: 'O-Board Photo',
             type: 'img',
             img: 'img/O-Board.jpg',
@@ -23,8 +23,20 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
         },
 
         {
-            header: 'Current Officer Board 2017-2018',
+            header: 'Current Officer Board 2018-2019',
             internal_title: 'Current Officer Board',
+            body: 'Line Side: \n' +
+            '* Captain: David Wolmark \n' +
+            '* First Lieutenant: John Jacangelo \n' +
+            '* Second Lieutenant: Logan Ramos \n' +
+            '\nCivil Side:\n' +
+            '* President: Mary-Clare Crochiere\n' +
+            '* Vice President: Ingrid Oprea (Acting)'
+        },
+
+        {
+            header: 'Officer Board 2017-2018',
+            internal_title: 'Past Officer Boards',
             body: 'Line Side: \n' +
             '* Captain: Harrison Leinweber \n' +
             '* First Lieutenant: David Sparkman \n' +
