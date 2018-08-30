@@ -253,7 +253,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
         if(toSubmit.position === 'webmaster') {
             toSubmit.admin = '1';
             toSubmit.captain = '0';
-        } else if(toSubmit.position === 'NoNe1')
+        } else if(toSubmit.position === 'NoNe1') {
           for (var i = 1; i<$scope.positions.length; i++){
             toSubmit[$scope.positions[i].field] = '0'
           }
