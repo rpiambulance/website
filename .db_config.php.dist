@@ -8,4 +8,4 @@ $dname = 'ambulanc_web';
 $duser = 'root';
 $dpassword = 'root';
 
-$dsn = "mysql:host={$dhost};dbname={$dname}"
+$dsn = "mysql:host={$dhost};dbname={$dname}";
