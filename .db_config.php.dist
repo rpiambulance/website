@@ -7,3 +7,5 @@ $dhost = 'mysql:3306';
 $dname = 'ambulanc_web';
 $duser = 'root';
 $dpassword = 'root';
+
+$dsn = "mysql:host={$dhost};dbname={$dname}"
