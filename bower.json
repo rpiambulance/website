@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "dependencies": {
     "angular": "latest",
+    "angular-animate": "latest",
     "angular-route": "latest",
     "animate.css": "latest",
     "bootstrap": "~3.0.3",
-    "font-awesome": "latest",
+    "font-awesome": "~4.7.0",
     "html5shiv": "~3.7.3",
     "isotope": "~2.2.2",
     "jquery-prettyPhoto": "~3.1.6",
