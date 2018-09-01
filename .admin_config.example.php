@@ -1,0 +1,3 @@
+<?php
+
+$SECRET_KEY = '';

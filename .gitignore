@@ -25,3 +25,7 @@ libs/
 # IDE generated      #
 ######################
 .idea/
+
+# Docker             #
+######################
+.docker/mysql/data/

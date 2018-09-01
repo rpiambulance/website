@@ -1,0 +1,13 @@
+<?php
+
+// Edit the below values to match the actual details to connect to your
+// MySQL DB
+
+$dhost = 'mysql:3306';
+$dname = 'ambulanc_web';
+$duser = 'root';
+$dpassword = 'root';
+
+$dsn = "mysql:host={$dhost};dbname={$dname}";
+
+$slacktoken = '';

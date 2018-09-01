@@ -1,0 +1,38 @@
+version: '3'
+services:
+  web:
+    build: .docker/php
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html
+    depends_on:
+      - mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    ports:
+      - "8081:80"
+    environment:
+      MYSQL_USERNAME: root
+      MYSQL_ROOT_PASSWORD: root
+    # phpmyadmin requires that the mysql container be linked as "db"
+    links:
+      - mysql:db
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:5.7
+    ports:
+      - "33060:3306"
+    volumes:
+      - mysql-volume:/var/lib/mysql
+      - .docker/mysql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: test
+      MYSQL_PASS: pass
+
+volumes:
+  mysql-volume:
