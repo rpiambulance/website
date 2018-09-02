@@ -5,6 +5,13 @@
 
 require_once ".db_config.php";
 
+session_start($_GET['session_id']);
+if(!isset($_SESSION['username'])) {
+  echo 0;
+} else {
+  $username = $_SESSION['username'];
+	
+
 $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -35,4 +42,5 @@ $results=$statement->fetchAll(PDO::FETCH_ASSOC);
 $json=json_encode($results);
 
 echo($json);
+}
 ?>

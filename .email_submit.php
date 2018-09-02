@@ -1,11 +1,5 @@
 <?php
 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-
-require 'PHPMailer/PHPMailer.php';
-require 'PHPMailer/SMTP.php';
-
 // grab recaptcha library
 require_once ".recaptchalib.php";
 
@@ -134,41 +128,6 @@ if (!empty($errors)) {
         'Reply-To: ' . $email_from . "\r\n" .
         'X-Mailer: PHP/' . phpversion();
     @mail($email_to, $email_subject, $email_message, $headers);
-
-    $mail = new PHPMailer(false);                              // Passing `true` enables exceptions
-try {
-    //Server settings
-    $mail->SMTPDebug = 2;                                 // Enable verbose debug output
-    $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'mail.rpi.edu';  // Specify main and backup SMTP servers
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = '***@rpi.edu';                 // SMTP username
-    $mail->Password = '***';                           // SMTP password
-    $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 587;                                    // TCP port to connect to
-
-    //Recipients
-    $mail->setFrom('no-reply-robots@rpiambulance.com', 'RPI Ambulance Events');
-    $mail->addAddress('secondlt@rpiambulance.com', "Second Leiutenant");     // Add a recipient
-    $mail->addReplyTo($email_from, $name);
-    $mail->addCC('officers@rpiambulance.com');
-
-    //Content
-    $mail->isHTML(true);                                  // Set email format to HTML
-    $mail->Subject = 'Here is the subject';
-    $mail->Body    = $email_message;
-    $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-    $mail->send();
-
-    $data['success'] = true;
-    $data['messageSuccess'] = 'Thanks for reaching out! We will get back to you soon as possible!';
-
-    echo json_encode($data);
-
-} catch (Exception $e) {
-    echo 'Message could not be sent. Mailer Error: ', $mail->ErrorInfo;
-}
 
     // EMAIL TO THE REQUESTER ************************
 
