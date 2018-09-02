@@ -196,7 +196,7 @@ CREATE TABLE `login_overrides` (
 CREATE TABLE `members` (
   `id` int(10) NOT NULL,
   `username` varchar(25) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `first_name` varchar(25) NOT NULL,
   `last_name` varchar(25) NOT NULL,
   `dob` date DEFAULT NULL,

@@ -40,7 +40,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         if(isset($data['change_password'])){
           if(isset($data['password'])) {
-            $data['password'] = md5($data['password']);
+            $data['password'] = password_hash(hash('sha256', $data['password']), PASSWORD_DEFAULT);
           }
         }
 
