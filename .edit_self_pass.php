@@ -20,7 +20,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $home_phone = $input['hphone'];
   $home_address= $input['hadd'];
   $rpi_address = $input['add'];
-  $pass = md5($input['pass']);
+  $pass = password_hash(hash('sha256', $input['pass']), PASSWORD_DEFAULT);
   $sessionID = $input['session_id'];
   session_start($sessionID);
 

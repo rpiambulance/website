@@ -125,13 +125,11 @@ function queryLoginCredentials ($c, $u, $p) {
         FROM
             members
         WHERE
-            username = :username AND
-            password = :password;
+            username = :username;
 SQL;
 
     $statement = $c->prepare($query);
     $statement->bindParam(':username', $u);
-    $statement->bindParam(':password', $p);
     $statement->execute();
 
     return $statement->fetch(PDO::FETCH_ASSOC);
@@ -153,6 +151,27 @@ function updateLastLogin ($c, $uInfo) {
 SQL;
 
     $statement = $c->prepare($query);
+    $statement->bindParam(':id', $uInfo['id']);
+    $statement->execute();
+}
+
+/**
+ * @param PDO    $c     the database connection
+ * @param array  $uInfo the user details from the database 
+ * @param string $pass  the new password to set for the user
+ */
+function updatePassword ($c, $uInfo, $pass) {
+    $query = <<<SQL
+        UPDATE
+            members
+        SET
+            password = :password
+        WHERE
+            id = :id;
+SQL;
+
+    $statement = $c->prepare($query);
+    $statement->bindParam(':password', password_hash(hash('sha256', $pass), PASSWORD_DEFAULT));
     $statement->bindParam(':id', $uInfo['id']);
     $statement->execute();
 }
@@ -228,7 +247,7 @@ if (!empty($errors)) {
 
     // Get the values into temp variables, password hashed.
     $user = $data['username'];
-    $pass = md5($data['password']);
+    $pass = $data['password'];
     unset($data['password']);
 
     // Connect to the database and prep for error checking
@@ -240,6 +259,18 @@ if (!empty($errors)) {
 
     // Find the user given the username and hashed password
     $userInfo = queryLoginCredentials($connection, $user, $pass);
+
+    if (password_verify(hash('sha256', $pass), $userInfo['password'])) {
+        if (password_needs_rehash($userInfo['password'], PASSWORD_DEFAULT)) {
+            updatePassword($connection, $userInfo, $pass);
+        }
+    }
+    elseif (md5($pass) === $userInfo['password']) {
+        updatePassword($connection, $userInfo, $pass);
+    }
+    else {
+        $userInfo = null;
+    }
 
     if (empty($userInfo)) {
         // If the user was not found by the query, then the user didn't enter
