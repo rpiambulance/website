@@ -18,7 +18,6 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$lo
         }
     };
 
-    // sweetAlert
     $scope.submitForm = function () {
         AuthService.login($scope.formData).then(function (response) {
             $location.path('/night-crews');
