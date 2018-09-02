@@ -30,11 +30,12 @@
                     <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Login
                     </button>
                 </div>
+                <a href="#" class="forgot-password" ng-click="$event.preventDefault();forgotPassword();">
+                    Forgot your password?
+                </a>
             </form>
             <!-- /form -->
-            <a href="#" class="forgot-password">
-                Forgot your password?
-            </a>
+
         </div>
     </div>
 <script type="text/javascript">

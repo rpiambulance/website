@@ -7,6 +7,10 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$lo
     $scope.showError = false;
     $scope.errorMessage = '';
 
+    $scope.forgotPassword = function() {
+        sweetAlert("Password Reset", "To get your password reset, you will need to send an email to officers@rpiambulance.com.", "info");
+    }
+
     $scope.clearForm = function () {
         for (var d in $scope.formData) {
             if ($scope.formData.hasOwnProperty(d))
@@ -14,6 +18,7 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$lo
         }
     };
 
+    // sweetAlert
     $scope.submitForm = function () {
         AuthService.login($scope.formData).then(function (response) {
             $location.path('/night-crews');
