@@ -273,13 +273,10 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
             }
         }
 
-
-
         var data = 'data=' + JSON.stringify(toSubmit) + '&session_id=' + $scope.getSessionIDCookie();
-
         $http({
             method: 'POST',
-            url: '.edit_member.php',
+            url: '.edit_member.php?session_id=' + AuthService.getSessionId(),
             data: data, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).then(function (response) {

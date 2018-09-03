@@ -3,6 +3,8 @@
 require_once '.db_config.php';
 
 function checkIfAdmin() {
+  global $dhost, $dname, $duser, $dpassword;
+
   if(!isset($_GET['session_id'])) {
     return false;
   }
@@ -14,7 +16,7 @@ function checkIfAdmin() {
   } else {
     $username = $_SESSION['username'];
 
-    $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
+    $connection = new PDO("mysql:host={$dhost};dbname={$dname}", $duser, $dpassword);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if(!isset($dname)) {

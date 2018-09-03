@@ -29,7 +29,7 @@ $rpi_address = $input['rpi_add'];
 $home_address = $input['home_add'];
 $dob = $input['dob'];
 $username = $input['user_name'];
-if (checkkIfAdmin()){
+if (checkIfAdmin()){
   try {
     $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
