@@ -54,7 +54,7 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
 
     $rootScope.$on('$routeChangeStart', function (event, next, other) {
         var nextPageUrl = 'home';
-        if (next.$route.originalPath) {
+        if (next.$route) {
             nextPageUrl = next.$$route.originalPath.split('/').pop();
             nextPageUrl = (nextPageUrl == ":gameId") ? "game" : (nextPageUrl == ":eventId") ? "event" : nextPageUrl;
         }
