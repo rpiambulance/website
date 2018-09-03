@@ -138,7 +138,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
 
           $http({
               method: 'POST',
-              url: '.add_game.php',
+              url: '.add_game.php?session_id=' + AuthService.getSessionId(),
               data: $scope.formData, // pass in data as strings
               headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
           }).then(function (data) {
@@ -166,12 +166,11 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
         // Event creation here
         $http({
             method: 'POST',
-            url: '.add_event.php',
+            url: '.add_event.php?session_id=' + AuthService.getSessionId(),
             data: $scope.formData, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).then(function (data) {
             if (!data.data.success) {
-
                 $scope.submission = true; //shows the error message
                 $scope.showError= true;
             } else {

@@ -1,5 +1,4 @@
-angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$http', function($scope, $http) {
-
+angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$http', 'AuthService', function($scope, $http, AuthService) {
 
     $scope.formData = {
         first_name: "",
@@ -50,7 +49,7 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
             console.log($scope.formData);
             $http({
                 method: 'POST',
-                url: '.add_member.php',
+                url: '.add_member.php?session_id=' + AuthService.getSessionId(),
                 data: $scope.formData, // pass in data as strings
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
             }).then(function (data) {
@@ -77,7 +76,4 @@ angular.module('AddMemberCtrl', []).controller('AddMemberCtrl', ['$scope', '$htt
             sweetAlert("Password Mismatch!", "Your passwords do not match. Please try again.", "error");
         }
     };
-
-
-
 }]);
