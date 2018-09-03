@@ -28,7 +28,8 @@ services:
       - "33060:3306"
     volumes:
       - mysql-volume:/var/lib/mysql
-      - .docker/mysql/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - .docker/mysql/schema.sql:/docker-entrypoint-initdb.d/00-schema.sql
+      - .docker/mysql/default.sql:/docker-entrypoint-initdb.d/01-default.sql
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_USER: test
