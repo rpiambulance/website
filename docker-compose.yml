@@ -6,6 +6,8 @@ services:
       - "8080:80"
     volumes:
       - .:/var/www/html
+    command:
+      - /var/www/html/.docker/php/setup.sh
     depends_on:
       - mysql
 
