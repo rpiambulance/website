@@ -11,7 +11,7 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
         $scope.admin = response.admin === '1';
     });
 
-    $scope.calendarView = 'month';
+    $scope.calendarView = $location.search()['calendarView'] || 'month';
 
     if ($location.search()['viewDate']) {
         $scope.viewDate = new Date($location.search()['viewDate']);
@@ -100,6 +100,10 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
         $scope.updateDate = function() {
             $location.search('viewDate', $scope.viewDate.getFullYear() + "-" + ($scope.viewDate.getMonth()+1) + "-" + $scope.viewDate.getDate());
         };
+
+        $scope.updateView = function() {
+            $location.search('calendarView', $scope.calendarView);
+        }
 
         $scope.addEvent = function() {
             $scope.events.push({
