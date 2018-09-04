@@ -3,6 +3,10 @@
 *.log
 .db_config.php
 .admin_config.php
+.form_config.php
+!.docker/.admin_config.php
+!.docker/.db_config.php
+!.docker/.form_config.php
 api/config/db.php
 
 # OS generated files #
@@ -20,7 +24,7 @@ Thumbs.db
 ######################
 node_modules/
 libs/
-.form_config.php
+
 
 # IDE generated      #
 ######################
