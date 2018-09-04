@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 
 array=( ".admin_config.php" ".db_config.php" ".form_config.php" )
 for i in "${array[@]}"; do
