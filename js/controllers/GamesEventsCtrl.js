@@ -1,3 +1,9 @@
+angular.module('mwl.calendar').controller('MwlDateModifierCtrl2', function($element, $attrs, $scope, moment) {
+    var vm = this;
+    function onClick() {
+        console.log('click');
+    }
+});
 
 angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('GamesEventsCtrl', ['moment', 'calendarConfig', '$http', '$scope', 'AuthService', '$q', '$location', function(moment, calendarConfig, $http, $scope, AuthService, $q, $location) {
     // TO the next developer: good luck. You're probably screwed. God bless
@@ -6,7 +12,13 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
     });
 
     $scope.calendarView = 'month';
-    $scope.viewDate = new Date();
+
+    if ($location.search()['viewDate']) {
+        $scope.viewDate = new Date($location.search()['viewDate']);
+    }
+    else {
+        $scope.viewDate = new Date();
+    }
     $scope.events = [];
 
     var hold = AuthService.isAdmin();
@@ -84,6 +96,10 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
 
 
         $scope.cellIsOpen = false;
+
+        $scope.updateDate = function() {
+            $location.search('viewDate', $scope.viewDate.getFullYear() + "-" + ($scope.viewDate.getMonth()+1) + "-" + $scope.viewDate.getDate());
+        };
 
         $scope.addEvent = function() {
             $scope.events.push({

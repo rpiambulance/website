@@ -15,13 +15,13 @@
                 </div>
                 <div class="text-center" ng-class="{'col-md-5': admin, 'col-md-6': !admin}">
                     <div class="btn-group pull-right">
-                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" decrement="calendarView" ng-click="cellIsOpen = false">
+                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" decrement="calendarView" ng-click="cellIsOpen = false;updateDate();">
                             Previous
                         </button>
-                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" set-to-today ng-click="cellIsOpen = false">
+                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" set-to-today ng-click="cellIsOpen = false;updateDate();">
                             Today
                         </button>
-                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" increment="calendarView" ng-click="cellIsOpen = false">
+                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" increment="calendarView" ng-click="cellIsOpen = false;updateDate();">
                             Next
                         </button>
                     </div>

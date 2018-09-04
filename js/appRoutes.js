@@ -54,6 +54,15 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         title: 'View Event Details'
     });
 
+    $routeProvider.when('/games-events', {
+        templateUrl: 'views/games-events.html',
+        controller: 'GamesEventsCtrl',
+        caseInsensitiveMatch: true,
+        reloadOnSearch: false,
+        activeTab: 'games-events',
+        title: 'Games Events',
+    });
+
     $routeProvider.when('/logout', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
