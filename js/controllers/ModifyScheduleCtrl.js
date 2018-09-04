@@ -85,7 +85,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$q', 'A
 
         $http({
             method: 'POST',
-            url: '.modify_schedule.php',
+            url: '.modify_schedule.php?session_id=' + AuthService.getSessionId(),
             data: data, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).then(function (data) {

@@ -1,4 +1,4 @@
-angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '$http', '$q', function($scope, $http, $q) {
+angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '$http', '$q', 'AuthService', function($scope, $http, $q, AuthService) {
     $scope.worked= null;
     $scope.days = [
         'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'
@@ -57,7 +57,7 @@ angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '
 
         $http({
             method: 'POST',
-            url: '.defaults.php',
+            url: '.defaults.php?session_id=' + AuthService.getSessionId(),
             data: data, // pass in data as strings
             headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
         }).then(function (data) {
