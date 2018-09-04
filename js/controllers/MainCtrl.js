@@ -191,11 +191,11 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         for (var i = 0; i < $scope.memberNavbar.length; i++) {
             if ($scope.memberNavbar[i].isDropdown) {
                 for (var j = 0; j < $scope.memberNavbar[i].dropdownOptions.length; j++) {
-                    if ("/" + $scope.memberNavbar[i].dropdownOptions[j].page === currentPage && currentPage !== "/home") {
+                    if (currentPage.startsWith("/" + $scope.memberNavbar[i].dropdownOptions[j].page) && currentPage !== "/home") {
                         return true;
                     }
                 }
-            } else if ("/" + $scope.memberNavbar[i].page === currentPage && currentPage !== "/home") {
+            } else if (currentPage.startsWith("/" + $scope.memberNavbar[i].page) && currentPage !== "/home") {
                 return true;
             }
         }
