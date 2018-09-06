@@ -58,6 +58,8 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         templateUrl: 'views/games-events.html',
         controller: 'GamesEventsCtrl',
         caseInsensitiveMatch: true,
+        // This is necesary as else anytime you update a search() parameter, it causes the full
+        // page to reload which is ugly
         reloadOnSearch: false,
         activeTab: 'games-events',
         title: 'Games Events',

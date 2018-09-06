@@ -1,8 +1,6 @@
 var ctrl_name = 'EventCtrl';
 angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$location', '$route', '$routeParams', 'AuthService', '$window', function($scope, $http, $location, $route, $routeParams, AuthService, $window) {
-    $scope.back = function() {
-        $window.history.back();
-    };
+    $scope.calendarView = $location.search()['calendarView'] || 'month';
 
     $scope.load = function() {
         $scope.loaded = false;

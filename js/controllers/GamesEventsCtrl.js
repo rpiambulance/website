@@ -8,6 +8,7 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
         $scope.admin = response.admin === '1';
     });
 
+    // Set an initial value so that if we go to /#/
     $scope.initialView = false;
     $scope.initialDate = false;
     $scope.calendarView = $location.search()['calendarView'] || 'month';
@@ -41,6 +42,12 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
         $scope.initialView = true;
     });
 
+    // This implements the ability to manually go to a viewDate/calendarView and have that
+    // update the page while having the reloadOnSearch be false. This detects any
+    // change in the route/URL of the page you're detecting, whether done by the user
+    // manually or via updating the $location.search() variable, and discards the
+    // trigger done by the latter as it'll match the scored values in the $scope unlike
+    // the former
     $scope.$on('$routeUpdate', function() {
         if ($location.search()['viewDate']) {
             var viewDate = $location.search()['viewDate'].split('-');
@@ -148,7 +155,7 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
             else {
                 url += 'event/';
             }
-            $location.url(url + event.dbId);
+            $location.url(url + event.dbId + '?calendarView=' + $scope.calendarView);
         };
 
         $scope.eventEdited = function(event) {
