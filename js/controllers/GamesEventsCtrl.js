@@ -1,11 +1,4 @@
-angular.module('mwl.calendar').controller('MwlDateModifierCtrl2', function($element, $attrs, $scope, moment) {
-    var vm = this;
-    function onClick() {
-        console.log('click');
-    }
-});
-
-angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('GamesEventsCtrl', ['moment', 'calendarConfig', '$http', '$scope', 'AuthService', '$q', '$location', function(moment, calendarConfig, $http, $scope, AuthService, $q, $location) {
+angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('GamesEventsCtrl', ['moment', 'calendarConfig', '$http', '$scope', 'AuthService', '$q', '$location', '$window', function(moment, calendarConfig, $http, $scope, AuthService, $q, $location, $window) {
     // TO the next developer: good luck. You're probably screwed. God bless
     AuthService.isAdmin().then(function (response) {
         $scope.admin = response.admin === '1';
