@@ -7,21 +7,21 @@
             <div class="row">
                 <div class="col-md-6 text-center">
                     <div class="btn-group pull-left">
-                        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'year'" ng-click="cellIsOpen = false;updateView();">Year</label>
-                        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'month'" ng-click="cellIsOpen = false;updateView();">Month</label>
-                        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'week'" ng-click="cellIsOpen = false;updateView();">Week</label>
-                        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'day'" ng-click="cellIsOpen = false;updateView();">Day</label>
+                        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'year'" ng-click="cellIsOpen = false;">Year</label>
+                        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'month'" ng-click="cellIsOpen = false;">Month</label>
+                        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'week'" ng-click="cellIsOpen = false;">Week</label>
+                        <label class="btn btn-primary" ng-model="calendarView" uib-btn-radio="'day'" ng-click="cellIsOpen = false;">Day</label>
                     </div>
                 </div>
                 <div class="text-center" ng-class="{'col-md-5': admin, 'col-md-6': !admin}">
                     <div class="btn-group pull-right">
-                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" decrement="calendarView" ng-click="cellIsOpen = false;updateDate();">
+                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" decrement="calendarView" ng-click="cellIsOpen = false;">
                             Previous
                         </button>
-                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" set-to-today ng-click="cellIsOpen = false;updateDate();">
+                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" set-to-today ng-click="cellIsOpen = false;">
                             Today
                         </button>
-                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" increment="calendarView" ng-click="cellIsOpen = false;updateDate();">
+                        <button class="btn btn-primary" mwl-date-modifier date="viewDate" increment="calendarView" ng-click="cellIsOpen = false;">
                             Next
                         </button>
                     </div>

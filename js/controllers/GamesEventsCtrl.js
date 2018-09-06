@@ -1,9 +1,15 @@
+function formatViewDate(viewDate) {
+    return viewDate.getFullYear() + "-" + (viewDate.getMonth()+1) + "-" + viewDate.getDate();
+}
+
 angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('GamesEventsCtrl', ['moment', 'calendarConfig', '$http', '$scope', 'AuthService', '$q', '$location', '$window', function(moment, calendarConfig, $http, $scope, AuthService, $q, $location, $window) {
     // TO the next developer: good luck. You're probably screwed. God bless
     AuthService.isAdmin().then(function (response) {
         $scope.admin = response.admin === '1';
     });
 
+    $scope.initialView = false;
+    $scope.initialDate = false;
     $scope.calendarView = $location.search()['calendarView'] || 'month';
 
     if ($location.search()['viewDate']) {
@@ -16,8 +22,42 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
 
     var hold = AuthService.isAdmin();
 
-
     var actions = [];
+
+    $scope.$watch('viewDate', function() {
+        if ($scope.initialDate && $location.search()['viewDate'] !== formatViewDate($scope.viewDate)) {
+            $location.search('viewDate', formatViewDate($scope.viewDate));
+            $window.history.pushState(null, 'any', $location.absUrl());
+        }
+        $scope.previousDate = $scope.viewDate;
+        $scope.initialDate = true;
+    });
+
+    $scope.$watch('calendarView', function() {
+        if ($scope.initialView && $location.search()['calendarView'] !== $scope.calendarView) {
+            $location.search('calendarView', $scope.calendarView);
+            $window.history.pushState(null, 'any', $location.absUrl());
+        }
+        $scope.initialView = true;
+    });
+
+    $scope.$on('$routeUpdate', function() {
+        if ($location.search()['viewDate']) {
+            var viewDate = $location.search()['viewDate'].split('-');
+            if (Number.parseInt(viewDate[0]) !== $scope.viewDate.getFullYear()) {
+                $scope.viewDate = new Date($location.search()['viewDate']);
+            }
+            else if ((Number.parseInt(viewDate[0])-1) !== $scope.viewDate.getMonth()) {
+                $scope.viewDate = new Date($location.search()['viewDate']);
+            }
+            else if (Number.parseInt(viewDate[2]) !== $scope.viewDate.getDate()) {
+                $scope.viewDate = new Date($location.search()['viewDate']);
+            }
+        }
+        if ($location.search()['calendarView'] && $scope.calendarView !== $location.search()['calendarView']) {
+            $scope.calendarView = $location.search()['calendarView'];
+        }
+    });
 
     $http({
         method: 'POST',
@@ -87,16 +127,7 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
             $scope.events.push(temp);
         });
 
-
         $scope.cellIsOpen = false;
-
-        $scope.updateDate = function() {
-            $location.search('viewDate', $scope.viewDate.getFullYear() + "-" + ($scope.viewDate.getMonth()+1) + "-" + $scope.viewDate.getDate());
-        };
-
-        $scope.updateView = function() {
-            $location.search('calendarView', $scope.calendarView);
-        }
 
         $scope.addEvent = function() {
             $scope.events.push({
@@ -110,11 +141,14 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
         };
 
         $scope.eventClicked = function(event) {
+            var url = '/';
             if (event.color.primary == '#ad2121' || event.color.primary == '#1e90ff') {
-                $location.url("/game/" + event.dbId);
-            } else {
-                $location.url("/event/" + event.dbId);
+                url += 'game/';
             }
+            else {
+                url += 'event/';
+            }
+            $location.url(url + event.dbId);
         };
 
         $scope.eventEdited = function(event) {

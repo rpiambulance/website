@@ -58,7 +58,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         templateUrl: 'views/games-events.html',
         controller: 'GamesEventsCtrl',
         caseInsensitiveMatch: true,
-        //reloadOnSearch: false,
+        reloadOnSearch: false,
         activeTab: 'games-events',
         title: 'Games Events',
     });
