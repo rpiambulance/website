@@ -250,7 +250,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
 
         console.log("TS2", toSubmit);
         
-        if (toSubmit.admin == '0'){
+        if (toSubmit.admin == '0' && toSubmit.position === 'webmaster'){
             toSubmit.admin = '0';
             toSubmit.position = '0';
         } else if(toSubmit.position === 'webmaster') {
