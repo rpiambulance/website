@@ -1,5 +1,7 @@
 var ctrl_name = 'GameCtrl';
-angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$location', '$route', '$routeParams', 'AuthService', function($scope, $http, $location, $route, $routeParams, AuthService) {
+angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$location', '$route', '$routeParams', 'AuthService', '$window', function($scope, $http, $location, $route, $routeParams, AuthService, $window) {
+    $scope.calendarView = $location.search()['calendarView'] || 'month';
+
     $scope.load = function() {
         $scope.loaded = false;
         AuthService.isAdmin().then(function (response) {

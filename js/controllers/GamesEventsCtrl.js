@@ -1,18 +1,70 @@
+function formatViewDate(viewDate) {
+    return viewDate.getFullYear() + "-" + (viewDate.getMonth()+1) + "-" + viewDate.getDate();
+}
 
-angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('GamesEventsCtrl', ['moment', 'calendarConfig', '$http', '$scope', 'AuthService', '$q', '$location', function(moment, calendarConfig, $http, $scope, AuthService, $q, $location) {
+angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('GamesEventsCtrl', ['moment', 'calendarConfig', '$http', '$scope', 'AuthService', '$q', '$location', '$window', function(moment, calendarConfig, $http, $scope, AuthService, $q, $location, $window) {
     // TO the next developer: good luck. You're probably screwed. God bless
     AuthService.isAdmin().then(function (response) {
         $scope.admin = response.admin === '1';
     });
 
-    $scope.calendarView = 'month';
-    $scope.viewDate = new Date();
+    // Set an initial value so that if we go to /#/
+    $scope.initialView = false;
+    $scope.initialDate = false;
+    $scope.calendarView = $location.search()['calendarView'] || 'month';
+
+    if ($location.search()['viewDate']) {
+        $scope.viewDate = new Date($location.search()['viewDate']);
+    }
+    else {
+        $scope.viewDate = new Date();
+    }
     $scope.events = [];
 
     var hold = AuthService.isAdmin();
 
-
     var actions = [];
+
+    $scope.$watch('viewDate', function() {
+        if ($scope.initialDate && $location.search()['viewDate'] !== formatViewDate($scope.viewDate)) {
+            $location.search('viewDate', formatViewDate($scope.viewDate));
+            $window.history.pushState(null, 'any', $location.absUrl());
+        }
+        $scope.previousDate = $scope.viewDate;
+        $scope.initialDate = true;
+    });
+
+    $scope.$watch('calendarView', function() {
+        if ($scope.initialView && $location.search()['calendarView'] !== $scope.calendarView) {
+            $location.search('calendarView', $scope.calendarView);
+            $window.history.pushState(null, 'any', $location.absUrl());
+        }
+        $scope.initialView = true;
+    });
+
+    // This implements the ability to manually go to a viewDate/calendarView and have that
+    // update the page while having the reloadOnSearch be false. This detects any
+    // change in the route/URL of the page you're detecting, whether done by the user
+    // manually or via updating the $location.search() variable, and discards the
+    // trigger done by the latter as it'll match the scored values in the $scope unlike
+    // the former
+    $scope.$on('$routeUpdate', function() {
+        if ($location.search()['viewDate']) {
+            var viewDate = $location.search()['viewDate'].split('-');
+            if (Number.parseInt(viewDate[0]) !== $scope.viewDate.getFullYear()) {
+                $scope.viewDate = new Date($location.search()['viewDate']);
+            }
+            else if ((Number.parseInt(viewDate[0])-1) !== $scope.viewDate.getMonth()) {
+                $scope.viewDate = new Date($location.search()['viewDate']);
+            }
+            else if (Number.parseInt(viewDate[2]) !== $scope.viewDate.getDate()) {
+                $scope.viewDate = new Date($location.search()['viewDate']);
+            }
+        }
+        if ($location.search()['calendarView'] && $scope.calendarView !== $location.search()['calendarView']) {
+            $scope.calendarView = $location.search()['calendarView'];
+        }
+    });
 
     $http({
         method: 'POST',
@@ -82,7 +134,6 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
             $scope.events.push(temp);
         });
 
-
         $scope.cellIsOpen = false;
 
         $scope.addEvent = function() {
@@ -97,11 +148,14 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
         };
 
         $scope.eventClicked = function(event) {
+            var url = '/';
             if (event.color.primary == '#ad2121' || event.color.primary == '#1e90ff') {
-                $location.url("/game/" + event.dbId);
-            } else {
-                $location.url("/event/" + event.dbId);
+                url += 'game/';
             }
+            else {
+                url += 'event/';
+            }
+            $location.url(url + event.dbId + '?calendarView=' + $scope.calendarView);
         };
 
         $scope.eventEdited = function(event) {
