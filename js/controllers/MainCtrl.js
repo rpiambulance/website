@@ -8,6 +8,11 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         if(data != '0') {
             $scope.user = data.first_name;
             $scope.isAdmin = data.admin == 1;
+            $scope.isScheduling = data.schedco == 1;
+            if ($scope.isScheduling)
+            {
+                $scope.isAdmin = false;
+            }
         }
     }, function (error) {
         if (error == 'No Session') {
@@ -157,13 +162,20 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         //    ]
         //},
         {
-            page: '', title: 'Admin', isDropdown: true, dividersAfter: [], adminOnly: true, dropdownOptions: [
+            page: '', title: 'Admin', isDropdown: true, dividersAfter: [], adminOnly: true, schedulingOnly: false, dropdownOptions: [
             {page: 'modify-schedule', title: 'Modify Schedule'},
             {page: 'edit-default', title: 'Edit Default Schedule'},
             {page: 'add-event', title: 'Add Game or Event'},
             {page: 'add-member', title: 'Add Member'},
             {page: 'edit-member', title: 'Edit Member'},
             {page: 'expirations', title: 'Expiring Items'}
+        ]
+        },
+
+        {
+            page: '', title: 'Scheduling Coordinator', isDropdown: true, dividersAfter: [], schedulingOnly: true, adminOnly: false, dropdownOptions: [
+            {page: 'modify-schedule', title: 'Modify Schedule'},
+            {page: 'edit-default', title: 'Edit Default Schedule'}
         ]
         },
 
@@ -209,6 +221,11 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             if(data != '0') {
                 $scope.user = data.first_name;
                 $scope.isAdmin = data.admin == 1;
+                $scope.isScheduling = data.schedco == 1;
+                if ($scope.isScheduling)
+                {
+                    $scope.isAdmin = false;
+                }
             }
         }, function (error) {
             if (error == "No Session") {

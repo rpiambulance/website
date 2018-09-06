@@ -13,7 +13,7 @@ INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`) VAL
 INSERT INTO `members` (
   `id`, `username`, `password`, `first_name`, `last_name`, `email`, `rpi_address`, `home_address`, 
   `cell_phone`, `home_phone`, `rcs_id`, `radio`, `radiomodel`, `radioserial`, `radiocharger`,
-  `radiotacmic`, `radioebattery`, `cpr_assoc`, `emt_level`, `other_training`, `dl_state`, `lastlogin`) 
+  `radiotacmic`, `radioebattery`, `cpr_assoc`, `emt_level`, `other_training`, `dl_state`, `admin`, `lastlogin`) 
 VALUES 
   (1, 'test', '$2y$10$i.04nI3wrx4Ki.UyryYzpeK0SJRTeG5HAbLEC8hs7ubfz23vSlQDa', 'Test', 'Person', 'test@rpi.edu', 
-  '', '', '0', '0', 'test', 0, '', '', 0, 0, 0, '', '', '', 'NY', CURRENT_DATE());
+  '', '', '0', '0', 'test', 0, '', '', 0, 0, 0, '', '', '', 'NY', 1, CURRENT_DATE());
