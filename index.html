@@ -82,7 +82,7 @@
 
             <div class="collapse navbar-collapse navbar-right">
                 <ul class="nav navbar-nav">
-                    <li ng-repeat="n in navbar" ng-class="{'active': isActive(n), 'dropdown': n.isDropdown}" ng-if="(!n.adminOnly && !isAdmin) || (!n.schedulingOnly && !isScheduling)">
+                    <li ng-repeat="n in navbar" ng-class="{'active': isActive(n), 'dropdown': n.isDropdown}" ng-if="(!n.adminOnly && !n.schedulingOnly) || (n.schedulingOnly && isScheduling) || (n.adminOnly && isAdmin)">
                         <a ng-hide="n.isDropdown" ng-click="ensureEditDisabled()" ng-bind="n.title"
                            ng-href="{{n.customLink ? n.link : '#/' + n.page}}"></a>
                         <a ng-show="n.isDropdown" class="dropdown-toggle" data-toggle="dropdown" ng-class="{'active': isActive(n)}">
