@@ -44,7 +44,7 @@
                             <label for="cpass">Confirm Password</label>
                             <input type="password" name="cpass" id="cpass" class="form-control" ng-model="formData.cpass" ng-change="passChange()" />
                             <span ng-show="userInfo.cpass.$dirty && userInfo.cpass.$error.required" class="help-block">Confirm is required</span>
-                            <span ng-show="userInfo.cpass.$dirty && !userInfo.cpass.$error.required && formData.pass != formData.cpass" class="help-block">Passwords don't match</span>
+                            <span ng-show="userInfo.cpass.$dirty && !userInfo.cpass.$error.required && formData.pass !== formData.cpass" class="help-block">Passwords don't match</span>
                         </div>
 
                         <h3>Contact Information</h3>
