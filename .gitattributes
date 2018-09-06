@@ -1,0 +1,3 @@
+# These files are used in setting up Docker stuff and break on Windows which might use CRLF which
+# then causes issues in Bash
+*.sh text eol=lf
