@@ -160,7 +160,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
         AuthService.getUserMetadata().then(function (data) {
             if (data.admin == 1 || data.captain == 1 || data.firstlt == 1 || data.secondlt == 1 || data.vicepres == 1 || data.president == 1) {
                 if($routeParams.memberId) {
-                    $http.get('member_table.php?member_id=' + $routeParams.memberId).then(function (response) {
+                    $http.get('member_table.php?member_id=' + $routeParams.memberId + '&session_id=' + AuthService.getSessionId()).then(function (response) {
                         $scope.selectedMember = response.data[0];
                         console.log($scope.selectedMember);
                         memberPostProcessing($scope.selectedMember);
@@ -170,7 +170,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
 
                     });
                 } else {
-                    $http.get('member_table.php?include_inactive').then(function (response) {
+                    $http.get('member_table.php?include_inactive&session_id=' + AuthService.getSessionId()).then(function (response) {
                         $scope.members = response.data;
                         memberlistPostProcessing();
                     });
@@ -226,7 +226,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
     $scope.changeMade = function() {
         $scope.areChangesPending = true;
         console.log("change!")
-    }
+    };
 
 
     $scope.save = function () {
@@ -249,7 +249,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
         toSubmit.active = toSubmit.active.toString();
 
         console.log("TS2", toSubmit);
-        
+
         if (toSubmit.admin == '0' && toSubmit.position === 'webmaster'){
             toSubmit.admin = '0';
             toSubmit.position = '0';

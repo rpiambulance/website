@@ -16,7 +16,7 @@ angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '
         $scope.defaultSchedule = [];
 
         $q.all([
-            $http.get('member_table.php'),
+            $http.get('member_table.php?session_id=' + AuthService.getSessionId()),
             $http.get('.defaults.php')
         ]).then(function (responses) {
             $scope.members = responses[0].data;
