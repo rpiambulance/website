@@ -1,4 +1,4 @@
-angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$http', function($scope, $http) {
+angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$http', 'AuthService', function($scope, $http, AuthService) {
     $scope.lineSide = [];
     $scope.civilSide = [];
     $scope.otherOfficers = [];
@@ -44,7 +44,7 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
 
     $http({
         method: 'POST',
-        url: 'member_table.php',
+        url: 'member_table.php?session_id=' + AuthService.getSessionId(),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
     }).then(function (response) {
         $scope.members = response.data;
