@@ -2,7 +2,8 @@
 
 require_once '.db_config.php';
 
-session_start($_GET['session_id']);
+session_id($_GET['session_id']);
+session_start();
 
 if(!isset($_SESSION['username'])) {
   echo 0;

@@ -1,6 +1,7 @@
 <?php
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
-  session_start($_POST['session_id']);
+  session_id($_POST['session_id']);
+  session_start();
 
   require_once ".db_config.php";
 

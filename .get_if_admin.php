@@ -5,7 +5,8 @@
   if(!isset($_GET['session_id'])) {
     http_response_code(400);
   } else {
-    session_start($_GET['session_id']);
+    session_id($_GET['session_id']);
+    session_start();
     $username = $_SESSION['username'];
 
     if(!isset($_SESSION['username'])) {

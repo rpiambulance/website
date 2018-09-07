@@ -188,7 +188,8 @@ function main () {
         exit;
     }
 
-    session_start($post['session_id']);
+    session_id($post['session_id']);
+    session_start();
 
     if(!isset($_SESSION['username'])) {
         header('Unauthorized', true, 409);
