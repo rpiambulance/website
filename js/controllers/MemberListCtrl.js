@@ -43,7 +43,7 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
     }
 
     $scope.determinePositionEmail = function (member_with_position){
-        var email;
+        var email = "officers@rpiambulance.com";
         
         if (member_with_position.captain == 1){
             email = "captain@rpiambulance.com";
@@ -56,14 +56,14 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
         }else if (member_with_position.vicepres == 1){
             email = "vp@rpiambulance.com";
         }else if (member_with_position.radioco == 1){
-            email = "radio@rpiambulance.com";
+            email = "radios@rpiambulance.com";
         }else if (member_with_position.schedco == 1){
             email = "scheduling@rpiambulance.com";
         }else if (member_with_position.traincommchair == 1){
             email = "training@rpiambulance.com";
         }else if (member_with_position.cprco == 1){
             email = "cpr@rpiambulance.com";
-        }else if (elem.admin == 1 && (!(elem.captain == 1 || elem.traincommchair == 1))){
+        }else if (member_with_position.admin == 1){
             email = "webmaster@rpiambulance.com";
         }else{
             email = member_with_position.email;
