@@ -13,6 +13,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
      *  - All dates are in the local timezone
      *  - 86400000 is number of milliseconds in a day
      *  - 604800000 is the number of milliseconds in 7 days
+     *  - Can not do proper equality checks with Date objects, convert to milliseconds since epoch to check
      */
     var currentDate = new Date();
     currentDate.setHours(12, 0, 0, 0);
@@ -31,7 +32,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
     $scope.viewDateNextWeek = new Date($scope.viewDateWeek.getTime() + 604800000);
 
     // Controls the disable for the "Next Week" button, should only be disabled if we're viewing current + next weeks
-    $scope.activeWeek = false;
+    $scope.activeWeek = $scope.viewDateWeek.getTime() >= $scope.currentWeek.getTime();
 
     AuthService.getUserMetadata().then(function (data) {
         $scope.username = data.username;
@@ -47,18 +48,22 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
 
     $scope.tables = [];
 
-    if ($scope.currentWeek <= $scope.viewDateWeek && $scope.viewDateWeek <= $scope.nextWeek) {
-        $scope.activeWeek = true;
+
+    if ($scope.currentWeek.getTime() === $scope.viewDateWeek.getTime()) {
         $scope.tables.push({attribute: 'currentWeek', title: 'Current Week'});
         $scope.tables.push({attribute: 'nextWeek', title: 'Upcoming Week'});
     }
-    else if ($scope.lastWeek <= $scope.viewDateWeek && $scope.viewDateWeek < $scope.currentWeek) {
+    else if ($scope.lastWeek.getTime() === $scope.viewDateWeek.getTime()) {
         $scope.tables.push({attribute: 'currentWeek', title: 'Last Week'});
         $scope.tables.push({attribute: 'nextWeek', title: 'Current Week'});
     }
-    else if ($scope.viewDateWeek < $scope.lastWeek && $scope.lastWeek <= $scope.viewDateNextWeek) {
+    else if ($scope.lastWeek.getTime() === $scope.viewDateNextWeek.getTime()) {
         $scope.tables.push({attribute: 'currentWeek', title: 'Week of ' + DateService.formatViewDate($scope.viewDateWeek)});
         $scope.tables.push({attribute: 'nextWeek', title: 'Last Week'});
+    }
+    else if ($scope.nextWeek.getTime() === $scope.viewDate.getTime()) {
+        $scope.tables.push({attribute: 'currentWeek', title: 'Upcoming Week'});
+        $scope.tables.push({attribute: 'nextWeek', title: 'Week of ' + DateService.formatViewDate($scope.viewDateNextWeek)});
     }
     else {
         $scope.tables.push({attribute: 'currentWeek', title: 'Week of ' + DateService.formatViewDate($scope.viewDateWeek)});
