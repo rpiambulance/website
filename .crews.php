@@ -224,28 +224,13 @@ function main () {
         clearCrew($connection, $post['signature'], $memberId, $post['position'], $post['crewid']);
     }
 
-    $statement = $connection->prepare("SELECT id FROM crews ORDER BY id DESC LIMIT 1");
+    $statement = $connection->prepare("SELECT id FROM crews WHERE date = :date LIMIT 1");
+    $statement->bindParam(':date', $post['view_date']);
     $statement->execute();
     $idarray = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
 
-    $prev_week = $idarray['id'] - 20;
-    $next_week = $idarray['id'] - 13;
-
-    if (isset($_GET['week'])) {
-        $theday = $_GET['week'];
-
-        $statement = $connection->prepare("SELECT date FROM crews WHERE id = :theday LIMIT 1");
-        $statement->bindParam(':theday', $theday);
-        $statement->execute();
-        $dayofweek = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        $dayofweek = date('D', strtotime($dayofweek['date']));
-
-        if ($dayofweek == "Sun") {
-            $prev_week = $theday - 7;
-            $next_week = $theday + 7;
-        }
-    }
+    $prev_week = $idarray['id'] - 7;
+    $next_week = $idarray['id'] + 7;
 
     $response = array(
         "headings" => array(
@@ -267,19 +252,7 @@ function main () {
     }
 
     for ($tableloop = 0; $tableloop < 2; $tableloop++) {
-        $logid = $idarray['id'] - (13 - (7 * $tableloop));
-
-        if (isset($theday)) {
-            if ($theday >= 36 && $theday < $idarray['id'] - 13 && $dayofweek == "Sun") {
-                if ($tableloop == 0) {
-                    $logid = $theday;
-                } else if ($tableloop == 1) {
-                    $logid = $theday + 7;
-                }
-            } else {
-                header('Location: http://ambulance.union.rpi.edu/?page=members&module=1');
-            }
-        }
+        $logid = $idarray['id'] + (7 * $tableloop);
 
         $onthisweek = 0;
         $ontoday    = array();

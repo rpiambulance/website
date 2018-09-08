@@ -130,5 +130,5 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
 
     this.getSessionId = function () {
         return $cookies.get(SESSION_ID_COOKIE);
-    }
+    };
 }]);

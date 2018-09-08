@@ -32,10 +32,10 @@
             </table>
         </div>
         <div class="row pull-left">
-            <button class="btn btn-danger" ng-model="prevWeekbtn">Previous Week</button>
+            <a class="btn btn-danger" href="/#/night-crews?viewDate={{ viewDateLastWeek | date: 'yyyy-MM-dd' }}">Previous Week</a>
         </div>
         <div class="row pull-right">
-            <button class="btn btn-danger" ng-model="nextWeekbtn" ng-disabled="activeWeek" ng-click="loadNext()">Next Week</button>
+            <a class="btn btn-danger" ng-disabled="activeWeek" href="/#/night-crews?viewDate={{ viewDateNextWeek | date: 'yyyy-MM-dd' }}">Next Week</a>
         </div>
     </div>
 </section>
