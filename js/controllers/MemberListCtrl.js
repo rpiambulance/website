@@ -61,18 +61,23 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
             elem.card_id = [];
             if(elem.radioco == 1){
                 elem.card_id.push("Radio Coordinator");
+                elem.email = "radio@rpiambulance.com";
             }
             if (elem.traincommchair == 1) {
                 elem.card_id.push("Training Committee Chair");
+                elem.email = "training@rpiambulance.com";
             }
             if (elem.schedco == 1) {
                 elem.card_id.push("Scheduling Coordinator");
+                elem.email = "scheduling@rpiambulance.com";
             }
             if (elem.cprco == 1) {
               elem.card_id.push("CPR Coordinator");
+              elem.email = "cpr@rpiambulance.com";
             }
             if (elem.admin == 1 && (!(elem.captain == 1 || elem.traincommchair == 1))) {
                 elem.card_id.push("Webmaster");
+                elem.email = "webmaster@rpiambulance.com";
             }
             if (elem.radioid == 0){
                 elem.radioid = '';
