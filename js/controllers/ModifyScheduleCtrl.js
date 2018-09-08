@@ -1,5 +1,9 @@
 var ctrl_name = 'ModifyScheduleCtrl';
-angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$q', 'AuthService', function($scope, $http, $q, AuthService) {
+angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$q', 'AuthService', 'DateService', function($scope, $http, $q, AuthService, DateService) {
+    var currentDate = new Date();
+    currentDate.setHours(12, 0, 0, 0);
+    $scope.currentWeek = new Date(currentDate.getTime() - (currentDate.getDay() * 86400000));
+
     $scope.currentWeekCrews = [];
     $scope.upcomingWeekCrews = [];
     $scope.members = [];
@@ -20,7 +24,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$q', 'A
             $http({
                 method: 'POST',
                 url: '.crews.php',
-                data: "session_id=" + AuthService.getSessionId(),
+                data: "session_id=" + AuthService.getSessionId() + "&view_date=" + DateService.formatViewDate($scope.currentWeek),
                 headers: {'Content-Type': 'application/x-www-form-urlencoded'}
             }),
             $http({
