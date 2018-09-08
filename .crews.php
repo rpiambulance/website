@@ -182,7 +182,7 @@ function main () {
 
     parse_str(file_get_contents("php://input"), $post);
 
-    if(!isset($post['session_id']) || !isset($post['view_date'])) {
+    if(!isset($post['session_id']) || (!isset($post['view_date']) && !isset($post['confirmcrew']) && !isset($post['clearcrew']))) {
         header('Bad Request', true, 400);
         echo 'Bad Request';
         exit;
