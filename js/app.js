@@ -8,7 +8,7 @@ var dependencies = [
 
     // LOCAL DIRECTIVES AND SERVICES:
     'infoChunk', 'pageContent', 'editContent', 'modal',
-    'EditablePageService', 'AuthService',
+    'EditablePageService', 'AuthService', 'DateService',
 
     // LOCAL CONTROLLERS:
     'MainCtrl', 'HomeCtrl', 'RPIAAboutCtrl', 'FAQCtrl', '5939AboutCtrl', 'OfficersCtrl', 'CommunicationsCtrl',

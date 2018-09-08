@@ -1,8 +1,4 @@
-function formatViewDate(viewDate) {
-    return viewDate.getFullYear() + "-" + (viewDate.getMonth()+1) + "-" + viewDate.getDate();
-}
-
-angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('GamesEventsCtrl', ['moment', 'calendarConfig', '$http', '$scope', 'AuthService', '$q', '$location', '$window', function(moment, calendarConfig, $http, $scope, AuthService, $q, $location, $window) {
+angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate']).controller('GamesEventsCtrl', ['moment', 'calendarConfig', '$http', '$scope', 'AuthService', 'DateService', '$q', '$location', '$window', function(moment, calendarConfig, $http, $scope, AuthService, DateService, $q, $location, $window) {
     // TO the next developer: good luck. You're probably screwed. God bless
     AuthService.isAdmin().then(function (response) {
         $scope.admin = response.admin === '1';
@@ -26,8 +22,8 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
     var actions = [];
 
     $scope.$watch('viewDate', function() {
-        if ($scope.initialDate && $location.search()['viewDate'] !== formatViewDate($scope.viewDate)) {
-            $location.search('viewDate', formatViewDate($scope.viewDate));
+        if ($scope.initialDate && $location.search()['viewDate'] !== DateService.formatViewDate($scope.viewDate)) {
+            $location.search('viewDate', DateService.formatViewDate($scope.viewDate));
             $window.history.pushState(null, 'any', $location.absUrl());
         }
         $scope.previousDate = $scope.viewDate;
