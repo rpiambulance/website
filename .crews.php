@@ -182,7 +182,7 @@ function main () {
 
     parse_str(file_get_contents("php://input"), $post);
 
-    if(!isset($post['session_id'])) {
+    if(!isset($post['session_id']) || !isset($post['view_date'])) {
         header('Bad Request', true, 400);
         echo 'Bad Request';
         exit;
@@ -224,14 +224,6 @@ function main () {
         clearCrew($connection, $post['signature'], $memberId, $post['position'], $post['crewid']);
     }
 
-    $statement = $connection->prepare("SELECT id FROM crews WHERE date = :date LIMIT 1");
-    $statement->bindParam(':date', $post['view_date']);
-    $statement->execute();
-    $idarray = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
-
-    $prev_week = $idarray['id'] - 7;
-    $next_week = $idarray['id'] + 7;
-
     $response = array(
         "headings" => array(
             'Night', 'Date', 'Crew Chief', 'Driver', 'Rider', 'Rider'
@@ -243,17 +235,27 @@ function main () {
         ),
     );
 
-    if ($prev_week >= 36 && $prev_week <= $idarray['id'] - 13) {
-        $response["pagers"]["prevWeek"] = $prev_week;
-    }
+    $viewDate = new DateTime($post['view_date']);
 
-    if (isset($theday) && $next_week >= 36 && $next_week <= $idarray['id'] - 13) {
-        $response["pagers"]["nextWeek"] = $next_week;
+    $statement = $connection->prepare("SELECT id FROM crews WHERE date = :date LIMIT 1");
+    $statement->bindParam(':date', $viewDate->format('Y-m-d'));
+    $statement->execute();
+    $idarray = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+    if ($idarray !== null) {
+        $prev_week = $idarray['id'] - 7;
+        $next_week = $idarray['id'] + 7;
+
+        if ($prev_week >= 36 && $prev_week <= $idarray['id'] - 13) {
+            $response["pagers"]["prevWeek"] = $prev_week;
+        }
+
+        if ($next_week >= 36 && $next_week <= $idarray['id'] - 13) {
+            $response["pagers"]["nextWeek"] = $next_week;
+        }
     }
 
     for ($tableloop = 0; $tableloop < 2; $tableloop++) {
-        $logid = $idarray['id'] + (7 * $tableloop);
-
+        $viewDate->add(new DateInterval("P{$tableloop}W"));
         $onthisweek = 0;
         $ontoday    = array();
         $ccton      = array();
@@ -274,10 +276,16 @@ function main () {
                 $atton[$x]   = 0;
                 $obson[$x]   = 0;
 
-                $statement = $connection->prepare("SELECT * FROM crews WHERE id = :crewid LIMIT 1");
-                $statement->bindValue(':crewid', ($logid + $x));
+                $statement = $connection->prepare("SELECT * FROM crews WHERE date = :date LIMIT 1");
+                $date = clone $viewDate;
+                $date->add(new DateInterval("P{$x}D"));
+                $statement->bindValue(':date', $date->format('Y-m-d'));
                 $statement->execute();
                 $y = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+
+                if ($y === null) {
+                    continue;
+                }
 
                 if ($y['cc'] == $memid || $y['driver'] == $memid || $y['attendant'] == $memid || $y['observer'] == $memid) {
                     $onthisweek  = 1;
@@ -316,10 +324,15 @@ function main () {
         }
 
         for ($i = 0; $i < 7; $i++) {
-            $statement = $connection->prepare("SELECT * FROM crews WHERE id = :crewid LIMIT 1");
-            $statement->bindValue(':crewid', ($logid + $i));
+            $statement = $connection->prepare("SELECT * FROM crews WHERE date = :date LIMIT 1");
+            $date = clone $viewDate;
+            $date->add(new DateInterval("P{$i}D"));
+            $statement->bindValue(':date', $date->format('Y-m-d'));
             $statement->execute();
             $row = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+            if ($row === null) {
+                continue;
+            }
 
             $y = substr($row['date'], 0, 4);
             $m = substr($row['date'], 5, 2);

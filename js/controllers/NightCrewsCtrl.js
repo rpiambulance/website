@@ -84,18 +84,13 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
             } else {
                 // Since the crews come in order of latest first, we need to separate
                 // them in a way that almost seems backwards.
-
                 $scope.tableHeadings = response.data.headings;
                 $scope.crews = response.data.crews;
-                // $scope.currentWeekCrews = response.data.currentWeek;
-                // $scope.upcomingWeekCrews = response.data.nextWeek;
                 $scope.positions = response.data.positions;
-                console.log(response.data);
                 $scope.loadedCrews = true;
             }
         });
     };
-
 
     $scope.number = 7;
     $scope.getNumber = function (num) {
