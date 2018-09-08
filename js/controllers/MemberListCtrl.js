@@ -42,6 +42,36 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
         return positions;
     }
 
+    $scope.determinePositionEmail = function (member_with_position){
+        var email;
+        
+        if (member_with_position.captain == 1){
+            email = "captain@rpiambulance.com";
+        } else if (member_with_position.firstlt == 1){
+            email = "firstlt@rpiambulance.com";
+        }else if (member_with_position.secondlt == 1){
+            email = "secondlt@rpiambulance.com";
+        }else if (member_with_position.pres == 1){
+            email = "president@rpiambulance.com";
+        }else if (member_with_position.vicepres == 1){
+            email = "vp@rpiambulance.com";
+        }else if (member_with_position.radioco == 1){
+            email = "radio@rpiambulance.com";
+        }else if (member_with_position.schedco == 1){
+            email = "scheduling@rpiambulance.com";
+        }else if (member_with_position.traincommchair == 1){
+            email = "training@rpiambulance.com";
+        }else if (member_with_position.cprco == 1){
+            email = "cpr@rpiambulance.com";
+        }else if (elem.admin == 1 && (!(elem.captain == 1 || elem.traincommchair == 1))){
+            email = "webmaster@rpiambulance.com";
+        }else{
+            email = member_with_position.email;
+        }
+
+        return email;
+    }
+
     $http({
         method: 'POST',
         url: 'member_table.php?session_id=' + AuthService.getSessionId(),
@@ -61,23 +91,18 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
             elem.card_id = [];
             if(elem.radioco == 1){
                 elem.card_id.push("Radio Coordinator");
-                elem.email = "radio@rpiambulance.com";
             }
             if (elem.traincommchair == 1) {
                 elem.card_id.push("Training Committee Chair");
-                elem.email = "training@rpiambulance.com";
             }
             if (elem.schedco == 1) {
                 elem.card_id.push("Scheduling Coordinator");
-                elem.email = "scheduling@rpiambulance.com";
             }
             if (elem.cprco == 1) {
               elem.card_id.push("CPR Coordinator");
-              elem.email = "cpr@rpiambulance.com";
             }
             if (elem.admin == 1 && (!(elem.captain == 1 || elem.traincommchair == 1))) {
                 elem.card_id.push("Webmaster");
-                elem.email = "webmaster@rpiambulance.com";
             }
             if (elem.radioid == 0){
                 elem.radioid = '';

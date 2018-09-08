@@ -18,7 +18,7 @@
                     <td>{{o.first_name}}</td>
                     <td ng-if="o.pres == 1">President</td>
                     <td ng-if="o.vicepres == 1">Vice President</td>
-                    <td><a ng-href="mailto:{{o.email.toLowerCase()}}">{{o.email.toLowerCase()}}</a></td>
+                    <td><a ng-href="mailto:{{determinePositionEmail(o)}}">{{determinePositionEmail(o)}}</a></td>
                 </tr>
             </tbody>
         </table>
@@ -41,7 +41,7 @@
                     <td ng-if="o.captain == 1">Captain</td>
                     <td ng-if="o.firstlt == 1">First Lieutenant</td>
                     <td ng-if="o.secondlt == 1">Second Lieutenant</td>
-                    <td><a ng-href="mailto:{{o.email.toLowerCase()}}">{{o.email.toLowerCase()}}</a></td>
+                    <td><a ng-href="mailto:{{determinePositionEmail(o)}}">{{determinePositionEmail(o)}}</a></td>
                 </tr>
             </tbody>
         </table>
@@ -67,7 +67,7 @@
                     <td ng-if="o.traincommchair == 1">Training Committee Chair</td>
                     <td ng-if="o.schedco == 1">Scheduling Coordinator</td>
                     <td ng-if="o.admin == 1 && o.captain == 0">Webmaster</td> -->
-                    <td><a ng-href="mailto:{{o.email.toLowerCase()}}">{{o.email.toLowerCase()}}</a></td>
+                    <td><a ng-href="mailto:{{determinePositionEmail(o)}}">{{determinePositionEmail(o)}}</a></td>
                 </tr>
             </tbody>
         </table>
