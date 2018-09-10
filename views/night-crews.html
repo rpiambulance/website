@@ -12,7 +12,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="c in crews[t.attribute] | orderBy:'date'">
+                <tr ng-repeat="c in crews[t.attribute]">
                     <td>{{c.day}}</td>
                     <td>{{c.date | date:'shortDate'}}</td>
                     <td ng-repeat='p in positions'>
