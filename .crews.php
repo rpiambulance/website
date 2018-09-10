@@ -47,15 +47,14 @@ function clearCrew ($connection, $signature, $id, $position, $crewid) {
     modifyCrewAssignment($connection, $signature, $id, $position, $crewid, 'clear');
 }
 
-function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton, $dton, $atton, $obson, $y, $m, $d, $dob) {
-    $dob = explode("-", $dob);
-    $age = (date("md", date("U", mktime(0, 0, 0, $dob[0], $dob[1], $dob[2]))) > date("md")
-      ? ((date("Y") - $dob[2]) - 1)
-      : (date("Y") - $dob[2]));
+function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton, $dton, $atton, $obson, $y, $m, $d) {
+    $dob = new DateTime($member['dob']);
+    $now = new DateTime('now');
+    $diff = $dob->diff($now);
 
     if(!isset($member['id'])) {
         return false;
-    } else if($age < 18) {
+    } else if($diff->y < 18) {
         return false;
     } else if(mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')) > mktime(23, 59, 59, $m, $d, $y)) {
         return false;
