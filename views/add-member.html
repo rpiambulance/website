@@ -20,23 +20,23 @@
         </div>
         <div class="col-lg-12">
           <div class="card card-container">
-            <form role="form" ng-submit="submitForm()" class="form" name="add_form" novalidate>
+            <form role="form" ng-submit="submitForm()" class="form" name="add_form" id="add-member-form" novalidate>
               <div class="form-group">
                 <label for="fn">First Name</label>
-                
+
                 <input type="text" name="fn" id="fn" class="form-control" ng-model="formData.first_name"
-                placeholder="Thomas" required/>
+                placeholder="Thomas" data-validation="required"/>
               </div>
               <div class="form-group">
                 <label for="ln">Last Name</label>
                 <input type="text" name="ln" id="ln" class="form-control" ng-model="formData.last_name"
-                placeholder="Tankengine" required/>
+                placeholder="Tankengine" data-validation="required"/>
               </div>
 
               <div class="form-group">
                 <label for="un">Username</label>
                 <input type="text" name="un" id="un" class="form-control" ng-model="formData.user_name"
-                placeholder="Blue.Trainz" required/>
+                placeholder="Blue.Trainz" data-validation="required"/>
               </div>
 
               <!--DATE PICKER FOR BIRTHDAY-->
@@ -47,7 +47,7 @@
                 <!-- <div uib-datepicker ng-model="formData.date" class="well well-sm"></div> -->
                 <!-- <input type="text" class="form-control" uib-datepicker-popup ng-model="formData.date" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" /> -->
                 <p class="input-group">
-                  <input type="date" class="form-control" uib-datepicker-popup ng-model="formData.dob" is-open="datepicker.opened" datepicker-options="datepicker.options" ng-required="true" close-text="Close" />
+                  <input type="date" class="form-control" uib-datepicker-popup ng-model="formData.dob" is-open="datepicker.opened" datepicker-options="datepicker.options" close-text="Close" data-validation="required date"/>
                   <span class="input-group-btn">
                     <button type="button" class="btn btn-default" ng-click="openDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
                   </span>
@@ -58,56 +58,56 @@
                 <label for="pass">Password</label>
                 <input type="password" name="pass" id="pass" class="form-control"
                 ng-model="formData.password"
-                placeholder="" required/>
+                placeholder="" data-validation="required"/>
               </div>
 
               <div class="form-group">
                 <label for="cpass">Confirm Password</label>
                 <input type="password" name="cpass" id="cpass" class="form-control"
                 ng-model="formData.conf_password"
-                required/>
+                data-validation="required"/>
               </div>
 
               <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" name="email" id="email" class="form-control" ng-model="formData.email"
-                placeholder="thomas@blue-bell-railway.co.uk" required/>
+                placeholder="thomas@blue-bell-railway.co.uk" data-validation="required email"/>
               </div>
 
               <div class="form-group">
                 <label for="RCS">RCS</label>
                 <input type="text" name="RCS" id="RCS" class="form-control" ng-model="formData.RCS"
-                placeholder="Example: tanket" required/>
+                placeholder="Example: tanket"/>
               </div>
 
               <div class="form-group">
                 <label for="RIN">RIN</label>
                 <input type="number" name="RIN" id="RIN" class="form-control" ng-model="formData.RIN"
-                placeholder="Example: 6612345" required/>
+                placeholder="Example: 660123456" data-validation="required length" data-validation-length="9"/>
               </div>
 
               <div class="form-group">
                 <label for="phone">Cell Phone</label>
                 <input type="tel" name="phone" id="phone" class="form-control" ng-model="formData.c_phone"
-                placeholder="(555) 555-5555" required/>
+                placeholder="(555) 555-5555" data-validation="required"/>
               </div>
 
               <div class="form-group">
                 <label for="hphone">Home Phone</label>
                 <input type="tel" name="hphone" id="hphone" class="form-control" ng-model="formData.phone"
-                placeholder="(555) 555-5555" required/>
+                placeholder="(555) 555-5555"/>
               </div>
 
               <div class="form-group">
-                <label for="ln">RPI Address</label>
+                <label for="ln">Local Address</label>
                 <input type="text" name="add" id="add" class="form-control" ng-model="formData.rpi_add"
-                placeholder="Quad Pardee 3002" required/>
+                placeholder="Quad Pardee 3002" data-validation="required"/>
               </div>
 
               <div class="form-group">
                 <label for="hadd">Home Address</label>
                 <input type="text" name="hadd" id="hadd" class="form-control" ng-model="formData.home_add"
-                placeholder="Shed 1, Sodor, Island of Sodor" required/>
+                placeholder="Shed 1, Sodor, Island of Sodor" data-validation="required"/>
               </div>
 
               <div class="form-actions">
@@ -129,5 +129,10 @@
     <!-- our-team -->
   </div>
   <!--/.container-->
+  <script type="text/javascript">
+  $.validate({
+    form : '#add-member-form'
+  });
+  </script>
 </section>
 <!--/about-us-->
