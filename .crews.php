@@ -57,7 +57,6 @@ function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton,
         return false;
     } else if($age < 18) {
         return false;
-    }
     } else if(mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')) > mktime(23, 59, 59, $m, $d, $y)) {
         return false;
     } else if($ontoday[$i] != 0) {
