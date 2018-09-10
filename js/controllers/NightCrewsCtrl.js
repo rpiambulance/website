@@ -41,6 +41,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
         $scope.backupcc = data.backupcc == 1;
         $scope.driver = data.driver == 1;
         $scope.drivertrainer = data.drivertrainer == 1;
+        $scope.dob = data.dob;
         $scope.loadCrews();
     }, function (error) {
         $location.url('/login');
