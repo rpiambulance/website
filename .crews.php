@@ -50,8 +50,8 @@ function clearCrew ($connection, $signature, $id, $position, $crewid) {
 function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton, $dton, $atton, $obson, $y, $m, $d, $dob) {
     $dob = explode("-", $dob);
     $age = (date("md", date("U", mktime(0, 0, 0, $dob[0], $dob[1], $dob[2]))) > date("md")
-      ? ((date("Y") - $birthDate[2]) - 1)
-      : (date("Y") - $birthDate[2]));
+      ? ((date("Y") - $dob[2]) - 1)
+      : (date("Y") - $dob[2]));
 
     if(!isset($member['id'])) {
         return false;
