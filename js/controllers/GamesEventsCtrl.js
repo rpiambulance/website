@@ -7,7 +7,8 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
     // Set an initial value so that if we go to /#/
     $scope.initialView = false;
     $scope.initialDate = false;
-    var changeRoute = true;
+    var changeRouteView = true;
+    var changeRouteDate = true;
     $scope.calendarView = $location.search()['calendarView'] || 'month';
 
     if ($location.search()['viewDate']) {
@@ -22,22 +23,26 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
 
     var actions = [];
 
-    $scope.$watch('viewDate', function() {
-        if ($scope.initialDate && $location.search()['viewDate'] !== DateService.formatViewDate($scope.viewDate)) {
-            changeRoute = false;
-            $location.search('viewDate', DateService.formatViewDate($scope.viewDate));
-            $window.history.pushState(null, 'any', $location.absUrl());
+    $scope.$watchGroup(['viewDate', 'calendarView'], function(newValues, oldValues) {
+        // create a clone of the $location.search() object
+        var search = JSON.parse(JSON.stringify($location.search()));
+        if ($scope.initialDate && search['viewDate'] !== DateService.formatViewDate($scope.viewDate)) {
+            changeRouteDate = false;
+            search['viewDate'] = DateService.formatViewDate($scope.viewDate);
         }
 
+        if ($scope.initialView && search['calendarView'] !== $scope.calendarView) {
+            changeRouteView = false;
+            search['calendarView'] = $scope.calendarView;
+        }
+
+        if (!changeRouteView || !changeRouteDate) {
+            $location.search(search);
+            $window.history.pushState(null, 'any', $location.absUrl());
+        }
         $scope.initialDate = true;
-    });
-
-    $scope.$watch('calendarView', function() {
-        if ($scope.initialView && $location.search()['calendarView'] !== $scope.calendarView) {
-            $location.search('calendarView', $scope.calendarView);
-            $window.history.pushState(null, 'any', $location.absUrl());
-        }
         $scope.initialView = true;
+        
     });
 
     // This implements the ability to manually go to a viewDate/calendarView and have that
@@ -47,7 +52,7 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
     // trigger done by the latter as it'll match the scored values in the $scope unlike
     // the former
     $scope.$on('$routeUpdate', function() {
-        if (changeRoute) {
+        if (changeRouteDate) {
             if ($location.search()['viewDate']) {
                 if ($location.search()['viewDate'] !== DateService.formatViewDate($scope.viewDate)) {
                     $scope.viewDate = new Date($location.search()['viewDate']);
@@ -58,12 +63,16 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
             }
         }
         else {
-            $scope.initialDate = false;
-            changeRoute = true;
+            changeRouteDate = true;
         }
 
-        if ($location.search()['calendarView'] && $scope.calendarView !== $location.search()['calendarView']) {
-            $scope.calendarView = $location.search()['calendarView'];
+        if (changeRouteView) {
+            if ($location.search()['calendarView'] && $scope.calendarView !== $location.search()['calendarView']) {
+                $scope.calendarView = $location.search()['calendarView'];
+            }
+        }
+        else {
+            changeRouteView = true;
         }
     });
 
