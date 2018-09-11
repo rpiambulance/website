@@ -48,7 +48,13 @@ function clearCrew ($connection, $signature, $id, $position, $crewid) {
 }
 
 function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton, $dton, $atton, $obson, $y, $m, $d) {
+    $dob = new DateTime($member['dob']);
+    $now = new DateTime('now');
+    $diff = $dob->diff($now);
+
     if(!isset($member['id'])) {
+        return false;
+    } else if($diff->y < 18) {
         return false;
     } else if(mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')) > mktime(23, 59, 59, $m, $d, $y)) {
         return false;
