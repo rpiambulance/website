@@ -31,7 +31,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             '* Second Lieutenant: Logan Ramos \n' +
             '\nCivil Side:\n' +
             '* President: Mary-Clare Crochiere\n' +
-            '* Vice President: Ingrid Oprea (Acting)'
+            '* Vice President: Ingrid Oprea'
         },
 
         {
