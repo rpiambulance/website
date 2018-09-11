@@ -7,6 +7,7 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
     // Set an initial value so that if we go to /#/
     $scope.initialView = false;
     $scope.initialDate = false;
+    var changeRoute = true;
     $scope.calendarView = $location.search()['calendarView'] || 'month';
 
     if ($location.search()['viewDate']) {
@@ -23,10 +24,11 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
 
     $scope.$watch('viewDate', function() {
         if ($scope.initialDate && $location.search()['viewDate'] !== DateService.formatViewDate($scope.viewDate)) {
+            changeRoute = false;
             $location.search('viewDate', DateService.formatViewDate($scope.viewDate));
             $window.history.pushState(null, 'any', $location.absUrl());
         }
-        $scope.previousDate = $scope.viewDate;
+
         $scope.initialDate = true;
     });
 
@@ -45,18 +47,21 @@ angular.module('GamesEventsCtrl', ['mwl.calendar', 'ui.bootstrap', 'ngAnimate'])
     // trigger done by the latter as it'll match the scored values in the $scope unlike
     // the former
     $scope.$on('$routeUpdate', function() {
-        if ($location.search()['viewDate']) {
-            var viewDate = $location.search()['viewDate'].split('-');
-            if (Number.parseInt(viewDate[0]) !== $scope.viewDate.getFullYear()) {
-                $scope.viewDate = new Date($location.search()['viewDate']);
+        if (changeRoute) {
+            if ($location.search()['viewDate']) {
+                if ($location.search()['viewDate'] !== DateService.formatViewDate($scope.viewDate)) {
+                    $scope.viewDate = new Date($location.search()['viewDate']);
+                }
             }
-            else if ((Number.parseInt(viewDate[0])-1) !== $scope.viewDate.getMonth()) {
-                $scope.viewDate = new Date($location.search()['viewDate']);
-            }
-            else if (Number.parseInt(viewDate[2]) !== $scope.viewDate.getDate()) {
-                $scope.viewDate = new Date($location.search()['viewDate']);
+            else {
+                $scope.viewDate = new Date();
             }
         }
+        else {
+            $scope.initialDate = false;
+            changeRoute = true;
+        }
+
         if ($location.search()['calendarView'] && $scope.calendarView !== $location.search()['calendarView']) {
             $scope.calendarView = $location.search()['calendarView'];
         }
