@@ -1,4 +1,4 @@
-**Note:** This repo was previously forked from [wtg/ambulance](https://github.com/wtg/ambulance), but was removed from the fork network by GitHub Support. The former repository is no longer developed, leaving this repo as the most up-to-date version. 
+**Note:** This repo was previously forked from [wtg/ambulance](https://github.com/wtg/ambulance), but was removed from the fork network by GitHub Support. The former repository is no longer developed, leaving this repo as the most up-to-date version.
 
 Installation and Running the Site
 ---
@@ -33,8 +33,8 @@ The site uses [Docker](https://www.docker.com/) to spin up three containers to e
 * phpMyAdmin container
 
 To use this, you will need to install docker and docker-compose. For Windows and MacOS, it's recommended to
-instal the [Docker Desktop](https://www.docker.com/products/docker-desktop) which contains everything that you
-need. For a Linux distro, find your OS and follow the install directions for it on 
+install the [Docker Desktop](https://www.docker.com/products/docker-desktop) which contains everything that you
+need. For a Linux distro, find your OS and follow the install directions for it on
 [this page](https://docs.docker.com/install/). You may need to additionally follow the instructions
 [this page](https://docs.docker.com/compose/install/) to install docker-compose.
 
@@ -59,7 +59,7 @@ start the MySQL container, it will create a user with the following credentials 
 
 This project was created for the RPI Ambulance organization by the [Web Technologies Group](http://stugov.union.rpi.edu/senate/projects/wtg).
 
-#### Developers 
+#### Developers
 * [Dan Bruce](http://github.com/ddbruce)
 * [Justin Etzine](http://github.com/justetz)
 * [John Jacangelo](https://github.com/jcub)
