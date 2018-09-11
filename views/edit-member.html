@@ -67,7 +67,7 @@
 
             <div class="form-group col-xs-6 fixed-height-form-element">
               <label for="pass">Password</label>
-              <input type="password" name="pass" id="pass" class="form-control"  ng-model="selectedMember.change_password" ng-change="changeMade()" autocomplete='off' data-validation="required"/>
+              <input type="password" name="pass" id="pass" class="form-control"  ng-model="selectedMember.change_password" ng-change="changeMade()" autocomplete='off' />
             </div>
 
             <div class="form-group col-xs-6 fixed-height-form-element">
@@ -250,6 +250,11 @@
           </div>
         </form>
       </div>
+      <script type="text/javascript">
+        $.validate({
+          form : '#edit-member-form'
+        });
+      </script>
     </div>
 
   </div>
@@ -260,10 +265,5 @@
   <!-- our-team -->
 </div>
 <!--/.container-->
-<script type="text/javascript">
-$.validate({
-  form : '#edit-member-form'
-});
-</script>
 </section>
 <!--/about-us-->
