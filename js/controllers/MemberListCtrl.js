@@ -44,7 +44,7 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
 
     $scope.determinePositionEmail = function (member_with_position){
         var email = "officers@rpiambulance.com";
-        
+
         if (member_with_position.captain == 1){
             email = "captain@rpiambulance.com";
         } else if (member_with_position.firstlt == 1){
@@ -63,6 +63,8 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
             email = "training@rpiambulance.com";
         }else if (member_with_position.cprco == 1){
             email = "cpr@rpiambulance.com";
+        }else if (member_with_position.qaco == 1){
+            email = "qa@rpiambulance.com";
         }else if (member_with_position.admin == 1){
             email = "webmaster@rpiambulance.com";
         }else{
@@ -83,7 +85,7 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
                 $scope.lineSide.push(elem);
             } else if(elem.pres == 1 || elem.vicepres == 1) {
                 $scope.civilSide.push(elem);
-            } else if(elem.cprco == 1 || elem.radioco == 1 || elem.traincommchair == 1 || elem.schedco == 1 || ((elem.admin == 1) && (elem.captain == 0))) {
+            } else if(elem.qaco == 1 || elem.cprco == 1 || elem.radioco == 1 || elem.traincommchair == 1 || elem.schedco == 1 || ((elem.admin == 1) && (elem.captain == 0))) {
                 $scope.otherOfficers.push(elem);
             }
         });
@@ -100,6 +102,9 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
             }
             if (elem.cprco == 1) {
               elem.card_id.push("CPR Coordinator");
+            }
+            if (elem.qaco == 1) {
+              elem.card_id.push("QA/QI Coordinator");
             }
             if (elem.admin == 1 && (!(elem.captain == 1 || elem.traincommchair == 1))) {
                 elem.card_id.push("Webmaster");
