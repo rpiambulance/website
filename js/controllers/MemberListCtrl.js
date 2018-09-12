@@ -32,8 +32,10 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
         possiblePositions.forEach(function (elem) {
             positions += positionHelper(positions, member, elem.field, elem.abbreviation);
         });
-
-        if(positions.length === 0 && member.attendant == 1) {
+        
+        if (member.dutysup == 1){
+            positions = 'DS'
+        } else if(positions.length === 0 && member.attendant == 1) {
             positions += 'A';
         } else if(positions.length === 0 && member.observer == 1) {
             positions += 'O';
