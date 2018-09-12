@@ -114,7 +114,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
     ];
 
     $scope.positions = [
-        { field: 'NoNe1',           label: 'NoNe1'                     },
+        { field: 'NoNe1',          label: 'NoNe1'                    },
         { field: 'captain',        label: 'Captain'                  },
         { field: 'firstlt',        label: 'First Lt'                 },
         { field: 'secondlt',       label: 'Second Lt'                },
@@ -125,6 +125,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
         { field: 'traincommchair', label: 'Training Committee Chair' },
         { field: 'cprco',          label: 'CPR Coordinator'          },
         { field: 'aedco',          label: 'AED Coordinator'          },
+        { field: 'qaco',           label: 'QA/QI Coordinator'        },
         { field: 'webmaster',      label: 'Webmaster'                }
     ];
 
