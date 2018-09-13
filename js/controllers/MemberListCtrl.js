@@ -32,7 +32,7 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
         possiblePositions.forEach(function (elem) {
             positions += positionHelper(positions, member, elem.field, elem.abbreviation);
         });
-        
+
         if (member.dutysup == 1){
             positions = 'DS'
         } else if(positions.length === 0 && member.attendant == 1) {
@@ -108,7 +108,7 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
             if (elem.qaco == 1) {
               elem.card_id.push("QA/QI Coordinator");
             }
-            if (elem.admin == 1 && (!(elem.captain == 1 || elem.traincommchair == 1))) {
+            if (elem.admin == 1 && (!(elem.captain == 1 || elem.traincommchair == 1 || elem.qaco == 1))) {
                 elem.card_id.push("Webmaster");
             }
             if (elem.radioid == 0){
