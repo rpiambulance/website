@@ -1,0 +1,26 @@
+language: node_js
+sudo: true
+dist: trusty
+node_js:
+  - 8
+
+services:
+  - docker
+
+install:
+  - docker pull masterodin/vpnc:latest
+
+script:
+  - npm install -g bower
+  - bower install
+
+deploy:
+  skip_cleanup: true
+  on:
+    branch: master
+    repo: rpiambulance/website
+  provider: script
+  script: bash .travis/deploy.sh
+
+notifications:
+  email: false
