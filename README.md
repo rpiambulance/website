@@ -53,6 +53,33 @@ start the MySQL container, it will create a user with the following credentials 
 * Username: test
 * Password: test
 
+Deployment
+---
+
+The site is deployed live through the use of [Travis-CI](https://travis-ci.com) with all builds being
+available at https://travis-ci.org/rpiambulance/website. This allows keeping the live site in sync
+with the code in the repo automatically and without any human intervention, except to keep
+Travis-CI working, and to occasionally rotate the credentials listed below.
+
+On any pushes to master, Travis-CI will kick off a
+[deploy script](https://github.com/rpiambulance/website/blob/master/.travis/deploy.sh)
+which connects to the RPI VPN network, and then uses rsync to push files from the repo
+to the Union FTP server, where the site is hosted. To do this, it uses five secret
+variables that are set on Travis-CI under settings for the repo:
+* RPI_FTP_USERNAME
+* RPI_FTP_PASSWORD
+* RPI_VPN_USERNAME
+* RPI_VPN_PASSWORD
+* RPI_VPN_SECRET
+
+The first two variables are used for accessing the Union FTP server. The next three
+variables deal with logging into RPI's VPN network. The username and password should
+be the RCS credentials of a current student (preferably the current webmaster's) while
+the value for the secret can be found at https://afsws.rpi.edu/AFS/dept/cct/public/vpnc/
+after logging in. These are then used to configure the vpnc to connect to RPI network,
+following a similar setup as outlined on the
+[DotCIO Linux VPN instructions](https://dotcio.rpi.edu/services/network-remote-access/vpn-connection-and-installation/using-vpnc-open-source-client).
+
 -----------------------------------------------------
 
 ### Credits

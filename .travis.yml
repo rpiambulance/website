@@ -7,9 +7,6 @@ node_js:
 services:
   - docker
 
-install:
-  - docker pull masterodin/vpnc:latest
-
 script:
   - npm install -g bower
   - bower install
