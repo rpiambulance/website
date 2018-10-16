@@ -16,7 +16,7 @@
                     <td>{{c.day}}</td>
                     <td>{{c.date | date:'shortDate'}}</td>
                     <td ng-repeat='p in positions'>
-                        <span ng-if="c.spots[p]">
+                        <span ng-if="c.spots[p]" title="{{c.spots[p].first_name}} {{c.spots[p].last_name}}">
                             <a ng-if="c.spots[p].email" ng-href="mailto:{{c.spots[p].email}}">{{c.spots[p].name}}</a>
                             <strong ng-if="!c.spots[p].email">{{c.spots[p].name}}</strong>
                         </span>

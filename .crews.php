@@ -113,6 +113,9 @@ function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthiswe
 
         $spot['id'] = $spotMemberArray['id'];
 
+        $spot['first_name'] = $spotMemberArray['first_name'];
+        $spot['last_name'] = $spotMemberArray['last_name'];
+
         if ($spotMemberArray['id'] < 0) {
             $spot['name'] = $spotMemberArray['last_name'];
         } else {
