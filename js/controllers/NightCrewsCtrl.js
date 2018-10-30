@@ -84,6 +84,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
             data: "session_id=" + AuthService.getSessionId() + "&view_date=" + DateService.formatViewDate($scope.viewDateWeek),
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function (response) {
+            console.log(response);
             if (!response.data.success) {
                 console.log("it failed!");
                 console.log(response.data);

@@ -21,11 +21,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $home_address= $input['hadd'];
   $rpi_address = $input['add'];
   $sessionID = $input['session_id'];
-  session_id($sessionID);
-  session_start();
 
 try {
-  $username = $_SESSION['username'];
+  include ".get_user_metadata.php";
+  $user = getUser($sessionID);
+  $user = json_decode($user);
+  $username = $user->{'username'};
 
   $statement = $connection->prepare("SELECT * FROM members WHERE username=:username");
   $statement->bindParam(':username', $username);

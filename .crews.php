@@ -189,24 +189,25 @@ function main () {
 
     require_once ".db_config.php";
 
-    parse_str(file_get_contents("php://input"), $post);
+    parse_str(file_get_contents("php://input"), $_POST);
 
-    if(!isset($post['session_id']) || (!isset($post['view_date']) && !isset($post['confirmcrew']) && !isset($post['clearcrew']))) {
+    if(!isset($_POST['session_id']) || (!isset($_POST['view_date']) && !isset($_POST['confirmcrew']) && !isset($_POST['clearcrew']))) {
         header('Bad Request', true, 400);
         echo 'Bad Request';
         exit;
     }
 
-    session_id($post['session_id']);
-    session_start();
-
-    if(!isset($_SESSION['username'])) {
+    include ".get_user_metadata.php";
+    $user = getUser($_POST['session_id']);
+    $user = json_decode($user);
+    $username = $user->username;
+    $response['username'] = $username;
+    echo json_encode($response);
+    if(!isset($username)) {
         header('Unauthorized', true, 409);
         echo 'Unauthorized';
         exit;
     }
-
-    $username = $_SESSION['username'];
 
     $connection = new PDO("mysql:host=$dhost:3306;dbname=$dname", $duser, $dpassword);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -225,12 +226,12 @@ function main () {
 
     processTurnover($connection);
 
-    if (isset($post['confirmcrew'])) {
-        confirmCrew($connection, $post['signature'], $memberId, $post['position'], $post['crewid']);
+    if (isset($_POST['confirmcrew'])) {
+        confirmCrew($connection, $_POST['signature'], $memberId, $_POST['position'], $_POST['crewid']);
     }
 
-    if (isset($post['clearcrew'])) {
-        clearCrew($connection, $post['signature'], $memberId, $post['position'], $post['crewid']);
+    if (isset($_POST['clearcrew'])) {
+        clearCrew($connection, $_POST['signature'], $memberId, $_POST['position'], $_POST['crewid']);
     }
 
     $response = array(
@@ -244,7 +245,7 @@ function main () {
         ),
     );
 
-    $viewDate = new DateTime($post['view_date']);
+    $viewDate = new DateTime($_POST['view_date']);
 
     $statement = $connection->prepare("SELECT id FROM crews WHERE date = :date LIMIT 1");
     $statement->bindParam(':date', $viewDate->format('Y-m-d'));
@@ -376,7 +377,6 @@ function main () {
     }
 
     $response['success'] = true;
-
     echo json_encode($response);
 }
 ?>

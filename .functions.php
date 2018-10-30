@@ -9,14 +9,13 @@ function checkIfAdmin() {
     return false;
   }
 
-  session_id($_GET['session_id']);
-  session_start();
-
-  if(!isset($_SESSION['username'])) {
+  include ".get_user_metadata.php";
+  $user = getUser($_GET['session_id']);
+  $user = json_decode($user);
+  $username = $user->{'username'};
+  if(!isset($username)) {
     return false;
   } else {
-    $username = $_SESSION['username'];
-
     $connection = new PDO("mysql:host={$dhost};dbname={$dname}", $duser, $dpassword);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
