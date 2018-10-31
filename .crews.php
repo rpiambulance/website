@@ -206,7 +206,7 @@ function main () {
     $response['username'] = $username;
     echo json_encode($response);
     if(!isset($username)) {
-        header('Unauthorized', true, 409);
+        header('Unauthorized', true, 401);
         echo 'Unauthorized';
         exit;
     }
