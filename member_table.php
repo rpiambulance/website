@@ -5,8 +5,8 @@
 
 require_once ".db_config.php";
 
-include ".get_user_metadata.php";
-$user = getUser($_GET['session_id']);
+include ".functions.php";
+$user = getUser($_GET['session_id'], $connection);
 $user = json_decode($user);
 $username = $user->{'username'};
 if(!isset($username)) {

@@ -189,16 +189,18 @@ function main () {
 
     require_once ".db_config.php";
 
-    parse_str(file_get_contents("php://input"), $_POST);
+    parse_str(file_get_contents("php://input"), $post);
 
-    if(!isset($_POST['session_id']) || (!isset($_POST['view_date']) && !isset($_POST['confirmcrew']) && !isset($_POST['clearcrew']))) {
+    if(!isset($post['session_id']) || (!isset($post['view_date']) && !isset($post['confirmcrew']) && !isset($post['clearcrew']))) {
         header('Bad Request', true, 400);
         echo 'Bad Request';
         exit;
     }
 
-    include ".get_user_metadata.php";
-    $user = getUser($_POST['session_id']);
+    include ".functions.php";
+    $connection = new PDO("mysql:host=$dhost:3306;dbname=$dname", $duser, $dpassword);
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $user = getUser($post['session_id'], $connection);
     $user = json_decode($user);
     $username = $user->username;
     $response['username'] = $username;
@@ -208,9 +210,6 @@ function main () {
         echo 'Unauthorized';
         exit;
     }
-
-    $connection = new PDO("mysql:host=$dhost:3306;dbname=$dname", $duser, $dpassword);
-    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if(!isset($dname)) {
         $dname = 'ambulanc_web';
@@ -226,12 +225,12 @@ function main () {
 
     processTurnover($connection);
 
-    if (isset($_POST['confirmcrew'])) {
-        confirmCrew($connection, $_POST['signature'], $memberId, $_POST['position'], $_POST['crewid']);
+    if (isset($post['confirmcrew'])) {
+        confirmCrew($connection, $post['signature'], $memberId, $post['position'], $post['crewid']);
     }
 
-    if (isset($_POST['clearcrew'])) {
-        clearCrew($connection, $_POST['signature'], $memberId, $_POST['position'], $_POST['crewid']);
+    if (isset($post['clearcrew'])) {
+        clearCrew($connection, $post['signature'], $memberId, $post['position'], $post['crewid']);
     }
 
     $response = array(
@@ -245,7 +244,7 @@ function main () {
         ),
     );
 
-    $viewDate = new DateTime($_POST['view_date']);
+    $viewDate = new DateTime($post['view_date']);
 
     $statement = $connection->prepare("SELECT id FROM crews WHERE date = :date LIMIT 1");
     $statement->bindParam(':date', $viewDate->format('Y-m-d'));

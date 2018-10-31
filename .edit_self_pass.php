@@ -24,8 +24,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $sessionID = $input['session_id'];
 
 try {
-  include ".get_user_metadata.php";
-  $user = getUser($sessionID);
+  include ".functions.php";
+  $user = getUser($sessionID, $connection);
   $user = json_decode($user);
   $username = $user->{'username'};
 
