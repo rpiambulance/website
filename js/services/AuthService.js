@@ -95,8 +95,7 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
                 $cookies.put(SESSION_ID_COOKIE, sessionId, {expires: date}); //reset cookie expiration to that date
                 deferred.resolve(true);
             } else {
-                //Commented out because it doesn't work currently and is just annoying
-                //swal('Logged Out!', 'You have been automatically logged out. If you\'d like to keep using the members portion of the site, please log in again!', 'info');
+                swal('Logged Out!', 'You have been automatically logged out. If you\'d like to keep using the members portion of the site, please log in again!', 'info');
                 deferred.resolve(false);
             }
         }, function (error) {
