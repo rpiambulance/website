@@ -6,8 +6,7 @@ function checkIfAdmin($connection) {
   }
 
   $user = getUser($_GET['session_id'], $connection);
-  $user = json_decode($user);
-  $username = $user->{'username'};
+  $username = $user['username'];
   if(!isset($username)) {
     return false;
   } else {
@@ -45,7 +44,7 @@ function getUser($sessionID, $connection){
     $statement->execute();
     $results=$statement->fetchAll(PDO::FETCH_ASSOC);
     updateSession($sessionID, $connection);
-    return json_encode($results[0]);
+    return $results[0];
   }
 }
 
@@ -54,6 +53,9 @@ function updateSession($sessionID, $connection){
     $dname = 'ambulanc_web';
   }
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  // Just prune the database for expired sessions everytime
+  $stmt = $connection->prepare('DELETE FROM sessions WHERE expiration <= NOW()');
+  $stmt->execute();
   $stmt = $connection->prepare('SELECT * FROM `sessions` WHERE sessionID = :sessionID');
   $stmt->bindParam(":sessionID", $sessionID);
   $stmt->execute();
@@ -69,11 +71,5 @@ function updateSession($sessionID, $connection){
     $stmt->bindParam(":expiration", $current_date);
     $stmt->execute();
     setcookie("RPIA-SESSION", $sessionID, strtotime("+5 day", time()), "/");
-  }else{
-    $stmt = $connection->prepare('DELETE FROM `sessions` WHERE sessionID=:sessionID');
-    $stmt->bindParam(":sessionID",$sessionID);
-    $stmt->execute();
-    // Expires in the past and therefore is deleted
-    setcookie("RPIA-SESSION", $sessionID, time() - 360000, "/");
   }
 }

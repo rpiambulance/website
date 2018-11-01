@@ -23,10 +23,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $sessionID = $input['session_id'];
 
 try {
-  include ".get_user_metadata.php";
+  include ".functions.php";
   $user = getUser($sessionID);
-  $user = json_decode($user);
-  $username = $user->{'username'};
+  $username = $user['username'];
 
   $statement = $connection->prepare("SELECT * FROM members WHERE username=:username");
   $statement->bindParam(':username', $username);

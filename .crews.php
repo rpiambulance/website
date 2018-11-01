@@ -201,8 +201,7 @@ function main () {
     $connection = new PDO("mysql:host=$dhost:3306;dbname=$dname", $duser, $dpassword);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $user = getUser($post['session_id'], $connection);
-    $user = json_decode($user);
-    $username = $user->username;
+    $username = $user['username'];
     $response['username'] = $username;
     echo json_encode($response);
     if(!isset($username)) {

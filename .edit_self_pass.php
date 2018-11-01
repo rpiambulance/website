@@ -26,8 +26,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 try {
   include ".functions.php";
   $user = getUser($sessionID, $connection);
-  $user = json_decode($user);
-  $username = $user->{'username'};
+  $username = $user['username'];
 
   $statement = $connection->prepare("SELECT * FROM members WHERE username=:username");
   $statement->bindParam(':username', $username);

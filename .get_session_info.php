@@ -12,8 +12,7 @@ if (isset($_GET['session_id'])){
   
   if($key == "username"){
     $user = getUser($_GET['session_id'], $connection);
-    $user = json_decode($user);
-    $username = $user->{'username'};
+    $username = $user['username'];
     echo json_encode(array($key => $username));
   }else{
     echo "Unsupported Key";

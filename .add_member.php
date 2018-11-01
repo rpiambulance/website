@@ -29,9 +29,9 @@ $rpi_address = $input['rpi_add'];
 $home_address = $input['home_add'];
 $dob = $input['dob'];
 $username = $input['user_name'];
-if (checkIfAdmin()){
+$connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
+if (checkIfAdmin($connection)){
   try {
-    $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if(!isset($dname)) {

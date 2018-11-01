@@ -8,8 +8,7 @@
     $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
     include ".functions.php";
     $user = getUser($_GET['session_id'], $connection);
-    $user = json_decode($user);
-    $username = $user->username;
+    $username = $user['username'];
 
     if(!isset($username)) {
       echo json_encode(array("admin" => false, "scheduling_coordinator" => false));
