@@ -308,7 +308,7 @@ if (!empty($errors)) {
         // Denote success and return the session ID so the client can store
         // it in cookies for temporarily-persistent login
         $data['success'] = true;
-        $data['session_id'] = uniqid("".true);
+        $data['session_id'] = random_bytes(50);
         $stmt = $connection->prepare("INSERT INTO `sessions` (`sessionID`, `userID`,`expiration`)
         VALUES (:sessionID,:userID,:expiration)");
         date_default_timezone_set('America/New_York');
