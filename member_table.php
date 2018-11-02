@@ -6,13 +6,13 @@
 require_once ".db_config.php";
 
 include ".functions.php";
+$connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
 $user = getUser($_GET['session_id'], $connection);
 $username = $user['username'];
 if(!isset($username)) {
   echo 0;
 } else {
 	
-$connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if(!isset($dname)) {
