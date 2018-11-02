@@ -203,7 +203,6 @@ function main () {
     $user = getUser($post['session_id'], $connection);
     $username = $user['username'];
     $response['username'] = $username;
-    echo json_encode($response);
     if(!isset($username)) {
         header('Unauthorized', true, 401);
         echo 'Unauthorized';
