@@ -1,8 +1,5 @@
 <?php
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
-  session_id($_POST['session_id']);
-  session_start();
-
   require_once ".db_config.php";
 
   $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
@@ -16,7 +13,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     return;
   }
 
-  $username = $_SESSION['username'];
+  include ".functions.php";
+  $user = getUser($_POST['session_id'], $connection);
+  $username = $user['username'];
   $gameId = $_POST['game_id'];
   $position = $_POST['position'];
 

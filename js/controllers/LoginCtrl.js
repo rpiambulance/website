@@ -22,6 +22,7 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$lo
         AuthService.login($scope.formData).then(function (response) {
             $location.path('/night-crews');
         }, function (error) {
+            console.log(error);
             if (error.data.fail_type == "locked") {
               sweetAlert("Account Disabled", error.data.errors.locked, "error");
             }

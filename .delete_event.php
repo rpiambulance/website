@@ -1,7 +1,6 @@
 <?php
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
   session_id($_POST['session_id']);
-  session_start();
 
   require_once ".db_config.php";
 
@@ -15,8 +14,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   if(!isset($_POST['event_id'])) {
     return;
   }
-
-  $username = $_SESSION['username'];
+  include ".functions.php";
+  $user = getUser($_POST['session_id'], $connection);
+  $username = $user['username'];
   $eventId = $_POST['event_id'];
 
   $statement = $connection->prepare("SELECT * FROM members WHERE username=:username");

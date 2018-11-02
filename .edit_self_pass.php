@@ -22,11 +22,11 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $rpi_address = $input['add'];
   $pass = password_hash(hash('sha256', $input['pass']), PASSWORD_DEFAULT);
   $sessionID = $input['session_id'];
-  session_id($sessionID);
-  session_start();
 
 try {
-  $username = $_SESSION['username'];
+  include ".functions.php";
+  $user = getUser($sessionID, $connection);
+  $username = $user['username'];
 
   $statement = $connection->prepare("SELECT * FROM members WHERE username=:username");
   $statement->bindParam(':username', $username);

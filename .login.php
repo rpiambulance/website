@@ -177,16 +177,6 @@ SQL;
 }
 
 /**
- * Takes attributes from the user details and adds them to the session
- * @param array $uInfo the user info to grab from
- */
-function setSessionVariables ($uInfo) {
-    $_SESSION['first_name'] = $uInfo['first_name'];
-    $_SESSION['last_name']  = $uInfo['last_name'];
-    $_SESSION['username']   = $uInfo['username'];
-}
-
-/**
  * Checks a number of factors to determine whether or not the user should
  * receive a message that informs them they are locked out
  * @param  PDO     $c the database connection
@@ -315,16 +305,20 @@ if (!empty($errors)) {
         // Update the last_login attribute of the user in the database
         updateLastLogin($connection, $userInfo);
 
-        // Initiate a new session
-        session_start();
-
-        // Set the session variables that might be needed by the app later on
-        setSessionVariables($userInfo);
-
         // Denote success and return the session ID so the client can store
         // it in cookies for temporarily-persistent login
         $data['success'] = true;
-        $data['session_id'] = session_id();
+        $data['session_id'] = uniqid("".true);
+        $stmt = $connection->prepare("INSERT INTO `sessions` (`sessionID`, `userID`,`expiration`)
+        VALUES (:sessionID,:userID,:expiration)");
+        date_default_timezone_set('America/New_York');
+        $expiration = new DateTime();
+        $expiration = $expiration->modify('+5 day');
+        $expiration = $expiration->format('Y-m-d H:i:s');
+        $stmt->bindParam(':expiration', $expiration);
+        $stmt->bindParam(':sessionID', $data['session_id'], PDO::PARAM_STR);
+        $stmt->bindParam(':userID',$userInfo['id'],PDO::PARAM_INT);
+        $stmt->execute();
     }
 
     // Regardless of success or failure, add an entry to the login attempts

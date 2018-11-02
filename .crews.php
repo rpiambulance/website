@@ -197,19 +197,18 @@ function main () {
         exit;
     }
 
-    session_id($post['session_id']);
-    session_start();
-
-    if(!isset($_SESSION['username'])) {
-        header('Unauthorized', true, 409);
+    include ".functions.php";
+    $connection = new PDO("mysql:host=$dhost:3306;dbname=$dname", $duser, $dpassword);
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $user = getUser($post['session_id'], $connection);
+    $username = $user['username'];
+    $response['username'] = $username;
+    echo json_encode($response);
+    if(!isset($username)) {
+        header('Unauthorized', true, 401);
         echo 'Unauthorized';
         exit;
     }
-
-    $username = $_SESSION['username'];
-
-    $connection = new PDO("mysql:host=$dhost:3306;dbname=$dname", $duser, $dpassword);
-    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if(!isset($dname)) {
         $dname = 'ambulanc_web';
@@ -376,7 +375,6 @@ function main () {
     }
 
     $response['success'] = true;
-
     echo json_encode($response);
 }
 ?>

@@ -9,7 +9,7 @@ $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 if(!isset($dname)) {
   $dname = 'ambulanc_web';
 }
-if (checkIfAdmin()){
+if (checkIfAdmin($connection)){
   // Selecting Database
   $connection->exec("USE `$dname`");
 

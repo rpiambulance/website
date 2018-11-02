@@ -5,14 +5,14 @@
   if(!isset($_GET['session_id'])) {
     http_response_code(400);
   } else {
-    session_id($_GET['session_id']);
-    session_start();
-    $username = $_SESSION['username'];
+    $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
+    include ".functions.php";
+    $user = getUser($_GET['session_id'], $connection);
+    $username = $user['username'];
 
-    if(!isset($_SESSION['username'])) {
+    if(!isset($username)) {
       echo json_encode(array("admin" => false, "scheduling_coordinator" => false));
     } else {
-      $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
       $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
       if(!isset($dname)) {

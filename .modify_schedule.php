@@ -19,7 +19,7 @@ $secret = "SUPERSECRETADMINKEYWOOHOO";
 parse_str(file_get_contents("php://input"), $post);
 
 $weeks = ['currentWeek', 'nextWeek'];
-if (checkIfAdmin()){
+if (checkIfAdmin($connection)){
   $post['data'] = json_decode($post['data'], true);
 
   foreach($weeks as $w) {

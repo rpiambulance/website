@@ -5,14 +5,13 @@
 
 require_once ".db_config.php";
 
-session_id($_GET['session_id']);
-session_start();
-if(!isset($_SESSION['username'])) {
+include ".functions.php";
+$user = getUser($_GET['session_id'], $connection);
+$username = $user['username'];
+if(!isset($username)) {
   echo 0;
 } else {
-  $username = $_SESSION['username'];
 	
-
 $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
 $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 

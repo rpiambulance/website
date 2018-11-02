@@ -27,9 +27,9 @@ $mode = $input['mode'];
 if($mode == 'edit') {
   $id = $input['id'];
 }
-if (checkIfAdmin()){
+$connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
+if (checkIfAdmin($connection)){
   try {
-    $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     if(!isset($dname)) {

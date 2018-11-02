@@ -31,7 +31,7 @@ $modifiableFields = array(
 );
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
-  if(checkIfAdmin()) {
+  if(checkIfAdmin($connection)) {
     $data = json_decode($_POST['data'], true);
 
     // try {
