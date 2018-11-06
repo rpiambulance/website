@@ -96,4 +96,7 @@ This project was created for the RPI Ambulance organization by the [Web Technolo
 
 
 #### Copyrights
-* Photos are copyrighted by David Sparkman and are used with permission from the author.
+* Select photos are copyrighted by David Sparkman and are used with permission from the author.
+* Some photos are copyrighted by Michael Cuozzo and used with permission from the author.
+
+For more information regarding copyrighted works herein contained, please contact dev@rpiambulance.com or officers@rpiambulance.com
