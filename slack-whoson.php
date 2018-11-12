@@ -54,6 +54,8 @@ try {
   $connection->exec("USE `$dname`");
 
   if (!isset($_GET["date"])) {
+    
+    date_default_timezone_set('America/New_York');
 
     $today = date("Y-m-d");
     $yesterday = date("Y-m-d", time() - 60 * 60 * 24);
