@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('America/New_York');
+
 function cleanName($name) {
   if ($name[0]["last_name"] == "OUT OF SERVICE") {
     return "OOS";
@@ -55,8 +57,6 @@ try {
 
   if (!isset($_GET["date"])) {
     
-    date_default_timezone_set('America/New_York');
-
     $today = date("Y-m-d");
     $yesterday = date("Y-m-d", time() - 60 * 60 * 24);
 
