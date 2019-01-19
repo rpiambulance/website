@@ -35,8 +35,8 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
         },
 
         {
-            header: 'Current Officer Board 2018',
-            internal_title: 'Current Officer Board',
+            header: 'Officer Board 2018',
+            internal_title: 'Past Officer Boards',
             body: 'Line Side: \n' +
             '* Captain: David Wolmark \n' +
             '* First Lieutenant: John Jacangelo \n' +
