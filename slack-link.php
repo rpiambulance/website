@@ -1,12 +1,28 @@
 <?php
 require_once '.functions.php';
-
-if(isset($_POST["slack_id"]) && isset($_POST['member_id'])){
-    $conn = openDatabaseConnection();
-    if(is_null($conn)){
-        echo "Database connection failed to initialize!";
+$conn = openDatabaseConnection();
+if(is_null($conn)){
+    echo "Database connection failed to initialize!";
+    return;
+}
+if (isset($_GET['slack_id'])){
+    $statement = $conn->prepare("SELECT id, first_name, last_name FROM members WHERE slackID = :slack");
+    $statement->bindParam(":slack", $_GET['slack_id']);
+    $statement->execute();
+    $accounts = $statement->fetchAll();
+    if(!$accounts){
+        echo "No website accounts are associated with this ID!";
+        return;
+    }else{
+        $message = $_GET['slack_id'] . " is linked with";
+        foreach($accounts as $account){
+            $message .= ", " . $account['first_name'] . " " . $account['last_name'] . " (" . $account['id'] . ")";
+        }
+        echo $message;
         return;
     }
+}
+if(isset($_POST["slack_id"]) && isset($_POST['member_id'])){
     $statement = $conn->prepare("SELECT * FROM members WHERE id = :memID");
     $statement->bindParam(":memID", $_POST['member_id']);
     $statement->execute();
