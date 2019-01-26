@@ -1,4 +1,5 @@
 <?php
+
 function checkIfAdmin($connection) {
 
   if(!isset($_GET['session_id'])) {
@@ -71,5 +72,25 @@ function updateSession($sessionID, $connection){
     $stmt->bindParam(":expiration", $current_date);
     $stmt->execute();
     setcookie("RPIA-SESSION", $sessionID, strtotime("+5 day", time()), "/");
+  }
+}
+
+function openDatabaseConnection(){
+  try{
+    require_once '.db_config.php';
+    $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
+    $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  
+    if(!isset($dname)) {
+      $dname = 'ambulanc_web';
+    }
+  
+    // Selecting Database
+    $connection->exec("USE `$dname`");
+    
+    return $connection;
+  }catch(PDOException $e){
+    echo $e;
+    return null;
   }
 }
