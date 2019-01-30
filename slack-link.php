@@ -64,7 +64,7 @@ if(isset($_GET['slack_id']) && isset($_GET['type'])){
                 }else if($account['backupcc'] == 1){
                     $message .= " P-CC,";
                 }
-                if($account['firstresponcecc'] == 1){
+                if($account['firstresponsecc'] == 1){
                     $message .= " FR-CC,";
                 }
                 if($account['drivertrainer'] == 1){
