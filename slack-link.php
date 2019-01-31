@@ -47,6 +47,8 @@ if(isset($_GET['slack_id']) && isset($_GET['type'])){
                 $message .= " (" . $account['radionum'] . ")"; 
             }
             $message .= "\n";
+            $message .= "Email: " . $account['email'];
+            $message .= "\n";
             $message .= "Positions:";
             // This also needs to go into another functions
             if($account['dutysup'] == 1){
