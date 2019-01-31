@@ -39,7 +39,7 @@ if(isset($_GET['slack_id']) && isset($_GET['type'])){
             }else if($account['cprco'] == 1){
                 $message .= "*CPR Coordinator*\n";
             }else if($account['qaco'] == 1){
-                $message .= "*Resident Old Man*\n";
+                $message .= "*QA/QI Coordinator*\n";
             }
             $message .= "Name: " . $account['first_name'] . " " . $account['last_name'];
             // They have a radio number
