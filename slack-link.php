@@ -50,6 +50,8 @@ if(isset($_GET['slack_id']) && isset($_GET['type'])){
             $message .= "Email: " . $account['email'];
             $message .= "\n";
             $message .= "Positions:";
+            $attendant = $account['attendant'] == 1;
+            $message_length = $message.length;
             // This also needs to go into another functions
             if($account['dutysup'] == 1){
                 $message .= " Duty Supervisor";
@@ -77,9 +79,16 @@ if(isset($_GET['slack_id']) && isset($_GET['type'])){
                     $message .= " P-D";
                 }
             }
-            $message = rtrim($message, ',');
+            if($attendant && $message.length == $message_length){
+                $message .= " A";
+            }else if($message.length == $message_length){
+                $message .= " O";
+            }else{
+                $message = rtrim($message, ',');
+            }
             $message .= "\n";
             echo $message;
+            return;
         }
         return;
     }
