@@ -55,7 +55,15 @@ try {
 
   $connection->exec("USE `$dname`");
 
-  if (!isset($_GET["date"])) {
+  if ($_GET["week"] == 1) {
+    for ($x = 0; $x < 7; $x++) {
+      $day = date("Y-m-d", time() - 60 * 60 * 24 * $x);
+      $dayofweek = date("l", time() - 60 * 60 * 24 * $x);
+
+      echo $dayofweek . "'s' crew:" . "\n";
+      echo getCrew($connection, $day) . "\n\n";
+    }
+  } else if (!isset($_GET["date"])) {
 
     $today = date("Y-m-d");
     $yesterday = date("Y-m-d", time() - 60 * 60 * 24);
@@ -79,14 +87,6 @@ try {
     } else { //handles 0900-1800 hours
       echo "Tonight's crew:" . "\n";
       echo getCrew($connection, $today);
-    }
-  } else if ($_GET["week"] == 1) {
-    for ($x = 0; $x < 7; $x++) {
-      $day = date("Y-m-d", time() - 60 * 60 * 24 * $x);
-      $dayofweek = date("l", time() - 60 * 60 * 24 * $x);
-
-      echo $dayofweek . "'s' crew:" . "\n";
-      echo getCrew($connection, $day) . "\n\n";
     }
   } else {
     $tomorrow = (isset($_GET["tomorrow"]) && ($_GET["tomorrow"]) == 1) ? true : false;
