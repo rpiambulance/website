@@ -60,7 +60,7 @@ try {
       $day = date("Y-m-d", time() - 60 * 60 * 24 * $x);
       $dayofweek = date("l", time() - 60 * 60 * 24 * $x);
 
-      echo $dayofweek . "'s' crew:" . "\n";
+      echo $dayofweek . "'s crew:" . "\n";
       echo getCrew($connection, $day) . "\n\n";
     }
   } else if (!isset($_GET["date"])) {
