@@ -56,12 +56,9 @@ try {
   $connection->exec("USE `$dname`");
 
   if (!isset($_GET["date"])) {
-    
+
     $today = date("Y-m-d");
     $yesterday = date("Y-m-d", time() - 60 * 60 * 24);
-
-    $today_crew = getCrew($connection, $today);
-    $yesterday_crew = getCrew($connection, $yesterday);
 
     $now = new Datetime("now");
     $shiftstart = new DateTime('18:00');
@@ -70,18 +67,26 @@ try {
 
     if ($now >= $shiftstart) { //handles 1800-0000 hours
       echo "Current crew:" . "\n";
-      echo $today_crew;
+      echo getCrew($connection, $today);
     } else if ($now <= $shiftend){ //handles 0000-0600 hours
       echo "Current crew:" . "\n";
-      echo $yesterday_crew;
+      echo getCrew($connection, $yesterday);
     } else if ($now > $shiftend && $now <= $crewchange) { //handles 0600-0900 hours
       echo "Last night's crew:" . "\n";
-      echo $yesterday_crew . "\n\n";
+      echo getCrew($connection, $yesterday) . "\n\n";
       echo "Tonight's crew:" . "\n";
-      echo $today_crew;
+      echo getCrew($connection, $today);
     } else { //handles 0900-1800 hours
       echo "Tonight's crew:" . "\n";
-      echo $today_crew;
+      echo getCrew($connection, $today);
+    }
+  } else if ($_GET["week"] == 1) {
+    for ($x = 0; $x < 7; $x++) {
+      $day = date("Y-m-d", time() - 60 * 60 * 24 * $x);
+      $dayofweek = date("l", time() - 60 * 60 * 24 * $x);
+
+      echo $dayofweek . "'s' crew:" . "\n";
+      echo getCrew($connection, $day) . "\n\n";
     }
   } else {
     $tomorrow = (isset($_GET["tomorrow"]) && ($_GET["tomorrow"]) == 1) ? true : false;
