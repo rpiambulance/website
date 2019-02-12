@@ -57,8 +57,8 @@ try {
 
   if ($_GET["week"] == 1) {
     for ($x = 0; $x < 7; $x++) {
-      $day = date("Y-m-d", time() - 60 * 60 * 24 * $x);
-      $dayofweek = date("l", time() - 60 * 60 * 24 * $x);
+      $day = date("Y-m-d", time() + 60 * 60 * 24 * $x);
+      $dayofweek = date("l", time() + 60 * 60 * 24 * $x);
 
       echo $dayofweek . "'s crew:" . "\n";
       echo getCrew($connection, $day) . "\n\n";
