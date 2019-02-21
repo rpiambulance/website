@@ -227,6 +227,13 @@ body section {
     color: #ff4144;
 }
 
+
+@media (max-width: 767px) {
+  .top-number-non-emergency {
+      display: none;
+  }
+}
+
 .social {
     text-align: right;
 }
