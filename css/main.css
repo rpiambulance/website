@@ -223,6 +223,10 @@ body section {
     margin: 0
 }
 
+.top-number-emergency {
+    color: #ff4144;
+}
+
 .social {
     text-align: right;
 }
