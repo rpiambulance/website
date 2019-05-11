@@ -59,11 +59,12 @@ angular.module('CommunicationsCtrl', []).controller('CommunicationsCtrl', ['$sco
                 '* Channel 3: RPIA Tac 2 <span class="comm-list">Talkaround channel usually used for events</span>\n' +
                 '* Channel 4: RPIA Dispatch <span class="comm-list">activates upon receiving tones from county</span>\n' +
                 '* Channel 5: County Dispatches\n' +
-                '* Channel 6: Individual Paging <span class="comm-list">for supervisors and officers</span>\n' +
-                '* Channel 7: EMS 400 <span class="comm-list">155.400 MHz: hospital radio frequency for Troy and Schenectady hospitals</span>\n' +
-                '* Channel 8: EMS 715 <span class="comm-list">155.715 MHz: statewide, inter-agency operations frequency: all emergency ' +
+                '* Channel 6: EMS 400 <span class="comm-list">155.400 MHz: hospital radio frequency for Troy and Schenectady hospitals</span>\n' +
+                '* Channel 7: EMS 715 <span class="comm-list">155.715 MHz: statewide, inter-agency operations frequency: all emergency ' +
                 'units equipped to use this channel</span>\n' +
-                '* Channel 9: Weather \n\n ' +
+                '* Channel 8: Weather <span class="comm-list"></span>\n' +
+                '* Channel 9-14: Interoperability Channels <span class="comm-list"> HFH, ' +
+                'VCall10, VTac11, VTac12, VTac13, VTac14</span>\n\n' +
                 'If you seek more information contact the radio coordinator.'
         },
         {
