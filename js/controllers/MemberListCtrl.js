@@ -67,6 +67,8 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
             email = "cpr@rpiambulance.com";
         }else if (member_with_position.qaco == 1){
             email = "qa@rpiambulance.com";
+        }else if (member_with_position.devco == 1){
+            email = "dev@rpiambulance.com";
         }else if (member_with_position.admin == 1){
             email = "webmaster@rpiambulance.com";
         }else{
@@ -87,7 +89,7 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
                 $scope.lineSide.push(elem);
             } else if(elem.pres == 1 || elem.vicepres == 1) {
                 $scope.civilSide.push(elem);
-            } else if(elem.qaco == 1 || elem.cprco == 1 || elem.radioco == 1 || elem.traincommchair == 1 || elem.schedco == 1 || ((elem.admin == 1) && (elem.captain == 0))) {
+            } else if(elem.devco == 1 || elem.qaco == 1 || elem.cprco == 1 || elem.radioco == 1 || elem.traincommchair == 1 || elem.schedco == 1 || ((elem.admin == 1) && (elem.captain == 0))) {
                 $scope.otherOfficers.push(elem);
             }
         });
@@ -107,6 +109,9 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
             }
             if (elem.qaco == 1) {
               elem.card_id.push("QA/QI Coordinator");
+            }
+            if (elem.devco == 1) {
+              elem.card_id.push("Dev Team Coordinator");
             }
             if (elem.admin == 1 && (!(elem.captain == 1 || elem.traincommchair == 1 || elem.qaco == 1))) {
                 elem.card_id.push("Webmaster");

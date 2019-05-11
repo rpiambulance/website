@@ -123,6 +123,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
         { field: 'schedco',        label: 'Scheduling Coordinator'   },
         { field: 'radioco',        label: 'Radio Coordinator'        },
         { field: 'traincommchair', label: 'Training Committee Chair' },
+        { field: 'devco',          label: 'Dev Team Coordinator'          },
         { field: 'cprco',          label: 'CPR Coordinator'          },
         { field: 'aedco',          label: 'AED Coordinator'          },
         { field: 'qaco',           label: 'QA/QI Coordinator'        },
