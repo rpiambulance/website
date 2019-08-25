@@ -122,7 +122,7 @@ if (!(isset($_GET['token'])) && $_GET['token'] == $slacktoken) {
     }
 }
 
-if (!(isset($_POST['token'])) && $_POST['token'] == $slacktoken) {
+if (!(isset($_POST['token']) && $_POST['token'] == $slacktoken)) {
     die("Nope.");
 } else {
     if (isset($_POST["slack_id"]) && isset($_POST['member_id'])) {
