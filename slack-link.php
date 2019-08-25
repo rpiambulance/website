@@ -54,6 +54,9 @@ if (!(isset($_GET['token'])) && $_GET['token'] == $slacktoken) {
                     $message .= " (" . $account['radionum'] . ")";
                 }
                 $message .= "\n";
+                if (isset($_GET['admin']) && $_GET['admin'] == 1) {
+                    $message .= "Phone: " . $account['cell_phone'];
+                }
                 $message .= "Email: " . $account['email'];
                 $message .= "\n";
                 $message .= "Positions:";
