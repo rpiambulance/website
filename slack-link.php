@@ -1,6 +1,5 @@
 <?php
 require_once '.functions.php';
-require_once ".db_config.php";
 
 
 $conn = openDatabaseConnection();
@@ -56,6 +55,7 @@ if (!(isset($_GET['token'])) && $_GET['token'] == $slacktoken) {
                 $message .= "\n";
                 if (isset($_GET['admin']) && $_GET['admin'] == 1) {
                     $message .= "Phone: " . $account['cell_phone'];
+                    $message .= "\n";
                 }
                 $message .= "Email: " . $account['email'];
                 $message .= "\n";
