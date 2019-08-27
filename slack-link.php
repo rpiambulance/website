@@ -54,7 +54,12 @@ if (!(isset($_GET['token'])) && $_GET['token'] == $slacktoken) {
                 }
                 $message .= "\n";
                 if (isset($_GET['admin']) && $_GET['admin'] == 1) {
-                    $message .= "Phone: " . $account['cell_phone'];
+                    $phone_num = $account['cell_phone'];
+                    // Removes everything except the number from the phone numbers
+                    $phone_num = preg_replace('/[^0-9.]+/', '', $phone_num);
+                    $phone_num = substr_replace($phone_num, '-', 3, 0);
+                    $phone_num = substr_replace($phone_num, '-', 7, 0);
+                    $message .= "Phone: " . $phone_num;
                     $message .= "\n";
                 }
                 $message .= "Email: " . $account['email'];
