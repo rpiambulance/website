@@ -255,7 +255,12 @@ CREATE TABLE `members` (
   `lastlogin` date NOT NULL,
   `facility_id` varchar(2) DEFAULT NULL,
   `card_id` varchar(10) DEFAULT NULL,
-  `access_revoked` tinyint(1) DEFAULT NULL
+  `access_revoked` tinyint(1) DEFAULT NULL,
+  `cprco` tinyint(4) NOT NULL,
+  `webmaster` tinyint(4) NOT NULL,
+  `qaco` tinyint(4) NOT NULL,
+  `devco` tinyint(4) NOT NULL,
+  `slackID` varchar(20) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -271,7 +276,7 @@ CREATE TABLE `radios` (
   `lastprogram` date NOT NULL,
   `issuedto` int(10) NOT NULL,
   `issuedate` date NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -284,7 +289,19 @@ CREATE TABLE `radio_log` (
   `radio` int(10) NOT NULL DEFAULT '0',
   `issuedto` int(10) NOT NULL DEFAULT '0',
   `issuedate` date NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sessions`
+--
+
+CREATE TABLE `sessions` (
+  `sessionID` varchar(100) NOT NULL,
+  `userID` int(10) NOT NULL,
+  `expiration` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Indexes for dumped tables
@@ -322,6 +339,13 @@ ALTER TABLE `members`
   ADD KEY `facility_id` (`facility_id`,`card_id`);
 
 --
+-- Indexes for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD PRIMARY KEY (`sessionID`),
+  ADD KEY `userID` (`userID`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -330,8 +354,20 @@ ALTER TABLE `members`
 --
 ALTER TABLE `login_attempts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `login_overrides`
 --
 ALTER TABLE `login_overrides`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `sessions`
+--
+ALTER TABLE `sessions`
+  ADD CONSTRAINT `sessions_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `members` (`id`);
+COMMIT;
