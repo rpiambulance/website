@@ -19,7 +19,7 @@ CREATE TABLE `crews` (
   `driver` int(10) NOT NULL DEFAULT '0',
   `attendant` int(10) NOT NULL DEFAULT '0',
   `observer` int(10) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -33,7 +33,7 @@ CREATE TABLE `default_crews` (
   `driver` int(10) NOT NULL,
   `attendant` int(10) NOT NULL,
   `observer` int(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -49,7 +49,7 @@ CREATE TABLE `email_log` (
   `from` varchar(50) NOT NULL,
   `to` varchar(100) NOT NULL,
   `content` text NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,7 @@ CREATE TABLE `events` (
   `location` text NOT NULL,
   `limit` tinyint(3) NOT NULL DEFAULT '0',
   `hide` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -78,7 +78,7 @@ CREATE TABLE `events_attendees` (
   `id` int(10) NOT NULL,
   `eventid` int(10) NOT NULL,
   `memberid` int(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -90,7 +90,7 @@ CREATE TABLE `expirations` (
   `memberid` int(10) NOT NULL,
   `expired` varchar(100) NOT NULL,
   `exp_date` date NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -106,7 +106,7 @@ CREATE TABLE `fuel_log` (
   `vehicle` varchar(10) NOT NULL,
   `amount` decimal(5,2) NOT NULL DEFAULT '0.00',
   `mileage` decimal(12,2) NOT NULL DEFAULT '0.00'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -123,7 +123,7 @@ CREATE TABLE `games` (
   `location` text NOT NULL,
   `ees` tinyint(1) NOT NULL DEFAULT '0',
   `hide` tinyint(1) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -136,7 +136,7 @@ CREATE TABLE `games_crews` (
   `gameid` int(10) NOT NULL DEFAULT '0',
   `memberid` int(10) NOT NULL DEFAULT '0',
   `position` varchar(10) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -156,7 +156,7 @@ CREATE TABLE `homepage` (
   `position` tinyint(4) NOT NULL DEFAULT '0',
   `hide` tinyint(4) NOT NULL DEFAULT '0',
   `members` tinyint(4) NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -261,7 +261,7 @@ CREATE TABLE `members` (
   `qaco` tinyint(4) NOT NULL,
   `devco` tinyint(4) NOT NULL,
   `slackID` varchar(20) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -276,7 +276,7 @@ CREATE TABLE `radios` (
   `lastprogram` date NOT NULL,
   `issuedto` int(10) NOT NULL,
   `issuedate` date NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -289,7 +289,7 @@ CREATE TABLE `radio_log` (
   `radio` int(10) NOT NULL DEFAULT '0',
   `issuedto` int(10) NOT NULL DEFAULT '0',
   `issuedate` date NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
