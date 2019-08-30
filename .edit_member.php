@@ -6,16 +6,7 @@
 require_once ".db_config.php";
 require_once ".functions.php";
 
-$connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
-$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-if(!isset($dname)) {
-  $dname = 'ambulanc_web';
-}
-
-// Selecting Database
-//$db = mysql_select_db("$dname", $connection);
-$connection->exec("USE `$dname`");
+$connection = openDatabaseConnection();
 
 $modifiableFields = array(
   "username", "password", "first_name", "last_name", "dob", "email",
@@ -33,43 +24,35 @@ $modifiableFields = array(
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
   if(checkIfAdmin($connection)) {
     $data = json_decode($_POST['data'], true);
+    $sql = "UPDATE members SET";
 
-    // try {
-      // foreach($data as $elem) {
-        $sql = "UPDATE members SET";
+    if(isset($data['change_password'])){
+      if(isset($data['password'])) {
+        $data['password'] = password_hash(hash('sha256', $data['password']), PASSWORD_DEFAULT);
+      }
+    }
 
-        if(isset($data['change_password'])){
-          if(isset($data['password'])) {
-            $data['password'] = password_hash(hash('sha256', $data['password']), PASSWORD_DEFAULT);
-          }
-        }
+    foreach($modifiableFields as $mf) {
+      if(isset($data[$mf])) {
+        $sql .= " $mf = :$mf,";
+      }
+    }
 
-        foreach($modifiableFields as $mf) {
-          if(isset($data[$mf])) {
-            $sql .= " $mf = :$mf,";
-          }
-        }
+    // Eliminate last comma
+    $sql = substr($sql, 0, -1);
 
-        // Eliminate last comma
-        $sql = substr($sql, 0, -1);
+    $sql .= " WHERE id = :memberId";
 
-        $sql .= " WHERE id = :memberId";
+    $statement = $connection->prepare($sql);
 
-        $statement = $connection->prepare($sql);
-
-        foreach($modifiableFields as $mf) {
-          if(isset($data[$mf])) {
-            $statement->bindValue(":$mf", $data[$mf]);
-          }
-        }
-        $statement->bindValue(':memberId', $data['id']);
-        $result = $statement->execute();
-      // }
-      echo(json_encode(array('success' => true)));
-    // } catch (PDOException $e) {
-    //   echo $e;
-    //   echo(json_encode(array('success' => false, 'error' => $e)));
-    // }
+    foreach($modifiableFields as $mf) {
+      if(isset($data[$mf])) {
+        $statement->bindValue(":$mf", $data[$mf]);
+      }
+    }
+    $statement->bindValue(':memberId', $data['id']);
+    $result = $statement->execute();
+    echo(json_encode(array('success' => true)));
   } else {
     echo 'nice try';
   }

@@ -195,6 +195,10 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
     function memberPostProcessing (member) {
         for(var j = 0; j < DATES.length; j++) {
             if(member[DATES[j]] !== null) {
+                // Means it is just a date and has no time component
+                if (!(member[DATES[j]].includes('T'))) {
+                    member[DATES[j]] += 'T10:00:00-05:00';
+                }
                 member[DATES[j]] = new Date(member[DATES[j]]);
             }
         }
