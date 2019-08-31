@@ -2966,3 +2966,7 @@ td.info {
 .table>thead>tr>th, .table>tbody>tr>th, .table>tfoot>tr>th, .table>thead>tr>td, .table>tbody>tr>td, .table>tfoot>tr>td {
     vertical-align: inherit;
 }
+
+table.table.table-striped tr#current-day td {
+    background-color: rgba(255,6,6,.1);
+}

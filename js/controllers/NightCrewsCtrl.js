@@ -1,4 +1,4 @@
-angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$http', '$location', 'AuthService', 'DateService', function ($scope, $http, $location, AuthService, DateService) {
+angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$filter', '$http', '$location', 'AuthService', 'DateService', function ($scope, $filter, $http, $location, AuthService, DateService) {
 
     /*
      * What we're doing here is getting the current date, and then using that to get the date of the Sunday
@@ -140,5 +140,16 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
         }
 
         crewAction('clearcrew', clear);
+    };
+
+    $scope.highlightDay = () => {
+        const dateString = $filter('date')(currentDate, 'MM/d/yy');
+        for (const element of document.getElementsByClassName('crew-date')) {
+            // Highlights the current day with a lightish red
+            if (element.textContent === dateString) {
+                element.parentElement.id = 'current-day';
+                break;
+            }
+        }
     };
 }]);
