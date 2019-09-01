@@ -143,7 +143,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$f
     };
 
     $scope.highlightDay = () => {
-        const dateString = $filter('date')(currentDate, 'MM/d/yy');
+        const dateString = $filter('date')(currentDate, 'MM/dd/yy');
         for (const element of document.getElementsByClassName('crew-date')) {
             // Highlights the current day with a lightish red
             if (element.textContent === dateString) {
