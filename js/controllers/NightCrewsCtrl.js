@@ -22,6 +22,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$f
     $scope.nextWeek = new Date($scope.currentWeek.getTime() + 604800000);
 
     $scope.viewDate = currentDate;
+    $scope.dateString = $filter('date')(currentDate, 'MM/dd/yy');
     var viewDate = $location.search()['viewDate'];
     if (viewDate) {
         $scope.viewDate = new Date(viewDate + " 12:00:00.000");
@@ -140,16 +141,5 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$f
         }
 
         crewAction('clearcrew', clear);
-    };
-
-    $scope.highlightDay = () => {
-        const dateString = $filter('date')(currentDate, 'MM/dd/yy');
-        for (const element of document.getElementsByClassName('crew-date')) {
-            // Highlights the current day with a lightish red
-            if (element.textContent === dateString) {
-                element.parentElement.id = 'current-day';
-                break;
-            }
-        }
     };
 }]);
