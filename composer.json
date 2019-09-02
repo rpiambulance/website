@@ -1,0 +1,6 @@
+{
+    "name": "rpiambulance/website",
+    "description": "Website for RPI Ambulance",
+    "type": "project",
+    "require": {}
+}
