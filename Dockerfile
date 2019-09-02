@@ -4,7 +4,9 @@ COPY . /var/www/html
 
 WORKDIR /var/www/html
 
-RUN apt-get update \
+RUN rm -rf libs \
+    && rm -rf vendor \
+    && apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \

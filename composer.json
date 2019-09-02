@@ -2,5 +2,7 @@
     "name": "rpiambulance/website",
     "description": "Website for RPI Ambulance",
     "type": "project",
-    "require": {}
+    "require": {
+        "google/apiclient": "^2.0"
+    }
 }
