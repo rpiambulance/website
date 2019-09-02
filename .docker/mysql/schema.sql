@@ -368,6 +368,6 @@ ALTER TABLE `login_overrides`
 --
 -- Constraints for table `sessions`
 --
-ALTER TABLE `sessions`
-  ADD CONSTRAINT `sessions_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `members` (`id`);
+--ALTER TABLE `sessions`
+--  ADD CONSTRAINT `sessions_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `members` (`id`);
 COMMIT;

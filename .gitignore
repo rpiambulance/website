@@ -34,3 +34,5 @@ libs/
 # Docker             #
 ######################
 .docker/mysql/data/
+
+/vendor/
