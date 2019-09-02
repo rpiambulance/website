@@ -1,4 +1,4 @@
-angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$http', '$location', 'AuthService', 'DateService', function ($scope, $http, $location, AuthService, DateService) {
+angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$filter', '$http', '$location', 'AuthService', 'DateService', function ($scope, $filter, $http, $location, AuthService, DateService) {
 
     /*
      * What we're doing here is getting the current date, and then using that to get the date of the Sunday
@@ -22,6 +22,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$h
     $scope.nextWeek = new Date($scope.currentWeek.getTime() + 604800000);
 
     $scope.viewDate = currentDate;
+    $scope.dateString = $filter('date')(currentDate, 'MM/dd/yy');
     var viewDate = $location.search()['viewDate'];
     if (viewDate) {
         $scope.viewDate = new Date(viewDate + " 12:00:00.000");

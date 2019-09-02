@@ -12,9 +12,9 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="c in crews[t.attribute]">
+                <tr ng-repeat="c in crews[t.attribute]" ng-attr-id="{{c.date === dateString ? 'current-day' : ''}}">
                     <td>{{c.day}}</td>
-                    <td>{{c.date | date:'shortDate'}}</td>
+                    <td class="crew-date">{{c.date | date:'shortDate'}}</td>
                     <td ng-repeat='p in positions'>
                         <span ng-if="c.spots[p]" title="{{c.spots[p].first_name}} {{c.spots[p].last_name}}">
                             <a ng-if="c.spots[p].email" ng-href="mailto:{{c.spots[p].email}}">{{c.spots[p].name}}</a>

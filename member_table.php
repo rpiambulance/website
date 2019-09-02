@@ -13,34 +13,33 @@ if(!isset($username)) {
   echo 0;
 } else {
 	
-$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-if(!isset($dname)) {
-  $dname = 'ambulanc_web';
-}
+  if(!isset($dname)) {
+    $dname = 'ambulanc_web';
+  }
 
-// Selecting Database
-//$db = mysql_select_db("$dname", $connection);
-$connection->exec("USE `$dname`");
+  // Selecting Database
+  //$db = mysql_select_db("$dname", $connection);
+  $connection->exec("USE `$dname`");
 
-$sql = "SELECT * FROM members WHERE dob != 0000-00-00";
+  $sql = "SELECT * FROM members WHERE dob != 0000-00-00";
 
-if(isset($_GET['member_id'])) {
-  $sql .= ' AND id = :id';
-} else if(!isset($_GET['include_inactive'])) {
-  $sql .= " AND active = 1";
-}
+  if(isset($_GET['member_id'])) {
+    $sql .= ' AND id = :id';
+  } else if(!isset($_GET['include_inactive'])) {
+    $sql .= " AND active = 1";
+  }
 
-$statement=$connection->prepare($sql);
+  $statement=$connection->prepare($sql);
 
-if(isset($_GET['member_id'])) {
-  $statement->bindParam(':id', $_GET['member_id']);
-}
+  if(isset($_GET['member_id'])) {
+    $statement->bindParam(':id', $_GET['member_id']);
+  }
 
-$statement->execute();
-$results=$statement->fetchAll(PDO::FETCH_ASSOC);
-$json=json_encode($results);
-
-echo($json);
+  $statement->execute();
+  $results=$statement->fetchAll(PDO::FETCH_ASSOC);
+  $json=json_encode($results);
+  echo($json);
 }
 ?>

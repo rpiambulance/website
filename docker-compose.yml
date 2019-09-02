@@ -21,6 +21,8 @@ services:
       - mysql:db
     depends_on:
       - mysql
+    logging:
+      driver: none
 
   mysql:
     image: mysql:5.7

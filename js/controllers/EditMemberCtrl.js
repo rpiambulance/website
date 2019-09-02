@@ -195,6 +195,10 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
     function memberPostProcessing (member) {
         for(var j = 0; j < DATES.length; j++) {
             if(member[DATES[j]] !== null) {
+                // Means it is just a date and has no time component
+                if (!(member[DATES[j]].includes('T'))) {
+                    member[DATES[j]] += 'T10:00:00-05:00';
+                }
                 member[DATES[j]] = new Date(member[DATES[j]]);
             }
         }
@@ -266,19 +270,21 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
             toSubmit[toSubmit.position] = '1';
         }
 
+        // We don't want to convert the actual user's dates to strings as it causes issues so we just copy the user
+        const stringUser = Object.assign({}, toSubmit);
         for(var j = 0; j < DATES.length; j++) {
             if(toSubmit[DATES[j]] !== null) {
                 if(typeof toSubmit[DATES[j]] === 'number') {
-                    toSubmit[DATES[j]] = new Date(toSubmit[DATES[j]]).toISOString().substring(0, 10);
+                    stringUser[DATES[j]] = new Date(toSubmit[DATES[j]]).toISOString().substring(0, 10);
                 } else if(toSubmit[DATES[j]] instanceof Date) {
-                    toSubmit[DATES[j]] = toSubmit[DATES[j]].toISOString().substring(0, 10);
+                    stringUser[DATES[j]] = toSubmit[DATES[j]].toISOString().substring(0, 10);
                 } else {
-                    toSubmit[DATES[j]] = null;
+                    stringUser[DATES[j]] = null;
                 }
             }
         }
 
-        var data = 'data=' + JSON.stringify(toSubmit) + '&session_id=' + $scope.getSessionIDCookie();
+        var data = 'data=' + JSON.stringify(stringUser) + '&session_id=' + $scope.getSessionIDCookie();
         $http({
             method: 'POST',
             url: '.edit_member.php?session_id=' + AuthService.getSessionId(),
