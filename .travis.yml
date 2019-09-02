@@ -10,6 +10,7 @@ services:
 script:
   - npm install -g bower
   - bower install
+  - composer install
 
 deploy:
   skip_cleanup: true
