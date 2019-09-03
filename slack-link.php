@@ -1,16 +1,39 @@
 <?php
 require_once '.functions.php';
 
-
 $conn = openDatabaseConnection();
 if (is_null($conn)) {
     echo "Database connection failed to initialize!";
     return;
 }
 
-if (!(isset($_GET['token'])) && $_GET['token'] == $slacktoken) {
-    die("Nope.");
+include '.db_config.php';
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    if (!isset($_POST['token']) || $_POST['token'] != $slacktoken) {
+        die("Nope.");
+    }
+    if (isset($_POST["slack_id"]) && isset($_POST['member_id'])) {
+        $statement = $conn->prepare("SELECT * FROM members WHERE id = :memID");
+        $statement->bindParam(":memID", $_POST['member_id']);
+        $statement->execute();
+        $user = $statement->fetch();
+        // If the given member ID isn't in our database we return a message stating that
+        if (!$user) {
+            echo "Invalid user id! Please enter another one";
+            return;
+        }
+        $statement = $conn->prepare("UPDATE members SET slackID = :slack WHERE id = :memID");
+        $statement->execute(['slack' => $_POST["slack_id"], 'memID' => $_POST['member_id']]);
+        echo "Successfully linked " . $_POST['slack_id'] . " to " . $user['first_name'] . " " . $user['last_name'] . " (" . $_POST['member_id'] . ")";
+    } else {
+        echo "Invalid request";
+        return;
+    }
 } else {
+    if (!isset($_GET['token']) || $_GET['token'] != $slacktoken) {
+        die("Nope.");
+    }
     if (isset($_GET['slack_id']) && isset($_GET['type'])) {
         if ($_GET['type'] != "info") {
             return;
@@ -107,8 +130,7 @@ if (!(isset($_GET['token'])) && $_GET['token'] == $slacktoken) {
             }
             return;
         }
-    }
-    if (isset($_GET['slack_id'])) {
+    } elseif (isset($_GET['slack_id']) && !isset($_GET['type'])) {
         $statement = $conn->prepare("SELECT id, first_name, last_name FROM members WHERE slackID = :slack");
         $statement->bindParam(":slack", $_GET['slack_id']);
         $statement->execute();
@@ -124,27 +146,7 @@ if (!(isset($_GET['token'])) && $_GET['token'] == $slacktoken) {
             echo $message;
             return;
         }
-    }
-}
-
-if (!(isset($_POST['token']) && $_POST['token'] == $slacktoken)) {
-    die("Nope.");
-} else {
-    if (isset($_POST["slack_id"]) && isset($_POST['member_id'])) {
-        $statement = $conn->prepare("SELECT * FROM members WHERE id = :memID");
-        $statement->bindParam(":memID", $_POST['member_id']);
-        $statement->execute();
-        $user = $statement->fetch();
-        // If the given member ID isn't in our database we return a message stating that
-        if (!$user) {
-            echo "Invalid user id! Please enter another one";
-            return;
-        }
-        $statement = $conn->prepare("UPDATE members SET slackID = :slack WHERE id = :memID");
-        $statement->execute(['slack' => $_POST["slack_id"], 'memID' => $_POST['member_id']]);
-        echo "Successfully linked " . $_POST['slack_id'] . " to " . $user['first_name'] . " " . $user['last_name'] . " (" . $_POST['member_id'] . ")";
     } else {
-        echo "Invalid request";
-        return;
+        die("You've provided an invalid request.");
     }
 }
