@@ -77,8 +77,8 @@ function updateSession($sessionID, $connection){
 
 function openDatabaseConnection(){
   try{
-    require_once '.db_config.php';
-    $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
+    include '.db_config.php';
+    $connection = new PDO($dsn, $duser, $dpassword);
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   
     if(!isset($dname)) {

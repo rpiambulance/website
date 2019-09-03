@@ -2,9 +2,13 @@
 
 require_once ".db_config.php";
 require_once ".functions.php";
+require_once ".gcal.php";
 
 // empty response
 $response = null;
+
+// Google Calendar Object
+$calendar = new GoogleCalendar();
 
 //array to hold errors
 $errors = array();
@@ -84,6 +88,11 @@ if (checkIfAdmin($connection)){
 
     if($result) {
       $data['success'] = true;
+      if ($mode == 'add') {
+        $calendar->createEvent($event_name, $date . 'T' . $start_time, $date . 'T' . $end_time, $event_location, $logid, false);
+      } else {
+        $calendar->updateEvent($event_name, $date . 'T' . $start_time, $date . 'T' . $end_time, $event_location, $id, false);
+      }
     } else {
       $data['success'] = false;
     }
