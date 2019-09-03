@@ -51,7 +51,7 @@ Class GoogleCalendar {
       $this->service->events->delete($this->calendar_id, $eventId);
     }
 
-    function updateEvent($name, $start, $end, $loc, $id) {
+    function updateEvent($name, $start, $end, $loc, $id, $game) {
       $eventId = $this->getGcalEventId($id, $game);
       $event = new Google_Service_Calendar_Event(array(
           'summary' => $name,
@@ -79,6 +79,7 @@ Class GoogleCalendar {
       $stmt->bindParam(':id', $id);
       $stmt->execute();
       $result = $stmt->fetch();
+      $connection = null;
       return $result['gcalEventId'];
     }
 }
