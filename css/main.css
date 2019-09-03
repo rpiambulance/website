@@ -2970,3 +2970,8 @@ td.info {
 table.table.table-striped tr#current-day td {
     background-color: rgba(255,6,6,.1);
 }
+
+#calendar-icon {
+    vertical-align: middle;
+    margin-top: 2px;
+}
