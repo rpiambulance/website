@@ -7,7 +7,7 @@ putenv('GOOGLE_APPLICATION_CREDENTIALS=gcal_creds.json');
 Class GoogleCalendar {
 
     private $service;
-    private $calendar_id = 'rpiambulance.com_uuc6tmlmf4ct8qeps19oj1i69g@group.calendar.google.com';
+    private $googleCalendar_id = 'rpiambulance.com_uuc6tmlmf4ct8qeps19oj1i69g@group.calendar.google.com';
 
     function __construct() {
       $client = new Google_Client();

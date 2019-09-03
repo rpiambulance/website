@@ -10,7 +10,7 @@ $response = null;
 $errors = array();
 
 // Google Calendar Object
-$calendar = new GoogleCalendar();
+$googleCalendar = new GoogleCalendar();
 
 // array to pass back data
 $data = array();
@@ -89,9 +89,9 @@ try {
   if($result) {
     $data['success'] = true;
     if ($mode == 'add') {
-      $calendar->createEvent($event_name, $date . 'T' . $start_time, $date . 'T' . $end_time, $event_location, $logid, true);
+      $googleCalendar->createEvent($event_name, $date . 'T' . $start_time, $date . 'T' . $end_time, $event_location, $logid, true);
     } else {
-      $calendar->updateEvent($event_name, $date . 'T' . $start_time, $date . 'T' . $end_time, $event_location, $id, true);
+      $googleCalendar->updateEvent($event_name, $date . 'T' . $start_time, $date . 'T' . $end_time, $event_location, $id, true);
     }
   } else {
     $data['success'] = false;

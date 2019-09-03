@@ -6,7 +6,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   require_once ".functions.php";
   require_once ".gcal.php";
 
-  $calendar = new GoogleCalendar();
+  $googleCalendar = new GoogleCalendar();
   
   $connection = openDatabaseConnection();
 
@@ -25,7 +25,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $memberId = $memberInfo['id'];
 
   if($memberInfo['admin'] === '1') {
-    $calendar->deleteEvent($gameId, true);
+    $googleCalendar->deleteEvent($gameId, true);
     $statement = $connection->prepare("DELETE FROM games_crews WHERE gameid = :gameId");
     $statement->bindParam(':gameId', $gameId);
     $statement->execute();

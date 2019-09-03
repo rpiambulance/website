@@ -8,7 +8,7 @@ require_once ".gcal.php";
 $response = null;
 
 // Google Calendar Object
-$calendar = new GoogleCalendar();
+$googleCalendar = new GoogleCalendar();
 
 //array to hold errors
 $errors = array();
@@ -89,9 +89,9 @@ if (checkIfAdmin($connection)){
     if($result) {
       $data['success'] = true;
       if ($mode == 'add') {
-        $calendar->createEvent($event_name, $date . 'T' . $start_time, $date . 'T' . $end_time, $event_location, $logid, false);
+        $googleCalendar->createEvent($event_name, $date . 'T' . $start_time, $date . 'T' . $end_time, $event_location, $logid, false);
       } else {
-        $calendar->updateEvent($event_name, $date . 'T' . $start_time, $date . 'T' . $end_time, $event_location, $id, false);
+        $googleCalendar->updateEvent($event_name, $date . 'T' . $start_time, $date . 'T' . $end_time, $event_location, $id, false);
       }
     } else {
       $data['success'] = false;

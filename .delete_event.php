@@ -5,7 +5,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   require_once ".functions.php";
   require_once ".gcal.php";
 
-  $calendar = new GoogleCalendar();
+  $googleCalendar = new GoogleCalendar();
 
   $connection = openDatabaseConnection();
 
@@ -24,7 +24,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $memberId = $memberInfo['id'];
 
   if($memberInfo['admin'] === '1') {
-    $calendar->deleteEvent($eventId, false);
+    $googleCalendar->deleteEvent($eventId, false);
     $statement = $connection->prepare("DELETE FROM events_attendees WHERE eventid = :eventId");
     $statement->bindParam(':eventId', $eventId);
     $statement->execute();
