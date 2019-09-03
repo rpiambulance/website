@@ -3,20 +3,17 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   session_id($_POST['session_id']);
   session_start();
 
-  require_once ".db_config.php";
+  require_once ".functions.php";
+  require_once ".gcal.php";
 
-  $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
-  $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-  if(!isset($dname)) {
-    $dname = 'ambulanc_web';
-  }
+  $googleCalendar = new GoogleCalendar();
+  
+  $connection = openDatabaseConnection();
 
   if(!isset($_POST['game_id'])) {
     return;
   }
 
-  include ".functions.php";
   $user = getUser($_POST['session_id'], $connection);
   $username = $user['username'];
   $gameId = $_POST['game_id'];
@@ -28,6 +25,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $memberId = $memberInfo['id'];
 
   if($memberInfo['admin'] === '1') {
+    $googleCalendar->deleteEvent($gameId, true);
     $statement = $connection->prepare("DELETE FROM games_crews WHERE gameid = :gameId");
     $statement->bindParam(':gameId', $gameId);
     $statement->execute();
