@@ -76,7 +76,7 @@ hr {
 .btn-default.btn-sm {
     padding: 5px 10px;
 }
-.btn-success, .btn-danger {
+.btn-success, .btn-danger, .btn-info {
     border-radius: 4px;
     margin-top: 11px;
 }
