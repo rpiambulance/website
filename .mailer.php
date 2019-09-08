@@ -28,7 +28,7 @@ if (getUser($_POST['sessionId'], $connection)['admin'] == 0) {
 
 $connection = null;
 
-$url = 'http://lp13.rpiambulance.com:3000/sendmail';
+$url = 'https://mailer.lp13.rpiambulance.com/sendmail';
 
 $ch = curl_init();
 
