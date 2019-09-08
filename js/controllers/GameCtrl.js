@@ -174,7 +174,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$httpPa
             }
         });
         body += `\nAdditional Info:\n${$scope.formData.additionalinfo}`;
-        body += '\n If you have any questions, you can reach out to secondlt@rpiambualnce.com. Thanks!\n\n';
+        body += '\nIf you have any questions, you can reach out to secondlt@rpiambualnce.com. Thanks!\n\n';
         const emailData = {
             subject: `${$scope.game.description}`,
             to: $scope.attendees.map(a => a.email),
