@@ -22,6 +22,9 @@
                     <button class="btn btn-danger btn-sm" ng-click="deleteGame()" ng-if="admin">
                         <span class="fa fa-trash"></span> Delete Game
                     </button>
+                    <button class="btn btn-info btn-sm" ng-click="displayModal()" ng-if="admin">
+                        <span class="fa fa-envelope"></span> Send Email
+                    </button>
                 </p>
                 <hr>
             </div>
@@ -61,6 +64,23 @@
         </div>
     </div>
 </section>
+<modal title="'Additional Email Info'" visible="showModal">
+    <form role="form" ng-submit="sendEmail()" novalidate>
+        <div class="form-group">
+            <label for="additionalinfo"><strong>Additional Email Info: </strong></label>
+            <textarea id="additionalinfo" cols="80" rows="20" style="resize:none" class="form-control" ng-model="formData.additionalinfo" ng-trim="false">
+            </textarea>
+        </div>
+        <div class="form-actions center">
+            <button type="submit" class="btn btn-success"
+                    value="Submit">
+                Send Email
+            </button>
+            <button type="reset" class="btn btn-danger">Reset</button>
+        </div>
+    </form>
+
+</modal>
 <script type="text/javascript">
 $(function () {
     $('[data-toggle="tooltip"]').tooltip()

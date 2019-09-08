@@ -65,7 +65,8 @@ CREATE TABLE `events` (
   `description` text NOT NULL,
   `location` text NOT NULL,
   `limit` tinyint(3) NOT NULL DEFAULT '0',
-  `hide` tinyint(1) NOT NULL
+  `hide` tinyint(1) NOT NULL,
+  `gcalEventId` VARCHAR(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -122,7 +123,8 @@ CREATE TABLE `games` (
   `description` text NOT NULL,
   `location` text NOT NULL,
   `ees` tinyint(1) NOT NULL DEFAULT '0',
-  `hide` tinyint(1) NOT NULL
+  `hide` tinyint(1) NOT NULL,
+  `gcalEventId` VARCHAR(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------

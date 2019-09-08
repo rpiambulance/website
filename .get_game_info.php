@@ -45,6 +45,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
     c.memberid,
     c.position,
     m.first_name,
+    m.email,
     m.last_name,
     (c.memberId = :memberId) as is_viewing_member,
     CONCAT(SUBSTRING(m.first_name, 1, 1), \". \", m.last_name) AS ambulance_name

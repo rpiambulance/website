@@ -9,3 +9,7 @@ $duser = 'root';
 $dpassword = 'root';
 
 $dsn = "mysql:host={$dhost};dbname={$dname}";
+
+$slacktoken = 'YOUR TOKEN HERE';
+
+?>
