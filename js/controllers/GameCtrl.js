@@ -165,9 +165,10 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$httpPa
         body += 'Attendance is as follows:\n';
         $scope.positions.forEach((p) => {
             if (p.attendees.length != 0) {
-                body += `${p.title}[s]: ${p.attendees[0].ambulance_name}`;
+                const title_text = p.attendees.length == 1 ? p.title : p.title + 's';
+                body += `${title_text}: ${p.attendees[0].ambulance_name}`;
                 for (let i = 1; i < p.attendees.length; i++) {
-                    body += `, ${p.attendees[0].ambulance_name}`;
+                    body += `, ${p.attendees[i].ambulance_name}`;
                 }
                 body += '\n';
             }
