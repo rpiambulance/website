@@ -161,7 +161,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$httpPa
         if (!$scope.admin) {
             return;
         }
-        let body = `Dear Attendees,\n\nThank you for signing up for ${$scope.game.description} with RPI Ambulance. The event is ${$scope.game.date} at ${$scope.game.start} hours. Please meet at the garage 5 minutes prior to ensure a prompt departure.\n\n`;
+        let body = `Thank you for signing up for ${$scope.game.description} with RPI Ambulance. The event is ${$scope.game.date} at ${$scope.game.start} hours. Please meet at the garage 5 minutes prior to ensure a prompt departure.\n\n`;
         body += 'Attendance is as follows:\n';
         $scope.positions.forEach((p) => {
             if (p.attendees.length != 0) {
