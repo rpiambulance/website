@@ -26,11 +26,23 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             header: 'Current Officer Board 2019',
             internal_title: 'Current Officer Board',
             body: 'Line Side: \n' +
+            '* Captain: Caleb Woodson \n' +
+            '* First Lieutenant: Nathaniel Foye \n' +
+            '* Second Lieutenant: Martin Smith \n' +
+            '\nCivil Side:\n' +
+            '* President: Yaseen Mahmoud\n' +
+            '* Vice President: Nathan Buckley'
+        },
+        
+        {
+            header: 'Officer Board 2018',
+            internal_title: 'Current Officer Board',
+            body: 'Line Side: \n' +
             '* Captain: Quazi Hossain \n' +
             '* First Lieutenant: John Jacangelo \n' +
             '* Second Lieutenant: Logan Ramos \n' +
             '\nCivil Side:\n' +
-            '* President: Mary-Clare Crochiere\n' +
+            '* President: Mary Clare Crochiere\n' +
             '* Vice President: Ingrid Oprea'
         },
 
@@ -42,7 +54,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             '* First Lieutenant: John Jacangelo \n' +
             '* Second Lieutenant: Logan Ramos \n' +
             '\nCivil Side:\n' +
-            '* President: Mary-Clare Crochiere\n' +
+            '* President: Mary Clare Crochiere\n' +
             '* Vice President: Ingrid Oprea'
         },
 
@@ -67,7 +79,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             '* Second Lieutenant: Jody Ostrander \n' +
             '\nCivil Side:\n' +
             '* President: Zackery White\n' +
-            '* Vice President: Mary-Clare Crochiere'
+            '* Vice President: Mary Clare Crochiere'
         },
 
         {
@@ -79,7 +91,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             '* Second Lieutenant: Harrison Leinweber \n' +
             '\nCivil Side:\n' +
             '* President: Ciera Williams\n' +
-            '* Vice President: Rebbecca Martin'
+            '* Vice President: Rebecca Martin'
         },
 
         {
@@ -91,7 +103,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             '* Second Lieutenant: Brittany Rupp\n' +
             '\nCivil Side:\n' +
             '* President: Alexander Benzell\n' +
-            '* Vice President: Rebbecca Martin'
+            '* Vice President: Rebecca Martin'
         },
 
         {
