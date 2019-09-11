@@ -13,7 +13,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
 
 
         {
-            header: 'Officer Board 2019',
+            header: 'Officer Board',
             internal_title: 'O-Board Photo',
             type: 'img',
             img: 'img/O-Board.jpg',
@@ -23,7 +23,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
         },
 
         {
-            header: 'Current Officer Board 2019',
+            header: 'Current Officer Board',
             internal_title: 'Current Officer Board',
             body: 'Line Side: \n' +
             '* Captain: Caleb Woodson \n' +
@@ -35,7 +35,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
         },
         
         {
-            header: 'Officer Board 2018',
+            header: 'Officer Board Spring 2019',
             internal_title: 'Current Officer Board',
             body: 'Line Side: \n' +
             '* Captain: Quazi Hossain \n' +
@@ -47,7 +47,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
         },
 
         {
-            header: 'Officer Board 2018',
+            header: 'Officer Board Fall 2018',
             internal_title: 'Past Officer Boards',
             body: 'Line Side: \n' +
             '* Captain: David Wolmark \n' +
