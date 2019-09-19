@@ -5,6 +5,7 @@ date_default_timezone_set('America/New_York');
 $default_numbers = array(992,993);
 
 function cleanName($name) {
+  global $default_numbers;
   if ($name[0]["last_name"] == "OUT OF SERVICE") {
     return "OOS";
   }
