@@ -2,6 +2,8 @@
 
 date_default_timezone_set('America/New_York');
 
+$default_numbers = array(992,993);
+
 function cleanName($name) {
   if ($name[0]["last_name"] == "OUT OF SERVICE") {
     return "OOS";
@@ -15,7 +17,7 @@ function cleanName($name) {
   if ($name[0]["radionum"] != 0) {
     return substr($name[0]["first_name"],0,1) . "." . " " . $name[0]["last_name"] . " (" . $name[0]["radionum"] . ")";
   } else {
-    return substr($name[0]["first_name"],0,1) . "." . " " . $name[0]["last_name"];
+    return substr($name[0]["first_name"],0,1) . "." . " " . $name[0]["last_name"] . " (" . array_shift($default_numbers) . ")";
   }
 }
 
