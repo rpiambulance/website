@@ -12,23 +12,27 @@ function cleanName($name) {
     }
     return "<EMPTY>";
   }
-  return substr($name[0]["first_name"],0,1) . "." . " " . $name[0]["last_name"];
+  if ($name[0]["radionum"] != 0) {
+    return substr($name[0]["first_name"],0,1) . "." . " " . $name[0]["last_name"] . " (" . $name[0]["radionum"] . ")";
+  } else {
+    return substr($name[0]["first_name"],0,1) . "." . " " . $name[0]["last_name"];
+  }
 }
 
 function getCrew($connection, $date) {
-  $statement = $connection->query("SELECT first_name, last_name FROM members WHERE id = (SELECT cc FROM crews WHERE date = '$date')");
+  $statement = $connection->query("SELECT first_name, last_name, radionum FROM members WHERE id = (SELECT cc FROM crews WHERE date = '$date')");
   $statement->execute();
   $cc = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-  $statement = $connection->query("SELECT first_name, last_name FROM members WHERE id = (SELECT driver FROM crews WHERE date = '$date')");
+  $statement = $connection->query("SELECT first_name, last_name, radionum FROM members WHERE id = (SELECT driver FROM crews WHERE date = '$date')");
   $statement->execute();
   $driver = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-  $statement = $connection->query("SELECT first_name, last_name FROM members WHERE id = (SELECT attendant FROM crews WHERE date = '$date')");
+  $statement = $connection->query("SELECT first_name, last_name, radionum FROM members WHERE id = (SELECT attendant FROM crews WHERE date = '$date')");
   $statement->execute();
   $attendant1 = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-  $statement = $connection->query("SELECT first_name, last_name FROM members WHERE id = (SELECT observer FROM crews WHERE date = '$date')");
+  $statement = $connection->query("SELECT first_name, last_name, radionum FROM members WHERE id = (SELECT observer FROM crews WHERE date = '$date')");
   $statement->execute();
   $attendant2 = $statement->fetchAll(PDO::FETCH_ASSOC);
 
