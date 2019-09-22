@@ -5,7 +5,9 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - .:/var/www/html
+      - .admin_config.php:/var/www/html/.admin_config.php
+      - .db_config.php:/var/www/html/.db_config.php
+      - .form_config.php:/var/www/html/.form_config.php
     depends_on:
       - mysql
 
@@ -13,9 +15,6 @@ services:
     image: phpmyadmin/phpmyadmin:latest
     ports:
       - "8081:80"
-    environment:
-      MYSQL_USERNAME: root
-      MYSQL_ROOT_PASSWORD: root
     # phpmyadmin requires that the mysql container be linked as "db"
     links:
       - mysql:db
@@ -33,9 +32,9 @@ services:
       - .docker/mysql/schema.sql:/docker-entrypoint-initdb.d/00-schema.sql
       - .docker/mysql/default.sql:/docker-entrypoint-initdb.d/01-default.sql
     environment:
-      MYSQL_ROOT_PASSWORD: root
-      MYSQL_USER: test
-      MYSQL_PASS: pass
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER:?MYSQL_USER}
+      MYSQL_PASS: ${MYSQL_PASS:?MYSQL_PASS}
 
 volumes:
   mysql-volume:

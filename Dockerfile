@@ -6,6 +6,8 @@ WORKDIR /var/www/html
 
 RUN rm -rf libs \
     && rm -rf vendor \
+    && rm -rf .docker \
+    && rm -rf .travis \
     && apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
@@ -26,8 +28,5 @@ RUN rm -rf libs \
     && mkdir -p /var/www/.config \
     && chown www-data:www-data /var/www/ \
     && chown www-data:www-data /var/www/.config \
-    && sudo -u www-data /bin/bash -c "bower install" \
-    && sudo -u www-data /bin/bash -c "composer install" \
-    && cp /var/www/html/.docker/.admin_config.php /var/www/html \
-    && cp /var/www/html/.docker/.db_config.php /var/www/html \
-    && cp /var/www/html/.docker/.form_config.php /var/www/html
+    && sudo -u www-data /bin/bash -c "bower install --production" \
+    && sudo -u www-data /bin/bash -c "composer install --no-dev --optimize-autoloader"
