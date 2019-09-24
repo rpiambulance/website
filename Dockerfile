@@ -6,11 +6,7 @@ COPY . /var/www/html
 
 WORKDIR /var/www/html
 
-RUN rm -rf libs \
-    && rm -rf vendor \
-    && rm -rf .docker \
-    && rm -rf .travis \
-    && apt-get update \
+RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         ca-certificates \
         curl \
