@@ -1,7 +1,10 @@
 version: '3'
 services:
   web:
-    build: .
+    build:
+      context: .
+      args:
+        build_env: production
     ports:
       - "8080:80"
     volumes:
