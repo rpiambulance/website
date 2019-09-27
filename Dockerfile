@@ -1,6 +1,6 @@
 FROM php:7.2-apache
 
-ARG build_env
+ARG build_env=production
 
 COPY . /var/www/html
 
