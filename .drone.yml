@@ -12,6 +12,7 @@ steps:
       port: 22
       script:
         - docker-compose -f /drone/docker-compose.yml up -d --build website
+      command_timeout: 900
     when:
       branch:
         - master
