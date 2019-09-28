@@ -1,6 +1,6 @@
 **Note:** This repo was previously forked from [wtg/ambulance](https://github.com/wtg/ambulance), but was removed from the fork network by GitHub Support. The former repository is no longer developed, leaving this repo as the most up-to-date version.
 
-[![Build Status](https://travis-ci.org/rpiambulance/website.svg?branch=master)](https://travis-ci.org/rpiambulance/website)
+[![Build Status](https://cloud.drone.io/api/badges/rpiambulance/website/status.svg)](https://cloud.drone.io/rpiambulance/website)
 
 Installation and Running the Site
 ---
