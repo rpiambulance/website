@@ -119,7 +119,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$f
             headers: {'Content-Type': 'application/x-www-form-urlencoded'}
         }).then(function (response) {
             console.log(response.data);
-            if(response.data == "true") {
+            if(response.data.trimStart() == "true") {
                 $scope.loadCrews();
             } else {
                 alert('Something went wrong...');
