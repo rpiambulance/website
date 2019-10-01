@@ -1,5 +1,5 @@
 var ctrl_name = 'GameCtrl';
-angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$httpParamSerializerJQLike', '$location', '$route', '$routeParams', 'AuthService', '$window', function ($scope, $http, $httpParamSerializerJQLike, $location, $route, $routeParams, AuthService, $window) {
+angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$httpParamSerializerJQLike', '$location', '$route', '$routeParams', 'AuthService', 'moment', function ($scope, $http, $httpParamSerializerJQLike, $location, $route, $routeParams, AuthService, moment) {
     $scope.calendarView = $location.search()['calendarView'] || 'month';
 
     $scope.load = function () {
@@ -34,8 +34,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$httpPa
                     additionalinfo: ''
                 };
 
-                $scope.game.startObj = new Date(parseInt($scope.game.start_epoch) * 1000);
-                $scope.game.endObj = new Date(parseInt($scope.game.end_epoch) * 1000);
+                $scope.game.startObj = moment(`${$scope.game.date} ${$scope.game.start}`).toDate();
+                $scope.game.endObj = moment(`${$scope.game.date} ${$scope.game.end}`).toDate();
 
                 $scope.positions = [
                     { title: 'Crew Chief', value: 'cc', attendees: []},

@@ -35,7 +35,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   $results = array();
 
-  $sql = "SELECT *, UNIX_TIMESTAMP(CONCAT(CURRENT_DATE(), ' ', CONVERT(start, CHARACTER))) AS start_epoch, UNIX_TIMESTAMP(CONCAT(CURRENT_DATE(), ' ', CONVERT(end, CHARACTER))) AS end_epoch FROM events WHERE id = :eventId";
+  $sql = "SELECT * FROM events WHERE id = :eventId";
   $statement=$connection->prepare($sql);
   $statement->bindValue(':eventId', $eventId);
   $statement->execute();

@@ -1,5 +1,5 @@
 var ctrl_name = 'EventCtrl';
-angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$location', '$route', '$routeParams', 'AuthService', '$window', function($scope, $http, $location, $route, $routeParams, AuthService, $window) {
+angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$location', '$route', '$routeParams', 'AuthService', 'moment', function($scope, $http, $location, $route, $routeParams, AuthService, moment) {
     $scope.calendarView = $location.search()['calendarView'] || 'month';
 
     $scope.load = function() {
@@ -23,8 +23,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
                 $scope.event = response.data.event;
                 $scope.alreadySignedUp = response.data.alreadySignedUp;
                 $scope.currentMemberId = response.data.currentMemberId;
-                $scope.event.startObj = new Date(parseInt($scope.event.start_epoch) * 1000);
-                $scope.event.endObj = new Date(parseInt($scope.event.end_epoch) * 1000);
+                $scope.event.startObj = moment(`${$scope.event.date} ${$scope.event.start}`).toDate();
+                $scope.event.endObj = moment(`${$scope.event.date} ${$scope.event.end}`).toDate();
                 $scope.loaded = true;
             }
         });
