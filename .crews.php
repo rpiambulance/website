@@ -245,7 +245,8 @@ function main () {
     $viewDate = new DateTime($post['view_date']);
 
     $statement = $connection->prepare("SELECT id FROM crews WHERE date = :date LIMIT 1");
-    $statement->bindParam(':date', $viewDate->format('Y-m-d'));
+    $formattedDate = $viewDate->format('Y-m-d');
+    $statement->bindParam(':date', $formattedDate);
     $statement->execute();
     $idarray = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
     if ($idarray !== null) {
