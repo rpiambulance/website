@@ -7,8 +7,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
             internal_title: 'About Text',
             body: 'The Constitution of RPI Ambulance is our governing document. It covers the duties and ' +
             'responsibilities of officers, procedures for meetings and elections, and conduct guidelines for RPI ' +
-            'Ambulance Members. The current Constitution was ratified by the general membership on March 24, 2017, ' +
-            'and approved by the E-Board in November 2017. \n'
+            'Ambulance Members. The current Constitution was ratified by the general membership on September 15th, 2019 ' +
+            'and approved by the E-Board on October 15th, 2019. \n'
         },
 
         {
