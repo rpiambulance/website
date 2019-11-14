@@ -1,0 +1,18 @@
+kind: pipeline
+name: deploy_website
+
+steps:
+  - name: deploy
+    image: appleboy/drone-ssh
+    settings:
+      host: lp13.rpiambulance.com
+      username: drone
+      password:
+        from_secret: SSH_PASSWORD
+      port: 22
+      script:
+        - docker-compose -f /drone/docker-compose.yml up -d --build website
+      command_timeout: 5m
+    when:
+      branch:
+        - master

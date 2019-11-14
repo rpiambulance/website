@@ -1,0 +1,8 @@
+version: '3'
+services:
+  web:
+    build:
+      args:
+        build_env: development
+    volumes:
+      - .:/var/www/html

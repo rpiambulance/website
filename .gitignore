@@ -6,6 +6,7 @@
 .admin_config.php
 gcal_creds.json
 .form_config.php
+.env
 !.docker/.admin_config.php
 !.docker/.db_config.php
 !.docker/.form_config.php

@@ -3,7 +3,7 @@ require_once ".db_config.php";
 include ".functions.php";
 if (isset($_GET['session_id'])){
   $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
-  updateSession($sessionID, $connection);
+  updateSession($_GET['session_id'], $connection);
   $key = $_GET['key'];
 
   if(!isset($key)){

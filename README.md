@@ -1,6 +1,6 @@
 **Note:** This repo was previously forked from [wtg/ambulance](https://github.com/wtg/ambulance), but was removed from the fork network by GitHub Support. The former repository is no longer developed, leaving this repo as the most up-to-date version.
 
-[![Build Status](https://travis-ci.org/rpiambulance/website.svg?branch=master)](https://travis-ci.org/rpiambulance/website)
+[![Build Status](https://cloud.drone.io/api/badges/rpiambulance/website/status.svg)](https://cloud.drone.io/rpiambulance/website)
 
 Installation and Running the Site
 ---
@@ -40,20 +40,55 @@ need. For a Linux distro, find your OS and follow the install directions for it 
 [this page](https://docs.docker.com/install/). You may need to additionally follow the instructions
 [this page](https://docs.docker.com/compose/install/) to install docker-compose.
 
-Once that is done, you just need to run the following command anytime you want to work on the site:
+Next, you will need to copy a handful of files into place:
+
+```bash
+cp .env.sample .env
+cp .docker/.admin_config.php .
+cp .docker/.db_config.php .
+cp .docker/.form_config.php .
 ```
+
+Once that is done, you just need to run the following command anytime you want to work on the site:
+
+```bash
 docker-compose up
 ```
 
 This starts all three containers, links them together, and makes them accessible on your localhost. The containers
 have the following access points on the host machine:
+
 * Site: http://localhost:8080
 * phpMyAdmin: http://localhost:8081
 * MySQL: localhost:33060
+
 This will setup the necessary `.{admin,db,form}_config.php` files in your site directory. Additionally, when you first
 start the MySQL container, it will create a user with the following credentials that you can use to login:
+
 * Username: test
 * Password: test
+
+Production
+---
+
+Similar to the Development, Production can also be run through docker-compose. Setup steps are largely
+the same, however, you will want to do:
+
+```bash
+cp .env.sample .env
+cp .admin_config.example.php .admin_config.php
+cp .db_config.example.php .db_config.php
+cp .form_config.example.php .form_config.php
+```
+
+and then edit the four files to have secure values. Once you are ready to run the site, you will run:
+
+```bash
+docker-compose -f docker-compose.yml up
+```
+
+Where the accessing the site, phpMyAdmin, and MySQL are through the same endpoints as above, using whatever
+username and password you set in the `.env` file to access them.
 
 Deployment
 ---
@@ -68,6 +103,7 @@ On any pushes to master, Travis-CI will kick off a
 which connects to the RPI VPN network, and then uses rsync to push files from the repo
 to the Union FTP server, where the site is hosted. To do this, it uses five secret
 variables that are set on Travis-CI under settings for the repo:
+
 * RPI_FTP_USERNAME
 * RPI_FTP_PASSWORD
 * RPI_VPN_USERNAME

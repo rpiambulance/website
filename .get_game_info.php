@@ -35,7 +35,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   $results = array();
 
-  $sql = "SELECT *, UNIX_TIMESTAMP(start) AS start_epoch, UNIX_TIMESTAMP(end) AS end_epoch FROM games WHERE id = :gameId";
+  $sql = "SELECT * FROM games WHERE id = :gameId";
   $statement=$connection->prepare($sql);
   $statement->bindValue(':gameId', $gameId);
   $statement->execute();
