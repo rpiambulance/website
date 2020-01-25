@@ -1,0 +1,19 @@
+FROM nginx:latest
+
+COPY . /var/www/html
+
+WORKDIR /var/www/html
+
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        git \
+        sudo \
+    && curl -sL https://deb.nodesource.com/setup_10.x | bash - \
+    && apt-get install -y nodejs \
+    && npm install -g bower \
+    && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /var/www/.config \
+    && chown -R www-data:www-data /var/www/ \
+    && sudo -u www-data /bin/bash -c "bower install --production"
