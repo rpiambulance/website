@@ -20,6 +20,9 @@
                             <a ng-if="c.spots[p].email" ng-href="mailto:{{c.spots[p].email}}">{{c.spots[p].name}}</a>
                             <strong ng-if="!c.spots[p].email">{{c.spots[p].name}}</strong>
                         </span>
+                        <span ng-if="c.spots[p] && c.spots[p].vacant && c.spots[p].eligible == false">
+                            <p>{{c.spots[p].eligibleReason}}</p>
+                        </span>
                         <span ng-if="c.spots[p] && c.spots[p].vacant && c.spots[p].eligible">
                             <button class="btn btn-danger btn-xs nc-button" ng-click="confirmCrew(c.spots[p])">Sign Up</button>
                         </span>

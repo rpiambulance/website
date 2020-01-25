@@ -1,10 +1,5 @@
 <?php
 
-// if ($_GET['page'] == "nightcrews") {
-//     require "error.php";
-//     die();
-// }
-
 date_default_timezone_set("America/New_York");
 
 main();
@@ -53,24 +48,36 @@ function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton,
     $diff = $dob->diff($now);
 
     if(!isset($member['id'])) {
-        return false;
+        return [false, 'Id not set'];
     } else if($diff->y < 18) {
-        return false;
+        return [false, 'Must be 18+'];
     } else if(mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')) > mktime(23, 59, 59, $m, $d, $y)) {
-        return false;
+        return [false, 'Date is in the past'];
     } else if($ontoday[$i] != 0) {
-        return false;
+        return [false, ''];
     }
 
     if($pos == 'cc') {
-        $condition3 = $member['crewchief'] == 1 || $member['firstresponsecc'] == 1 || $member['cctrainer'] == 1 || ($member['backupcc'] == 1 && $ccton[$i] == 1);
-
-        return $condition3;
+        $condition3 = $member['crewchief'] == 1 || $member['firstresponsecc'] == 1 || $member['cctrainer'] == 1;
+        if ($member['backupcc'] == 1) {
+            return [$ccton[$i] == 1, 'No CC-T on'];
+        } else {
+            return [$condition3, 'Must be a CC'];
+        }
     } else if($pos == 'driver') {
-        $condition3 = $member['driver'] == 1 || $member['drivertrainer'] == 1 || ($member['backupdriver'] == 1 && $dton[$i] == 1);
-
-        return $condition3;
+        $condition3 = $member['driver'] == 1 || $member['drivertrainer'] == 1;
+        if ($member['backupdriver'] == 1) {
+            return [$dton[$i] == 1, 'No D-T on'];
+        } else {
+            return [$condition3, 'Must be a Driver'];
+        }
     } else if($pos == 'attendant' || $pos == 'observer') {
+        $yesterday = mktime(0, 0, 0, date('m'), date('d'), date('y')) - 86400;
+        $signupdate = mktime(0, 0, 0, $m, $d, $y);
+        $fourpmsunday = mktime(16, 0, 0, date('m'), date('d'), date('y'));
+        if (date("D") == "Sun" && time() < $fourpmsunday && $yesterday < $signupdate) {
+            return [false, 'Must wait til 4pm afte rollover to signup'];
+        }
         $riderConditions = $member['dutysup'] == 1 || $member['ees'] == 1 ||
             $member['cctrainer'] == 1 || $member['firstresponsecc'] == 1 ||
             $member['drivertrainer'] == 1 || $member['crewchief'] == 1 ||
@@ -79,17 +86,17 @@ function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton,
             ($onthisweek == 1 && mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')) >= mktime(16, 00, 00, $m, $d, $y) && $ontoday[$i] == 0);
 
         if(!$riderConditions) {
-            return false;
+            return [false, ''];
         }
 
         if($pos == 'attendant') {
-            return $member['attendant'] == 1 || $obson[$i] == 1;
+            return [$member['attendant'] == 1 || $obson[$i] == 1, ''];
         } else if($pos == 'observer') {
-            return $member['attendant'] == 0 || $atton[$i] == 1;
+            return [$member['attendant'] == 0 || $atton[$i] == 1, ''];
         }
     }
 
-    return false;
+    return [false, 'Fallback option'];
 }
 
 function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthisweek, $ccton, $dton, $atton, $obson) {
@@ -101,6 +108,7 @@ function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthiswe
 
     $spot = array();
     $clear = false;
+    $eligibility = determineEligibility($member, $pos, $i, $ontoday, $onthisweek, $ccton, $dton, $atton, $obson, $y, $m, $d);
     if ($row[$pos] >= -3 && $row[$pos] != 0) {
         $spot['vacant'] = false;
 
@@ -135,15 +143,17 @@ function populateSpot ($connection, $i, $row, $pos, $member, $ontoday, $onthiswe
         } else {
             $clear = false;
         }
-    } else if (determineEligibility($member, $pos, $i, $ontoday, $onthisweek, $ccton, $dton, $atton, $obson, $y, $m, $d)) {
+    } else if ($eligibility[0]) {
         $spot["vacant"] = true;
         $spot["eligible"] = true;
+        $spot["eligibleReason"] = $eligibility[1];
         $spot["crewid"] = $row['id'];
         $spot["position"] = $pos;
         $spot["signature"] = sha1($row['id'] . $pos . $member['id'] . $SECRET_KEY);
     } else {
         $spot['vacant'] = true;
         $spot['eligible'] = false;
+        $spot["eligibleReason"] = $eligibility[1];
     }
 
     return array("spot" => $spot, "clear" => $clear);
@@ -235,7 +245,6 @@ function main () {
         "headings" => array(
             'Night', 'Date', 'Crew Chief', 'Driver', 'Rider', 'Rider'
         ),
-        "pagers" => array(),
         "crews" => array(
             "currentWeek" => array(),
             "nextWeek" => array(),
@@ -252,14 +261,6 @@ function main () {
     if ($idarray !== null) {
         $prev_week = $idarray['id'] - 7;
         $next_week = $idarray['id'] + 7;
-
-        if ($prev_week >= 36 && $prev_week <= $idarray['id'] - 13) {
-            $response["pagers"]["prevWeek"] = $prev_week;
-        }
-
-        if ($next_week >= 36 && $next_week <= $idarray['id'] - 13) {
-            $response["pagers"]["nextWeek"] = $next_week;
-        }
     }
 
     for ($tableloop = 0; $tableloop < 2; $tableloop++) {
@@ -312,11 +313,18 @@ function main () {
                     'cc', 'driver', 'attendant', 'observer'
                 ];
 
+                // Loops through all the spots and checks if there is a CC on in any of them.
                 foreach($positions as $pos) {
                     $statement = $connection->prepare("SELECT * FROM members WHERE id = :memberid LIMIT 1");
                     $statement->bindValue(':memberid', $y['cc']);
                     $statement->execute();
-                    $posMember = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
+                    $posMember = $statement->fetchAll(PDO::FETCH_ASSOC);
+                    
+                    if (sizeof($posMember) == 0) {
+                        continue;
+                    }
+
+                    $posMember = $posMember[0];
 
                     if($posMember['cctrainer']) {
                         $ccton[$x] = 1;
