@@ -76,7 +76,7 @@ function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton,
         $signupdate = mktime(0, 0, 0, $m, $d, $y);
         $fourpmsunday = mktime(16, 0, 0, date('m'), date('d'), date('y'));
         if (date("D") == "Sun" && time() < $fourpmsunday && $yesterday < $signupdate) {
-            return [false, 'Must wait til 4pm afte rollover to signup'];
+            return [false, 'Signups open at 1600 Sunday'];
         }
         $riderConditions = $member['dutysup'] == 1 || $member['ees'] == 1 ||
             $member['cctrainer'] == 1 || $member['firstresponsecc'] == 1 ||
