@@ -105,6 +105,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $message .= " CC,";
                     } elseif ($account['backupcc'] == 1) {
                         $message .= " P-CC,";
+                    } elseif ($account['clearedcc'] == 1) {
+                        $message .= " A-CC";
                     }
                     if ($account['firstresponsecc'] == 1) {
                         $message .= " FR-CC,";
@@ -115,6 +117,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         $message .= " D,";
                     } elseif ($account['backupdriver'] == 1) {
                         $message .= " P-D";
+                    } elseif ($account['cleareddriver'] == 1) {
+                        $message .= " A-D";
                     }
                 }
                 if ($attendant && $message.length == $message_length) {

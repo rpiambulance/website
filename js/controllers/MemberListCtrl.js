@@ -19,10 +19,12 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
             {field: 'dutysup', abbreviation: 'DS'},
             {field: 'ees', abbreviation: 'EES'},
             {field: 'firstresponsecc', abbreviation: 'FR-CC'},
+            {field: 'clearedcc', abbreviation: 'A-CC'},
             {field: 'backupcc', abbreviation: 'P-CC'},
             {field: 'crewchief', abbreviation: 'CC'},
             {field: 'cctrainer', abbreviation: 'CC-T'},
             {field: 'backupdriver', abbreviation: 'P-D'},
+            {field: 'cleareddriver', abbreviation: 'A-D'},
             {field: 'driver', abbreviation: 'D'},
             {field: 'drivertrainer', abbreviation: 'D-T'}
         ];

@@ -15,7 +15,7 @@ $modifiableFields = array(
   "nims800", "admin", "rank", "pres", "vicepres", "captain", "firstlt",
   "secondlt", "schedco", "radioco", "traincommchair", "dutysup", "ees",
   "cctrainer", "drivertrainer", "firstresponsecc", "crewchief", "driver",
-  "backupcc", "backupdriver", "attendant", "observer", "active",
+  "backupcc", "backupdriver", "clearedcc", "cleareddriver", "attendant", "observer", "active",
   "access_revoked"
 );
 

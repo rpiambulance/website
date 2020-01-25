@@ -97,7 +97,9 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
         { field: 'ees',             label: 'Event EMS Supervisor'    },
         { field: 'firstresponsecc', label: 'FR-59 Crew Chief'        },
         { field: 'backupcc',        label: 'Probationary Crew Chief' },
-        { field: 'backupdriver',    label: 'Probationary Driver'     }
+        { field: 'backupdriver',    label: 'Probationary Driver'     },
+        { field: 'clearedcc',       label: 'Cleared for Calls CC'},
+        { field: 'cleareddriver',   label: 'Cleared for Calls Driver'}
     ];
 
     $scope.stateCodes = [
@@ -123,7 +125,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
         { field: 'schedco',        label: 'Scheduling Coordinator'   },
         { field: 'radioco',        label: 'Radio Coordinator'        },
         { field: 'traincommchair', label: 'Training Committee Chair' },
-        { field: 'devco',          label: 'Dev Team Coordinator'          },
+        { field: 'devco',          label: 'Dev Team Coordinator'     },
         { field: 'cprco',          label: 'CPR Coordinator'          },
         { field: 'aedco',          label: 'AED Coordinator'          },
         { field: 'qaco',           label: 'QA/QI Coordinator'        },
