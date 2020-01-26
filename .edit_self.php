@@ -24,7 +24,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 try {
   include ".functions.php";
-  $user = getUser($sessionID);
+  $user = getUser($sessionID, $connection);
   $username = $user['username'];
 
   $statement = $connection->prepare("SELECT * FROM members WHERE username=:username");
