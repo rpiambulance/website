@@ -62,20 +62,20 @@ function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton,
         if ($member['backupcc'] == 1) {
             return [$ccton[$i] == 1, 'No CC-T on'];
         } else {
-            return [$condition3, 'Must be a CC'];
+            return [$condition3, 'CC credential required'];
         }
     } else if($pos == 'driver') {
         $condition3 = $member['driver'] == 1 || $member['drivertrainer'] == 1;
         if ($member['backupdriver'] == 1) {
             return [$dton[$i] == 1, 'No D-T on'];
         } else {
-            return [$condition3, 'Must be a Driver'];
+            return [$condition3, 'Driver credential required'];
         }
     } else if($pos == 'attendant' || $pos == 'observer') {
-        $yesterday = mktime(0, 0, 0, date('m'), date('d'), date('y')) - 86400;
+        $next_week = mktime(0, 0, 0, date('m'), date('d') + 7, date('y'));
         $signupdate = mktime(0, 0, 0, $m, $d, $y);
         $fourpmsunday = mktime(16, 0, 0, date('m'), date('d'), date('y'));
-        if (date("D") == "Sun" && time() < $fourpmsunday && $yesterday < $signupdate) {
+        if (date("D") == "Sun" && time() < $fourpmsunday && $next_week <= $signupdate) {
             return [false, 'Signups open at 1600 Sunday'];
         }
         $riderConditions = $member['dutysup'] == 1 || $member['ees'] == 1 ||
