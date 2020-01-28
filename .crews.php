@@ -287,7 +287,12 @@ function main () {
 
                 $statement = $connection->prepare("SELECT * FROM crews WHERE date = :date LIMIT 1");
                 $date = clone $viewDate;
-                $date->add(new DateInterval("P{$x}D"));
+                if ($x >= 0) {
+                    $date->add(new DateInterval("P{$x}D"));
+                } else {
+                    $absx = abs($x);
+                    $date->sub(new DateInterval("P{$absx}D"));
+                }
                 $statement->bindValue(':date', $date->format('Y-m-d'));
                 $statement->execute();
                 $y = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
