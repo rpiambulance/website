@@ -35,8 +35,8 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
         },
         
         {
-            header: 'Officer Board Summer-Fall 2020',
-            internal_title: 'Current Officer Board',
+            header: 'Officer Board Fall 2020',
+            internal_title: 'Past Officer Boards',
             body: 'Line Side: \n' +
             '* Captain: Logan Ramos \n' +
             '* First Lieutenant: Martin Smith \n' +
