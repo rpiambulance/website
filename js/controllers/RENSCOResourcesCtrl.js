@@ -20,7 +20,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
         {
             header: 'RENSCO Documents',
             body: '<div class="embed-responsive embed-responsive-16by9"> ' +
-            '<iframe src="https://drive.google.com/embeddedfolderview?id=0BzoMrS_ZZPigTTVhTGhqWHdnV1E#list" width="100%" height="400" frameborder="0"></iframe></div>'
+            '<iframe src="https://drive.google.com/embeddedfolderview?id=1bjA0G_YGtOk7nXWEXYhgckU-jtHetfKD#list" width="100%" height="400" frameborder="0"></iframe></div>'
         }
 
     ];
