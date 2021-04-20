@@ -6,12 +6,12 @@ angular.module('MinutesCtrl', []).controller('MinutesCtrl', ['$scope', function(
         {
             header: 'General Meeting Minutes',
             body: '<div class="embed-responsive embed-responsive-16by9"> ' +
-            '<iframe src="https://drive.google.com/embeddedfolderview?id=0BzoMrS_ZZPigdzVNbGNUVXdzNFk#list" width="650" height="400" frameborder="0"></iframe></div>'
+            '<iframe src="https://drive.google.com/embeddedfolderview?id=1GPvhPC7tFawNFCnhYg2EciWqHXqWafLb#list" width="650" height="400" frameborder="0"></iframe></div>'
         },
         {
             header: 'Officer Board Meeting Minutes',
             body: '<div class="embed-responsive embed-responsive-16by9"> ' +
-            '<iframe src="https://drive.google.com/embeddedfolderview?id=0BzoMrS_ZZPiga0ZKdnYxOVlUVkE#list" width="650" height="400" frameborder="0"></iframe></div>'
+            '<iframe src="https://drive.google.com/embeddedfolderview?id=1rMhuwX8q3XqlkRVaGLvieDdQ_hkbzHAh#list" width="650" height="400" frameborder="0"></iframe></div>'
         }
 
     ];
