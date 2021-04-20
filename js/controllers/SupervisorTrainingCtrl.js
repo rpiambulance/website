@@ -15,7 +15,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             header: 'EES Forms',
             body: '<div class="embed-responsive embed-responsive-16by9"> ' +
             '<iframe frameborder="0" class="embed-responsive-item" style="width: 100% !important; height: 100% !important;"' +
-            'src="https://drive.google.com/embeddedfolderview?id=0BzoMrS_ZZPigNXRtN2NRdHc3ckk#list"></iframe></div>'
+            'src="https://drive.google.com/embeddedfolderview?id=129pMoSn3zeKSVQVyxQKE3KePRgzkjnWn#list"></iframe></div>'
         },
 
         {
@@ -46,8 +46,10 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
         {
             header: 'Current Duty Supervisors',
             internal_title: 'Current DS',
-            body: '* John Jacangelo\n' +
-            '* David Wolmark'
+            body: '* Dan Bruce\n' +
+            '* Logan Ramos\n' +
+            '* Everest Orloff (as captain)\n' +
+            '* Caleb Woodson'
 
         }
 
