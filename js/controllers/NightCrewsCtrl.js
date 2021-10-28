@@ -43,7 +43,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$f
         $scope.driver = data.driver == 1;
         $scope.drivertrainer = data.drivertrainer == 1;
         $scope.dob = data.dob;
-        $scope.loadCrews();
+        $scope.loadCrewsNoDS();
     }, function (error) {
         $location.url('/login');
     });
