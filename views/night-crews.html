@@ -1,7 +1,7 @@
 <section id="NightCrews">
     <div class="container">
         <div class="row center" ng-repeat="t in tables">
-            <button class="btn btn-default btn-sm pull-right" ng-disabled="!loadedCrews" ng-click="loadCrews()"><span class="fa fa-refresh"></span></button>
+            <button class="btn btn-default btn-sm pull-right" ng-disabled="!loadedCrews" ng-click="loadCrewsNoDS()"><span class="fa fa-refresh"></span></button>
             <h2>{{t.title}}</h2>
             <table class="table table-bordered table-striped">
                 <thead>
