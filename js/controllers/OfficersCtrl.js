@@ -26,6 +26,42 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             header: 'Current Officer Board',
             internal_title: 'Current Officer Board',
             body: 'Line Side: \n' +
+            '* Captain: Everest Orloff \n' +
+            '* First Lieutenant: Dianna Stuzhuk \n' +
+            '* Second Lieutenant: Jacob Steingart \n' +
+            '\nCivil Side:\n' +
+            '* President: Sandhya Vellayappan\n' +
+            '* Vice President: Cammy Vanek'
+        },
+
+        {
+            header: 'Officer Board Spring 2021',
+            internal_title: 'Past Officer Boards',
+            body: 'Line Side: \n' +
+            '* Captain: Everest Orloff \n' +
+            '* First Lieutenant: Martin Smith \n' +
+            '* Second Lieutenant: Dianna Stuzhuk \n' +
+            '\nCivil Side:\n' +
+            '* President: Nathan Buckley\n' +
+            '* Vice President: Sandhya Vellayappan'
+        },
+        
+        {
+            header: 'Officer Board Fall 2020',
+            internal_title: 'Past Officer Boards',
+            body: 'Line Side: \n' +
+            '* Captain: Logan Ramos \n' +
+            '* First Lieutenant: Martin Smith \n' +
+            '* Second Lieutenant: Everest Orloff \n' +
+            '\nCivil Side:\n' +
+            '* President: Nathan Buckley\n' +
+            '* Vice President: Sandhya Vellayappan'
+        },
+                
+        {
+            header: 'Officer Board 2019-2020',
+            internal_title: 'Past Officer Boards',
+            body: 'Line Side: \n' +
             '* Captain: Caleb Woodson \n' +
             '* First Lieutenant: Nathaniel Foye \n' +
             '* Second Lieutenant: Martin Smith \n' +
@@ -36,7 +72,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
         
         {
             header: 'Officer Board Spring 2019',
-            internal_title: 'Current Officer Board',
+            internal_title: 'Past Officer Boards',
             body: 'Line Side: \n' +
             '* Captain: Quazi Hossain \n' +
             '* First Lieutenant: John Jacangelo \n' +

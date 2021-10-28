@@ -25,11 +25,11 @@ angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '
     }
     loadData();
 
-    $scope.validChoice = function (member, role) {
+    $scope.validChoice = function (member, role, day) {
         if(role == 'cc') {
-            return member.crewchief == 1 || member.cctrainer == 1 || member.backupcc == 1 || member.firstresponsecc == 1;
+            return $scope.defaultSchedule[day]['cc'] == member.id || member.crewchief == 1 || member.cctrainer == 1 || member.backupcc == 1 || member.firstresponsecc == 1;
         } else if(role == 'driver') {
-            return member.driver == 1 || member.drivertrainer == 1 || member.backupdriver == 1;
+            return $scope.defaultSchedule[day]['driver'] == member.id || member.driver == 1 || member.drivertrainer == 1 || member.backupdriver == 1;
         } else {
             return member.attendant == 1 || member.observer == 1
         }

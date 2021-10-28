@@ -34,7 +34,7 @@
                                 <option value="-1" ng-selected="d[r] == -1">RESERVED</option>
                                 <option value="0" ng-selected="d[r] == 0"></option>
                                 <option ng-repeat="m in members | orderBy:'last_name'"  ng-selected="d[r] == m.id"
-                                        ng-if="validChoice(m, r)" value="{{m.id}}">
+                                        ng-if="validChoice(m, r, d.day)" value="{{m.id}}">
                                     {{m.last_name.trim() + ', ' + m.first_name.trim()}}
                                 </option>
                             </select>
