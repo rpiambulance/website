@@ -2,7 +2,7 @@
 
 date_default_timezone_set('America/New_York');
 
-$default_numbers = array(992,993);
+$default_numbers;
 
 function cleanName($name) {
   global $default_numbers;
@@ -23,6 +23,8 @@ function cleanName($name) {
 }
 
 function getCrew($connection, $date) {
+  global $default_numbers;
+  $default_numbers = array(992,993);
   $statement = $connection->query("SELECT first_name, last_name, radionum FROM members WHERE id = (SELECT cc FROM crews WHERE date = '$date')");
   $statement->execute();
   $cc = $statement->fetchAll(PDO::FETCH_ASSOC);
