@@ -51,7 +51,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$q', 'A
     $scope.determineEligibility = function(position, member, crew) {
         for(var i = 0; i < $scope.positions.length; i++) {
             if($scope.positions[i] == position) continue;
-
+            if(position == 'dutysup' || $scope.positions[i] == 'dutysup') continue;
             if(crew.spots[$scope.positions[i]].id == member.id) return false;
         }
 
