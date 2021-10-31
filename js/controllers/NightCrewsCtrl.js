@@ -43,7 +43,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$f
         $scope.driver = data.driver == 1;
         $scope.drivertrainer = data.drivertrainer == 1;
         $scope.dob = data.dob;
-        $scope.loadCrewsNoDS();
+        $scope.loadCrews();
     }, function (error) {
         $location.url('/login');
     });
@@ -72,7 +72,7 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$f
         $scope.tables.push({attribute: 'nextWeek', title: 'Week of ' + DateService.formatViewDate($scope.viewDateNextWeek)});
     }
 
-    $scope.loadCrewsNoDS = function() {
+    $scope.loadCrews = function() {
         if(!AuthService.getSessionId()) {
             $location.url('/login');
             return;
@@ -90,10 +90,6 @@ angular.module('NightCrewsCtrl', []).controller('NightCrewsCtrl', ['$scope', '$f
                 console.log("it failed!");
                 console.log(response.data);
             } else {
-                // Remove the Duty Supervisor from the data heading to the
-                // Night Crews page
-                response.data.headings.pop();
-                response.data.positions.pop();
                 // Since the crews come in order of latest first, we need to separate
                 // them in a way that almost seems backwards.
                 $scope.tableHeadings = response.data.headings;

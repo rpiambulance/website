@@ -48,35 +48,6 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$q', 'A
     };
     $scope.load();
 
-    $scope.loadCrews = function() {
-        if(!AuthService.getSessionId()) {
-            $location.url('/login');
-            return;
-        }
-
-        $scope.loadedCrews = false;
-        $http({
-            method: 'POST',
-            url: '.crews.php',
-            data: "session_id=" + AuthService.getSessionId() + "&view_date=" + DateService.formatViewDate($scope.viewDateWeek),
-            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
-        }).then(function (response) {
-            console.log(response);
-            if (!response.data.success) {
-                console.log("it failed!");
-                console.log(response.data);
-            } else {
-                // Since the crews come in order of latest first, we need to separate
-                // them in a way that almost seems backwards.
-                $scope.tableHeadings = response.data.headings;
-                $scope.crews = response.data.crews;
-                $scope.positions = response.data.positions;
-                $scope.loadedCrews = true;
-            }
-        });
-    };
-
-
     $scope.determineEligibility = function(position, member, crew) {
         for(var i = 0; i < $scope.positions.length; i++) {
             if($scope.positions[i] == position) continue;

@@ -18,7 +18,7 @@ CREATE TABLE `crews` (
   `cc` int(10) NOT NULL DEFAULT '0',
   `driver` int(10) NOT NULL DEFAULT '0',
   `attendant` int(10) NOT NULL DEFAULT '0',
-  `observer` int(10) NOT NULL DEFAULT '0'
+  `observer` int(10) NOT NULL DEFAULT '0',
   `dutysup` int(10) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -33,7 +33,7 @@ CREATE TABLE `default_crews` (
   `cc` int(10) NOT NULL,
   `driver` int(10) NOT NULL,
   `attendant` int(10) NOT NULL,
-  `observer` int(10) NOT NULL
+  `observer` int(10) NOT NULL,
   `dutysup` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

@@ -332,6 +332,12 @@ function main () {
 
                     $posMember = $posMember[0];
 
+
+                    // Duty sup is not actively on night crew
+                    if($posMember['dutysup']) {
+                        continue;
+                    }
+
                     if($posMember['cctrainer']) {
                         $ccton[$x] = 1;
                     }

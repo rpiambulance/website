@@ -1,12 +1,12 @@
 <section id="NightCrews">
     <div class="container">
         <div class="row center" ng-repeat="t in tables">
-            <button class="btn btn-default btn-sm pull-right" ng-disabled="!loadedCrews" ng-click="loadCrewsNoDS()"><span class="fa fa-refresh"></span></button>
+            <button class="btn btn-default btn-sm pull-right" ng-disabled="!loadedCrews" ng-click="loadCrews()"><span class="fa fa-refresh"></span></button>
             <h2>{{t.title}}</h2>
             <table class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th ng-repeat="th in tableHeadings track by $index" width="16%">
+                    <th ng-repeat="th in tableHeadings | filter : '!Duty Supervisor' track by $index" width="16%">
                         {{th}}
                     </th>
                 </tr>
@@ -15,7 +15,7 @@
                 <tr ng-repeat="c in crews[t.attribute]" ng-attr-id="{{c.date === dateString ? 'current-day' : ''}}">
                     <td>{{c.day}}</td>
                     <td class="crew-date">{{c.date | date:'shortDate'}}</td>
-                    <td ng-repeat='p in positions'>
+                    <td ng-repeat='p in positions | filter : "!dutysup"'>
                         <span ng-if="c.spots[p]" title="{{c.spots[p].first_name}} {{c.spots[p].last_name}}">
                             <a ng-if="c.spots[p].email" ng-href="mailto:{{c.spots[p].email}}">{{c.spots[p].name}}</a>
                             <strong ng-if="!c.spots[p].email">{{c.spots[p].name}}</strong>
