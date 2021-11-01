@@ -321,8 +321,13 @@ function main () {
 
                 // Loops through all the spots and checks if there is a CC on in any of them.
                 foreach($positions as $pos) {
+                    // Duty sup is not actively on night crew
+                    if($pos == 'dutysup') {
+                        continue;
+                    }
+
                     $statement = $connection->prepare("SELECT * FROM members WHERE id = :memberid LIMIT 1");
-                    $statement->bindValue(':memberid', $y['cc']);
+                    $statement->bindValue(':memberid', $y[$pos]);
                     $statement->execute();
                     $posMember = $statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -331,12 +336,6 @@ function main () {
                     }
 
                     $posMember = $posMember[0];
-
-
-                    // Duty sup is not actively on night crew
-                    if($posMember['dutysup']) {
-                        continue;
-                    }
 
                     if($posMember['cctrainer']) {
                         $ccton[$x] = 1;
