@@ -181,13 +181,14 @@ function processTurnover ($connection) {
 
                 $date = date('Y-m-d', mktime(0, 0, 0, date('m'), date('d') + $i, date('Y')));
 
-                $statement = $connection->prepare("INSERT INTO crews (id, date, cc, driver, attendant, observer) VALUES (:logid, :date, :cc, :driver, :attendant, :observer)");
+                $statement = $connection->prepare("INSERT INTO crews (id, date, cc, driver, attendant, observer, dutysup) VALUES (:logid, :date, :cc, :driver, :attendant, :observer, :dutysup)");
                 $statement->bindValue(":logid", $logid);
                 $statement->bindValue(":date", $date);
                 $statement->bindValue(":cc", $default['cc']);
                 $statement->bindValue(":driver", $default['driver']);
                 $statement->bindValue(":attendant", $default['attendant']);
                 $statement->bindValue(":observer", $default['observer']);
+                $statement->bindValue(":dutysup", $default['dutysup']);
                 $statement->execute();
             }
         }
@@ -243,7 +244,7 @@ function main () {
 
     $response = array(
         "headings" => array(
-            'Night', 'Date', 'Crew Chief', 'Driver', 'Rider', 'Rider'
+            'Night', 'Date', 'Crew Chief', 'Driver', 'Rider', 'Rider', 'Duty Supervisor'
         ),
         "crews" => array(
             "currentWeek" => array(),
@@ -315,16 +316,21 @@ function main () {
                 }
 
                 $positions = [
-                    'cc', 'driver', 'attendant', 'observer'
+                    'cc', 'driver', 'attendant', 'observer', 'dutysup'
                 ];
 
                 // Loops through all the spots and checks if there is a CC on in any of them.
                 foreach($positions as $pos) {
+                    // Duty sup is not actively on night crew
+                    if($pos == 'dutysup') {
+                        continue;
+                    }
+
                     $statement = $connection->prepare("SELECT * FROM members WHERE id = :memberid LIMIT 1");
-                    $statement->bindValue(':memberid', $y['cc']);
+                    $statement->bindValue(':memberid', $y[$pos]);
                     $statement->execute();
                     $posMember = $statement->fetchAll(PDO::FETCH_ASSOC);
-                    
+
                     if (sizeof($posMember) == 0) {
                         continue;
                     }
@@ -368,7 +374,7 @@ function main () {
             );
 
             $positons = [
-                'cc', 'driver', 'attendant', 'observer'
+		    'cc', 'driver', 'attendant', 'observer', 'dutysup'
             ];
 
             foreach($positons as $pos) {

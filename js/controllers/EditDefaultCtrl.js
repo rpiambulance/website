@@ -5,7 +5,7 @@ angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '
     ];
 
     $scope.roles = [
-        'cc', 'driver', 'attendant', 'observer'
+        'cc', 'driver', 'attendant', 'observer', 'dutysup'
     ];
 
     $scope.changeMade = function () {
@@ -30,6 +30,8 @@ angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '
             return $scope.defaultSchedule[day]['cc'] == member.id || member.crewchief == 1 || member.cctrainer == 1 || member.backupcc == 1 || member.firstresponsecc == 1;
         } else if(role == 'driver') {
             return $scope.defaultSchedule[day]['driver'] == member.id || member.driver == 1 || member.drivertrainer == 1 || member.backupdriver == 1;
+        } else if(role == 'dutysup') {
+            return $scope.defaultSchedule[day]['dutysup'] == member.id || member.dutysup == 1;
         } else {
             return member.attendant == 1 || member.observer == 1
         }
