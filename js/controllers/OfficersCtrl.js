@@ -30,6 +30,18 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             '* First Lieutenant: Dianna Stuzhuk \n' +
             '* Second Lieutenant: Jacob Steingart \n' +
             '\nCivil Side:\n' +
+            '* President: Tom Zelley\n' +
+            '* Vice President: Francisco Alicandri'
+        },
+
+        {
+            header: 'Officer Board 2021-2022',
+            internal_title: 'Past Officer Boards',
+            body: 'Line Side: \n' +
+            '* Captain: Everest Orloff \n' +
+            '* First Lieutenant: Dianna Stuzhuk \n' +
+            '* Second Lieutenant: Jacob Steingart \n' +
+            '\nCivil Side:\n' +
             '* President: Sandhya Vellayappan\n' +
             '* Vice President: Cammy Vanek'
         },
