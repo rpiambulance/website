@@ -217,10 +217,6 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
             member.access_revoked = 0;
         }
 
-        if(member.admin == 1 && member.captain == 0) {
-            member.webmaster = '1';
-        }
-
         for (var j = 0; j < $scope.positions.length; j++) {
             if(member[$scope.positions[j].field] == 1) {
                 member.position = $scope.positions[j].field;
@@ -258,13 +254,7 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
 
         console.log("TS2", toSubmit);
 
-        if (toSubmit.admin == '0' && toSubmit.position === 'webmaster'){
-            toSubmit.admin = '0';
-            toSubmit.position = '0';
-        } else if(toSubmit.position === 'webmaster') {
-            toSubmit.admin = '1';
-            toSubmit.captain = '0';
-        } else if(toSubmit.position === 'NoNe1') {
+        if(toSubmit.position === 'NoNe1') {
           for (var i = 1; i<$scope.positions.length; i++){
             toSubmit[$scope.positions[i].field] = '0'
           }
