@@ -1,6 +1,6 @@
-var ctrl_name = 'SOPCtrl';
+var ctrl_name = 'SOGCtrl';
 angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) {
-    $scope.pageHeader = 'Standard Operating Procedures';
+    $scope.pageHeader = 'Standard Operating Guidelines';
     $scope.sections = [
         {
             header: '',
@@ -10,7 +10,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
         },
 
         {
-            header: 'Standard Operating Procedures',
+            header: 'Standard Operating Guidelines',
             body: '<div class="embed-responsive embed-responsive-16by9"> ' +
             '<iframe src="https://drive.google.com/embeddedfolderview?id=1L1WwOH2k5j9wnZ4lPwCyxdzYyARdj7Fs#list" width="100%" height="400" frameborder="0"></iframe></div>'
         }
