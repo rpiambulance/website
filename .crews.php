@@ -59,14 +59,14 @@ function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton,
 
     if($pos == 'cc') {
         $condition3 = $member['crewchief'] == 1 || $member['firstresponsecc'] == 1 || $member['cctrainer'] == 1;
-        if ($member['backupcc'] == 1) {
+        if ($member['backupcc'] == 1 && $condition3  == 0) {
             return [$ccton[$i] == 1, 'No CC-T on'];
         } else {
             return [$condition3, 'CC credential required'];
         }
     } else if($pos == 'driver') {
         $condition3 = $member['driver'] == 1 || $member['drivertrainer'] == 1;
-        if ($member['backupdriver'] == 1) {
+        if ($member['backupdriver'] == 1 && $condition3  == 0) {
             return [$dton[$i] == 1, 'No D-T on'];
         } else {
             return [$condition3, 'Driver credential required'];
