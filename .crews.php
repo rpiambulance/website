@@ -83,7 +83,7 @@ function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton,
             $member['drivertrainer'] == 1 || $member['crewchief'] == 1 ||
             $member['driver'] == 1 || $member['backupcc'] == 1 ||
             $member['backupdriver'] == 1 || $onthisweek == 0 ||
-            ($onthisweek == 1 && mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')) >= mktime(16, 00, 00, $m, $d, $y) && $ontoday[$i] == 0);
+            ($onthisweek == 1 && mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')) >= mktime(12, 00, 00, $m, $d, $y) && $ontoday[$i] == 0);
 
         if(!$riderConditions) {
             return [false, ''];
