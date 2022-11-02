@@ -279,7 +279,13 @@ function main () {
             $statement->execute();
             $member = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
 
-            for ($x = -7; $x < 7; $x++) { //Start this at -7 for 2-week rotation, and 0 for 1-week
+            if ($tableloop == 0) {
+                $endLoopValue = 14;
+            } else if ($tableloop == 1) {
+                $endLoopValue = 7;
+            }
+
+            for ($x = -7; $x < $endLoopValue; $x++) { //Start this at -7 for 2-week rotation, and 0 for 1-week
                 $ontoday[$x] = 0;
                 $ccton[$x]   = 0;
                 $dton[$x]    = 0;
