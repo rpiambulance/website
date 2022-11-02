@@ -298,7 +298,7 @@ function main () {
                 $statement->execute();
                 $y = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-                if (sizeof($y) == 0) {
+                if (count($y) == 0) {
                         continue;
                 }
                 $y = $y[0];
@@ -331,7 +331,7 @@ function main () {
                     $statement->execute();
                     $posMember = $statement->fetchAll(PDO::FETCH_ASSOC);
                     
-                    if (sizeof($posMember) == 0) {
+                    if (count($posMember) == 0) {
                         continue;
                     }
 
