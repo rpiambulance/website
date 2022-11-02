@@ -16,7 +16,7 @@ $modifiableFields = array(
   "secondlt", "schedco", "radioco", "traincommchair", "dutysup", "ees",
   "cctrainer", "drivertrainer", "firstresponsecc", "crewchief", "driver",
   "backupcc", "backupdriver", "clearedcc", "cleareddriver", "attendant", "observer", "active",
-  "access_revoked"
+  "access_revoked", "cprco", "webmaster", "qaco", "devco"
 );
 
 if($_SERVER['REQUEST_METHOD'] === 'POST') {

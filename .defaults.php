@@ -23,12 +23,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     try {
       foreach($data as $elem) {
-        $sql = "UPDATE default_crews SET cc=:cc, driver=:driver, attendant=:attendant, observer=:observer WHERE day=:day";
+        $sql = "UPDATE default_crews SET cc=:cc, driver=:driver, attendant=:attendant, observer=:observer, dutysup=:dutysup WHERE day=:day";
         $statement = $connection->prepare($sql);
         $statement->bindParam(':cc', $elem['cc']);
         $statement->bindParam(':driver', $elem['driver']);
         $statement->bindParam(':attendant', $elem['attendant']);
         $statement->bindParam(':observer', $elem['observer']);
+        $statement->bindParam(':dutysup', $elem['dutysup']);
         $statement->bindParam(':day', $elem['day']);
         $result = $statement->execute();
       }

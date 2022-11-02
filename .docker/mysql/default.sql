@@ -2,13 +2,13 @@
 
 USE `ambulanc_web`;
 
-INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`) VALUES ('0', '0', '0', '0', '0');
-INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`) VALUES ('1', '0', '0', '0', '0');
-INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`) VALUES ('2', '0', '0', '0', '0');
-INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`) VALUES ('3', '0', '0', '0', '0');
-INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`) VALUES ('4', '0', '0', '0', '0');
-INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`) VALUES ('5', '0', '0', '0', '0');
-INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`) VALUES ('6', '0', '0', '0', '0');
+INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`, `dutysup`) VALUES ('0', '0', '0', '0', '0', '0');
+INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`, `dutysup`) VALUES ('1', '0', '0', '0', '0', '0');
+INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`, `dutysup`) VALUES ('2', '0', '0', '0', '0', '0');
+INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`, `dutysup`) VALUES ('3', '0', '0', '0', '0', '0');
+INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`, `dutysup`) VALUES ('4', '0', '0', '0', '0', '0');
+INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`, `dutysup`) VALUES ('5', '0', '0', '0', '0', '0');
+INSERT INTO `default_crews` (`day`, `cc`, `driver`, `attendant`, `observer`, `dutysup`) VALUES ('6', '0', '0', '0', '0', '0');
 
 INSERT INTO `members`(`id`, `username`, `password`, `first_name`, `last_name`, `dob`, `email`, `rpi_address`, `home_address`,
   `cell_phone`, `home_phone`, `rcs_id`, `rin`, `radionum`, `radio`, `radiomodel`, `radioserial`, `radiocharger`, `radiotacmic`,

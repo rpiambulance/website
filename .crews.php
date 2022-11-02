@@ -59,14 +59,14 @@ function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton,
 
     if($pos == 'cc') {
         $condition3 = $member['crewchief'] == 1 || $member['firstresponsecc'] == 1 || $member['cctrainer'] == 1;
-        if ($member['backupcc'] == 1) {
+        if ($member['backupcc'] == 1 && $condition3  == 0) {
             return [$ccton[$i] == 1, 'No CC-T on'];
         } else {
             return [$condition3, 'CC credential required'];
         }
     } else if($pos == 'driver') {
         $condition3 = $member['driver'] == 1 || $member['drivertrainer'] == 1;
-        if ($member['backupdriver'] == 1) {
+        if ($member['backupdriver'] == 1 && $condition3  == 0) {
             return [$dton[$i] == 1, 'No D-T on'];
         } else {
             return [$condition3, 'Driver credential required'];
@@ -83,7 +83,7 @@ function determineEligibility ($member, $pos, $i, $ontoday, $onthisweek, $ccton,
             $member['drivertrainer'] == 1 || $member['crewchief'] == 1 ||
             $member['driver'] == 1 || $member['backupcc'] == 1 ||
             $member['backupdriver'] == 1 || $onthisweek == 0 ||
-            ($onthisweek == 1 && mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')) >= mktime(16, 00, 00, $m, $d, $y) && $ontoday[$i] == 0);
+            ($onthisweek == 1 && mktime(date('H'), date('i'), date('s'), date('m'), date('d'), date('Y')) >= mktime(12, 00, 00, $m, $d, $y) && $ontoday[$i] == 0);
 
         if(!$riderConditions) {
             return [false, ''];
@@ -181,13 +181,14 @@ function processTurnover ($connection) {
 
                 $date = date('Y-m-d', mktime(0, 0, 0, date('m'), date('d') + $i, date('Y')));
 
-                $statement = $connection->prepare("INSERT INTO crews (id, date, cc, driver, attendant, observer) VALUES (:logid, :date, :cc, :driver, :attendant, :observer)");
+                $statement = $connection->prepare("INSERT INTO crews (id, date, cc, driver, attendant, observer, dutysup) VALUES (:logid, :date, :cc, :driver, :attendant, :observer, :dutysup)");
                 $statement->bindValue(":logid", $logid);
                 $statement->bindValue(":date", $date);
                 $statement->bindValue(":cc", $default['cc']);
                 $statement->bindValue(":driver", $default['driver']);
                 $statement->bindValue(":attendant", $default['attendant']);
                 $statement->bindValue(":observer", $default['observer']);
+                $statement->bindValue(":dutysup", $default['dutysup']);
                 $statement->execute();
             }
         }
@@ -243,7 +244,7 @@ function main () {
 
     $response = array(
         "headings" => array(
-            'Night', 'Date', 'Crew Chief', 'Driver', 'Rider', 'Rider'
+            'Night', 'Date', 'Crew Chief', 'Driver', 'Rider', 'Rider', 'Duty Supervisor'
         ),
         "crews" => array(
             "currentWeek" => array(),
@@ -321,13 +322,18 @@ function main () {
                 }
 
                 $positions = [
-                    'cc', 'driver', 'attendant', 'observer'
+                    'cc', 'driver', 'attendant', 'observer', 'dutysup'
                 ];
 
                 // Loops through all the spots and checks if there is a CC on in any of them.
                 foreach($positions as $pos) {
+                    // Duty sup is not actively on night crew
+                    if($pos == 'dutysup') {
+                        continue;
+                    }
+
                     $statement = $connection->prepare("SELECT * FROM members WHERE id = :memberid LIMIT 1");
-                    $statement->bindValue(':memberid', $y['cc']);
+                    $statement->bindValue(':memberid', $y[$pos]);
                     $statement->execute();
                     $posMember = $statement->fetchAll(PDO::FETCH_ASSOC);
                     
@@ -374,7 +380,7 @@ function main () {
             );
 
             $positons = [
-                'cc', 'driver', 'attendant', 'observer'
+		    'cc', 'driver', 'attendant', 'observer', 'dutysup'
             ];
 
             foreach($positons as $pos) {

@@ -13,10 +13,10 @@ var dependencies = [
     // LOCAL CONTROLLERS:
     'MainCtrl', 'HomeCtrl', 'RPIAAboutCtrl', 'FAQCtrl', '5939AboutCtrl', 'OfficersCtrl', 'CommunicationsCtrl',
     'FR59AboutCtrl', 'MediaCtrl', 'MinutesCtrl', 'MutualAidCtrl', 'RadioCallsignsCtrl', 'AttendantTrainingCtrl',
-    'CompatibilityCtrl', 'ConstitutionCtrl', 'ContactCtrl', 'CopyCtrl', 'CoverageCtrl', 'CPRCertificationCtrl',
+    'CompatibilityCtrl', 'ConstitutionCtrl', 'ContactCtrl', 'BylawsCtrl', 'CopyCtrl', 'CoverageCtrl', 'CPRCertificationCtrl',
     'CrewChiefTrainingCtrl', 'DevsCtrl', 'DOHResourcesCtrl', 'DriverTrainingCtrl', 'EMTReciprocityCtrl',
     'InServiceTrainingCtrl', 'LoginCtrl', 'MiscFormsCtrl', 'NewMembersTrainingCtrl', 'RENSCOResourcesCtrl',
-    'SOPCtrl', 'SupervisorTrainingCtrl', 'SystemRequirementsCtrl', 'TextMessageDispatchCtrl',
+    'SOGCtrl', 'SupervisorTrainingCtrl', 'SystemRequirementsCtrl', 'TextMessageDispatchCtrl',
     'CoverageDetailsCtrl', 'JoinCtrl', 'NightCrewsCtrl', 'MemberListCtrl', 'FuelLogCtrl', 'StockingIssueCtrl',
     'AddMemberCtrl', 'ExpirationsCtrl', 'CommunityCtrl', 'EditMemberCtrl', 'GamesEventsCtrl', 'AddEventCtrl', 'EditDefaultCtrl',
     'EventCtrl', 'GameCtrl', 'GamesEventsCtrl', 'ModifyScheduleCtrl', 'MySettingsCtrl', 'MyTrainingCtrl', 'AnnouncementsCtrl',
@@ -40,8 +40,8 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
 		'night-crews', 'member-list', 'fuel-log', 'stocking-issue', 'expirations', 'announcements',
 		'attendant-training', 'driver-training', 'crew-chief-training', 'supervisor-training', 'in-service-training',
 		'communications', 'emt-reciprocity', 'minutes', 'misc-forms', 'mutual-aid', 'misc-forms', 'radio-callsigns',
-		'rensco-resources', 'sop', 'doh-resources', 'text-message-dispatch', 'my-settings', 'my-training', 'logout',
-        'games-events', 'constitution', 'event', 'game'
+		'rensco-resources', 'sog', 'doh-resources', 'text-message-dispatch', 'my-settings', 'my-training', 'logout',
+        'games-events', 'constitution', 'bylaws', 'event', 'game'
 	];
 
 	var SCHEDULING_PAGES = [

@@ -1,5 +1,5 @@
 var ctrl_name = 'AddEventCtrl';
-angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$location', 'moment', '$routeParams', 'AuthService', function($scope, $http, $location, moment, $routeParams, AuthService) {
+angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$location', 'moment', '$routeParams', 'AuthService', 'moment', function($scope, $http, $location, moment, $routeParams, AuthService) {
   AuthService.getUserMetadata().then(function (data) {
       $scope.userdata = data;
       $scope.initPage();
@@ -11,7 +11,6 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
   $scope.datepicker = {
     options: {
       formatYear: 'yy',
-      maxDate: new Date(2020, 5, 22),
       minDate: new Date(),
       startingDay: 0
     },
@@ -77,8 +76,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
                   $scope.originalName = response.data.event.description;
                   $scope.formData.event_name = response.data.event.description;
                   $scope.formData.event_location = response.data.event.location;
-                  $scope.formData.start_time = new Date(parseInt(response.data.event.start_epoch) * 1000);//response.data.event.start;
-                  $scope.formData.end_time = new Date(parseInt(response.data.event.end_epoch) * 1000);//response.data.event.end;
+                  $scope.formData.start_time = moment(`${response.data.event.date} ${response.data.event.start}`).toDate();
+                  $scope.formData.end_time = moment(`${response.data.event.date} ${response.data.event.end}`).toDate();
                   $scope.formData.date = parseDateString(response.data.event.date);
                   $scope.formData.type = "1";
                   $scope.formData.limit = parseInt(response.data.event.limit);
@@ -99,8 +98,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
                   $scope.originalName = response.data.game.description;
                   $scope.formData.event_name = response.data.game.description;
                   $scope.formData.event_location = response.data.game.location;
-                  $scope.formData.start_time = new Date(parseInt(response.data.game.start_epoch) * 1000);//response.data.event.start;
-                  $scope.formData.end_time = new Date(parseInt(response.data.game.end_epoch) * 1000);//response.data.event.end;
+                  $scope.formData.start_time = moment(`${response.data.game.date} ${response.data.game.start}`).toDate();
+                  $scope.formData.end_time = moment(`${response.data.game.date} ${response.data.game.end}`).toDate();
                   $scope.formData.date = parseDateString(response.data.game.date);
                   if (response.data.game.ees = 0) {
                     $scope.formData.type = "3";

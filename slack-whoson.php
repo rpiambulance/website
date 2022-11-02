@@ -2,7 +2,7 @@
 
 date_default_timezone_set('America/New_York');
 
-$default_numbers = array(992,993);
+$default_numbers;
 
 function cleanName($name) {
   global $default_numbers;
@@ -23,6 +23,8 @@ function cleanName($name) {
 }
 
 function getCrew($connection, $date) {
+  global $default_numbers;
+  $default_numbers = array(992,993);
   $statement = $connection->query("SELECT first_name, last_name, radionum FROM members WHERE id = (SELECT cc FROM crews WHERE date = '$date')");
   $statement->execute();
   $cc = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -39,9 +41,14 @@ function getCrew($connection, $date) {
   $statement->execute();
   $attendant2 = $statement->fetchAll(PDO::FETCH_ASSOC);
 
+  $statement = $connection->query("SELECT first_name, last_name, radionum FROM members WHERE id = (SELECT dutysup FROM crews WHERE date = '$date')");
+  $statement->execute();
+  $dutysup = $statement->fetchAll(PDO::FETCH_ASSOC);
+
   return (cleanName($cc) == "OOS") ? "OUT OF SERVICE" : "Crew chief: " . cleanName($cc) . "\n" .
   "Driver: " . cleanName($driver) . "\n" .
-  "Attendants: " . cleanName($attendant1) . " and " . cleanName($attendant2);
+  "Attendants: " . cleanName($attendant1) . " and " . cleanName($attendant2) . "\n" .
+  "Duty supervisor: " . cleanName($dutysup);
 
 }
 
