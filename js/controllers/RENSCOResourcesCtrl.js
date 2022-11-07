@@ -5,16 +5,14 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
         {
             header: '',
             internal_title: 'Links',
-            body: '* [Rensselaer County Communications Committee](http://sites.google.com/site/rensselaercountycommunications/)' +
-            ' - Meeting minutes of the State EMS Council as prepared (humorously) by Mike McEvoy (EMS Coordinator for ' +
-            'Saratoga County). Good to read these to know what is going on with EMS in the state. Our protocols and ' +
-            'policies originate from the council.\n' +
+            body: '* [Rensselaer County Radio Committee](https://www.rensco.com/428/Radio-Committee)' +
+            ' - Homepage of the Rensselaer County Radio Committee, a group which advises the management of the County\'s Emergency Communications System.\n' +
 
             '* [Rensselaer County Ambulance and Rescue Association](http://www.rc-ara.org/) - Homepage of the New York ' +
             'State Department of Health Bureau of EMS. There is a lot of good information and documentation on the ' +
             'EMS system as whole in New York State.\n' +
 
-            '* [REMO EMS Protocols](http://www.remo-ems.com/remo/protocols.php) - Regional EMS protocols. (ALS and BLS)'
+            '* [REMO EMS Protocols](https://www.remo-ems.com/emergency-medical-services/protocols/) - Regional EMS protocols. (ALS and BLS)'
         },
 
         {

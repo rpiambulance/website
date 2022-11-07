@@ -5,8 +5,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
         {
             header: '',
             internal_title: 'Links',
-            body: '* [Meeting Minutes of the State EMS Council (SEMSCO)](http://www.saratogaems.org/NYS_EMS_Council.htm)' +
-            ' - Meeting minutes of the State EMS Council as prepared (humorously) by Mike McEvoy (EMS Coordinator for ' +
+            body: '* [Meeting Minutes of the Saratoga EMS Council (SEMSCO)](https://saratogaems.org/news-announcements/nys-ems-news/)' +
+            ' - Meeting minutes of the Saratoga EMS Council as prepared (humorously) by Mike McEvoy (EMS Coordinator for ' +
             'Saratoga County). Good to read these to know what is going on with EMS in the state. Our protocols and ' +
             'policies originate from the council.\n' +
 
@@ -25,7 +25,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
             '[New York State Sanitary Code PART - 18](http://www.health.ny.gov/nysdoh/ems/part18.htm) - New York State ' +
             'laws regarding medical coverage for public events and large gatherings.\n' +
 
-            '* [State Emergency Medical Services Code- Part 800](http://www.health.ny.gov/nysdoh/ems/part800.htm) - New ' +
+            '* [State Emergency Medical Services Code- Part 800](https://regs.health.ny.gov/volume-e-title-10/200443669/part-800-emergency-medical-services) - New ' +
             'York State laws regarding the qualifications of EMS providers and instructors as well as the requirements ' +
             'for ambulances and other support vehicles.\n' +
 

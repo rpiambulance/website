@@ -48,7 +48,7 @@ angular.module('FAQCtrl', []).controller('FAQCtrl', ['$scope', '$sce', function 
             header: 'I am an EMT but am not a New York State EMT. What now?',
             body: 'Great! We can get you information ' +
             'on who to contact to apply for reciprocity and have your certification carry over to New York State. For ' +
-            'information, please contact one of the officers and see the <a href="EMT-reciprocity.html">NYS EMS Reciprocity</a> ' +
+            'information, please contact one of the officers and see the <a href="https://www.health.ny.gov/professionals/ems/certification/reciprocity.htm">NYS EMS Reciprocity</a> ' +
             'page.'
         },
         {
