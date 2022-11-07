@@ -5,8 +5,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
         {
             header: '',
             internal_title: 'Links',
-            body: '* [Meeting Minutes of the Saratoga EMS Council (SEMSCO)](https://saratogaems.org/news-announcements/nys-ems-news/)' +
-            ' - Meeting minutes of the Saratoga EMS Council as prepared (humorously) by Mike McEvoy (EMS Coordinator for ' +
+            body: '* [Meeting Minutes of the State EMS Council (SEMSCO)](https://saratogaems.org/news-announcements/nys-ems-news/)' +
+            ' - Meeting minutes of the State EMS Council as prepared (humorously) by Mike McEvoy (EMS Coordinator for ' +
             'Saratoga County). Good to read these to know what is going on with EMS in the state. Our protocols and ' +
             'policies originate from the council.\n' +
 
