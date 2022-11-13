@@ -60,7 +60,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$q', 'A
         } else if(position == 'driver') {
             return member.driver == 1 || member.drivertrainer == 1 || member.backupdriver == 1;
         } else if(position == 'dutysup') {
-            return member.dutysup == 1;
+            return member.dutysup == 1 || member.captain == 1;
         } else if(position == 'attendant' || position == 'observer') {
             return true;
         }
