@@ -14,6 +14,6 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: lp13.rpiambulance.com
-        username: ${{ secrets.SSH_USERNAME }}
-        password: ${{ secrets.SSH_PASSWORD }}
+        username: ${{ secrets.LP13_SSH_USERNAME }}
+        password: ${{ secrets.LP13_SSH_PASSWORD }}
         script: ${{ secrets.SSH_SCRIPT }}
