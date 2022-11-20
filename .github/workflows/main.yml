@@ -16,4 +16,4 @@ jobs:
         host: lp13.rpiambulance.com
         username: ${{ secrets.LP13_SSH_USERNAME }}
         password: ${{ secrets.LP13_SSH_PASSWORD }}
-        script: ${{ secrets.SSH_SCRIPT }}
+        script: ${{ secrets.LP13_SSH_SCRIPT }} website
