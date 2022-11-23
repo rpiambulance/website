@@ -14,15 +14,15 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
         }
     }
 
-    function addTrackedPositions(positions, member, possiblePositions) {
-        var toAdd = "";
-        possiblePositions.every(function (elem) {
+    function addTrackedPositions(positions, member, positionTrack) {
+        positionTrack.some(function (elem) {
             if(member[elem.field] == 1) {
-                toAdd = positionHelper(positions, member, elem.field, elem.abbreviation);
-                return false;
+                positions += positionHelper(positions, member, elem.field, elem.abbreviation);
+                return true; // end loop - only add highest applicable position
             }
         });
-        return toAdd;
+
+        return positions;
     }
 
     $scope.determinePositions = function (member) {
@@ -48,8 +48,8 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
 
         var positions = "";
 
-        positions += addTrackedPositions(positions, member, ccPositions);
-        positions += addTrackedPositions(positions, member, driverPositions);
+        positions = addTrackedPositions(positions, member, ccPositions);
+        positions = addTrackedPositions(positions, member, driverPositions);
 
         otherPositions.forEach(function (elem) {
             positions += positionHelper(positions, member, elem.field, elem.abbreviation);
