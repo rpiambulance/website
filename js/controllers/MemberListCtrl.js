@@ -14,24 +14,44 @@ angular.module('MemberListCtrl', []).controller('MemberListCtrl', ['$scope', '$h
         }
     }
 
+    function addTrackedPositions(positions, member, possiblePositions) {
+        var toAdd = "";
+        possiblePositions.every(function (elem) {
+            if(member[elem.field] == 1) {
+                toAdd = positionHelper(positions, member, elem.field, elem.abbreviation);
+                return false;
+            }
+        });
+        return toAdd;
+    }
+
     $scope.determinePositions = function (member) {
-        var possiblePositions = [
+        var otherPositions = [
             {field: 'dutysup', abbreviation: 'DS'},
             {field: 'ees', abbreviation: 'EES'},
-            {field: 'firstresponsecc', abbreviation: 'FR-CC'},
-            {field: 'clearedcc', abbreviation: 'A-CC'},
-            {field: 'backupcc', abbreviation: 'P-CC'},
-            {field: 'crewchief', abbreviation: 'CC'},
-            {field: 'cctrainer', abbreviation: 'CC-T'},
-            {field: 'backupdriver', abbreviation: 'P-D'},
-            {field: 'cleareddriver', abbreviation: 'A-D'},
-            {field: 'driver', abbreviation: 'D'},
-            {field: 'drivertrainer', abbreviation: 'D-T'}
+            {field: 'firstresponsecc', abbreviation: 'FR-CC'}
         ];
+
+        var ccPositions = [
+            {field: 'cctrainer', abbreviation: 'CC-T'},
+            {field: 'crewchief', abbreviation: 'CC'},
+            {field: 'backupcc', abbreviation: 'P-CC'},
+            {field: 'clearedcc', abbreviation: 'A-CC'}
+        ]
+
+        var driverPositions = [
+            {field: 'drivertrainer', abbreviation: 'D-T'},
+            {field: 'driver', abbreviation: 'D'},
+            {field: 'backupdriver', abbreviation: 'P-D'},
+            {field: 'cleareddriver', abbreviation: 'A-D'}
+        ]
 
         var positions = "";
 
-        possiblePositions.forEach(function (elem) {
+        positions += addTrackedPositions(positions, member, ccPositions);
+        positions += addTrackedPositions(positions, member, driverPositions);
+
+        otherPositions.forEach(function (elem) {
             positions += positionHelper(positions, member, elem.field, elem.abbreviation);
         });
 
