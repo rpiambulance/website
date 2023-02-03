@@ -21,35 +21,39 @@ if (checkIfAdmin($connection)){
   //$db = mysql_select_db("$dname", $connection);
   $connection->exec("USE `$dname`");
 
-  $sql = "SELECT members.first_name, members.last_name, games_crews.gameid, games.date FROM members INNER JOIN (games_crews INNER JOIN games ON games.id = games_crews.gameid)ON games_crews.memberid = members.id WHERE dob != 0000-00-00";
+  $game_sql =  "SELECT members.first_name, members.last_name, count(games_crews.memberid) AS games_count
+                FROM members 
+                INNER JOIN games_crews 
+                  ON members.id = games_crews.memberid
+                WHERE games_crews.gameid > 290
+                GROUP BY members.id";
 
-  $sql .= " AND games_crews.gameid > 300";
+  $night_sql = "SELECT members.first_name, members.last_name, count(night_crews.memberid) AS nights_count
+                FROM members
+                INNER JOIN (
+                    SELECT id AS crewid, cc AS memberid FROM crews
+                    UNION ALL
+                    SELECT id AS crewid, driver AS memberid FROM crews
+                    UNION ALL
+                    SELECT id AS crewid, attendant AS memberid FROM crews
+                    UNION ALL
+                    SELECT id AS crewid, observer AS memberid FROM crews
+                    ORDER BY crewid ) AS night_crews
+                  ON members.id = night_crews.memberid
+                WHERE night_crews.crewid > 2891
+                GROUP BY members.id";
 
-  $statement=$connection->prepare($sql);
 
-  if(isset($_GET['member_id'])) {
-    $statement->bindParam(':id', $_GET['member_id']);
-  }
+  $game_statement=$connection->prepare($game_sql);
+  $game_statement->execute();
+  $game_results=$game_statement->fetchAll(PDO::FETCH_ASSOC);
 
-  $statement->execute();
-  $results=$statement->fetchAll(PDO::FETCH_ASSOC);
-  $json=json_encode($results);
-
+  $night_statement=$connection->prepare($night_sql);
+  $night_statement->execute();
+  $night_results=$night_statement->fetchAll(PDO::FETCH_ASSOC);
 
 
-  // $sql = "SELECT members.first_name, members.last_name, crews.id, crews.date FROM members INNER JOIN crews ON (crews.cc = members.id OR crews.driver = members.id OR crews.attendant = members.id OR crews.observer = members.id)WHERE dob != 0000-00-00";
-
-  // $sql .= " AND crews.id > 3800";
-
-  // $statement=$connection->prepare($sql);
-
-  // if(isset($_GET['member_id'])) {
-  //   $statement->bindParam(':id', $_GET['member_id']);
-  // }
-
-  // $statement->execute();
-  // $results.=$statement->fetchAll(PDO::FETCH_ASSOC);
-  // $json=json_encode($results);
+  $json=json_encode($game_results, JSON_NUMERIC_CHECK);
 
 
   echo($json);

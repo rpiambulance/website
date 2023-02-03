@@ -2,45 +2,45 @@ angular.module('MemberActivityCtrl', []).controller('MemberActivityCtrl', ['$sco
     $scope.members = [];
     $scope.orderer = 'last_name';
 
-    function positionHelper(positions, member, fieldToCheck, toAdd) {
-        if(member[fieldToCheck] == 1) {
-            return (positions.length > 0 ? ", " : "") + toAdd;
-        } else {
-            return "";
-        }
-    }
+    // function positionHelper(positions, member, fieldToCheck, toAdd) {
+    //     if(member[fieldToCheck] == 1) {
+    //         return (positions.length > 0 ? ", " : "") + toAdd;
+    //     } else {
+    //         return "";
+    //     }
+    // }
 
-    $scope.determinePositions = function (member) {
-        var possiblePositions = [
-            {field: 'dutysup', abbreviation: 'DS'},
-            {field: 'ees', abbreviation: 'EES'},
-            {field: 'firstresponsecc', abbreviation: 'FR-CC'},
-            {field: 'clearedcc', abbreviation: 'A-CC'},
-            {field: 'backupcc', abbreviation: 'P-CC'},
-            {field: 'crewchief', abbreviation: 'CC'},
-            {field: 'cctrainer', abbreviation: 'CC-T'},
-            {field: 'backupdriver', abbreviation: 'P-D'},
-            {field: 'cleareddriver', abbreviation: 'A-D'},
-            {field: 'driver', abbreviation: 'D'},
-            {field: 'drivertrainer', abbreviation: 'D-T'}
-        ];
+    // $scope.determinePositions = function (member) {
+    //     var possiblePositions = [
+    //         {field: 'dutysup', abbreviation: 'DS'},
+    //         {field: 'ees', abbreviation: 'EES'},
+    //         {field: 'firstresponsecc', abbreviation: 'FR-CC'},
+    //         {field: 'clearedcc', abbreviation: 'A-CC'},
+    //         {field: 'backupcc', abbreviation: 'P-CC'},
+    //         {field: 'crewchief', abbreviation: 'CC'},
+    //         {field: 'cctrainer', abbreviation: 'CC-T'},
+    //         {field: 'backupdriver', abbreviation: 'P-D'},
+    //         {field: 'cleareddriver', abbreviation: 'A-D'},
+    //         {field: 'driver', abbreviation: 'D'},
+    //         {field: 'drivertrainer', abbreviation: 'D-T'}
+    //     ];
 
-        var positions = "";
+    //     var positions = "";
 
-        possiblePositions.forEach(function (elem) {
-            positions += positionHelper(positions, member, elem.field, elem.abbreviation);
-        });
+    //     possiblePositions.forEach(function (elem) {
+    //         positions += positionHelper(positions, member, elem.field, elem.abbreviation);
+    //     });
 
-        if (member.dutysup == 1){
-            positions = 'DS'
-        } else if(positions.length === 0 && member.attendant == 1) {
-            positions += 'A';
-        } else if(positions.length === 0 && member.observer == 1) {
-            positions += 'O';
-        }
+    //     if (member.dutysup == 1){
+    //         positions = 'DS'
+    //     } else if(positions.length === 0 && member.attendant == 1) {
+    //         positions += 'A';
+    //     } else if(positions.length === 0 && member.observer == 1) {
+    //         positions += 'O';
+    //     }
 
-        return positions;
-    }
+    //     return positions;
+    // }
 
     $http({
         method: 'POST',
@@ -49,11 +49,11 @@ angular.module('MemberActivityCtrl', []).controller('MemberActivityCtrl', ['$sco
     }).then(function (response) {
         $scope.members = response.data;
         $scope.sortFun = function(sortname) {
-     			if ($scope.orderer == sortname){
+          if ($scope.orderer == sortname){
   	        $scope.orderer = '-'+sortname;
           }
           else {
-          $scope.orderer = sortname;
+            $scope.orderer = sortname;
           }
         }
     });
