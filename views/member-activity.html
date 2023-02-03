@@ -1,0 +1,28 @@
+<section id="member-activity">
+    <div class="container">
+        <h2>
+            Member Activity
+        </h2>
+<table id="General" class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th width="10%" ng-click="sortFun('radionum')">Radio ID</th>
+        <th width="22.5%" ng-click="sortFun('last_name')">Last Name</th>
+        <th width="22.5%" ng-click="sortFun('first_name')">First Name</th>
+        <th width="22.5%" ng-click="sortFun('date')">Date</th>
+        <th width="22.5%">GameID</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="m in (members|orderBy:orderer|emptyToEnd:orderer)" ng-if="!radioFilter || m.radionum != 0">
+        <td class="text-center"><span ng-if="m.radionum != 0">{{m.radionum}}</span></td>
+        <td>{{m.last_name}}</td>
+        <td>{{m.first_name}}</td>
+        <td class="text-center">{{m.date}}</td>
+        <td>{{m.gameid}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+</section>

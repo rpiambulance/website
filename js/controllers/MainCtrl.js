@@ -168,7 +168,8 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'add-event', title: 'Add Game or Event'},
             {page: 'add-member', title: 'Add Member'},
             {page: 'edit-member', title: 'Edit Member'},
-            {page: 'expirations', title: 'Expiring Items'}
+            {page: 'expirations', title: 'Expiring Items'},
+            {page: 'member-activity', title: 'Member Activity'}
         ]
         },
 
