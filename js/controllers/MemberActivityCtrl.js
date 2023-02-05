@@ -31,6 +31,7 @@ angular.module('MemberActivityCtrl', []).controller('MemberActivityCtrl', ['$sco
           }
           else {
             $scope.orderer = sortname;
+            $scope.orderer = sortname;
           }
         }
     });

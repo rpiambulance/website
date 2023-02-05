@@ -126,7 +126,19 @@ if ($user['admin'] == 1){
   foreach($merged_results as $row) {
     $id = intval($row['id']);
     // if (array_key_exists($id, $clean_results)) {
+  $merged_results = array_merge($night_results, $game_results);
+  $clean_results = [];
+                  
+  foreach($merged_results as $row) {
+    $id = intval($row['id']);
+    // if (array_key_exists($id, $clean_results)) {
 
+    foreach($row as $key=>$value) {
+      if ($key == 'id') continue;
+      if (!array_key_exists($key, $clean_results[$id])) {
+        $clean_results[$id][$key] = $value;
+      }
+    }
     foreach($row as $key=>$value) {
       if ($key == 'id') continue;
       if (!array_key_exists($key, $clean_results[$id])) {
@@ -135,6 +147,8 @@ if ($user['admin'] == 1){
     }
   }
 
+  $json=json_encode($clean_results, JSON_NUMERIC_CHECK);
+  // $json=json_encode($merged_results,JSON_NUMERIC_CHECK);
   $json=json_encode($clean_results, JSON_NUMERIC_CHECK);
   // $json=json_encode($merged_results,JSON_NUMERIC_CHECK);
 
