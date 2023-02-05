@@ -1,56 +1,142 @@
-  <?php
+<?php
 //header("Access-Control-Allow-Origin: *");
 //header("Content-Type: application/json; charset=UTF-8");
 
 
 require_once ".db_config.php";
+require_once ".functions.php";
 
-include ".functions.php";
-$connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
-$user = getUser($_GET['session_id'], $connection);
-$username = $user['username'];
+$connection = openDatabaseConnection();
 
-if (checkIfAdmin($connection)){
+parse_str(file_get_contents("php://input"), $post);
+
+
+// if(!isset($post['session_id']) || !isset($post['min_date']) || !isset($post['max_date'])) {
+//   header('Bad Request', true, 400);
+//   echo 'Bad Request';
+//   exit;
+// }
+
+// $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
+$user = getUser($post['session_id'], $connection);
+// $username = $user['username'];
+
+if ($user['admin'] == 1){
+
   $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
   if(!isset($dname)) {
     $dname = 'ambulanc_web';
   }
 
-  // Selecting Database
-  //$db = mysql_select_db("$dname", $connection);
   $connection->exec("USE `$dname`");
 
-  $sql = "SELECT members.first_name, members.last_name, games_crews.gameid, games.date FROM members INNER JOIN (games_crews INNER JOIN games ON games.id = games_crews.gameid)ON games_crews.memberid = members.id WHERE dob != 0000-00-00";
-
-  $sql .= " AND games_crews.gameid > 300";
-
-  $statement=$connection->prepare($sql);
-
-  if(isset($_GET['member_id'])) {
-    $statement->bindParam(':id', $_GET['member_id']);
+  if((!isset($post['min_date']) || !isset($post['max_date']))) {
+    header('Bad Request', true, 400);
+    echo 'Bad Request';
+    exit;
   }
 
-  $statement->execute();
-  $results=$statement->fetchAll(PDO::FETCH_ASSOC);
-  $json=json_encode($results);
+  if(!isset($dname)) {
+    $dname = 'ambulanc_web';
+  }
+
+  // Selecting Database
+  $connection->exec("USE `$dname`");
+
+  $mindate = "2022-01-01";
+  $maxdate = "2023-01-01";
+
+  $both_sql =  "SELECT members.id, members.first_name, members.last_name, 
+                  count(full_games.memberid) AS games_count,
+                  count(night_crews.memberid) AS nights_count
+                FROM members 
+                INNER JOIN (
+                  SELECT games_crews.memberid, games.date, games_crews.gameid
+                  FROM games_crews 
+                  INNER JOIN games
+                    ON games.id = games_crews.gameid) AS full_games
+                  ON members.id = full_games.memberid
+                FULL OUTER JOIN (
+                    SELECT id AS crewid, crews.date, cc AS memberid FROM crews
+                    UNION ALL
+                    SELECT id AS crewid, crews.date, driver AS memberid FROM crews
+                    UNION ALL
+                    SELECT id AS crewid, crews.date, attendant AS memberid FROM crews
+                    UNION ALL
+                    SELECT id AS crewid, crews.date, observer AS memberid FROM crews
+                    ORDER BY crewid ) AS night_crews
+                  ON members.id = night_crews.memberid
+                WHERE full_games.date > :mindate AND full_games.date < :maxdate 
+                  AND night_crews.date > :mindate AND night_crews.date < :maxdate
+                  AND members.id > 0
+                GROUP BY members.id";
+
+  $game_sql =  "SELECT members.id, members.first_name, members.last_name, count(full_games.memberid) AS games_count
+                FROM members 
+                INNER JOIN (
+                  SELECT games_crews.memberid, games.date, games_crews.gameid
+                  FROM games_crews 
+                  INNER JOIN games
+                    ON games.id = games_crews.gameid) AS full_games
+                  ON members.id = full_games.memberid
+                WHERE full_games.date > :mindate AND full_games.date < :maxdate AND members.id > 0
+                GROUP BY members.id";
+
+  $night_sql = "SELECT members.id, members.first_name, members.last_name, count(night_crews.memberid) AS nights_count
+                FROM members
+                INNER JOIN (
+                    SELECT id AS crewid, crews.date, cc AS memberid FROM crews
+                    UNION ALL
+                    SELECT id AS crewid, crews.date, driver AS memberid FROM crews
+                    UNION ALL
+                    SELECT id AS crewid, crews.date, attendant AS memberid FROM crews
+                    UNION ALL
+                    SELECT id AS crewid, crews.date, observer AS memberid FROM crews
+                    ORDER BY crewid ) AS night_crews
+                  ON members.id = night_crews.memberid
+                WHERE night_crews.date > :mindate AND night_crews.date < :maxdate AND members.id > 0
+                GROUP BY members.id";
 
 
+  $game_statement=$connection->prepare($game_sql);
+  $game_statement->bindParam(':mindate', $post['min_date']);
+  $game_statement->bindParam(':maxdate', $post['max_date']);
 
-  // $sql = "SELECT members.first_name, members.last_name, crews.id, crews.date FROM members INNER JOIN crews ON (crews.cc = members.id OR crews.driver = members.id OR crews.attendant = members.id OR crews.observer = members.id)WHERE dob != 0000-00-00";
+  $game_statement->execute();
+  $game_results=$game_statement->fetchAll(PDO::FETCH_ASSOC);
 
-  // $sql .= " AND crews.id > 3800";
+  $night_statement=$connection->prepare($night_sql);
+  $night_statement->bindParam(':mindate', $post['min_date']);
+  $night_statement->bindParam(':maxdate', $post['max_date']);
 
-  // $statement=$connection->prepare($sql);
+  $night_statement->execute();
+  $night_results=$night_statement->fetchAll(PDO::FETCH_ASSOC);
 
-  // if(isset($_GET['member_id'])) {
-  //   $statement->bindParam(':id', $_GET['member_id']);
-  // }
+  // $both_statement=$connection->prepare($both_sql);
+  // $both_statement->bindParam(':mindate', $mindate);
+  // $both_statement->bindParam(':maxdate', $maxdate);
 
-  // $statement->execute();
-  // $results.=$statement->fetchAll(PDO::FETCH_ASSOC);
-  // $json=json_encode($results);
+  // $both_statement->execute();
+  // $both_results=$both_statement->fetchAll(PDO::FETCH_ASSOC);
 
+  $merged_results = array_merge($night_results, $game_results);
+  $clean_results = [];
+                  
+  foreach($merged_results as $row) {
+    $id = intval($row['id']);
+    // if (array_key_exists($id, $clean_results)) {
+
+    foreach($row as $key=>$value) {
+      if ($key == 'id') continue;
+      if (!array_key_exists($key, $clean_results[$id])) {
+        $clean_results[$id][$key] = $value;
+      }
+    }
+  }
+
+  $json=json_encode($clean_results, JSON_NUMERIC_CHECK);
+  // $json=json_encode($merged_results,JSON_NUMERIC_CHECK);
 
   echo($json);
 
