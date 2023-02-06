@@ -7,13 +7,13 @@ angular.module('MemberActivityCtrl', []).controller('MemberActivityCtrl', ['$sco
 
     if (!maxDate) {
         var nowDate = new Date(); 
-        var maxDate = nowDate.getFullYear()+'-'+(nowDate.getMonth()+1)+'-'+nowDate.getDate();    
+        var maxDate = DateService.formatViewDate(nowDate)
     }
 
     if (!minDate) {
-        var oneYearAgo = new Date();
-        oneYearAgo.setFullYear( oneYearAgo.getFullYear() - 1 );
-        var minDate = DateService.formatViewDate(oneYearAgo);//.getFullYear()+'-'+(oneYearAgo.getFullMonth()+1)+'-'+oneYearAgo.getDate();    
+        var oneYearAgo = new Date().setFullYear( oneYearAgo.getFullYear() - 1 );
+        // oneYearAgo.setFullYear( oneYearAgo.getFullYear() - 1 );
+        var minDate = DateService.formatViewDate(oneYearAgo);
     }
 
     postData = "session_id=" + AuthService.getSessionId() + "&min_date=" + minDate + "&max_date=" + maxDate;

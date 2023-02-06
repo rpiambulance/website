@@ -35,8 +35,8 @@ if ($user['admin'] == 1){
   // Selecting Database
   $connection->exec("USE `$dname`");
 
-  $mindate = "2022-01-01";
-  $maxdate = "2023-01-01";
+  $mindate = $post['min_date'];
+  $maxdate = $post['max_date'];
 
   $both_sql =  "SELECT members.id, members.first_name, members.last_name, 
                   count(full_games.memberid) AS games_count,
@@ -127,8 +127,8 @@ if ($user['admin'] == 1){
   }
 
   $json=json_encode($clean_results, JSON_NUMERIC_CHECK);
-  // $json=json_encode($merged_results,JSON_NUMERIC_CHECK);
 
+  header("Content-Type: application/json; charset=UTF-8");  
   echo($json);
 
 } else {
