@@ -11,8 +11,8 @@ angular.module('MemberActivityCtrl', []).controller('MemberActivityCtrl', ['$sco
     }
 
     if (!minDate) {
-        var oneYearAgo = new Date().setFullYear( oneYearAgo.getFullYear() - 1 );
-        // oneYearAgo.setFullYear( oneYearAgo.getFullYear() - 1 );
+        var oneYearAgo = new Date();
+        oneYearAgo.setFullYear( oneYearAgo.getFullYear() - 1 );
         var minDate = DateService.formatViewDate(oneYearAgo);
     }
 
@@ -24,13 +24,12 @@ angular.module('MemberActivityCtrl', []).controller('MemberActivityCtrl', ['$sco
         data: postData,
         headers: {'Content-Type': 'application/x-www-form-urlencoded'} // set the headers so angular passing info as form data (not request payload)
     }).then(function (response) {
-        $scope.members = response.data;
+        $scope.members = Object.values(response.data);
         $scope.sortFun = function(sortname) {
           if ($scope.orderer == sortname){
             $scope.orderer = '-'+sortname;
           }
           else {
-            $scope.orderer = sortname;
             $scope.orderer = sortname;
           }
         }

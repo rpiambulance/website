@@ -10,11 +10,11 @@
         <th width="30%" ng-click="sortFun('first_name')">First Name</th>
         <th width="10%" ng-click="sortFun('games_count')">Games</th>
         <th width="10%" ng-click="sortFun('nights_count')">Night Crews</th>
-        <th width="10%">Total</th>
+        <th width="10%" ng-click="sortFun('nights_count + games_count')">Total</th>
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="(id, m) in (members)">
+      <tr ng-repeat="m in (members|orderBy:orderer|emptyToEnd:orderer)">
         <td>{{m.last_name}}</td>
         <td>{{m.first_name}}</td>
         <td class="text-center">{{m.games_count}}</td>
