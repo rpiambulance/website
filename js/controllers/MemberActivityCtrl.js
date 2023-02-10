@@ -5,16 +5,20 @@ angular.module('MemberActivityCtrl', []).controller('MemberActivityCtrl', ['$sco
     minDate = $location.search()['minDate'];
     maxDate = $location.search()['maxDate'];
 
+    // default date range: one year from today
+    if (!minDate) {
+        var oneYearAgo = new Date();
+        oneYearAgo.setFullYear( oneYearAgo.getFullYear() - 1 );
+        // var minDate = formatDate(oneYearAgo, 'yyyy-MM-dd');
+        var minDate = oneYearAgo.toJSON().split('T')[0];
+    }
     if (!maxDate) {
         var nowDate = new Date(); 
         var maxDate = DateService.formatViewDate(nowDate)
     }
 
-    if (!minDate) {
-        var oneYearAgo = new Date();
-        oneYearAgo.setFullYear( oneYearAgo.getFullYear() - 1 );
-        var minDate = DateService.formatViewDate(oneYearAgo);
-    }
+    $scope.min_date = minDate;
+    $scope.max_date = maxDate;
 
     postData = "session_id=" + AuthService.getSessionId() + "&min_date=" + minDate + "&max_date=" + maxDate;
 

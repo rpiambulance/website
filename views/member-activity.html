@@ -1,8 +1,29 @@
 <section id="member-activity">
     <div class="container">
         <h2>
-            Member Activity
+            Member Activity 
         </h2>
+
+        <form role="form" ng-submit="submitForm()" class="form form-inline" novalidate>
+          <div class="form-group col-xs-3 fixed-height-form-element">
+            <label for="min_date">Min Date</label>
+            <input type="date" name="min_date" id="min_date" class="form-control" ng-model="min_date" required/>
+          </div>
+          <div class="form-group col-xs-3 fixed-height-form-element">
+            <label for="max_date">Max Date</label>
+            <input type="date" name="max_date" id="max_date" class="form-control" ng-model="max_date" required/>
+          </div>
+
+          <div class="form-actions col-xs-3">
+            <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-success"
+                    value="Submit">
+                Submit 
+            </button>
+        </div>
+
+
+        </form>
+
 <table id="General" class="table table-bordered table-striped">
     <thead>
       <tr>
