@@ -47,9 +47,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             header: 'Current Duty Supervisors',
             internal_title: 'Current DS',
             body: '* Dan Bruce\n' +
-            '* Logan Ramos\n' +
-            '* Everest Orloff (as captain)\n' +
-            '* Caleb Woodson'
+            '* Everest Orloff\n' +
+            '* Logan Ramos'
 
         }
 
