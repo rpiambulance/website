@@ -48,7 +48,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             internal_title: 'Current DS',
             body: '* Dan Bruce\n' +
             '* Everest Orloff\n' +
-            '* Logan Ramos'
+            '* Jacob Steingart (as captain)'
 
         }
 
