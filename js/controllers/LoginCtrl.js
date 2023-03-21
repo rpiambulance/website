@@ -35,7 +35,7 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$http', '$lo
               }
             }
             else{
-            sweetAlert("Houston, we have a problem!", error.data.errors.credentials, "error");
+            sweetAlert("Houston, we've had a problem!", error.data.errors.credentials, "error");
             $scope.errorMessage= error.data.errors.credentials;
             $scope.showError = true;
           }
