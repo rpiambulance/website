@@ -26,6 +26,18 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             header: 'Current Officer Board',
             internal_title: 'Current Officer Board',
             body: 'Line Side: \n' +
+            '* Captain: Jacob Steingart \n' +
+            '* First Lieutenant: Thomas Celuzza \n' +
+            '* Second Lieutenant: Sean Lim \n' +
+            '\nCivil Side:\n' +
+            '* President: Felicia Walbridge \n' +
+            '* Vice President: Alex Mattoni'
+        },
+
+        {
+            header: 'Officer Board 2022-2023',
+            internal_title: 'Past Officer Boards',
+            body: 'Line Side: \n' +
             '* Captain: Everest Orloff \n' +
             '* First Lieutenant: Dianna Stuzhuk \n' +
             '* Second Lieutenant: Jacob Steingart \n' +
@@ -33,7 +45,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             '* President: Tom Zelley\n' +
             '* Vice President: Francisco Alicandri'
         },
-
+        
         {
             header: 'Officer Board 2021-2022',
             internal_title: 'Past Officer Boards',
