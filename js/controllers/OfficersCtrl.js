@@ -4,10 +4,10 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
         {
             header: '',
             internal_title: 'Officers Description',
-            body: 'The officers of RPI Ambulance are elected each year in April. The ' +
+            body: 'The officers of RPI Ambulance are elected each year at the first general meeting in March. The ' +
             'officers perform day to day and long term operational and administrative tasks. In 2009, the RPI Ambulance ' +
             'Constitution was changed to reduce the officer board from 8 officers to 5 consolidating "non-steering" ' +
-            'positions into more important roles. This will allow for a smaller, more efficient officer board and the ' +
+            'positions into more important roles. This allows for a smaller, more efficient officer board and the ' +
             'opportunity for more members to become involved with non-elected coordinator positions.'
         },
 
@@ -26,6 +26,18 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             header: 'Current Officer Board',
             internal_title: 'Current Officer Board',
             body: 'Line Side: \n' +
+            '* Captain: Jacob Steingart \n' +
+            '* First Lieutenant: Thomas Celuzza \n' +
+            '* Second Lieutenant: Sean Lim \n' +
+            '\nCivil Side:\n' +
+            '* President: Felicia Walbridge \n' +
+            '* Vice President: Alex Mattoni'
+        },
+
+        {
+            header: 'Officer Board 2022-2023',
+            internal_title: 'Past Officer Boards',
+            body: 'Line Side: \n' +
             '* Captain: Everest Orloff \n' +
             '* First Lieutenant: Dianna Stuzhuk \n' +
             '* Second Lieutenant: Jacob Steingart \n' +
@@ -33,7 +45,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             '* President: Tom Zelley\n' +
             '* Vice President: Francisco Alicandri'
         },
-
+        
         {
             header: 'Officer Board 2021-2022',
             internal_title: 'Past Officer Boards',
