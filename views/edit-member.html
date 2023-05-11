@@ -176,7 +176,7 @@
             <h3>Training</h3>
 
             <div class="checkbox text-left-al" ng-repeat="t in trainingFields">
-              <label><input type="checkbox" value="1" ng-model="selectedMember[t.field]"  ng-checked="selectedMember[t.field] == 1" ng-change="changeMade()">{{t.label}}</label>
+              <label><input type="checkbox" value="1" ng-model="selectedMember[t.field]"  ng-true-value="'1'" ng-false-value="'0'" ng-change="changeMade()">{{t.label}}</label>
             </div>
 
             <div class="form-group col-xs-6" id="other_tr_div">
@@ -225,7 +225,7 @@
             <h3>Crew Positions</h3>
 
             <div class="checkbox text-left-al" ng-repeat="c in crewPositions">
-              <label><input type="checkbox" value="1" ng-model="selectedMember[c.field]" ng-change="changeMade()" ng-checked="selectedMember[c.field] == 1">{{c.label}}</label>
+              <label><input type="checkbox" value="1" ng-model="selectedMember[c.field]" ng-change="changeMade()" ng-true-value="'1'" ng-false-value="'0'" >{{c.label}}</label>
             </div>
 
             <div ng-repeat="q in yesNoQuestions">
@@ -256,7 +256,6 @@
         });
       </script>
     </div>
-
   </div>
 
   <!--/.our-skill-->
