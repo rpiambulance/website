@@ -31,7 +31,7 @@ angular.module('EditDefaultCtrl', []).controller('EditDefaultCtrl', ['$scope', '
         } else if(role == 'driver') {
             return $scope.defaultSchedule[day]['driver'] == member.id || member.driver == 1 || member.drivertrainer == 1 || member.backupdriver == 1;
         } else if(role == 'dutysup') {
-            return $scope.defaultSchedule[day]['dutysup'] == member.id || member.dutysup == 1;
+            return $scope.defaultSchedule[day]['dutysup'] == member.id || member.dutysup == 1 || member.captain == 1;
         } else {
             return member.attendant == 1 || member.observer == 1
         }
