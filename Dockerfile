@@ -8,12 +8,12 @@ WORKDIR /var/www/html
 
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-    ca-certificates \
-    curl \
-    git \
-    sudo \
-    unzip \
-    zip \
+        ca-certificates \
+        curl \
+        git \
+        sudo \
+        unzip \
+        zip \
     && apt-get update \
     && apt-get install -y ca-certificates curl gnupg \
     && mkdir -p /etc/apt/keyrings \
