@@ -14,7 +14,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
         {
             header: 'Bylaws',
             body: '<div class="embed-responsive embed-responsive-16by9"> ' +
-            '<iframe src="https://drive.google.com/embeddedfolderview?id=1g9BqdxedNyJ4edRLI9MHnlKpVy8p_8qt#list" width="100%" height="400" frameborder="0"></iframe></div>'
+            '<iframe src="https://drive.google.com/embeddedfolderview?id=1dNnyB9imWyOB6-1j-hQeiDXv0xqUTMaX#list" width="100%" height="400" frameborder="0"></iframe></div>'
         }
     ];
 }]);
