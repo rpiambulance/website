@@ -5,7 +5,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function($scope) 
         {
             header: '',
             internal_title: 'About Text',
-            body: 'The Bylaws of RPI Ambulance is a supporting document. It covers the duties and ' +
+            body: 'The Bylaws of RPI Ambulance cover the duties and ' +
             'responsibilities of committees and their chairs, misconduct and discipline policies for RPI ' +
             'Ambulance Members, and social media policies. The current Bylaws were ratified by the ' + 
             'general membership on September 15th, 2019. \n'
