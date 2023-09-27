@@ -140,6 +140,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
         },
         {
             page: '', title: 'Resources', isDropdown: true, dividersAfter: [], dropdownOptions: [
+            {page: 'bylaws', title: 'Bylaws'},
             {page: 'communications', title: 'Communications'},
             {page: 'constitution', title: 'Constitution'},
             {page: 'emt-reciprocity', title: 'Reciprocity'},
