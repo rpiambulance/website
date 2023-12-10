@@ -54,6 +54,11 @@
                             </p>
                         </div>
 
+                        <div class="form-group col-xs-6 fixed-height-form-element" ng-if="editMode && formData.type != 1">
+                            <label for="locked">Lock Game</label>
+                            <input type="checkbox" name="locked" id="locked" class="form-control" ng-model="formData.locked" ng-true-value="'1'" ng-false-value="'0'" ng-checed="formData.locked" />
+                        </div>
+
                         <div class="form-group col-xs-6 fixed-height-form-element" ng-if="!editMode">
                             <label for="type">Event Type</label>
                             <select class="form-control" id="type" ng-model="formData.type">
@@ -70,11 +75,6 @@
                             <input type="number" name="lim" id="lim" class="form-control" ng-model="formData.limit" min="-1"
                                    placeholder="0 for no limit, -1 for no signups" required/>
                            <p class="help-block text-small">Note: Games do not have a specifiable limit.</p>
-                        </div>
-
-                        <div class="form-group col-xs-6 fixed-height-form-element" ng-if="editMode && formData.type != 1">
-                            <label for="locked">Lock Game</label>
-                            <input type="checkbox" name="locked" id="locked" class="form-control" ng-model="formData.locked" ng-true-value="'1'" ng-false-value="'0'" ng-checed="formData.locked" />
                         </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element" ng-if="!editMode && (!formData.type || formData.type == 1)"></div>
