@@ -54,11 +54,6 @@
                             </p>
                         </div>
 
-                        <div class="form-group col-xs-6 fixed-height-form-element" ng-if="editMode && formData.type != 1">
-                            <label for="locked">Lock Game</label>
-                            <input type="checkbox" name="locked" id="locked" class="form-control" ng-model="formData.locked" ng-true-value="'1'" ng-false-value="'0'" ng-checed="formData.locked" />
-                        </div>
-
                         <div class="form-group col-xs-6 fixed-height-form-element" ng-if="!editMode">
                             <label for="type">Event Type</label>
                             <select class="form-control" id="type" ng-model="formData.type">
@@ -68,7 +63,11 @@
                                 <option value="3">Game (NO EES)</option>
                             </select>
                         </div>
-                        <div class="form-group col-xs-6 fixed-height-form-element" ng-if="editMode && formData.type != 1"></div>
+
+                        <div class="form-group col-xs-6 fixed-height-form-element" ng-if="editMode && formData.type != 1">
+                            <label for="locked">Lock Game</label>
+                            <input type="checkbox" name="locked" id="locked" class="form-control" ng-model="formData.locked" ng-true-value="'1'" ng-false-value="'0'" ng-checed="formData.locked" />
+                        </div>
 
                         <div class="form-group col-xs-6 fixed-height-form-element" ng-if="!formData.type || formData.type == 1">
                             <label for="lim">Attendance Limit</label>
