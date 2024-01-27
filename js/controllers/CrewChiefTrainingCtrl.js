@@ -41,7 +41,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             '* Be a Probationary Crew Chief\n' +
             '* Crew Chief at least two (2) calls, one of which must be a transport, and receive a passing evaluation\n' +
             '* Lead a training drill, scenario, or other agency training event \n' +
-            '* Recieve joint approval from the captain and training committee
+            '* Recieve joint approval from the captain and training committee'
 
         },
 
