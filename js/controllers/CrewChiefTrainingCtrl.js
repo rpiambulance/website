@@ -19,13 +19,18 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             '* Be an Attendant\n' +
             '* Hold valid certification as Emergency Medical Technician – Basic or above in New York\n' +
             '* Complete the online NIMS IS-100, IS-200, IS-700 and IS-800 courses\n' +
+            '* Complete in-service training for Albuterol, Glucometry, Epinephrine, ' + 
+            'Patella reduction and Naloxone treatment modalities\n' +
             '* Take and pass the Crew Chief class and written exam with an 80% or higher \n' +
-            '* Complete PCR writing class\n' +
+            '* Receive instruction in PCR writing from a crew chief trainer and demonstrate proficiency using ' + 
+            'the ePCR platform.\n' +
             '* Complete the Crew Chief checklist\n' +
-            '* Pass a Crew Chief practical, and submit an evaluation\n' +
-            '* Complete a minimum of two (2) real calls with a Crew Chief Trainer in the patient compartment and' +
-            'receive a passing evaluation for both\n' +
-            '* Request and receive approval by the promotional board for promotion'
+            '* Teach at least three attendant checklist items under the supervision of a credentialed member\n' +
+            '* Pass a Crew Chief practical, including PCR writing components\n' +
+            '* Perform a first response vehicle equipment check\n' +
+            '* Complete a minimum of two real calls with a Crew Chief Trainer in the patient compartment and' +
+            ' receive a passing evaluation for both\n' +
+            '* Recieve joint approval from the captain and training committee'
 
 
         },
@@ -35,9 +40,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             body: 'To be a Crew Chief a member must satisfy the following requirements:' + '\n' +
             '* Be a Probationary Crew Chief\n' +
             '* Crew Chief at least two (2) calls, one of which must be a transport, and receive a passing evaluation\n' +
-            '* Teach at least three (3) Attendant Checklist items to a trainee under the supervision of a Crew Chief\n' +
-            '* Student teach 1 training drill, and submit an evaluation \n' +
-            '* Request and receive approval by the promotional board for promotion'
+            '* Lead a training drill, scenario, or other agency training event \n' +
+            '* Recieve joint approval from the captain and training committee
 
         },
 
@@ -49,7 +53,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             '* Crew Chief three (3) emergency or non- emergency calls\n' +
             '* Teach at least three (3) Crew Chief Checklist items to a trainee under the supervision of a Crew Chief Trainer\n' +
             '* Teach a training scenario or Crew Chief class to the membership under the supervision of a Crew Chief trainer \n' +
-            '* Request and receive approval by the promotional board for promotion'
+            '* Recieve joint approval from the captain and training committee'
 
         },
 
