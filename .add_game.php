@@ -26,6 +26,7 @@ $end_time = $input['endstamp'];
 $date = $input['datestamp'];
 $type = $input['type'];
 $ees = 0;
+$locked = $input['locked'];
 $mode = $input['mode'];
 
 if($mode == 'edit') {
@@ -55,7 +56,7 @@ try {
 
     $logid = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['max'] + 1;
 
-    $statement = $connection->prepare("INSERT INTO games(id, `date`, start, `end`, description, location, ees, hide) VALUES (:logid, :date, :start_time, :end_time, :event_name, :event_location, :ees, 0)");
+    $statement = $connection->prepare("INSERT INTO games(id, `date`, start, `end`, description, location, locked, ees, hide) VALUES (:logid, :date, :start_time, :end_time, :event_name, :event_location, 0, :ees, 0)");
 
     $statement->bindParam(":logid", $logid);
     $statement->bindParam(":date", $date);
@@ -73,6 +74,7 @@ try {
       `end`=:end_time,
       `description`=:event_name,
       `location`=:event_location,
+      `locked`=:locked,
       `hide`=0
     WHERE id=:id");
 
@@ -82,6 +84,7 @@ try {
     $statement->bindParam(":end_time", $end_time);
     $statement->bindParam(":event_name", $event_name);
     $statement->bindParam(":event_location", $event_location);
+    $statement->bindParam(":locked", $locked);
 
     $result = $statement->execute();
   }

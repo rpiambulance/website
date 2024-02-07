@@ -124,6 +124,7 @@ CREATE TABLE `games` (
   `end` time NOT NULL DEFAULT '00:00:00',
   `description` text NOT NULL,
   `location` text NOT NULL,
+  `locked` tinyint(1) NOT NULL DEFAULT '0',
   `ees` tinyint(1) NOT NULL DEFAULT '0',
   `hide` tinyint(1) NOT NULL,
   `gcalEventId` VARCHAR(255) DEFAULT NULL

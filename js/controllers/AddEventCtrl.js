@@ -42,7 +42,8 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
       end_time: "",
       date: "",
       type: "",
-      limit: ""
+      limit: "",
+      locked: ""
   };
 
   function parseDateString(string) {
@@ -81,6 +82,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
                   $scope.formData.date = parseDateString(response.data.event.date);
                   $scope.formData.type = "1";
                   $scope.formData.limit = parseInt(response.data.event.limit);
+                  $scope.formData.locked = "-1";
               }
           });
 
@@ -106,6 +108,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$locati
                   } else {
                     $scope.formData.type = "2";
                   }
+                  $scope.formData.locked = response.data.game.locked;
               }
           });
     }

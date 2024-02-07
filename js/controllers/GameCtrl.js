@@ -25,6 +25,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$httpPa
                 console.log(response.data);
                 $scope.attendees = response.data.attendees;
                 $scope.game = response.data.game;
+                $scope.locked = response.data.game.locked;
                 $scope.alreadySignedUp = response.data.alreadySignedUp;
                 $scope.eligiblePositions = response.data.eligiblePositions;
                 $scope.currentPosition = response.data.currentPosition;
@@ -73,7 +74,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', '$http', '$httpPa
     $scope.load();
 
     $scope.signup = function (position) {
-        if ($scope.alreadySignedUp && $scope.currentPosition === position) {
+        if (($scope.alreadySignedUp && $scope.currentPosition === position) || $scope.locked === '1') {
             return;
         }
 
