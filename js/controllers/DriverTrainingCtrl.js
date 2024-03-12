@@ -16,21 +16,23 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             internal_title: 'Probie Driver',
             body: 'To be a probationary Driver a member must satisfy the following requirements:' + '\n' +
             '* Be an Attendant\n' +
-            '* Hold a Valid NYS Class D Drivers License or equivalent for a minimum of six (6) months\n' +
+            '* Hold and actively utilize a valid NYS Class D Drivers License or equivalent for a minimum of six (6) months\n' +
             '* Attend and pass the written exam for the RPI Ambulance Driver Training Class\n' +
             '* Hold a CEVO, EVOC or RPI Ambulance EVDD Certification \n' +
             '* Complete the Driver Checklist\n' +
             '* Complete the online NIMS IS-100, IS-200, IS-700 and IS-800 courses\n' +
             '* Complete and submit copy of an Ambulance Vehicle Checklist\n' +
             '* Complete at least five (5) hours of behind the wheel training under the supervision of a Driver Trainer\n' +
-            '* Drive a minimum of two (2) Priority-II calls and receive passing evaluations from a trainer. A driver ' +
+            '* Drive a first response vehicle with a driver trainer\n' +
+            '* Drive a minimum of two (2) calls in non-emergency mode and receive passing evaluations from a trainer. A driver ' +
             'trainer must accompany the trainee in the driver compartment during these calls\n' +
-            '* Drive a minimum of one (1) Priority-I call and receive passing evaluations from a trainer. A driver\n' +
+            '* Drive a minimum of one (1) call in emergency mode and receive passing evaluations from a trainer. A driver\n' +
             'trainer must accompany the trainee in the driver compartment during this call\n' +
             '* Drive to each Albany area hospital with a driver trainer to become familiar with routes to these less ' +
             'common destinations\n' +
+            '* Teach three (3) attendant checklist items under the supervision of a credentialed member\n' +
             '* Pass the Driver Practical Exam administered by a Driver Trainer\n' +
-            '* Request and receive approval by the promotional board for promotion'
+            '* Receive joint approval from the captain and training committee'
 
 
         },
@@ -40,7 +42,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             body: 'To be a Driver a member must satisfy the following requirements:' + '\n' +
             '* Be a Probationary Driver\n' +
             '* Drive two (2) calls as a probationary Driver and receive passing evaluations from a Trainer\n' +
-            '* Request and receive approval by the promotional board for promotion'
+            '* Receive joint approval from the captain and training committee'
 
         },
 
@@ -54,7 +56,7 @@ angular.module(ctrl_name, []).controller(ctrl_name, ['$scope', function ($scope)
             '* Teach a driver related course or drill under the supervision of a Driver Trainer\n' +
             '* Teach at least three (3) Driver Checklist items to a trainee under the supervision of a Driver Trainer \n' +
             '* Conduct at least one (1) vehicle training session with a trainee under the supervision of a Driver Trainer\n' +
-            '* Request and receive approval by the promotional board for promotion'
+            '* Receive joint approval from the captain and training committee'
 
         },
 
