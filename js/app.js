@@ -41,7 +41,7 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
 		'attendant-training', 'driver-training', 'crew-chief-training', 'supervisor-training', 'in-service-training',
 		'communications', 'emt-reciprocity', 'minutes', 'misc-forms', 'mutual-aid', 'misc-forms', 'radio-callsigns',
 		'rensco-resources', 'sog', 'doh-resources', 'text-message-dispatch', 'my-settings', 'my-training', 'logout',
-        'games-events', 'constitution', 'bylaws', 'event', 'game'
+        'games-events', 'constitution', 'bylaws', 'event', 'game', 'grievance-form'
 	];
 
 	var SCHEDULING_PAGES = [
