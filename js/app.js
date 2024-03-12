@@ -20,7 +20,7 @@ var dependencies = [
     'CoverageDetailsCtrl', 'JoinCtrl', 'NightCrewsCtrl', 'MemberListCtrl', 'FuelLogCtrl', 'StockingIssueCtrl',
     'AddMemberCtrl', 'ExpirationsCtrl', 'CommunityCtrl', 'EditMemberCtrl', 'GamesEventsCtrl', 'AddEventCtrl', 'EditDefaultCtrl',
     'EventCtrl', 'GameCtrl', 'GamesEventsCtrl', 'ModifyScheduleCtrl', 'MySettingsCtrl', 'MyTrainingCtrl', 'AnnouncementsCtrl',
-    'NominationsCtrl', 'FuelLogCtrl', '404Ctrl', 'EditEventCtrl'
+    'NominationsCtrl', 'FuelLogCtrl', '404Ctrl', 'EditEventCtrl', 'GrievanceFormCtrl'
 ];
 
 var app = angular.module('RPIA', dependencies);
@@ -41,7 +41,7 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
 		'attendant-training', 'driver-training', 'crew-chief-training', 'supervisor-training', 'in-service-training',
 		'communications', 'emt-reciprocity', 'minutes', 'misc-forms', 'mutual-aid', 'misc-forms', 'radio-callsigns',
 		'rensco-resources', 'sog', 'doh-resources', 'text-message-dispatch', 'my-settings', 'my-training', 'logout',
-        'games-events', 'constitution', 'bylaws', 'event', 'game'
+        'games-events', 'constitution', 'bylaws', 'event', 'game', 'grievance-form'
 	];
 
 	var SCHEDULING_PAGES = [

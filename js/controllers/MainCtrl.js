@@ -124,6 +124,7 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             page: '', title: 'Tools', isDropdown: true, dividersAfter: [], dropdownOptions: [
             {page: 'member-list', title: 'Member List'},
             {page: 'fuel-log', title: 'Fuel Log'},
+            {page: 'grievance-form', title: 'Grievance Report'},
             {page: 'stocking-issue', title: 'Stocking'},
             // {page: 'announcements', title: 'Announcements'}
         ]
