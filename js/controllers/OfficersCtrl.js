@@ -18,7 +18,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             type: 'img',
             img: 'img/O-Board.jpg',
             width: '75%',
-            alt: 'Photo of the office board',
+            alt: 'Photo of the officer board',
             centered: true
         },
 
@@ -27,11 +27,37 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             internal_title: 'Current Officer Board',
             body: 'Line Side: \n' +
             '* Captain: Jacob Steingart \n' +
+            '* First Lieutenant: Christian Kegel \n' +
+            '* Second Lieutenant: Toby McDonald \n' +
+            '\nCivil Side:\n' +
+            '* President: Alex Mattoni \n' +
+            '* Vice President: Dylan Deren'
+        },
+
+        {
+            header: 'Officer Board Spring 2024',
+            internal_title: 'Past Officer Boards',
+            body: 'Line Side: \n' +
+            '* Captain: Jacob Steingart\n' +
+            '* First Lieutenant: Thomas Celuzza \n' +
+            '* Second Lieutenant: Christian Kegel \n' +
+            '\nCivil Side:\n' +
+            '* President: Alex Mattoni\n' +
+            '* Vice President: Dylan Deren'
+
+        },
+
+        {
+            header: 'Officer Board Fall 2023',
+            internal_title: 'Past Officer Boards',
+            body: 'Line Side: \n' +
+            '* Captain: Jacob Steingart\n' +
             '* First Lieutenant: Thomas Celuzza \n' +
             '* Second Lieutenant: Sean Lim \n' +
             '\nCivil Side:\n' +
-            '* President: Felicia Walbridge \n' +
+            '* President: Felicia Walbridge\n' +
             '* Vice President: Alex Mattoni'
+
         },
 
         {
