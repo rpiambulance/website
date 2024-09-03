@@ -87,7 +87,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 }
                 $message .= "Email: " . $account['email'];
                 $message .= "\n";
-                $message .= "Positions:";
+                $message .= "Credentials:";
                 $attendant = $account['attendant'] == 1;
                 $message_length = $message.length;
                 // This also needs to go into another functions
