@@ -3,19 +3,11 @@
         <div class="center">
             <h2 class="view-header">Request Coverage</h2>
 
-            <h3>Planning an event at or around RPI?<br>Here are a few options of how RPI Ambulance can
-                provide EMS coverage for your event.<br>If you have further questions, please feel free to <a
-                        href="#/contact">contact us</a>.
-            </h3> <!-- link -->
+            <h3>RPI Ambulance provides standby coverage for on-campus events and functions in the nearby area. <br>We can cover everything from a single-EMT standby to a large-scale event with multiple medical crews and patient care facilities. <br><br>
+            To request coverage, send us an email at  <a href="mailto:officers@rpiambulance.com">officers@rpiambulance.com</a>
+            <br>Be sure to include information including a point of contact, the event dates/times, event location, and estimated attendance.
+            </h3>
             <br>
-        </div>
-        <div class="row" ng-show="showCoverageSuccess">
-            <div class="alert alert-success alert-dismissible" ng-show="showCoverageSuccess" role="alert">
-                <button type="button" class="close" ng-click="showCoverageSuccess = false"><span
-                        aria-hidden="true">&times;</span></button>
-                <i class="fa fa-ambulance fa-lg"></i><strong> Success!</strong> Your coverage request was successfully sent.
-                You should have received a copy to the email you provided.
-            </div>
         </div>
         <div class="pricing-area text-center">
             <div class="row">
@@ -30,9 +22,6 @@
                         <li>At least 1 EMT</li>
                         <li>First Response 59</li>
                         <li>Oxygen and medical supplies</li>
-                        <li class="plan-action">
-                            <a href="" ng-click="toggleModal('Tier I')" class="btn btn-primary">Select</a>
-                        </li>
                     </ul>
                 </div>
 
@@ -47,9 +36,6 @@
                         <li>1&ndash;3 EMTs on field crews</li>
                         <li>5939 (remains available for 911 calls)</li>
                         <li>Oxygen and medical supplies</li>
-                        <li class="plan-action">
-                            <a href="" ng-click="toggleModal('Tier II')" class="btn btn-primary">Select</a>
-                        </li>
                     </ul>
                 </div>
 
@@ -64,97 +50,14 @@
                         <li>3&ndash;5 EMTs on field crews</li>
                         <li>5939 (dedicated standby)</li>
                         <li>2+ emergency event supervisors</li>
-                        <li class="plan-action">
-                            <a href="" ng-click="toggleModal('Tier III')" class="btn btn-primary">Select</a>
-                        </li>
                     </ul>
                 </div>
             </div>
         </div>
+        <h3 class="text-center"><br><strong>Please note: A minimum of 2 weeks notice is required for event standbys.</strong></h3>
         <p class="text-center text-muted"><sup>*</sup> Most events within the RPI Community will be staffed free of charge.
         </p>
     </div>
 </section>
-
-<!-- Modal -->
-<modal title="currentTier" visible="showModal">
-    <form role="form" ng-submit="submitForm()" novalidate>
-        <h4 class="text-center">Tell us about yourself...</h4>
-        <div class="form-group">
-            <label for="orgName">Organization Name</label>
-            <input type="text" class="form-control" id="orgName" placeholder="Who are we doing this for?"
-                   ng-model="formData.orgName"/>
-        </div>
-        <div class="form-group">
-            <label for="name">Contact Name</label>
-            <input type="text" class="form-control" id="name" placeholder="Who do we get in touch with?"
-                   ng-model="formData.name"/>
-        </div>
-        <div class="form-group">
-            <label for="email">Contact Email</label>
-            <input type="type" class="form-control" id="email" placeholder="How do we reach you?"
-                   ng-model="formData.email"/>
-        </div>
-        <div class="form-group">
-            <label for="phone">Contact Phone</label>
-            <input type="tel" class="form-control" id="phone" placeholder="(555) 555-5555"
-                   ng-model="formData.phone"/>
-        </div>
-        <h4 class="text-center">Tell us about the event...</h4>
-        <div class="form-group">
-            <label for="eventName">Event Name</label>
-            <input type="text" class="form-control" id="eventName" placeholder="What are we covering?"
-                   ng-model="formData.eventName"/>
-        </div>
-        <div class="form-group">
-            <label for="loc">Event Location</label>
-            <input type="text" class="form-control" id="loc"
-                   placeholder="Where do you want us? Building Name or Address"
-                   ng-model="formData.loc"/>
-        </div>
-        <div class="form-group">
-            <label for="date">Date</label>
-            <input type="date" class="form-control" id="date" placeholder="MM/DD/YYYY"
-                   ng-model="formData.date"/>
-        </div>
-
-        <div class="form-group">
-            <label for="time">Arrival Time</label>
-            <input type="time" class="form-control" id="time" placeholder="HH:MM AM/PM -- When do you need us there?"
-                   ng-model="formData.time"/>
-        </div>
-        <div class="form-group">
-            <label for="type">Event Type</label>
-            <select id="type" ng-model="formData.type">
-                <option value="Sporting Event">Sporting Event/Game</option>
-                <option value="Sports Practice">Sports Practice</option>
-                <option value="Hackathon">Hackathon</option>
-                <option value="After Dark">"After Dark" Event</option>
-                <option value="Run">Run/Marathon</option>
-                <option value="Other Outdoor Event">Other Outdoor Event</option>
-                <option value="Other Indoor Event">Other Indoor Event</option>
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="attendance">Expected Attendance</label>
-            <input type="number" min="0" class="form-control" id="attendance" placeholder="{{getAttendanceLims()}}"
-                   ng-model="formData.attendance"/>
-        </div>
-        <div class="form-group">
-            <label for="duration">Expected Duration</label>
-            <input type="number" min="0" class="form-control" id="duration" placeholder="Hours"
-                   ng-model="formData.duration"/>
-        </div>
-        <div class="form-group">
-            <div class="g-recaptcha" data-sitekey="6LdHKxUTAAAAAGTBpgYEJZDoAz1uGqG_tX_gQb1K"></div>
-        </div>
-        <hr/>
-        <div class="btn-toolbar pull-right">
-            <button type="reset" ng-click="clearForm()" class="btn btn-warning">Clear Form</button>
-            <button type="submit" ng-click="toggleModal('')" class="btn btn-success">Submit</button>
-        </div>
-        <div class="clearfix"></div>
-    </form>
-</modal>
 
 <script src='https://www.google.com/recaptcha/api.js'></script>
