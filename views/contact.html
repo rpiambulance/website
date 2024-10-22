@@ -1,7 +1,9 @@
 <section id="contact-info">
     <div class="center">
         <h2>Contact Us</h2>
-        <p class="lead">Shoot us an email using the form below! Or come visit us!</p>
+        <p class="lead">Shoot us an email at <a href="mailto:officers@rpiambulance.com">officers@rpiambulance.com</a> &mdash; Or come visit us!</p>
+        <p class="lead">You can also give us a call at <a href="tel:5189007742">(518) 900-RPIA</a></p>
+        <p class="lead">Experiencing a medical emergency? <span style="color: #c52d2f;"><strong>Dial 911</strong></span></p>
     </div>
     <div class="gmap-area">
         <div class="container">
@@ -51,60 +53,6 @@
     </div>
 </section>  <!--/gmap_area -->
 
-<section id="contact-page">
-    <div class="container">
-        <div class="center">
-            <h2>Drop us a line!</h2>
-            <p class="lead">Use this from to send us an email. We'll get back to you soon!</p>
-            <div class="alert alert-success alert-dismissible" ng-show="showContactSuccess" role="alert">
-                <button type="button" class="close" ng-click="showContactSuccess = false"><span
-                        aria-hidden="true">&times;</span></button>
-                <i class="fa fa-paper-plane"></i><strong> Success!</strong> Your email was successfully sent. Thank you
-                for reaching out to us!
-            </div>
-        </div>
-        <div class="row contact-wrap">
-            <div class="status alert alert-success" style="display: none"></div>
-            <form id="main-contact-form" class="contact-form" name="contact-form" role="form" ng-submit="submitForm()"
-                  novalidate>
-                <div class="col-sm-5 col-sm-offset-1">
-                    <div class="form-group">
-                        <label for="name">Name<sup class="text-danger">*</sup></label>
-                        <input type="text" name="name" id="name" ng-model="name" class="form-control"
-                               required="required">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email<sup class="text-danger">*</sup></label>
-                        <input type="email" name="email" id="email" ng-model="email" class="form-control"
-                               required="required">
-                    </div>
-                    <div class="form-group">
-                        <label for="phone">Phone</label>
-                        <input type="tel" id="phone" name="phone" ng-model="phone" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <div class="g-recaptcha" data-sitekey="6LdHKxUTAAAAAGTBpgYEJZDoAz1uGqG_tX_gQb1K"></div>
-                    </div>
-                </div>
-                <div class="col-sm-5">
-                    <div class="form-group">
-                        <label for="subject">Subject<sup class="text-danger">*</sup></label>
-                        <input type="text" name="subject" id="subject" ng-model="subject" class="form-control"
-                               required="required">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message<sup class="text-danger">*</sup></label>
-                        <textarea name="message" id="message" ng-model="message" required="required"
-                                  class="form-control" rows="8"></textarea>
-                    </div>
-                    <div class="btn-toolbar">
-                        <button class="btn btn-default btn-lg" type="reset" ng-click="clearForm()">Clear Form</button>
-                        <button type="submit" name="submit" class="btn btn-primary btn-lg">Submit Message</button>
-                    </div>
-                </div>
-            </form>
-        </div><!--/.row-->
-    </div><!--/.container-->
-</section><!--/#contact-page-->
+
 
 <script src='https://www.google.com/recaptcha/api.js'></script>
