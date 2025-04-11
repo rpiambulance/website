@@ -26,6 +26,30 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             header: 'Current Officer Board',
             internal_title: 'Current Officer Board',
             body: 'Line Side: \n' +
+            '* Captain: Christian Kegel \n' +
+            '* First Lieutenant: Layla Bailey \n' +
+            '* Second Lieutenant: Sophia Ieraci \n' +
+            '\nCivil Side:\n' +
+            '* President: Lily Schwedhelm \n' +
+            '* Vice President: Joseph Bowers'
+        },
+
+        {
+            header: 'Officer Board Winter 2024',
+            internal_title: 'Past Officer Boards',
+            body: 'Line Side: \n' +
+            '* Captain: Jacob Steingart \n' +
+            '* First Lieutenant: Christian Kegel \n' +
+            '* Second Lieutenant: Sophia Ieraci \n' +
+            '\nCivil Side:\n' +
+            '* President: Dylan Deren \n' +
+            '* Vice President: Lily Schwedhelm'
+        },
+
+        {
+            header: 'Officer Board Fall 2024',
+            internal_title: 'Past Officer Boards',
+            body: 'Line Side: \n' +
             '* Captain: Jacob Steingart \n' +
             '* First Lieutenant: Christian Kegel \n' +
             '* Second Lieutenant: Toby McDonald \n' +
