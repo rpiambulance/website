@@ -2,14 +2,13 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     $locationProvider.hashPrefix('');
 
     var views = [
-        'Home', 'RPIA-About', 'FAQ', '5939-About', 'FR59-About', 'Officers', 'Communications', 'Media', 'Minutes',
-        'Mutual-Aid', 'Radio-Callsigns', 'Attendant-Training', 'Compatibility', 'Constitution', 'Bylaws', 'Contact', 'Copy',
-        'Coverage', 'CPR-Certification', 'Crew-Chief-Training', 'Devs', 'DOH-Resources', 'Driver-Training',
-        'EMT-Reciprocity', 'In-Service-Training', 'Login', 'Misc-Forms', 'New-Members-Training', 'RENSCO-Resources',
-        'SOG', 'Supervisor-Training', 'System-Requirements', 'Text-Message-Dispatch', 'Coverage-Details',
-        'Join', 'Night-Crews', 'Member-List', 'Stocking-Issue', 'Fuel-Log', 'Add-Member', 'Expirations', 'Community',
-        'Edit-Member', 'Games-Events', 'Add-Event', 'Edit-Default', 'Event', 'Game', 'Modify-Schedule', /*'My-Training',*/
-        'My-Settings', /*'Announcements',*/ 'Nominations', 'Fuel-Log', '404', 'edit-event', 'Grievance-Form'
+        'Home', 'Communications', 'Media', 'Minutes','Mutual-Aid', 'Radio-Callsigns', 'Attendant-Training', 
+        'Compatibility', 'Constitution', 'Bylaws', 'Copy', 
+        'Crew-Chief-Training', 'Devs', 'DOH-Resources', 'Driver-Training', 'EMT-Reciprocity', 'In-Service-Training', 
+        'Login', 'Misc-Forms', 'RENSCO-Resources', 'SOG', 'Supervisor-Training', 
+        'System-Requirements', 'Text-Message-Dispatch', 'Night-Crews', 'Member-List', 'Stocking-Issue', 'Fuel-Log', 
+        'Add-Member', 'Expirations', 'Community', 'Edit-Member', 'Games-Events', 'Add-Event', 'Edit-Default', 
+        'Event', 'Game', 'Modify-Schedule', 'My-Settings', 'Fuel-Log', '404', 'edit-event', 'Grievance-Form'
     ];
 
     views.forEach(function (elem, index) {
@@ -70,8 +69,14 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         controller: 'LoginCtrl'
     });
 
+    // Redirect the legacy home route to the members login page
+    $routeProvider.when('/home', {
+        redirectTo: '/login'
+    });
+
+    // Default route now goes to login (members-only portal)
     $routeProvider.otherwise({
-        redirectTo:'/home'
+        redirectTo:'/login'
     });
 
     // $locationProvider.html5Mode(true);

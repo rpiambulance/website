@@ -82,38 +82,10 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
      * @type {*[]}
      */
     $scope.publicNavbar = [
-        {page: 'home', title: 'Home', isDropdown: false},
-        {
-            page: '', title: 'About Us', isDropdown: true, dividersAfter: [2, 4], dropdownOptions: [
-            {page: 'rpia-about', title: 'About RPI Ambulance'},
-            {page: 'faq', title: 'FAQs'},
-            {page: 'officers', title: 'Officers'},
-            {page: '5939-about', title: 'Ambulance'},
-            {page: 'fr59-about', title: 'First Response'},
-            {page: 'media', title: 'Media'}
-            // {page: 'nominations', title: 'Nominations'}
-        ]
-        },
-        {page: 'join', title: 'Join Us', isDropdown: false},
-        {
-            page: '', title: 'Outreach', isDropdown: true, dividersAfter: [], dropdownOptions: [
-            {page: 'new-members-training', title: 'New Members'},
-            {page: 'cpr-certification', title: 'CPR Certification'},
-            {page: 'community', title: 'Community Outreach'}
-        ]
-        },
-        {page: 'coverage', title: 'Request Coverage', isDropdown: false},
-        {
-            page: 'login',
-            title: 'Members',
-            isDropdown: false
-        },
-        {page: 'contact', title: 'Contact Us', isDropdown: false}
-
+        {page: 'login', title: 'Members', isDropdown: false}
     ];
 
     $scope.memberNavbar = [
-        {page: 'home', title: 'Home', isDropdown: false},
         {
             page: '', title: 'Scheduling', isDropdown: true, dividersAfter: [2, 4], dropdownOptions: [
             {page: 'night-crews', title: 'Night Crews'},
@@ -126,7 +98,6 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'fuel-log', title: 'Fuel Log'},
             {page: 'grievance-form', title: 'Grievance Report'},
             {page: 'stocking-issue', title: 'Stocking'},
-            // {page: 'announcements', title: 'Announcements'}
         ]
         },
 
@@ -155,14 +126,6 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
             {page: 'text-message-dispatch', title: 'Text Message Dispatch'}
         ]
         },
-
-        //{
-        //    page: '', title: 'Manage Content', isDropdown: true, dividersAfter: [], dropdownOptions: [
-        //        {page: 'add', title: 'New Members'},
-        //        {page: 'new-members-training', title: 'New Members'},
-        //        {page: 'new-members-training', title: 'New Members'}
-        //    ]
-        //},
         {
             page: '', title: 'Admin', isDropdown: true, dividersAfter: [], adminOnly: true, schedulingOnly: false, dropdownOptions: [
             {page: 'modify-schedule', title: 'Modify Schedule'},
