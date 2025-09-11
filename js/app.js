@@ -11,16 +11,14 @@ var dependencies = [
     'EditablePageService', 'AuthService', 'DateService',
 
     // LOCAL CONTROLLERS:
-    'MainCtrl', 'HomeCtrl', 'RPIAAboutCtrl', 'FAQCtrl', '5939AboutCtrl', 'OfficersCtrl', 'CommunicationsCtrl',
-    'FR59AboutCtrl', 'MediaCtrl', 'MinutesCtrl', 'MutualAidCtrl', 'RadioCallsignsCtrl', 'AttendantTrainingCtrl',
-    'CompatibilityCtrl', 'ConstitutionCtrl', 'ContactCtrl', 'BylawsCtrl', 'CopyCtrl', 'CoverageCtrl', 'CPRCertificationCtrl',
+    'MainCtrl', 'CommunicationsCtrl','MinutesCtrl', 'MutualAidCtrl', 'RadioCallsignsCtrl', 'AttendantTrainingCtrl',
+    'CompatibilityCtrl', 'ConstitutionCtrl', 'BylawsCtrl', 'CopyCtrl',
     'CrewChiefTrainingCtrl', 'DevsCtrl', 'DOHResourcesCtrl', 'DriverTrainingCtrl', 'EMTReciprocityCtrl',
-    'InServiceTrainingCtrl', 'LoginCtrl', 'MiscFormsCtrl', 'NewMembersTrainingCtrl', 'RENSCOResourcesCtrl',
-    'SOGCtrl', 'SupervisorTrainingCtrl', 'SystemRequirementsCtrl', 'TextMessageDispatchCtrl',
-    'CoverageDetailsCtrl', 'JoinCtrl', 'NightCrewsCtrl', 'MemberListCtrl', 'FuelLogCtrl', 'StockingIssueCtrl',
-    'AddMemberCtrl', 'ExpirationsCtrl', 'CommunityCtrl', 'EditMemberCtrl', 'GamesEventsCtrl', 'AddEventCtrl', 'EditDefaultCtrl',
-    'EventCtrl', 'GameCtrl', 'GamesEventsCtrl', 'ModifyScheduleCtrl', 'MySettingsCtrl', 'MyTrainingCtrl', 'AnnouncementsCtrl',
-    'NominationsCtrl', 'FuelLogCtrl', '404Ctrl', 'EditEventCtrl', 'GrievanceFormCtrl'
+    'InServiceTrainingCtrl', 'LoginCtrl', 'MiscFormsCtrl', 'RENSCOResourcesCtrl',
+    'SOGCtrl', 'SupervisorTrainingCtrl', 'SystemRequirementsCtrl', 'TextMessageDispatchCtrl','NightCrewsCtrl', 'MemberListCtrl', 'FuelLogCtrl', 'StockingIssueCtrl',
+    'AddMemberCtrl', 'ExpirationsCtrl', 'EditMemberCtrl', 'GamesEventsCtrl', 'AddEventCtrl', 'EditDefaultCtrl',
+    'EventCtrl', 'GameCtrl', 'GamesEventsCtrl', 'ModifyScheduleCtrl', 'MySettingsCtrl', 'MyTrainingCtrl',
+    'FuelLogCtrl', '404Ctrl', 'EditEventCtrl', 'GrievanceFormCtrl'
 ];
 
 var app = angular.module('RPIA', dependencies);
