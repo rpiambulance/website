@@ -28,7 +28,7 @@ angular.module('OfficersCtrl', []).controller('OfficersCtrl', ['$scope', '$sce',
             body: 'Line Side: \n' +
             '* Captain: Christian Kegel \n' +
             '* First Lieutenant: Layla Bailey \n' +
-            '* Second Lieutenant: Vacant \n' +
+            '* Second Lieutenant: Nick Goitiandia \n' +
             '\nCivil Side:\n' +
             '* President: Lily Schwedhelm \n' +
             '* Vice President: Joseph Bowers'
