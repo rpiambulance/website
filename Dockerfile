@@ -1,4 +1,4 @@
-FROM php:8-apache
+FROM php:7.4-apache
 
 ARG build_env=production
 
