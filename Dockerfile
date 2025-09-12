@@ -1,18 +1,5 @@
-FROM php:7.4-apache
+FROM php:8-apache
 
-### fix attempt is below
-RUN set -eux; \
-  sed -ri 's@deb.debian.org@archive.debian.org@g' /etc/apt/sources.list; \
-  sed -ri 's@security.debian.org@archive.debian.org/debian-security@g' /etc/apt/sources.list; \
-  printf 'Acquire::Check-Valid-Until "false";\n' > /etc/apt/apt.conf.d/99no-check-valid-until; \
-  apt-get -o Acquire::Check-Valid-Until=false update
-
-RUN apt-get install -y --no-install-recommends \
-    <your-packages> \
- && rm -rf /var/lib/apt/lists/*
-### fix attempt is above
-
- 
 ARG build_env=production
 
 COPY . /var/www/html
