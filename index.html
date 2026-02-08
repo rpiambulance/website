@@ -172,7 +172,7 @@
                     ng-click="ensureEditDisabled()"
                     ng-class="{'active': isActive(d)}"
                   >
-                    <a ng-href="#/{{d.page}}" ng-bind="d.title"></a>
+                    <a ng-href="{{d.customLink ? d.link : '#/' + d.page}}" ng-bind="d.title"></a>
                   </li>
                   <li
                     ng-if="showDivider(n, $index)"
@@ -207,8 +207,8 @@
             <div class="widget">
               <h3>RPI Ambulance</h3>
               <ul>
-                <li><a href="#/rpia-about">About Us</a></li>
-                <li><a href="#/contact">Contact Us</a></li>
+                <li><a href="https://wiki.rpiambulance.com">Wiki</a></li>
+                <li><a href="mailto:officers@rpiambulance.com">Contact Us</a></li>
                 <li>
                   <a
                     href="https://www.hhs.gov/hipaa/index.html"
@@ -224,14 +224,14 @@
             <div class="widget">
               <h3>Support</h3>
               <ul>
-                <li><a href="#/system-requirements">System Requirements</a></li>
+                <li><a href="https://wiki.rpiambulance.com">System Requirements</a></li>
                 <li><a href="#/login">Member Login</a></li>
                 <li>
                   <a href="mailto:webmaster@rpiambulance.com"
                     >Contact Webmaster</a
                   >
                 </li>
-                <li><a href="#/copy">Site Copyright</a></li>
+                <li><a href="https://github.com/rpiambulance/website">Site Copyright</a></li>
               </ul>
             </div>
           </div>
@@ -319,9 +319,8 @@
           <div class="col-sm-6">
             <ul class="pull-right">
               <li><a href="#/login">Home</a></li>
-              <li><a href="#/rpia-about">About Us</a></li>
-              <li><a href="#/faq">FAQ</a></li>
-              <li><a href="#/contact">Contact Us</a></li>
+              <li><a href="https://wiki.rpiambulance.com">Wiki</a></li>
+              <li><a href="mailto:officers@rpiambulance.com">Contact Us</a></li>
             </ul>
           </div>
         </div>
@@ -361,51 +360,31 @@
     <script src="js/services/DateService.js"></script>
 
     <script src="js/controllers/MainCtrl.js"></script>
-  <!-- Home controller removed for members-only portal -->
-    <script src="js/controllers/OfficersCtrl.js"></script>
-    <script src="js/controllers/CommunicationsCtrl.js"></script>
-    <script src="js/controllers/MediaCtrl.js"></script>
-    <script src="js/controllers/MinutesCtrl.js"></script>
-    <script src="js/controllers/MutualAidCtrl.js"></script>
-    <script src="js/controllers/RadioCallsignsCtrl.js"></script>
-    <script src="js/controllers/AttendantTrainingCtrl.js"></script>
-    <script src="js/controllers/CompatibilityCtrl.js"></script>
-    <script src="js/controllers/ConstitutionCtrl.js"></script>
-    <script src="js/controllers/BylawsCtrl.js"></script>
-    <script src="js/controllers/CopyCtrl.js"></script>
-    <script src="js/controllers/CrewChiefTrainingCtrl.js"></script>
-    <script src="js/controllers/DevsCtrl.js"></script>
-    <script src="js/controllers/DOHResourcesCtrl.js"></script>
-    <script src="js/controllers/DriverTrainingCtrl.js"></script>
-    <script src="js/controllers/EMTReciprocityCtrl.js"></script>
-    <script src="js/controllers/InServiceTrainingCtrl.js"></script>
     <script src="js/controllers/LoginCtrl.js"></script>
     <script src="js/controllers/OIDCOnboardCtrl.js"></script>
-    <script src="js/controllers/MiscFormsCtrl.js"></script>
-    <script src="js/controllers/RENSCOResourcesCtrl.js"></script>
-    <script src="js/controllers/SOGCtrl.js"></script>
-    <script src="js/controllers/SupervisorTrainingCtrl.js"></script>
-    <script src="js/controllers/SystemRequirementsCtrl.js"></script>
-    <script src="js/controllers/TextMessageDispatchCtrl.js"></script>
+    <script src="js/controllers/404Ctrl.js"></script>
     <script src="js/controllers/NightCrewsCtrl.js"></script>
+    <script src="js/controllers/GamesEventsCtrl.js"></script>
+    <script src="js/controllers/EventCtrl.js"></script>
+    <script src="js/controllers/GameCtrl.js"></script>
     <script src="js/controllers/MemberListCtrl.js"></script>
     <script src="js/controllers/FuelLogCtrl.js"></script>
     <script src="js/controllers/StockingIssueCtrl.js"></script>
+    <script src="js/controllers/GrievanceFormCtrl.js"></script>
+    <script src="js/controllers/MinutesCtrl.js"></script>
+    <script src="js/controllers/MutualAidCtrl.js"></script>
+    <script src="js/controllers/RadioCallsignsCtrl.js"></script>
+    <script src="js/controllers/SOGCtrl.js"></script>
+    <script src="js/controllers/DOHResourcesCtrl.js"></script>
+    <script src="js/controllers/MiscFormsCtrl.js"></script>
+    <script src="js/controllers/RENSCOResourcesCtrl.js"></script>
     <script src="js/controllers/AddMemberCtrl.js"></script>
     <script src="js/controllers/ExpirationsCtrl.js"></script>
-    <script src="js/controllers/GamesEventsCtrl.js"></script>
     <script src="js/controllers/AddEventCtrl.js"></script>
     <script src="js/controllers/EditDefaultCtrl.js"></script>
-    <script src="js/controllers/EventCtrl.js"></script>
-    <script src="js/controllers/GameCtrl.js"></script>
-    <script src="js/controllers/GamesEventsCtrl.js"></script>
     <script src="js/controllers/ModifyScheduleCtrl.js"></script>
     <script src="js/controllers/MySettingsCtrl.js"></script>
     <script src="js/controllers/MyTrainingCtrl.js"></script>
-    <script src="js/controllers/MemberListCtrl.js"></script>
-    <script src="js/controllers/404Ctrl.js"></script>
-    <script src="js/controllers/EditEventCtrl.js"></script>
-    <script src="js/controllers/GrievanceFormCtrl.js"></script>
     <script src="js/controllers/EditMemberCtrl.js"></script>
 
     <!-- <script src="js/snowstorm.js"></script> -->

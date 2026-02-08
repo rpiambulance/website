@@ -2,13 +2,14 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     $locationProvider.hashPrefix('');
 
     var views = [
-        'Home', 'Communications', 'Media', 'Minutes','Mutual-Aid', 'Radio-Callsigns', 'Attendant-Training', 
-        'Compatibility', 'Constitution', 'Bylaws', 'Copy', 
-        'Crew-Chief-Training', 'Devs', 'DOH-Resources', 'Driver-Training', 'EMT-Reciprocity', 'In-Service-Training', 
-        'Login', 'Misc-Forms', 'RENSCO-Resources', 'SOG', 'Supervisor-Training', 
-        'System-Requirements', 'Text-Message-Dispatch', 'Night-Crews', 'Member-List', 'Stocking-Issue', 'Fuel-Log', 
-        'Add-Member', 'Expirations', 'Community', 'Edit-Member', 'Games-Events', 'Add-Event', 'Edit-Default', 
-        'Event', 'Game', 'Modify-Schedule', 'My-Settings', 'Fuel-Log', '404', 'edit-event', 'Grievance-Form', 'OIDC-Onboard'
+        'Login', 'OIDC-Onboard', '404',
+        'Night-Crews', 'Games-Events', 'Event', 'Game',
+        'Member-List', 'Fuel-Log', 'Stocking-Issue', 'Grievance-Form',
+        'Minutes', 'Misc-Forms', 'RENSCO-Resources', 'DOH-Resources',
+        'Mutual-Aid', 'Radio-Callsigns', 'SOG',
+        'My-Settings', 'My-Training',
+        'Modify-Schedule', 'Edit-Default',
+        'Add-Event', 'Add-Member', 'Edit-Member', 'Expirations'
     ];
 
     views.forEach(function (elem, index) {

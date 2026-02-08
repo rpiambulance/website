@@ -103,27 +103,17 @@ angular.module('MainCtrl', []).controller('MainCtrl', ['$rootScope', '$scope', '
 
         {
             page: '', title: 'Training', isDropdown: true, dividersAfter: [], dropdownOptions: [
-            {page: 'attendant-training', title: 'Attendant'},
-            {page: 'driver-training', title: 'Driver'},
-            {page: 'crew-chief-training', title: 'Crew Chief'},
-            {page: 'supervisor-training', title: 'Supervisor'},
-            {page: 'in-service-training', title: 'In-Services'}
+            {page: '', title: 'Train', customLink: true, link: 'https://train.rpiambulance.com'},
+            {page: '', title: 'Wiki', customLink: true, link: 'https://wiki.rpiambulance.com'}
         ]
         },
         {
             page: '', title: 'Resources', isDropdown: true, dividersAfter: [], dropdownOptions: [
-            {page: 'bylaws', title: 'Bylaws'},
-            {page: 'communications', title: 'Communications'},
-            {page: 'constitution', title: 'Constitution'},
-            {page: 'emt-reciprocity', title: 'Reciprocity'},
+            {page: '', title: 'Wiki', customLink: true, link: 'https://wiki.rpiambulance.com'},
             {page: 'minutes', title: 'Meeting Minutes'},
             {page: 'misc-forms', title: 'Misc Forms'},
-            {page: 'mutual-aid', title: 'Mutual Aid'},
-            {page: 'radio-callsigns', title: 'Radio Callsigns'},
             {page: 'rensco-resources', title: 'RENSCO Resources'},
-            {page: 'sog', title: 'SOGs'},
-            {page: 'doh-resources', title: 'DOH Resources'},
-            {page: 'text-message-dispatch', title: 'Text Message Dispatch'}
+            {page: 'doh-resources', title: 'DOH Resources'}
         ]
         },
         {
