@@ -8,7 +8,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
         'Login', 'Misc-Forms', 'RENSCO-Resources', 'SOG', 'Supervisor-Training', 
         'System-Requirements', 'Text-Message-Dispatch', 'Night-Crews', 'Member-List', 'Stocking-Issue', 'Fuel-Log', 
         'Add-Member', 'Expirations', 'Community', 'Edit-Member', 'Games-Events', 'Add-Event', 'Edit-Default', 
-        'Event', 'Game', 'Modify-Schedule', 'My-Settings', 'Fuel-Log', '404', 'edit-event', 'Grievance-Form'
+        'Event', 'Game', 'Modify-Schedule', 'My-Settings', 'Fuel-Log', '404', 'edit-event', 'Grievance-Form', 'OIDC-Onboard'
     ];
 
     views.forEach(function (elem, index) {

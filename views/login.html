@@ -5,41 +5,44 @@
         </div>
     </div>
     <div class="container">
-        <div class="card card-container">
+        <div class="card card-container" ng-controller="LoginCtrl">
             <div class="center">
-                <img id="profile-img" class="" src="img/logoinv.png"/>
+                <img id="profile-img" class="" src="img/gold-patch.svg"/>
             </div>
             <p id="profile-name" class="profile-name-card"></p>
 
-            <form class="form-signin" ng-controller="LoginCtrl" ng-submit="submitForm()" role="form" novalidate>
+            <form class="form-signin" ng-submit="submitForm()" role="form" novalidate>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <i class="fa fa-user-md"></i>
                     <input type="text" name="username" id="username" class="form-control" ng-model="formData.username"
                            placeholder="Username" required/>
-                    <span ng-show="form.username.$dirty && form.username.$error.required" class="help-block">Username is required</span>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
                     <i class="fa fa-lock"></i>
                     <input type="password" name="password" id="password" class="form-control" ng-model="formData.password"
                            placeholder="Password" required/>
-                    <span ng-show="form.password.$dirty && form.password.$error.required" class="help-block">Password is required</span>
                 </div>
                 <div class="form-actions">
-                    <button type="submit" ng-disabled="form.$invalid || dataLoading" class="btn btn-primary">Login
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="button" class="btn" ng-if="oidc.enabled" ng-click="startOidcLogin()">
+                        Login with {{oidc.provider}}
                     </button>
                 </div>
                 <a href="#" class="forgot-password" ng-click="$event.preventDefault();forgotPassword();">
                     Forgot your password?
                 </a>
             </form>
-            <!-- /form -->
-
         </div>
     </div>
 <script type="text/javascript">
-  //Autofocus doesn't work due to nature of angulars one time page load so we must use JS
   document.getElementById("username").focus();
 </script>
 </section>
+
+<style>
+    #profile-img {
+        max-width: 125px;
+    }
+</style>

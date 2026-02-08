@@ -128,4 +128,37 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
     this.getSessionId = function () {
         return $cookies.get(SESSION_ID_COOKIE);
     };
+
+    this.getOidcConfig = function () {
+        return $http.get('.oidc_config.php');
+    };
+
+    this.startOidcLogin = function () {
+        window.location.href = '.oidc_start.php';
+    };
+
+    this.getOidcChallenge = function (challengeId) {
+        return $http.get('.oidc_account.php?challenge_id=' + encodeURIComponent(challengeId));
+    };
+
+    this.linkOidcAccount = function (payload) {
+        return $http({
+            method: 'POST',
+            url: '.oidc_account.php',
+            data: 'action=link&challenge_id=' + encodeURIComponent(payload.challenge_id)
+                + '&username=' + encodeURIComponent(payload.username)
+                + '&password=' + encodeURIComponent(payload.password),
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        });
+    };
+
+    this.createOidcAccount = function (payload) {
+        return $http({
+            method: 'POST',
+            url: '.oidc_account.php',
+            data: 'action=create&challenge_id=' + encodeURIComponent(payload.challenge_id)
+                + '&data=' + encodeURIComponent(JSON.stringify(payload.data)),
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        });
+    };
 }]);
