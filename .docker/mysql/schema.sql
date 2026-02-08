@@ -195,6 +195,42 @@ CREATE TABLE `login_overrides` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `oidc_identities`
+--
+
+CREATE TABLE `oidc_identities` (
+  `id` int(11) NOT NULL,
+  `issuer` varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `userID` int(10) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `oidc_login_challenges`
+--
+
+CREATE TABLE `oidc_login_challenges` (
+  `challenge_id` varchar(64) NOT NULL,
+  `issuer` varchar(255) NOT NULL,
+  `subject` varchar(255) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `given_name` varchar(255) DEFAULT NULL,
+  `family_name` varchar(255) DEFAULT NULL,
+  `preferred_username` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `claims_json` mediumtext,
+  `id_token_exp` datetime DEFAULT NULL,
+  `expires_at` datetime NOT NULL,
+  `consumed` tinyint(1) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `members`
 --
 
@@ -339,6 +375,22 @@ ALTER TABLE `login_overrides`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `oidc_identities`
+--
+ALTER TABLE `oidc_identities`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `uniq_oidc_identity` (`issuer`,`subject`),
+  ADD KEY `oidc_user_idx` (`userID`);
+
+--
+-- Indexes for table `oidc_login_challenges`
+--
+ALTER TABLE `oidc_login_challenges`
+  ADD PRIMARY KEY (`challenge_id`),
+  ADD KEY `oidc_challenge_exp_idx` (`expires_at`),
+  ADD KEY `oidc_challenge_subject_idx` (`issuer`,`subject`);
+
+--
 -- Indexes for table `members`
 --
 ALTER TABLE `members`
@@ -369,8 +421,20 @@ ALTER TABLE `login_overrides`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `oidc_identities`
+--
+ALTER TABLE `oidc_identities`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `oidc_identities`
+--
+ALTER TABLE `oidc_identities`
+  ADD CONSTRAINT `oidc_identities_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `members` (`id`);
 
 --
 -- Constraints for table `sessions`

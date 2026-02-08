@@ -11,6 +11,13 @@ services:
       - .admin_config.php:/var/www/html/.admin_config.php
       - .db_config.php:/var/www/html/.db_config.php
       - .form_config.php:/var/www/html/.form_config.php
+    environment:
+      OIDC_PROVIDER_NAME: ${OIDC_PROVIDER_NAME:-OpenID}
+      OIDC_ISSUER: ${OIDC_ISSUER:-}
+      OIDC_CLIENT_ID: ${OIDC_CLIENT_ID:-}
+      OIDC_CLIENT_SECRET: ${OIDC_CLIENT_SECRET:-}
+      OIDC_REDIRECT_URI: ${OIDC_REDIRECT_URI:-}
+      OIDC_SCOPE: ${OIDC_SCOPE:-openid profile email}
     depends_on:
       - mysql
 
@@ -27,7 +34,7 @@ services:
       driver: none
 
   mysql:
-    image: mysql:5.7
+    image: mysql:8.0
     ports:
       - "33060:3306"
     volumes:

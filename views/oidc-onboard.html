@@ -1,0 +1,137 @@
+<section id="oidc-onboard" ng-controller="OIDCOnboardCtrl">
+  <div class="container">
+    <div class="center">
+      <h2>Finish OpenID Sign-In</h2>
+      <div class="lead text-justify">
+        Link your OpenID login to an existing account or create a new account.
+      </div>
+    </div>
+
+    <div class="card card-container">
+      <div ng-if="mode === 'choose'" class="center">
+        <h4>Choose an option</h4>
+        <div class="form-actions">
+          <button class="btn btn-info" ng-click="useLinkExisting()">Link Existing Account</button>
+          <button class="btn btn-success" ng-click="useCreateNew()">Create New Account</button>
+        </div>
+      </div>
+
+      <form ng-if="mode === 'link'" ng-submit="submitOidcLink()" class="form">
+        <h4>Link Existing Account</h4>
+        <div class="form-group">
+          <label for="oidc-link-username">Username</label>
+          <input id="oidc-link-username" type="text" class="form-control" ng-model="linkData.username" required />
+        </div>
+        <div class="form-group">
+          <label for="oidc-link-password">Password</label>
+          <input id="oidc-link-password" type="password" class="form-control" ng-model="linkData.password" required />
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-primary" type="submit">Link and Sign In</button>
+          <button class="btn btn-default" type="button" ng-click="mode = 'choose'">Back</button>
+        </div>
+      </form>
+
+      <div ng-if="mode === 'create'">
+        <h4>Create New Account</h4>
+        <div class="lead text-justify">
+          Use this form to create your account.
+        </div>
+        <form role="form" ng-submit="submitCreateForm()" class="form" name="add_form" id="oidc-create-form" novalidate>
+          <div class="form-group">
+            <label for="fn">First Name</label>
+            <input type="text" name="fn" id="fn" class="form-control" ng-model="formData.first_name"
+            placeholder="Thomas" data-validation="required"/>
+          </div>
+          <div class="form-group">
+            <label for="ln">Last Name</label>
+            <input type="text" name="ln" id="ln" class="form-control" ng-model="formData.last_name"
+            placeholder="Tankengine" data-validation="required"/>
+          </div>
+
+          <div class="form-group">
+            <label for="un">Username</label>
+            <input type="text" name="un" id="un" class="form-control" ng-model="formData.user_name"
+            placeholder="Blue.Trainz" data-validation="required"/>
+          </div>
+
+          <div class="form-group fixed-height-form-element">
+            <label for="date">Birthdate</label>
+            <p class="input-group">
+              <input type="date" class="form-control" uib-datepicker-popup ng-model="formData.dob" is-open="datepicker.opened" datepicker-options="datepicker.options" close-text="Close" data-validation="required date"/>
+              <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="openDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
+              </span>
+            </p>
+          </div>
+
+          <div class="form-group">
+            <label for="pass">Password</label>
+            <input type="password" name="pass" id="pass" class="form-control"
+            ng-model="formData.password"
+            placeholder="" data-validation="required"/>
+          </div>
+
+          <div class="form-group">
+            <label for="cpass">Confirm Password</label>
+            <input type="password" name="cpass" id="cpass" class="form-control"
+            ng-model="formData.conf_password"
+            data-validation="required"/>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" class="form-control" ng-model="formData.email"
+            placeholder="thomas@blue-bell-railway.co.uk" data-validation="required email"/>
+          </div>
+
+          <div class="form-group">
+            <label for="RCS">RCS</label>
+            <input type="text" name="RCS" id="RCS" class="form-control" ng-model="formData.RCS"
+            placeholder="Example: tanket"/>
+          </div>
+
+          <div class="form-group">
+            <label for="RIN">RIN</label>
+            <input type="number" name="RIN" id="RIN" class="form-control" ng-model="formData.RIN"
+            placeholder="Example: 660123456" data-validation="required length" data-validation-length="9"/>
+          </div>
+
+          <div class="form-group">
+            <label for="phone">Cell Phone</label>
+            <input type="tel" name="phone" id="phone" class="form-control" ng-model="formData.c_phone"
+            placeholder="(555) 555-5555" data-validation="required"/>
+          </div>
+
+          <div class="form-group">
+            <label for="hphone">Home Phone</label>
+            <input type="tel" name="hphone" id="hphone" class="form-control" ng-model="formData.phone"
+            placeholder="(555) 555-5555"/>
+          </div>
+
+          <div class="form-group">
+            <label for="add">Local Address</label>
+            <input type="text" name="add" id="add" class="form-control" ng-model="formData.rpi_add"
+            placeholder="Quad Pardee 3002" data-validation="required"/>
+          </div>
+
+          <div class="form-group">
+            <label for="hadd">Home Address</label>
+            <input type="text" name="hadd" id="hadd" class="form-control" ng-model="formData.home_add"
+            placeholder="Shed 1, Sodor, Island of Sodor" data-validation="required"/>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-success" value="Submit">Submit</button>
+            <button type="button" class="btn btn-default" ng-click="mode = 'choose'">Back</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+  $.validate({
+    form : '#oidc-create-form'
+  });
+  </script>
+</section>

@@ -11,14 +11,14 @@ var dependencies = [
     'EditablePageService', 'AuthService', 'DateService',
 
     // LOCAL CONTROLLERS:
-    'MainCtrl', 'CommunicationsCtrl','MinutesCtrl', 'MutualAidCtrl', 'RadioCallsignsCtrl', 'AttendantTrainingCtrl',
-    'CompatibilityCtrl', 'ConstitutionCtrl', 'BylawsCtrl', 'CopyCtrl',
-    'CrewChiefTrainingCtrl', 'DevsCtrl', 'DOHResourcesCtrl', 'DriverTrainingCtrl', 'EMTReciprocityCtrl',
-    'InServiceTrainingCtrl', 'LoginCtrl', 'MiscFormsCtrl', 'RENSCOResourcesCtrl',
-    'SOGCtrl', 'SupervisorTrainingCtrl', 'SystemRequirementsCtrl', 'TextMessageDispatchCtrl','NightCrewsCtrl', 'MemberListCtrl', 'FuelLogCtrl', 'StockingIssueCtrl',
-    'AddMemberCtrl', 'ExpirationsCtrl', 'EditMemberCtrl', 'GamesEventsCtrl', 'AddEventCtrl', 'EditDefaultCtrl',
-    'EventCtrl', 'GameCtrl', 'GamesEventsCtrl', 'ModifyScheduleCtrl', 'MySettingsCtrl', 'MyTrainingCtrl',
-    'FuelLogCtrl', '404Ctrl', 'EditEventCtrl', 'GrievanceFormCtrl'
+    'MainCtrl', 'LoginCtrl', 'OIDCOnboardCtrl', '404Ctrl',
+    'NightCrewsCtrl', 'GamesEventsCtrl', 'EventCtrl', 'GameCtrl',
+    'MemberListCtrl', 'FuelLogCtrl', 'StockingIssueCtrl', 'GrievanceFormCtrl',
+    'MinutesCtrl', 'MiscFormsCtrl', 'RENSCOResourcesCtrl', 'DOHResourcesCtrl',
+    'MutualAidCtrl', 'RadioCallsignsCtrl', 'SOGCtrl',
+    'MySettingsCtrl', 'MyTrainingCtrl',
+    'ModifyScheduleCtrl', 'EditDefaultCtrl',
+    'AddEventCtrl', 'AddMemberCtrl', 'EditMemberCtrl', 'ExpirationsCtrl'
 ];
 
 var app = angular.module('RPIA', dependencies);
@@ -35,11 +35,10 @@ app.config(['$showdownProvider', function($showdownProvider) {
 
 app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $location, AuthService) {
 	var AUTHED_PAGES = [
-		'night-crews', 'member-list', 'fuel-log', 'stocking-issue', 'expirations', 'announcements',
-		'attendant-training', 'driver-training', 'crew-chief-training', 'supervisor-training', 'in-service-training',
-		'communications', 'emt-reciprocity', 'minutes', 'misc-forms', 'mutual-aid', 'misc-forms', 'radio-callsigns',
-		'rensco-resources', 'sog', 'doh-resources', 'text-message-dispatch', 'my-settings', 'my-training', 'logout',
-        'games-events', 'constitution', 'bylaws', 'event', 'game', 'grievance-form'
+		'night-crews', 'member-list', 'fuel-log', 'stocking-issue', 'expirations',
+		'minutes', 'misc-forms', 'mutual-aid', 'misc-forms', 'radio-callsigns',
+		'rensco-resources', 'sog', 'doh-resources', 'my-settings', 'my-training', 'logout',
+        'games-events', 'event', 'game', 'grievance-form'
 	];
 
 	var SCHEDULING_PAGES = [
@@ -47,7 +46,7 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
 	];
 
 	var ADMIN_PAGES = [
-		'add-event', 'add-member', 'edit-member', 'expirations', 'edit-event'
+		'add-event', 'add-member', 'edit-member', 'expirations'
 	];
 
     $rootScope.$on('$routeChangeStart', function (event, next, other) {

@@ -210,13 +210,12 @@ body section {
 
 .top-bar {
     padding: 10px 0;
-    background: #2B2A2A;
-    border-bottom: 1px solid #222;
+    background: #f4f5f7;
     line-height: 28px;
 }
 
 .top-number {
-    color: #fff;
+    color: #000;
 }
 
 .top-number p {
@@ -224,7 +223,7 @@ body section {
 }
 
 .top-number-emergency {
-    color: #ff4144;
+    color: #c52d2f;
 }
 
 
@@ -251,8 +250,8 @@ ul.social-share li {
 
 ul.social-share li a {
     display: inline-block;
-    color: #fff;
-    background: #404040;
+    color: #000;
+    
     width: 25px;
     height: 25px;
     line-height: 25px;
@@ -297,18 +296,20 @@ input.search-form:hover {
 .navbar-brand {
     padding: 0;
     margin: 0;
+    margin-bottom: 10px;
 }
 
 .navbar {
     border-radius: 0;
     margin-bottom: 0;
-    background: #151515;
+    background: #ffffff;
     padding: 15px 0;
     padding-bottom: 0;
+    box-shadow: 0 4px 10px -6px #555555;
 }
 
 .navbar-nav {
-    margin-top: 12px;
+    margin-top: 25px;
 }
 
 .navbar-nav > li {
@@ -320,7 +321,7 @@ input.search-form:hover {
     padding: 5px 17px;
     margin: 0;
     border-radius: 3px;
-    color: #fff;
+    color: #000;
     line-height: 24px;
     display: inline-block;
 }
