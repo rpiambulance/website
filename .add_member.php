@@ -2,6 +2,7 @@
 
 require_once ".db_config.php";
 require_once ".functions.php";
+require_once ".oidc_common.php";
 
 // empty response
 $response = null;
@@ -12,77 +13,70 @@ $errors = array();
 // array to pass back data
 $data = array();
 
+function add_member_error_message($errorCode, $errorDetail = '') {
+  $map = array(
+    'missing_username' => 'Username is required.',
+    'missing_email' => 'Email is required.',
+    'missing_first_name' => 'First name is required.',
+    'missing_last_name' => 'Last name is required.',
+    'provider_username_exists' => 'That username is already in use in the identity provider.',
+    'provider_email_exists' => 'That email is already in use in the identity provider.',
+    'provider_account_exists' => 'An account already exists in the identity provider with the submitted details.',
+    'admin_client_missing' => 'OIDC client credentials are missing or incomplete.',
+    'admin_token_failed' => 'Unable to authenticate to the identity provider admin API.',
+    'issuer_invalid' => 'OIDC issuer is not configured correctly.',
+    'provider_create_failed' => 'The identity provider rejected account creation.',
+    'provider_create_lookup_failed' => 'Account was created but could not be verified in the identity provider.',
+    'provider_execute_actions_email_failed' => 'Account was created, but sending the setup email failed.'
+  );
+
+  if (isset($map[$errorCode])) {
+    if ($errorCode === 'provider_create_failed' && !empty($errorDetail)) {
+      return $map[$errorCode] . ' (' . $errorDetail . ')';
+    }
+    return $map[$errorCode];
+  }
+
+  return !empty($errorDetail) ? ($errorCode . ' (' . $errorDetail . ')') : $errorCode;
+}
+
 // Get the input ===============================================================
 $formData = file_get_contents('php://input');
 $input = json_decode($formData, true);
 
-$first_name = $input['first_name'];
-$last_name = $input['last_name'];
-$password = $input['password'];
-$password = password_hash(hash('sha256', $password), PASSWORD_DEFAULT);
-$email = $input['email'];
-$rcs = $input['RCS'];
-$rin = $input['RIN'];
-$home_phone = $input['phone'];
-$cell_phone = $input['c_phone'];
-$rpi_address = $input['rpi_add'];
-$home_address = $input['home_add'];
-$dob = $input['dob'];
-$username = $input['user_name'];
+$first_name = isset($input['first_name']) ? trim($input['first_name']) : '';
+$last_name = isset($input['last_name']) ? trim($input['last_name']) : '';
+$email = isset($input['email']) ? trim($input['email']) : '';
+$username = isset($input['user_name']) ? trim($input['user_name']) : '';
 $connection = new PDO("mysql:host=$dhost;dbname=$dname", $duser, $dpassword);
 if (checkIfAdmin($connection)){
   try {
     $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    if(!isset($dname)) {
-      $dname = 'ambulanc_web';
+    if (empty($first_name) || empty($last_name) || empty($email) || empty($username)) {
+      throw new Exception("First name, last name, username, and email are required.");
     }
 
-    // Selecting Database
-    $connection->exec("USE `$dname`");
+    // Provision OpenID account only; no legacy members row is created here.
+    $result = oidc_provider_create_user(array(
+      'username' => $username,
+      'email' => $email,
+      'first_name' => $first_name,
+      'last_name' => $last_name
+    ));
 
-    $sthandler = $connection->prepare("SELECT username FROM members WHERE username = :name");
-    $sthandler->bindParam(':name', $username);
-    $sthandler->execute();
-
-    if($sthandler->rowCount() > 0){
-        throw new Exception("Username already exists! " . $sthandler->rowCount());
-    }
-
-    $statement = $connection->query("SELECT MAX(id) as max FROM members");
-
-    $logid = $statement->fetchAll(PDO::FETCH_ASSOC)[0]['max'] + 1;
-
-    $statement = $connection->prepare("INSERT IGNORE INTO members(id, username, password,
-      first_name, last_name, dob, email, rcs_id, rin, rpi_address, home_address,
-      cell_phone, home_phone) VALUES (:logid, :username, :password, :first_name,
-      :last_name, :dob, :email, :rcs, :rin, :rpi_address, :home_address,
-      :cell_phone, :home_phone)");
-
-    $statement->bindParam(":logid", $logid);
-    $statement->bindParam(":username", $username);
-    $statement->bindParam(":password", $password);
-    $statement->bindParam(":first_name", $first_name);
-    $statement->bindParam(":last_name", $last_name);
-    $statement->bindParam(":dob", $dob);
-    $statement->bindParam(":email", $email);
-    $statement->bindParam(":rcs", $rcs);
-    $statement->bindParam(":rin", $rin);
-    $statement->bindParam(":rpi_address", $rpi_address);
-    $statement->bindParam(":home_address", $home_address);
-    $statement->bindParam(":cell_phone", $cell_phone);
-    $statement->bindParam(":home_phone", $home_phone);
-
-    $result = $statement->execute();
-
-    if($result) {
+    if(!empty($result['ok'])) {
       $data['success'] = true;
+      $data['provider_account_created'] = !empty($result['created']);
     } else {
       $data['success'] = false;
+      $errorCode = !empty($result['error']) ? $result['error'] : 'provider_create_failed';
+      $errorDetail = !empty($result['error_detail']) ? $result['error_detail'] : '';
+      $data['error'] = add_member_error_message($errorCode, $errorDetail);
     }
   } catch(PDOException $e) {
     $data['success'] = false;
-    $data['error'] = $e;
+    $data['error'] = $e->getMessage();
   } catch(Exception $e){
     $data['success'] = false;
     $data['error'] = $e->getMessage();

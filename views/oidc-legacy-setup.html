@@ -1,0 +1,71 @@
+<section id="oidc-legacy-setup" ng-controller="OIDCLegacySetupCtrl">
+  <div class="container">
+    <div class="center">
+      <h2>Complete {{provider}} Setup</h2>
+    </div>
+
+    <div class="card card-container">
+      <div ng-if="loading" class="lead center">
+        Checking your account...
+      </div>
+
+    <div ng-if="!loading && mode === 'link'" class="center">
+      <h4>Upgrade Your Account</h4>
+      <p class="lead">
+          RPI Ambulance is moving to {{provider}} for a more secure and streamlined login experience.
+          We found an existing {{provider}} account matching your email — link it now to continue
+          using your account.
+      </p>
+      <div class="form-actions">
+          <button class="btn btn-primary" ng-click="startLink()">Link with {{provider}}</button>
+      </div>
+    </div>
+
+      <div ng-if="!loading && mode === 'create'" class="center">
+          <h4>Set Up Your {{provider}} Account</h4>
+          <p class="lead">
+              RPI Ambulance is moving to {{provider}} for a more secure and streamlined login experience.
+              We couldn't find an existing {{provider}} account for your email, so we'll create one for you.
+              Please confirm your details below before continuing.
+          </p>
+          <form ng-submit="submitCreate()" class="form text-left">
+              <div class="form-group">
+                  <label for="legacy-username">Username</label>
+                  <input id="legacy-username" type="text" class="form-control" ng-model="formData.username" required />
+              </div>
+              <div class="form-group">
+                  <label for="legacy-first-name">First Name</label>
+                  <input id="legacy-first-name" type="text" class="form-control" ng-model="formData.first_name" required />
+              </div>
+              <div class="form-group">
+                  <label for="legacy-last-name">Last Name</label>
+                  <input id="legacy-last-name" type="text" class="form-control" ng-model="formData.last_name" required />
+              </div>
+              <div class="form-group">
+                  <label for="legacy-email">Email</label>
+                  <input id="legacy-email" type="email" class="form-control" ng-model="formData.email" required />
+              </div>
+              <div class="form-actions">
+                  <button type="submit" class="btn btn-success">Create and Link {{provider}} Account</button>
+              </div>
+          </form>
+      </div>
+
+      <div ng-if="!loading && mode === 'unknown'" class="center">
+          <h4>Something Went Wrong</h4>
+          <p class="lead">
+              RPI Ambulance is moving to {{provider}} for a more secure and streamlined login 
+              experience, but we weren't able to complete your {{provider}} account setup.
+              {{setupErrorMessage}}
+              You can continue using your legacy account credentials for now, or sign out and try again later.
+              Contact an officer at
+              <a href="mailto:officers@rpiambulance.com">officers@rpiambulance.com</a> for assistance.
+          </p>
+          <div class="form-actions">
+              <button class="btn btn-primary" ng-click="continueWithLegacy()">Continue with Legacy Account</button>
+              <button class="btn btn-default" ng-click="signOut()">Sign Out</button>
+          </div>
+      </div>
+    </div>
+  </div>
+</section>

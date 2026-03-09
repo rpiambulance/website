@@ -137,6 +137,30 @@ angular.module('AuthService', []).service('AuthService', ['$http', '$q', '$cooki
         window.location.href = '.oidc_start.php';
     };
 
+    this.startLegacyOidcLink = function () {
+        window.location.href = '.oidc_start.php?link_legacy=1';
+    };
+
+    this.getLegacyOidcStatus = function () {
+        var sessionId = $cookies.get(SESSION_ID_COOKIE);
+        return $http.get('.oidc_legacy.php?session_id=' + encodeURIComponent(sessionId || ''));
+    };
+
+    this.createLegacyOidcAccount = function (payload) {
+        var sessionId = $cookies.get(SESSION_ID_COOKIE);
+        return $http({
+            method: 'POST',
+            url: '.oidc_legacy.php',
+            data: 'action=create'
+                + '&session_id=' + encodeURIComponent(sessionId || '')
+                + '&username=' + encodeURIComponent(payload.username || '')
+                + '&first_name=' + encodeURIComponent(payload.first_name || '')
+                + '&last_name=' + encodeURIComponent(payload.last_name || '')
+                + '&email=' + encodeURIComponent(payload.email || ''),
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        });
+    };
+
     this.getOidcChallenge = function (challengeId) {
         return $http.get('.oidc_account.php?challenge_id=' + encodeURIComponent(challengeId));
     };

@@ -2,7 +2,7 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
     $locationProvider.hashPrefix('');
 
     var views = [
-        'Login', 'OIDC-Onboard', '404',
+        'Login', 'OIDC-Onboard', 'OIDC-Legacy-Setup', '404',
         'Night-Crews', 'Games-Events', 'Event', 'Game',
         'Member-List', 'Fuel-Log', 'Stocking-Issue', 'Grievance-Form',
         'Minutes', 'Misc-Forms', 'RENSCO-Resources', 'DOH-Resources',

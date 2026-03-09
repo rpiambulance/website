@@ -7,6 +7,9 @@
           Editing {{selectedMember.first_name}} {{selectedMember.last_name}}
         </span>
       </h2>
+      <h4 ng-if="selectedMember">
+        {{selectedMember.has_oidc_link ? (provider + ' Account') : 'Legacy Account'}}
+      </h4>
 
       <div class="row" ng-show="!selectedMember">
         <div class="card card-container">
@@ -41,14 +44,29 @@
               <label for="fn">First Name</label>
               <!--This should be switched to the signed in account with no option to change it-->
               <input type="text" name="fn" id="fn" class="form-control" ng-model="selectedMember.first_name" ng-change="changeMade()"
-              placeholder="Thomas" data-validation="required"/>
+              placeholder="Thomas" data-validation="required" ng-disabled="selectedMember.has_oidc_link"/>
             </div>
             <div class="form-group col-xs-6 fixed-height-form-element">
               <label for="ln">Last Name</label>
               <input type="text" name="ln" id="ln" class="form-control"  ng-model="selectedMember.last_name" ng-change="changeMade()"
-              placeholder="Tankengine" data-validation="required"/>
+              placeholder="Tankengine" data-validation="required" ng-disabled="selectedMember.has_oidc_link"/>
+            </div>
+            <div class="form-group col-xs-6 fixed-height-form-element">
+              <label for="user">Username</label>
+              <input type="text" name="user" id="user" class="form-control"  ng-model="selectedMember.username" ng-change="changeMade()"
+              placeholder="david.sparkman" autocomplete="off" data-validation="required" ng-disabled="selectedMember.has_oidc_link"/>
             </div>
 
+            <div class="form-group col-xs-6 fixed-height-form-element" ng-if="!selectedMember.has_oidc_link">
+              <label for="pass">Password</label>
+              <input type="password" name="pass" id="pass" class="form-control"  ng-model="selectedMember.change_password" ng-change="changeMade()" autocomplete='off' />
+            </div>
+
+            <div class="form-group col-xs-6 fixed-height-form-element">
+              <label for="email">Email</label>
+              <input type="email" name="email" id="email" class="form-control"  ng-model="selectedMember.email" ng-change="changeMade()"
+              placeholder="Example: webmaster@rpiambulance.com" data-validation="required email" ng-disabled="selectedMember.has_oidc_link"/>
+            </div>
             <div class="form-group col-xs-6 fixed-height-form-element">
               <label for="date">Birthdate</label>
               <p class="input-group">
@@ -57,23 +75,6 @@
                   <button type="button" class="btn btn-default" ng-click="openDatepicker()"><i class="glyphicon glyphicon-calendar"></i></button>
                 </span>
               </p>
-            </div>
-
-            <div class="form-group col-xs-6 fixed-height-form-element">
-              <label for="user">Username</label>
-              <input type="text" name="user" id="user" class="form-control"  ng-model="selectedMember.username" ng-change="changeMade()"
-              placeholder="david.sparkman" autocomplete="off" data-validation="required"/>
-            </div>
-
-            <div class="form-group col-xs-6 fixed-height-form-element">
-              <label for="pass">Password</label>
-              <input type="password" name="pass" id="pass" class="form-control"  ng-model="selectedMember.change_password" ng-change="changeMade()" autocomplete='off' />
-            </div>
-
-            <div class="form-group col-xs-6 fixed-height-form-element">
-              <label for="email">Email</label>
-              <input type="email" name="email" id="email" class="form-control"  ng-model="selectedMember.email" ng-change="changeMade()"
-              placeholder="Example: webmaster@rpiambulance.com" data-validation="required email"/>
             </div>
 
             <div class="form-group col-xs-6 fixed-height-form-element">

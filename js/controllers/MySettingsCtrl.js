@@ -2,6 +2,7 @@ angular.module('MySettingsCtrl', []).controller('MySettingsCtrl', ['$scope', '$h
     $scope.dataReady = false;
     $scope.changePassFlag = false;
     $scope.formData = {
+        username: "",
         fn: "",
         ln: "",
         pass: "",
@@ -12,7 +13,10 @@ angular.module('MySettingsCtrl', []).controller('MySettingsCtrl', ['$scope', '$h
         add: "",
         hadd: "",
         session_id: ""
-    }
+    };
+    $scope.accountPortalUrl = "https://account.rpiambulance.com";
+    $scope.identityProvider = "OpenID";
+    $scope.identityManaged = false;
 
     $scope.passChange = function () {
         $scope.changePassFlag = ($scope.formData.pass !== "" && $scope.formData.cpass !== "");
@@ -20,6 +24,7 @@ angular.module('MySettingsCtrl', []).controller('MySettingsCtrl', ['$scope', '$h
 
     $scope.initPage = function () {
         AuthService.getUserMetadata().then(function (data) {
+            $scope.formData.username = data.username;
             $scope.formData.fn = data.first_name;
             $scope.formData.ln = data.last_name;
             $scope.formData.email = data.email;
@@ -27,6 +32,9 @@ angular.module('MySettingsCtrl', []).controller('MySettingsCtrl', ['$scope', '$h
             $scope.formData.hphone = data.home_phone;
             $scope.formData.add = data.rpi_address;
             $scope.formData.hadd = data.home_address;
+            $scope.accountPortalUrl = data.account_portal_url || "https://account.rpiambulance.com";
+            $scope.identityProvider = data.identity_provider || "OpenID";
+            $scope.identityManaged = !!data.identity_managed;
             $scope.dataReady = true;
         });
     }

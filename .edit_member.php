@@ -22,6 +22,23 @@ $modifiableFields = array(
 if($_SERVER['REQUEST_METHOD'] === 'POST') {
   if(checkIfAdmin($connection)) {
     $data = json_decode($_POST['data'], true);
+
+    // Do not allow local password edits for members linked to an OIDC identity.
+    if (isset($data['id'])) {
+      $oidcCheck = $connection->prepare("SELECT COUNT(*) AS c FROM oidc_identities WHERE userID = :userID");
+      $oidcCheck->bindValue(':userID', $data['id'], PDO::PARAM_INT);
+      $oidcCheck->execute();
+      $oidcLinked = intval($oidcCheck->fetch(PDO::FETCH_ASSOC)['c']) > 0;
+      if ($oidcLinked) {
+        unset($data['username']);
+        unset($data['first_name']);
+        unset($data['last_name']);
+        unset($data['email']);
+        unset($data['password']);
+        unset($data['change_password']);
+      }
+    }
+
     $sql = "UPDATE members SET";
 
     if(isset($data['change_password'])){

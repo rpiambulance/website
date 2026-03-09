@@ -11,7 +11,7 @@ var dependencies = [
     'EditablePageService', 'AuthService', 'DateService',
 
     // LOCAL CONTROLLERS:
-    'MainCtrl', 'LoginCtrl', 'OIDCOnboardCtrl', '404Ctrl',
+    'MainCtrl', 'LoginCtrl', 'OIDCOnboardCtrl', 'OIDCLegacySetupCtrl', '404Ctrl',
     'NightCrewsCtrl', 'GamesEventsCtrl', 'EventCtrl', 'GameCtrl',
     'MemberListCtrl', 'FuelLogCtrl', 'StockingIssueCtrl', 'GrievanceFormCtrl',
     'MinutesCtrl', 'MiscFormsCtrl', 'RENSCOResourcesCtrl', 'DOHResourcesCtrl',
@@ -38,7 +38,7 @@ app.run(['$rootScope', '$location', 'AuthService', function ($rootScope, $locati
 		'night-crews', 'member-list', 'fuel-log', 'stocking-issue', 'expirations',
 		'minutes', 'misc-forms', 'mutual-aid', 'misc-forms', 'radio-callsigns',
 		'rensco-resources', 'sog', 'doh-resources', 'my-settings', 'my-training', 'logout',
-        'games-events', 'event', 'game', 'grievance-form'
+        'games-events', 'event', 'game', 'grievance-form', 'oidc-legacy-setup'
 	];
 
 	var SCHEDULING_PAGES = [

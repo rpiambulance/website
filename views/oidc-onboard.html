@@ -1,23 +1,29 @@
 <section id="oidc-onboard" ng-controller="OIDCOnboardCtrl">
   <div class="container">
     <div class="center">
-      <h2>Finish OpenID Sign-In</h2>
+      <h2>Complete Your Account Setup</h2>
       <div class="lead text-justify">
-        Link your OpenID login to an existing account or create a new account.
+        RPI Ambulance is moving to {{provider}} for a more secure and streamlined login
+        experience. Link your {{provider}} login to your existing account, or create a new one
+        to get started.
       </div>
     </div>
 
     <div class="card card-container">
-      <div ng-if="mode === 'choose'" class="center">
-        <h4>Choose an option</h4>
+      <div ng-show="mode === 'choose'" class="center">
+        <h4>How would you like to continue?</h4>
         <div class="form-actions">
           <button class="btn btn-info" ng-click="useLinkExisting()">Link Existing Account</button>
           <button class="btn btn-success" ng-click="useCreateNew()">Create New Account</button>
         </div>
       </div>
 
-      <form ng-if="mode === 'link'" ng-submit="submitOidcLink()" class="form">
+      <form ng-show="mode === 'link'" ng-submit="submitOidcLink()" class="form center">
         <h4>Link Existing Account</h4>
+        <p class="lead">
+          Sign in with your existing legacy account credentials to link it to your
+          new {{provider}} login. You'll use {{provider}} to sign in from this point forward.
+        </p>
         <div class="form-group">
           <label for="oidc-link-username">Username</label>
           <input id="oidc-link-username" type="text" class="form-control" ng-model="linkData.username" required />
@@ -28,16 +34,17 @@
         </div>
         <div class="form-actions">
           <button class="btn btn-primary" type="submit">Link and Sign In</button>
-          <button class="btn btn-default" type="button" ng-click="mode = 'choose'">Back</button>
+          <button class="btn btn-default" type="button" ng-click="backToChoose($event)">Back</button>
         </div>
       </form>
 
-      <div ng-if="mode === 'create'">
+      <div ng-show="mode === 'create'" class="center">
         <h4>Create New Account</h4>
-        <div class="lead text-justify">
-          Use this form to create your account.
-        </div>
-        <form role="form" ng-submit="submitCreateForm()" class="form" name="add_form" id="oidc-create-form" novalidate>
+        <p class="lead">
+          Fill out the form below to create your RPI Ambulance account and link it to
+          your {{provider}} login.
+        </p>
+        <form role="form" ng-submit="submitCreateForm()" class="form text-left" name="add_form" id="oidc-create-form" novalidate>
           <div class="form-group">
             <label for="fn">First Name</label>
             <input type="text" name="fn" id="fn" class="form-control" ng-model="formData.first_name"
@@ -123,7 +130,7 @@
 
           <div class="form-actions">
             <button type="submit" class="btn btn-success" value="Submit">Submit</button>
-            <button type="button" class="btn btn-default" ng-click="mode = 'choose'">Back</button>
+            <button type="button" class="btn btn-default" ng-click="backToChoose($event)">Back</button>
           </div>
         </form>
       </div>

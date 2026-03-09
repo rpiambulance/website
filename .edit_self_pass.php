@@ -13,9 +13,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST') {
   $formData = file_get_contents('php://input');
   $input = json_decode($formData, true);
 
-  $first_name = $input['fn'];
-  $last_name = $input['ln'];
-  $email = $input['email'];
   $cell_phone = $input['phone'];
   $home_phone = $input['hphone'];
   $home_address= $input['hadd'];
@@ -34,10 +31,8 @@ try {
   $memberInfo = $statement->fetchAll(PDO::FETCH_ASSOC)[0];
   $memberId = $memberInfo['id'];
 
-  $statement = $connection->prepare("UPDATE members SET first_name=:first_name, last_name=:last_name, email=:email, cell_phone=:cell_phone, home_phone=:home_phone, rpi_address=:rpi_address, home_address=:home_address, password=:pass WHERE username = :username");
-  $statement->bindParam(':first_name', $first_name);
-  $statement->bindParam(':last_name', $last_name);
-  $statement->bindParam(':email', $email);
+  // Identity fields (username/first_name/last_name/email) are managed by OIDC provider.
+  $statement = $connection->prepare("UPDATE members SET cell_phone=:cell_phone, home_phone=:home_phone, rpi_address=:rpi_address, home_address=:home_address, password=:pass WHERE username = :username");
   $statement->bindParam(':cell_phone', $cell_phone);
   $statement->bindParam(':home_phone', $home_phone);
   $statement->bindParam(':rpi_address', $rpi_address);
