@@ -13,7 +13,14 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$location', 
     };
 
     $scope.forgotPassword = function() {
-        sweetAlert("Password Reset", "To get your password reset, you will need to send an email to officers@rpiambulance.com.", "info");
+        var provider = $scope.oidc.provider || 'OpenID';
+        var message =
+            "RPI Ambulance is moving to " + provider + " for a more secure and streamlined login experience. To reset your password:\n\n" +
+            "- RPIA Auth account: Visit account.rpiambulance.com\n" +
+            "- Legacy account: Email officers@rpiambulance.com\n\n" +
+            "Note: Signing in with a legacy account will prompt you to link it to " + provider + ". " +
+            "Once linked, you will sign in with " + provider + " and reset your password through account.rpiambulance.com going forward.";
+        sweetAlert("Password Reset", message, "info");
     };
 
     $scope.clearForm = function () {
