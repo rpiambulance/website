@@ -1,5 +1,12 @@
 angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$http', '$location', '$route', '$routeParams', '$q', 'AuthService', function($scope, $http, $location, $route, $routeParams, $q, AuthService) {
     $scope.searchFilter = "";
+    $scope.provider = 'OpenID';
+
+    AuthService.getOidcConfig().then(function (response) {
+        if (response.data && response.data.provider) {
+            $scope.provider = response.data.provider;
+        }
+    });
 
     $scope.datepicker = {
         options: {
@@ -195,6 +202,12 @@ angular.module('EditMemberCtrl', []).controller('EditMemberCtrl', ['$scope', '$h
     }
 
     function memberPostProcessing (member) {
+        member.has_oidc_link = parseInt(member.has_oidc_link || 0);
+        if (member.has_oidc_link) {
+            member.change_password = '';
+            member.password = null;
+        }
+
         for(var j = 0; j < DATES.length; j++) {
             if(member[DATES[j]] !== null) {
                 // Means it is just a date and has no time component

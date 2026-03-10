@@ -1,6 +1,7 @@
 <?php
 
 require_once ".db_config.php";
+require_once ".oidc_common.php";
 
 /**
  * Notifies the user that the login failed for the given reason why with the
@@ -189,6 +190,29 @@ function shouldLockUserSignIn($c, $u, $d) {
            && isUsernameValid($c, $u) && checkFailedAttempts($c, $u) >= 3;
 }
 
+/**
+ * Checks whether a member account has at least one linked OpenID identity.
+ * @param  PDO   $c      the database connection
+ * @param  array $uInfo  the user details from the members table
+ * @return boolean       whether the user has a linked OpenID identity
+ */
+function userHasLinkedOidcIdentity($c, $uInfo) {
+    $query = <<<SQL
+        SELECT
+            COUNT(*) AS linked_identities
+        FROM
+            oidc_identities
+        WHERE
+            userID = :userID;
+SQL;
+
+    $statement = $c->prepare($query);
+    $statement->bindParam(':userID', $uInfo['id'], PDO::PARAM_INT);
+    $statement->execute();
+
+    return intval($statement->fetch(PDO::FETCH_ASSOC)['linked_identities']) > 0;
+}
+
 // ============================================================================
 //  Main
 // ============================================================================
@@ -199,6 +223,7 @@ $errors = array();
 $data = array();
 
 $support_email = 'webmaster@rpiambulance.com';
+$oidc_provider = oidc_get_env('OIDC_PROVIDER_NAME', 'OpenID');
 
 if(getenv('REQUEST_METHOD') != 'POST') {
     header('Bad Request', true, 400);
@@ -299,6 +324,11 @@ if (!empty($errors)) {
                  . 'failed login attempts. Please contact ' . $support_email
                  . ' for assistance.';
         loginFailed('locked', $message, $errors, $data);
+    } else if(userHasLinkedOidcIdentity($connection, $userInfo)) {
+        // If the user has configured OpenID, require OpenID sign-in only.
+        $message = 'This account is linked to an ' . $oidc_provider . ' account. '
+         . 'Please use the "Login with ' . $oidc_provider . '" option to sign in.';
+        loginFailed('oidc_only', $message, $errors, $data);
     } else {
         // Successful login
 
@@ -319,6 +349,16 @@ if (!empty($errors)) {
         $stmt->bindParam(':sessionID', $data['session_id'], PDO::PARAM_STR);
         $stmt->bindParam(':userID',$userInfo['id'],PDO::PARAM_INT);
         $stmt->execute();
+
+        // For legacy accounts, decide whether to prompt OIDC linking/provisioning.
+        if (!empty($userInfo['email'])) {
+            $providerLookup = oidc_provider_find_user_by_email($userInfo['email']);
+            if (!empty($providerLookup['ok'])) {
+                $data['oidc_setup_required'] = true;
+                $data['oidc_setup_action'] = !empty($providerLookup['exists']) ? 'link' : 'create';
+                $data['oidc_provider'] = $oidc_provider;
+            }
+        }
     }
 
     // Regardless of success or failure, add an entry to the login attempts

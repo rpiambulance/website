@@ -21,6 +21,10 @@ function oidc_base64url_decode($input) {
     return base64_decode(strtr($input, '-_', '+/'));
 }
 
+function oidc_base64url_encode($input) {
+    return rtrim(strtr(base64_encode($input), '+/', '-_'), '=');
+}
+
 function oidc_fetch_json($url) {
     $opts = array(
         'http' => array(
@@ -337,6 +341,274 @@ function oidc_required_member_fields($connection, $challenge) {
     return array(
         'required' => $required,
         'mapped' => $mappedValues
+    );
+}
+
+function oidc_http_json_request($method, $url, $headers = array(), $body = null, $timeout = 15) {
+    $headerLines = array();
+    foreach ($headers as $key => $value) {
+        $headerLines[] = $key . ': ' . $value;
+    }
+
+    $opts = array(
+        'http' => array(
+            'method' => strtoupper($method),
+            'timeout' => $timeout,
+            'ignore_errors' => true
+        )
+    );
+
+    if (!empty($headerLines)) {
+        $opts['http']['header'] = implode("\r\n", $headerLines) . "\r\n";
+    }
+    if ($body !== null) {
+        $opts['http']['content'] = $body;
+    }
+
+    $context = stream_context_create($opts);
+    $raw = @file_get_contents($url, false, $context);
+    $status = 0;
+    $responseHeaders = array();
+
+    if (isset($http_response_header) && is_array($http_response_header)) {
+        $responseHeaders = $http_response_header;
+        foreach ($http_response_header as $line) {
+            if (preg_match('/^HTTP\/\d+(?:\.\d+)?\s+(\d+)/', $line, $m)) {
+                $status = intval($m[1]);
+            }
+        }
+    }
+
+    $decoded = null;
+    if ($raw !== false && $raw !== '') {
+        $decoded = json_decode($raw, true);
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            $decoded = null;
+        }
+    }
+
+    return array(
+        'status' => $status,
+        'headers' => $responseHeaders,
+        'json' => $decoded,
+        'raw' => $raw
+    );
+}
+
+function oidc_keycloak_context() {
+    $issuer = rtrim(oidc_get_env('OIDC_ISSUER', ''), '/');
+    if (empty($issuer) || strpos($issuer, '/realms/') === false) {
+        return null;
+    }
+
+    $parts = explode('/realms/', $issuer, 2);
+    if (count($parts) !== 2 || empty($parts[0]) || empty($parts[1])) {
+        return null;
+    }
+
+    return array(
+        'issuer' => $issuer,
+        'base' => $parts[0],
+        'realm' => $parts[1]
+    );
+}
+
+function oidc_keycloak_admin_access_token() {
+    $ctx = oidc_keycloak_context();
+    if (!$ctx) {
+        return array('ok' => false, 'error' => 'issuer_invalid');
+    }
+
+    $clientId = oidc_get_env('OIDC_CLIENT_ID', '');
+    $clientSecret = oidc_get_env('OIDC_CLIENT_SECRET', '');
+
+    if (empty($clientId) || empty($clientSecret)) {
+        return array('ok' => false, 'error' => 'admin_client_missing');
+    }
+
+    $tokenEndpoint = $ctx['base'] . '/realms/' . rawurlencode($ctx['realm']) . '/protocol/openid-connect/token';
+    $body = http_build_query(array(
+        'grant_type' => 'client_credentials',
+        'client_id' => $clientId,
+        'client_secret' => $clientSecret
+    ));
+
+    $tokenResponse = oidc_http_json_request(
+        'POST',
+        $tokenEndpoint,
+        array('Content-Type' => 'application/x-www-form-urlencoded'),
+        $body
+    );
+
+    if ($tokenResponse['status'] < 200 || $tokenResponse['status'] >= 300 || empty($tokenResponse['json']['access_token'])) {
+        return array('ok' => false, 'error' => 'admin_token_failed');
+    }
+
+    return array(
+        'ok' => true,
+        'ctx' => $ctx,
+        'access_token' => $tokenResponse['json']['access_token']
+    );
+}
+
+function oidc_provider_find_user_by_email($email) {
+    if (empty($email)) {
+        return array('ok' => false, 'error' => 'email_missing');
+    }
+
+    $token = oidc_keycloak_admin_access_token();
+    if (!$token['ok']) {
+        return $token;
+    }
+
+    $ctx = $token['ctx'];
+    $url = $ctx['base'] . '/admin/realms/' . rawurlencode($ctx['realm']) . '/users?exact=true&max=2&email=' . rawurlencode($email);
+    $response = oidc_http_json_request(
+        'GET',
+        $url,
+        array('Authorization' => 'Bearer ' . $token['access_token'])
+    );
+
+    if ($response['status'] < 200 || $response['status'] >= 300 || !is_array($response['json'])) {
+        return array('ok' => false, 'error' => 'provider_lookup_failed');
+    }
+
+    $users = $response['json'];
+    return array(
+        'ok' => true,
+        'exists' => count($users) > 0,
+        'users' => $users,
+        'issuer' => $ctx['issuer']
+    );
+}
+
+function oidc_provider_create_user($profile) {
+    $required = array('username', 'email', 'first_name', 'last_name');
+    foreach ($required as $field) {
+        if (empty($profile[$field])) {
+            return array('ok' => false, 'error' => 'missing_' . $field);
+        }
+    }
+
+    $token = oidc_keycloak_admin_access_token();
+    if (!$token['ok']) {
+        return $token;
+    }
+
+    $ctx = $token['ctx'];
+    $createUrl = $ctx['base'] . '/admin/realms/' . rawurlencode($ctx['realm']) . '/users';
+    $payload = json_encode(array(
+        'enabled' => true,
+        'username' => $profile['username'],
+        'email' => $profile['email'],
+        'firstName' => $profile['first_name'],
+        'lastName' => $profile['last_name'],
+        'emailVerified' => false,
+        'requiredActions' => array('UPDATE_PASSWORD')
+    ));
+
+    $createResponse = oidc_http_json_request(
+        'POST',
+        $createUrl,
+        array(
+            'Authorization' => 'Bearer ' . $token['access_token'],
+            'Content-Type' => 'application/json'
+        ),
+        $payload
+    );
+
+    if ($createResponse['status'] === 409) {
+        $raw = strtolower((string) $createResponse['raw']);
+        $json = is_array($createResponse['json']) ? $createResponse['json'] : array();
+        $msg = '';
+        if (isset($json['errorMessage'])) {
+            $msg = strtolower((string) $json['errorMessage']);
+        } else if (isset($json['message'])) {
+            $msg = strtolower((string) $json['message']);
+        }
+
+        $haystack = $raw . ' ' . $msg;
+        if (strpos($haystack, 'username') !== false) {
+            return array('ok' => false, 'error' => 'provider_username_exists');
+        }
+        if (strpos($haystack, 'email') !== false) {
+            return array('ok' => false, 'error' => 'provider_email_exists');
+        }
+        return array('ok' => false, 'error' => 'provider_account_exists');
+    }
+
+    if ($createResponse['status'] !== 201) {
+        return array(
+            'ok' => false,
+            'error' => 'provider_create_failed',
+            'error_detail' => 'HTTP ' . $createResponse['status']
+        );
+    }
+
+    $lookup = oidc_provider_find_user_by_email($profile['email']);
+    if (!$lookup['ok'] || empty($lookup['users'][0]['id'])) {
+        return array('ok' => false, 'error' => 'provider_create_lookup_failed');
+    }
+
+    $userId = $lookup['users'][0]['id'];
+    $executeActionsUrl = $ctx['base'] . '/admin/realms/' . rawurlencode($ctx['realm'])
+        . '/users/' . rawurlencode($userId) . '/execute-actions-email';
+    $executeActionsResponse = oidc_http_json_request(
+        'PUT',
+        $executeActionsUrl,
+        array(
+            'Authorization' => 'Bearer ' . $token['access_token'],
+            'Content-Type' => 'application/json'
+        ),
+        json_encode(array('UPDATE_PASSWORD'))
+    );
+
+    if ($executeActionsResponse['status'] < 200 || $executeActionsResponse['status'] >= 300) {
+        return array('ok' => false, 'error' => 'provider_execute_actions_email_failed');
+    }
+
+    return array(
+        'ok' => true,
+        'created' => $createResponse['status'] === 201,
+        'subject' => $userId,
+        'issuer' => $ctx['issuer']
+    );
+}
+
+function oidc_provider_get_user_by_subject($issuer, $subject) {
+    if (empty($subject)) {
+        return array('ok' => false, 'error' => 'subject_missing');
+    }
+
+    $token = oidc_keycloak_admin_access_token();
+    if (!$token['ok']) {
+        return $token;
+    }
+
+    $ctx = $token['ctx'];
+    if (!empty($issuer) && rtrim($issuer, '/') !== rtrim($ctx['issuer'], '/')) {
+        return array('ok' => false, 'error' => 'issuer_mismatch');
+    }
+
+    $url = $ctx['base'] . '/admin/realms/' . rawurlencode($ctx['realm']) . '/users/' . rawurlencode($subject);
+    $response = oidc_http_json_request(
+        'GET',
+        $url,
+        array('Authorization' => 'Bearer ' . $token['access_token'])
+    );
+
+    if ($response['status'] === 404) {
+        return array('ok' => true, 'found' => false);
+    }
+
+    if ($response['status'] < 200 || $response['status'] >= 300 || !is_array($response['json'])) {
+        return array('ok' => false, 'error' => 'provider_subject_lookup_failed');
+    }
+
+    return array(
+        'ok' => true,
+        'found' => true,
+        'user' => $response['json']
     );
 }
 

@@ -13,7 +13,14 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$location', 
     };
 
     $scope.forgotPassword = function() {
-        sweetAlert("Password Reset", "To get your password reset, you will need to send an email to officers@rpiambulance.com.", "info");
+        var provider = $scope.oidc.provider || 'OpenID';
+        var message =
+            "RPI Ambulance is moving to " + provider + " for a more secure and streamlined login experience. To reset your password:\n\n" +
+            "- RPIA Auth account: Visit account.rpiambulance.com\n" +
+            "- Legacy account: Email officers@rpiambulance.com\n\n" +
+            "Note: Signing in with a legacy account will prompt you to link it to " + provider + ". " +
+            "Once linked, you will sign in with " + provider + " and reset your password through account.rpiambulance.com going forward.";
+        sweetAlert("Password Reset", message, "info");
     };
 
     $scope.clearForm = function () {
@@ -25,23 +32,47 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$location', 
     };
 
     $scope.submitForm = function () {
-        AuthService.login($scope.formData).then(function () {
+        AuthService.login($scope.formData).then(function (response) {
+            var data = (response && response.data) ? response.data : {};
+            if (data.oidc_setup_required) {
+                $location.search({action: data.oidc_setup_action || 'link'});
+                $location.path('/oidc-legacy-setup');
+                return;
+            }
             $location.path('/night-crews');
         }, function (error) {
-            if (error.data.fail_type == "locked") {
-                sweetAlert("Account Disabled", error.data.errors.locked, "error");
+            var data = (error && error.data) ? error.data : {};
+            var failType = data.fail_type || '';
+            var errors = data.errors || {};
+            var fallbackMessage = "Unable to log in right now. Please try again or contact officers@rpiambulance.com.";
+
+            if (failType == "locked") {
+                sweetAlert("Account Disabled", errors.locked || fallbackMessage, "error");
             }
-            else if (error.data.fail_type == "incomplete") {
-                if (error.data.errors.username) {
-                    sweetAlert(error.data.errors.username, error.data.errors.incomplete, "error");
+            else if (failType == "incomplete") {
+                if (errors.username) {
+                    sweetAlert(errors.username, errors.incomplete || fallbackMessage, "error");
                 }
-                else if (error.data.errors.password) {
-                    sweetAlert(error.data.errors.password, error.data.errors.incomplete, "error");
+                else if (errors.password) {
+                    sweetAlert(errors.password, errors.incomplete || fallbackMessage, "error");
                 }
+                else {
+                    sweetAlert("Login Incomplete", errors.incomplete || fallbackMessage, "error");
+                }
+            }
+            else if (failType == "oidc_only") {
+                sweetAlert("Use " + $scope.oidc.provider + " Login", errors.oidc_only || fallbackMessage, "error");
+            }
+            else if (failType == "inactive") {
+                sweetAlert("Account Inactive", errors.inactive || fallbackMessage, "error");
+            }
+            else if (failType == "revoked") {
+                sweetAlert("Access Revoked", errors.revoked || fallbackMessage, "error");
             }
             else {
-                sweetAlert("Houston, we've had a problem!", error.data.errors.credentials, "error");
-                $scope.errorMessage = error.data.errors.credentials;
+                var genericMessage = errors.credentials || fallbackMessage;
+                sweetAlert("Houston, we've had a problem!", genericMessage, "error");
+                $scope.errorMessage = genericMessage;
                 $scope.showError = true;
             }
         });
@@ -52,7 +83,7 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$location', 
     };
 
     function initializeOidcConfig() {
-        AuthService.getOidcConfig().then(function (response) {
+        return AuthService.getOidcConfig().then(function (response) {
             if (response.data) {
                 $scope.oidc.enabled = !!response.data.enabled;
                 $scope.oidc.provider = response.data.provider || 'OpenID';
@@ -63,7 +94,7 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$location', 
     function initializeOidcChallenge() {
         var params = $location.search();
         if (params.oidc_error) {
-            sweetAlert("OpenID Login Error", params.oidc_error, "error");
+            sweetAlert($scope.oidc.provider + " Login Error", params.oidc_error, "error");
         }
         if (params.oidc_challenge) {
             $location.path('/oidc-onboard');
@@ -71,6 +102,9 @@ angular.module('LoginCtrl', []).controller('LoginCtrl', ['$scope', '$location', 
         }
     }
 
-    initializeOidcConfig();
-    initializeOidcChallenge();
+    initializeOidcConfig().then(function () {
+        initializeOidcChallenge();
+    }, function () {
+        initializeOidcChallenge();
+    });
 }]);

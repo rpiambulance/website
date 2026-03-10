@@ -2,6 +2,7 @@ angular.module('OIDCOnboardCtrl', []).controller('OIDCOnboardCtrl', ['$scope', '
     $scope.challengeId = '';
     $scope.mode = 'choose';
     $scope.providerProfile = {};
+    $scope.provider = 'OpenID';
 
     $scope.linkData = {
         username: '',
@@ -45,6 +46,15 @@ angular.module('OIDCOnboardCtrl', []).controller('OIDCOnboardCtrl', ['$scope', '
 
     $scope.useCreateNew = function () {
         $scope.mode = 'create';
+    };
+
+    $scope.backToChoose = function ($event) {
+        if ($event) {
+            $event.preventDefault();
+            $event.stopPropagation();
+        }
+        $scope.linkData.password = '';
+        $scope.mode = 'choose';
     };
 
     $scope.submitOidcLink = function () {
@@ -131,5 +141,11 @@ angular.module('OIDCOnboardCtrl', []).controller('OIDCOnboardCtrl', ['$scope', '
         });
     }
 
-    initializeChallenge();
+    AuthService.getOidcConfig().then(function (response) {
+        if (response.data && response.data.provider) {
+            $scope.provider = response.data.provider;
+        }
+    }).finally(function () {
+        initializeChallenge();
+    });
 }]);
