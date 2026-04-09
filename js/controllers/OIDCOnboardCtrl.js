@@ -13,8 +13,6 @@ angular.module('OIDCOnboardCtrl', []).controller('OIDCOnboardCtrl', ['$scope', '
         first_name: "",
         last_name: "",
         email: "",
-        password: "",
-        conf_password: "",
         RCS: "",
         RIN: "",
         phone: "",
@@ -72,14 +70,7 @@ angular.module('OIDCOnboardCtrl', []).controller('OIDCOnboardCtrl', ['$scope', '
     };
 
     $scope.submitCreateForm = function () {
-        if ($scope.formData.password !== $scope.formData.conf_password) {
-            sweetAlert("Password Mismatch!", "Your passwords do not match. Please try again.", "error");
-            return;
-        }
-
         var payload = {
-            username: $scope.formData.user_name,
-            password: $scope.formData.password,
             first_name: $scope.formData.first_name,
             last_name: $scope.formData.last_name,
             dob: $scope.formData.dob,
@@ -112,6 +103,7 @@ angular.module('OIDCOnboardCtrl', []).controller('OIDCOnboardCtrl', ['$scope', '
         $scope.formData.last_name = prefill.last_name || $scope.formData.last_name;
         $scope.formData.email = prefill.email || $scope.formData.email;
         $scope.formData.user_name = prefill.username || $scope.formData.user_name;
+        $scope.linkData.username = $scope.formData.user_name || $scope.linkData.username;
     }
 
     function initializeChallenge() {

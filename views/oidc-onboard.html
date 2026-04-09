@@ -42,7 +42,7 @@
         <h4>Create New Account</h4>
         <p class="lead">
           Fill out the form below to create your RPI Ambulance account and link it to
-          your {{provider}} login.
+          your {{provider}} login. Your sign-in credentials are managed by {{provider}}.
         </p>
         <form role="form" ng-submit="submitCreateForm()" class="form text-left" name="add_form" id="oidc-create-form" novalidate>
           <div class="form-group">
@@ -59,7 +59,7 @@
           <div class="form-group">
             <label for="un">Username</label>
             <input type="text" name="un" id="un" class="form-control" ng-model="formData.user_name"
-            placeholder="Blue.Trainz" data-validation="required"/>
+            placeholder="Blue.Trainz" data-validation="required" readonly/>
           </div>
 
           <div class="form-group fixed-height-form-element">
@@ -73,23 +73,9 @@
           </div>
 
           <div class="form-group">
-            <label for="pass">Password</label>
-            <input type="password" name="pass" id="pass" class="form-control"
-            ng-model="formData.password"
-            placeholder="" data-validation="required"/>
-          </div>
-
-          <div class="form-group">
-            <label for="cpass">Confirm Password</label>
-            <input type="password" name="cpass" id="cpass" class="form-control"
-            ng-model="formData.conf_password"
-            data-validation="required"/>
-          </div>
-
-          <div class="form-group">
             <label for="email">Email</label>
             <input type="email" name="email" id="email" class="form-control" ng-model="formData.email"
-            placeholder="thomas@blue-bell-railway.co.uk" data-validation="required email"/>
+            placeholder="thomas@blue-bell-railway.co.uk" data-validation="required email" readonly/>
           </div>
 
           <div class="form-group">

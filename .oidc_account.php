@@ -14,6 +14,17 @@ function oidc_json_error($message, $status = 400) {
     exit;
 }
 
+function oidc_json_exception($prefix, $exception) {
+    $message = $prefix;
+    if ($exception && method_exists($exception, 'getMessage')) {
+        $detail = trim($exception->getMessage());
+        if ($detail !== '') {
+            $message .= ': ' . $detail;
+        }
+    }
+    oidc_json_error($message, 500);
+}
+
 function oidc_query_login_credentials($connection, $username) {
     $stmt = $connection->prepare("SELECT * FROM members WHERE username = :username");
     $stmt->bindParam(':username', $username);
@@ -23,33 +34,77 @@ function oidc_query_login_credentials($connection, $username) {
 
 function oidc_build_insert_columns($connection, $merged) {
     $schemaStmt = $connection->prepare(
-        "SELECT COLUMN_NAME, IS_NULLABLE, COLUMN_DEFAULT, EXTRA
+        "SELECT COLUMN_NAME, DATA_TYPE, IS_NULLABLE, COLUMN_DEFAULT, EXTRA
          FROM INFORMATION_SCHEMA.COLUMNS
          WHERE TABLE_SCHEMA = DATABASE() AND TABLE_NAME = 'members'"
     );
     $schemaStmt->execute();
     $columns = $schemaStmt->fetchAll(PDO::FETCH_ASSOC);
 
+    $onboardingFields = oidc_member_onboarding_fields();
+    $normalized = array();
+    foreach ($onboardingFields as $column => $config) {
+        if (array_key_exists($column, $merged)) {
+            $normalized[$column] = $merged[$column];
+        }
+    }
+
     $required = array();
+    foreach ($onboardingFields as $column => $config) {
+        if (!empty($config['required'])) {
+            $required[] = $column;
+        }
+    }
+
+    $specialDefaults = array(
+        'lastlogin' => date('Y-m-d'),
+        'cpr_assoc' => 'No CPR Certificate',
+        'emt_level' => 'Not an EMT',
+        'active' => '1',
+        'access_revoked' => '0'
+    );
+
     foreach ($columns as $c) {
         if ($c['COLUMN_NAME'] === 'id' || strpos($c['EXTRA'], 'auto_increment') !== false) {
             continue;
         }
-        if ($c['IS_NULLABLE'] === 'NO' && $c['COLUMN_DEFAULT'] === null) {
-            $required[] = $c['COLUMN_NAME'];
+
+        $column = $c['COLUMN_NAME'];
+        $hasValue = array_key_exists($column, $normalized) && $normalized[$column] !== '' && $normalized[$column] !== null;
+        if ($hasValue || $c['IS_NULLABLE'] !== 'NO' || $c['COLUMN_DEFAULT'] !== null) {
+            continue;
+        }
+
+        if (!in_array($column, $required, true)) {
+            if (array_key_exists($column, $specialDefaults)) {
+                $normalized[$column] = $specialDefaults[$column];
+                continue;
+            }
+
+            $numericTypes = array('bit', 'bigint', 'decimal', 'double', 'float', 'int', 'integer', 'mediumint', 'real', 'smallint', 'tinyint');
+            if (in_array(strtolower($c['DATA_TYPE']), $numericTypes, true)) {
+                $normalized[$column] = '0';
+                continue;
+            }
+
+            $stringTypes = array('char', 'enum', 'longtext', 'mediumtext', 'set', 'text', 'tinytext', 'varchar');
+            if (in_array(strtolower($c['DATA_TYPE']), $stringTypes, true)) {
+                $normalized[$column] = '';
+            }
         }
     }
 
     $missing = array();
     foreach ($required as $column) {
-        if (!array_key_exists($column, $merged) || $merged[$column] === '' || $merged[$column] === null) {
+        if (!array_key_exists($column, $normalized) || $normalized[$column] === '' || $normalized[$column] === null) {
             $missing[] = $column;
         }
     }
 
     return array(
         'missing' => $missing,
-        'columns' => $columns
+        'columns' => $columns,
+        'values' => $normalized
     );
 }
 
@@ -63,10 +118,39 @@ function oidc_claim_to_member_values($challenge) {
     return $values;
 }
 
+function oidc_normalize_date_value($value) {
+    if ($value === null || $value === '') {
+        return $value;
+    }
+
+    if (preg_match('/^\d{4}-\d{2}-\d{2}$/', $value)) {
+        return $value;
+    }
+
+    $timestamp = strtotime($value);
+    if ($timestamp === false) {
+        return $value;
+    }
+
+    return date('Y-m-d', $timestamp);
+}
+
+function oidc_normalize_member_values($merged) {
+    $dateFields = array('dob', 'lastlogin');
+    foreach ($dateFields as $field) {
+        if (isset($merged[$field])) {
+            $merged[$field] = oidc_normalize_date_value($merged[$field]);
+        }
+    }
+
+    return $merged;
+}
+
 $connection = openDatabaseConnection();
 if (!$connection) {
     oidc_json_error('Unable to open database connection.', 500);
 }
+$connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
     if (empty($_GET['challenge_id'])) {
@@ -112,138 +196,151 @@ if (!$challenge) {
 }
 
 if ($action === 'link') {
-    $username = isset($post['username']) ? $post['username'] : '';
-    $password = isset($post['password']) ? $post['password'] : '';
-    if (empty($username) || empty($password)) {
-        oidc_json_error('Username and password are required for account linking.');
-    }
+    try {
+        $username = isset($post['username']) ? $post['username'] : '';
+        $password = isset($post['password']) ? $post['password'] : '';
+        if (empty($username) || empty($password)) {
+            oidc_json_error('Username and password are required for account linking.');
+        }
 
-    $userInfo = oidc_query_login_credentials($connection, $username);
-    if (empty($userInfo)) {
-        oidc_json_error('Invalid username/password combination.');
-    }
+        $userInfo = oidc_query_login_credentials($connection, $username);
+        if (empty($userInfo)) {
+            oidc_json_error('Invalid username/password combination.');
+        }
 
-    $passwordOk = password_verify(hash('sha256', $password), $userInfo['password']) || md5($password) === $userInfo['password'];
-    if (!$passwordOk) {
-        oidc_json_error('Invalid username/password combination.');
-    }
+        $passwordOk = password_verify(hash('sha256', $password), $userInfo['password']) || md5($password) === $userInfo['password'];
+        if (!$passwordOk) {
+            oidc_json_error('Invalid username/password combination.');
+        }
 
-    if ($userInfo['active'] !== '1') {
-        oidc_json_error('Your account is inactive.');
-    }
-    if (isset($userInfo['access_revoked']) && $userInfo['access_revoked'] === '1') {
-        oidc_json_error('Access has been revoked for your account.');
-    }
+        if ($userInfo['active'] !== '1') {
+            oidc_json_error('Your account is inactive.');
+        }
+        if (isset($userInfo['access_revoked']) && $userInfo['access_revoked'] === '1') {
+            oidc_json_error('Access has been revoked for your account.');
+        }
 
-    $existingIdentity = $connection->prepare(
-        "SELECT userID FROM oidc_identities WHERE issuer = :issuer AND subject = :subject LIMIT 1"
-    );
-    $existingIdentity->bindParam(':issuer', $challenge['issuer']);
-    $existingIdentity->bindParam(':subject', $challenge['subject']);
-    $existingIdentity->execute();
-    $existing = $existingIdentity->fetch(PDO::FETCH_ASSOC);
-    if ($existing && intval($existing['userID']) !== intval($userInfo['id'])) {
-        oidc_json_error('This OpenID identity is already linked to another account.');
-    }
-
-    if (!$existing) {
-        $insertIdentity = $connection->prepare(
-            "INSERT INTO oidc_identities (issuer, subject, userID, email) VALUES (:issuer, :subject, :userID, :email)"
+        $existingIdentity = $connection->prepare(
+            "SELECT userID FROM oidc_identities WHERE issuer = :issuer AND subject = :subject LIMIT 1"
         );
-        $insertIdentity->bindParam(':issuer', $challenge['issuer']);
-        $insertIdentity->bindParam(':subject', $challenge['subject']);
-        $insertIdentity->bindParam(':userID', $userInfo['id'], PDO::PARAM_INT);
-        $email = $challenge['email'];
-        $insertIdentity->bindParam(':email', $email);
-        $insertIdentity->execute();
+        $existingIdentity->bindParam(':issuer', $challenge['issuer']);
+        $existingIdentity->bindParam(':subject', $challenge['subject']);
+        $existingIdentity->execute();
+        $existing = $existingIdentity->fetch(PDO::FETCH_ASSOC);
+        if ($existing && intval($existing['userID']) !== intval($userInfo['id'])) {
+            oidc_json_error('This OpenID identity is already linked to another account.');
+        }
+
+        if (!$existing) {
+            $insertIdentity = $connection->prepare(
+                "INSERT INTO oidc_identities (issuer, subject, userID, email) VALUES (:issuer, :subject, :userID, :email)"
+            );
+            $insertIdentity->bindParam(':issuer', $challenge['issuer']);
+            $insertIdentity->bindParam(':subject', $challenge['subject']);
+            $insertIdentity->bindParam(':userID', $userInfo['id'], PDO::PARAM_INT);
+            $email = $challenge['email'];
+            $insertIdentity->bindParam(':email', $email);
+            $insertIdentity->execute();
+        }
+
+        oidc_consume_challenge($connection, $challengeId);
+        $sessionId = oidc_create_session_for_user($connection, intval($userInfo['id']));
+
+        echo json_encode(array(
+            'success' => true,
+            'session_id' => $sessionId
+        ));
+        exit;
+    } catch (Exception $e) {
+        oidc_json_exception('Unable to link account', $e);
     }
-
-    oidc_consume_challenge($connection, $challengeId);
-    $sessionId = oidc_create_session_for_user($connection, intval($userInfo['id']));
-
-    echo json_encode(array(
-        'success' => true,
-        'session_id' => $sessionId
-    ));
-    exit;
 }
 
 if ($action === 'create') {
-    if (!isset($post['data'])) {
-        oidc_json_error('data is required for account creation.');
-    }
-
-    $input = json_decode($post['data'], true);
-    if (!is_array($input)) {
-        oidc_json_error('Invalid data payload.');
-    }
-
-    $mapped = oidc_claim_to_member_values($challenge);
-    $merged = array_merge($mapped, $input);
-
-    if (!isset($merged['lastlogin']) || $merged['lastlogin'] === '') {
-        $merged['lastlogin'] = date('Y-m-d');
-    }
-
-    if (isset($merged['password']) && $merged['password'] !== '') {
-        $merged['password'] = password_hash(hash('sha256', $merged['password']), PASSWORD_DEFAULT);
-    }
-
-    $requirements = oidc_build_insert_columns($connection, $merged);
-    if (!empty($requirements['missing'])) {
-        oidc_json_error('Missing required fields: ' . implode(', ', $requirements['missing']));
-    }
-
-    $usernameCheck = $connection->prepare("SELECT id FROM members WHERE username = :username LIMIT 1");
-    $usernameCheck->bindParam(':username', $merged['username']);
-    $usernameCheck->execute();
-    if ($usernameCheck->fetch(PDO::FETCH_ASSOC)) {
-        oidc_json_error('The selected username already exists.');
-    }
-
-    $maxIdStmt = $connection->query("SELECT MAX(id) AS max_id FROM members");
-    $maxId = $maxIdStmt->fetch(PDO::FETCH_ASSOC);
-    $newId = intval($maxId['max_id']) + 1;
-
-    $columns = array('id');
-    $placeholders = array(':id');
-    $bindValues = array(':id' => $newId);
-
-    foreach ($merged as $column => $value) {
-        if (!preg_match('/^[a-zA-Z0-9_]+$/', $column) || $column === 'id') {
-            continue;
+    try {
+        if (!isset($post['data'])) {
+            oidc_json_error('data is required for account creation.');
         }
-        $columns[] = $column;
-        $placeholder = ':' . $column;
-        $placeholders[] = $placeholder;
-        $bindValues[$placeholder] = $value;
+
+        $input = json_decode($post['data'], true);
+        if (!is_array($input)) {
+            oidc_json_error('Invalid data payload.');
+        }
+
+        $mapped = oidc_claim_to_member_values($challenge);
+        $merged = array_merge($mapped, $input);
+        if (!empty($mapped['username'])) {
+            $merged['username'] = $mapped['username'];
+        }
+        $merged = oidc_normalize_member_values($merged);
+
+        if (!isset($merged['lastlogin']) || $merged['lastlogin'] === '') {
+            $merged['lastlogin'] = date('Y-m-d');
+        }
+
+        if (isset($merged['password']) && $merged['password'] !== '') {
+            $merged['password'] = password_hash(hash('sha256', $merged['password']), PASSWORD_DEFAULT);
+        }
+
+        $requirements = oidc_build_insert_columns($connection, $merged);
+        if (!empty($requirements['missing'])) {
+            oidc_json_error('Missing required fields: ' . implode(', ', $requirements['missing']));
+        }
+        $merged = $requirements['values'];
+
+        $usernameCheck = $connection->prepare("SELECT id FROM members WHERE username = :username LIMIT 1");
+        $usernameCheck->bindParam(':username', $merged['username']);
+        $usernameCheck->execute();
+        if ($usernameCheck->fetch(PDO::FETCH_ASSOC)) {
+            oidc_json_error('The selected username already exists.');
+        }
+
+        $maxIdStmt = $connection->query("SELECT MAX(id) AS max_id FROM members");
+        $maxId = $maxIdStmt->fetch(PDO::FETCH_ASSOC);
+        $newId = intval($maxId['max_id']) + 1;
+
+        $columns = array('id');
+        $placeholders = array(':id');
+        $bindValues = array(':id' => $newId);
+
+        foreach ($merged as $column => $value) {
+            if (!preg_match('/^[a-zA-Z0-9_]+$/', $column) || $column === 'id') {
+                continue;
+            }
+            $columns[] = $column;
+            $placeholder = ':' . $column;
+            $placeholders[] = $placeholder;
+            $bindValues[$placeholder] = $value;
+        }
+
+        $sql = "INSERT INTO members (" . implode(', ', $columns) . ") VALUES (" . implode(', ', $placeholders) . ")";
+        $insertMember = $connection->prepare($sql);
+        foreach ($bindValues as $placeholder => $value) {
+            $insertMember->bindValue($placeholder, $value);
+        }
+        $insertMember->execute();
+
+        $identityInsert = $connection->prepare(
+            "INSERT INTO oidc_identities (issuer, subject, userID, email) VALUES (:issuer, :subject, :userID, :email)"
+        );
+        $identityInsert->bindParam(':issuer', $challenge['issuer']);
+        $identityInsert->bindParam(':subject', $challenge['subject']);
+        $identityInsert->bindParam(':userID', $newId, PDO::PARAM_INT);
+        $email = isset($merged['email']) ? $merged['email'] : $challenge['email'];
+        $identityInsert->bindParam(':email', $email);
+        $identityInsert->execute();
+
+        oidc_consume_challenge($connection, $challengeId);
+        $sessionId = oidc_create_session_for_user($connection, $newId);
+
+        echo json_encode(array(
+            'success' => true,
+            'session_id' => $sessionId
+        ));
+        exit;
+    } catch (Exception $e) {
+        oidc_json_exception('Unable to create account', $e);
     }
-
-    $sql = "INSERT INTO members (" . implode(', ', $columns) . ") VALUES (" . implode(', ', $placeholders) . ")";
-    $insertMember = $connection->prepare($sql);
-    foreach ($bindValues as $placeholder => $value) {
-        $insertMember->bindValue($placeholder, $value);
-    }
-    $insertMember->execute();
-
-    $identityInsert = $connection->prepare(
-        "INSERT INTO oidc_identities (issuer, subject, userID, email) VALUES (:issuer, :subject, :userID, :email)"
-    );
-    $identityInsert->bindParam(':issuer', $challenge['issuer']);
-    $identityInsert->bindParam(':subject', $challenge['subject']);
-    $identityInsert->bindParam(':userID', $newId, PDO::PARAM_INT);
-    $email = isset($merged['email']) ? $merged['email'] : $challenge['email'];
-    $identityInsert->bindParam(':email', $email);
-    $identityInsert->execute();
-
-    oidc_consume_challenge($connection, $challengeId);
-    $sessionId = oidc_create_session_for_user($connection, $newId);
-
-    echo json_encode(array(
-        'success' => true,
-        'session_id' => $sessionId
-    ));
-    exit;
 }
 
 oidc_json_error('Unsupported action.');
