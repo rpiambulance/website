@@ -308,25 +308,29 @@ function oidc_claim_mapped_values($challenge) {
     );
 }
 
-function oidc_required_member_fields($connection, $challenge) {
-    $schemaStmt = $connection->prepare(
-        "SELECT COLUMN_NAME, DATA_TYPE
-         FROM INFORMATION_SCHEMA.COLUMNS
-         WHERE TABLE_SCHEMA = DATABASE()
-           AND TABLE_NAME = 'members'
-           AND IS_NULLABLE = 'NO'
-           AND COLUMN_DEFAULT IS NULL
-           AND EXTRA NOT LIKE '%auto_increment%'"
+function oidc_member_onboarding_fields() {
+    return array(
+        'username' => array('type' => 'varchar', 'required' => true),
+        'first_name' => array('type' => 'varchar', 'required' => true),
+        'last_name' => array('type' => 'varchar', 'required' => true),
+        'dob' => array('type' => 'date', 'required' => true),
+        'email' => array('type' => 'varchar', 'required' => true),
+        'rcs_id' => array('type' => 'varchar', 'required' => false),
+        'rin' => array('type' => 'varchar', 'required' => true),
+        'rpi_address' => array('type' => 'varchar', 'required' => true),
+        'home_address' => array('type' => 'varchar', 'required' => true),
+        'cell_phone' => array('type' => 'varchar', 'required' => true),
+        'home_phone' => array('type' => 'varchar', 'required' => false)
     );
-    $schemaStmt->execute();
-    $rows = $schemaStmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
+function oidc_required_member_fields($connection, $challenge) {
     $mappedValues = oidc_claim_mapped_values($challenge);
+    $rows = oidc_member_onboarding_fields();
 
     $required = array();
-    foreach ($rows as $row) {
-        $column = $row['COLUMN_NAME'];
-        if ($column === 'id') {
+    foreach ($rows as $column => $config) {
+        if (empty($config['required'])) {
             continue;
         }
         if (isset($mappedValues[$column]) && !empty($mappedValues[$column])) {
@@ -334,7 +338,7 @@ function oidc_required_member_fields($connection, $challenge) {
         }
         $required[] = array(
             'name' => $column,
-            'type' => $row['DATA_TYPE']
+            'type' => isset($config['type']) ? $config['type'] : 'varchar'
         );
     }
 
